@@ -18,7 +18,8 @@ import {
   Sparkles,
   LoaderCircle,
   X,
-  FileCheck
+  FileCheck,
+  Menu
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -62,8 +63,14 @@ export default function AdminDashboardClient({
   initialSettings
 }: AdminDashboardClientProps) {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const handleTabChange = (tab: Tab) => {
+    setActiveTab(tab);
+    setSidebarOpen(false);
+  };
 
   // Local state for records
   const [inquiries, setInquiries] = useState(initialInquiries);
@@ -229,9 +236,19 @@ export default function AdminDashboardClient({
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white flex selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col md:flex-row selection:bg-white selection:text-black">
+      {/* Mobile Sidebar Overlay Backdrop */}
+      {sidebarOpen && (
+        <div 
+          onClick={() => setSidebarOpen(false)}
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+        />
+      )}
+
       {/* 1. Left Sidebar Navigation */}
-      <aside className="w-64 border-r border-white/10 bg-[#090909] flex flex-col justify-between p-6 shrink-0 h-screen sticky top-0">
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-white/10 bg-[#090909] flex flex-col justify-between p-6 shrink-0 h-screen md:sticky md:top-0 transition-transform duration-300 md:translate-x-0 ${
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+      }`}>
         <div className="space-y-8">
           {/* Logo */}
           <div className="flex items-center gap-3">
@@ -243,7 +260,7 @@ export default function AdminDashboardClient({
               <span className="mono-label text-[8px] text-white/40 block mt-1">CMS PORTAL v2.0</span>
             </div>
           </div>
-
+ 
           {/* Navigation Links */}
           <nav className="space-y-1">
             {[
@@ -258,7 +275,7 @@ export default function AdminDashboardClient({
             ].map((item) => (
               <button
                 key={item.id}
-                onClick={() => setActiveTab(item.id as Tab)}
+                onClick={() => handleTabChange(item.id as Tab)}
                 className={`w-full flex items-center gap-3 px-3 py-3 text-xs font-bold uppercase tracking-wider transition-colors ${
                   activeTab === item.id
                     ? "bg-white text-black"
@@ -289,11 +306,18 @@ export default function AdminDashboardClient({
       </aside>
 
       {/* 2. Main Portal Space */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-grow flex flex-col min-w-0">
         {/* Header Bar */}
-        <header className="h-16 border-b border-white/10 px-8 flex items-center justify-between bg-[#090909]/60 backdrop-blur-md sticky top-0 z-40">
-          <div className="flex items-center gap-4">
-            <h1 className="font-display text-lg font-black uppercase tracking-wider">
+        <header className="h-16 border-b border-white/10 px-4 md:px-8 flex items-center justify-between bg-[#090909]/60 backdrop-blur-md sticky top-0 z-40">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="p-2 border border-white/20 hover:border-white text-white md:hidden"
+              aria-label="Open sidebar"
+            >
+              <Menu size={18} />
+            </button>
+            <h1 className="font-display text-base md:text-lg font-black uppercase tracking-wider">
               {activeTab === "overview" && "Gateway Overview"}
               {activeTab === "products" && "Garment Products"}
               {activeTab === "advertisements" && "Promotion Campaigns"}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MoveRight } from "lucide-react";
 import Link from "next/link";
 import gsap from "gsap";
@@ -46,35 +46,49 @@ const productSections = [
 export default function HorizontalProducts() {
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // GSAP ScrollTrigger for horizontal scroll on desktop
-    const pin = gsap.fromTo(
-      containerRef.current,
-      { x: "0vw" },
-      {
-        x: () => `-${(productSections.length - 1) * 75}vw`,
-        ease: "none",
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          pin: true,
-          scrub: 1,
-          start: "top top",
-          end: () => `+=${containerRef.current?.offsetWidth || 2000}`,
-          invalidateOnRefresh: true,
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    // Only register the ScrollTrigger animation on desktop
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      const pin = gsap.fromTo(
+        containerRef.current,
+        { x: "0vw" },
+        {
+          x: () => `-${(productSections.length - 1) * 75}vw`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            pin: true,
+            scrub: 1,
+            start: "top top",
+            end: () => `+=${containerRef.current?.offsetWidth || 2000}`,
+            invalidateOnRefresh: true,
+          }
         }
-      }
-    );
+      );
+    });
 
     return () => {
-      pin.scrollTrigger?.kill();
+      mm.revert();
     };
   }, []);
 
   return (
-    <div ref={triggerRef} className="relative overflow-hidden bg-[#0d0d0d] h-screen flex flex-col justify-between py-10">
+    <div ref={triggerRef} className="relative overflow-hidden bg-[#0d0d0d] h-auto md:h-screen flex flex-col justify-between py-10 md:py-16">
       {/* Title Header */}
-      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12">
+      <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12 mb-10 md:mb-0">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="mono-label text-[10px] tracking-widest text-[#a8a29e] uppercase">03 / Core Collection</span>
@@ -89,15 +103,19 @@ export default function HorizontalProducts() {
       </div>
 
       {/* Horizontal Slides Container */}
-      <div className="flex flex-1 items-center justify-start py-4">
-        <div ref={containerRef} className="flex gap-16 px-5 sm:px-8 lg:px-12" style={{ width: `${productSections.length * 75}vw` }}>
+      <div className="flex flex-1 items-center justify-start py-4 md:py-0 w-full">
+        <div 
+          ref={containerRef} 
+          className="flex flex-col md:flex-row gap-8 md:gap-16 px-5 sm:px-8 lg:px-12 w-full md:w-auto" 
+          style={isDesktop ? { width: `${productSections.length * 75}vw` } : {}}
+        >
           {productSections.map((section, idx) => (
             <div
               key={section.title}
-              className="relative flex h-[52vh] w-[70vw] shrink-0 flex-col justify-between border border-white/10 bg-[#141414] p-6 transition-all hover:border-white/20 sm:p-10 md:flex-row md:gap-10 lg:w-[65vw]"
+              className="relative flex h-auto md:h-[52vh] w-full md:w-[70vw] shrink-0 flex-col md:flex-row justify-between border border-white/10 bg-[#141414] p-6 transition-all hover:border-white/20 sm:p-10 gap-6 md:gap-10 lg:w-[65vw]"
             >
               {/* Image Column */}
-              <div className="relative h-1/2 overflow-hidden bg-stone-900 md:h-full md:w-1/2">
+              <div className="relative aspect-video md:aspect-auto h-48 sm:h-64 md:h-full w-full md:w-1/2 overflow-hidden bg-stone-900">
                 <img
                   src={section.image}
                   alt={section.title}
@@ -111,7 +129,7 @@ export default function HorizontalProducts() {
               </div>
 
               {/* Info Column */}
-              <div className="flex flex-1 flex-col justify-between pt-6 md:pt-0">
+              <div className="flex flex-1 flex-col justify-between pt-2 md:pt-0">
                 <div className="space-y-4">
                   <span className="mono-label text-[10px] tracking-widest text-white/40 uppercase">COLLECTION 0{idx + 1}</span>
                   <h3 className="font-display text-3xl font-black uppercase tracking-tight text-white sm:text-4xl md:text-5xl">
