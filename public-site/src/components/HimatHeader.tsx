@@ -154,7 +154,7 @@ export function HimatHeader() {
     <>
       <header
         ref={headerRef}
-        className="fixed inset-x-0 top-0 z-50 flex h-22 items-center border-b border-transparent bg-transparent transition-colors duration-300"
+        className="fixed inset-x-0 top-0 z-[110] flex h-22 items-center border-b border-transparent bg-transparent transition-colors duration-300"
       >
         <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo Section */}
@@ -210,7 +210,7 @@ export function HimatHeader() {
       {/* Fullscreen Mobile Menu Overlay */}
       <div
         ref={mobileMenuRef}
-        className="fixed inset-0 z-40 flex -translate-y-full flex-col justify-between bg-[#0d0d0d] px-6 pb-12 pt-28 opacity-0 lg:hidden"
+        className="fixed inset-0 z-[100] flex -translate-y-full flex-col justify-between bg-[#0d0d0d] px-6 pb-12 pt-28 opacity-0 lg:hidden"
       >
         <div ref={mobileLinksRef} className="flex flex-col gap-6 pt-8">
           {links.map((link) => (

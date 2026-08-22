@@ -37,11 +37,16 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
   const recordedAdIds = useRef<Set<number>>(new Set());
 
   const [hiddenAdIds, setHiddenAdIds] = useState<number[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [newReviewForm, setNewReviewForm] = useState({ author: "", rating: 5, text: "", date: "Today" });
   const [isReviewSubmitting, setIsReviewSubmitting] = useState(false);
   const [reviewMessage, setReviewMessage] = useState("");
+
+  useEffect(() => {
+    console.log("Advertisements prop in HomeClient:", JSON.stringify(advertisements));
+  }, [advertisements]);
 
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +77,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
   };
 
   useEffect(() => {
+    setMounted(true);
     try {
       const saved = localStorage.getItem("hidden_ad_ids");
       if (saved) {
@@ -694,7 +700,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         <HimatInquiry />
 
         {/* Active Popup Overlay Advertisement */}
-        {(() => {
+        {mounted && (() => {
           const activePopup = advertisements?.find(ad => ad.placement === "popup" && ad.isActive && !hiddenAdIds.includes(ad.id));
           if (!activePopup) return null;
           return (
