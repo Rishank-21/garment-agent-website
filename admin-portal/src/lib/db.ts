@@ -21,7 +21,7 @@ import {
 
 let _db: Db | null = null;
 let _client: MongoClient | null = null;
-let _connectAttempted = false;
+let _connectPromise: Promise<Db | null> | null = null;
 
 const OWNER_OPEN_ID = process.env.OWNER_OPEN_ID || "";
 
@@ -91,11 +91,12 @@ function wrapDb(db: Db): Db {
 
 export async function getDb(): Promise<Db | null> {
   if (_db) return _db;
-  if (_connectAttempted) return null;
+  if (_connectPromise) return _connectPromise;
 
   const dbUrl = process.env.DATABASE_URL;
-  if (dbUrl) {
-    _connectAttempted = true;
+  if (!dbUrl) return null;
+
+  _connectPromise = (async () => {
     try {
       _client = new MongoClient(dbUrl, {
         connectTimeoutMS: 3000,
@@ -125,12 +126,16 @@ export async function getDb(): Promise<Db | null> {
         await _db.collection("himat_reviews").insertMany(seedReviews);
         console.log("[Database] Seeded 5 real Google reviews successfully.");
       }
+      return _db;
     } catch (error) {
       console.warn("[Database] Failed to connect to MongoDB, falling back to memory store:", error);
+      _connectPromise = null;
       _db = null;
+      return null;
     }
-  }
-  return _db;
+  })();
+
+  return _connectPromise;
 }
 
 /**

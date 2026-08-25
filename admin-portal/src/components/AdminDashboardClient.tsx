@@ -337,9 +337,6 @@ export default function AdminDashboardClient({
             >
               Sync Database
             </button>
-            <span className="mono-label text-[9px] text-white/45">
-              Current Port: 3001 (Production Restricted)
-            </span>
           </div>
         </header>
 
