@@ -168,13 +168,13 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
   }, []);
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
+    <div className="min-h-screen overflow-hidden bg-[#151613] text-[#f7f2e9] selection:bg-[#f05a24] selection:text-[#f7f2e9]">
       <main>
         {/* 1. Fullscreen Hero Slider */}
         <HeroSlider />
 
         {/* 2. Trust Strip Marquee */}
-        <section className="relative overflow-hidden border-y border-white/10 bg-white py-4 text-black transition-colors hover:bg-neutral-100">
+        <section className="relative overflow-hidden border-y border-[#151613]/12 bg-[#f7f2e9] py-4 text-[#151613] transition-colors hover:bg-[#e9e2d5]">
           <div className="flex select-none overflow-hidden">
             <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-display text-2xl font-black uppercase tracking-tight md:text-3xl">
               {Array(4).fill(0).map((_, i) => (
@@ -220,7 +220,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 <Link
                   key={idx}
                   href={cat.link}
-                  className="group relative block overflow-hidden border border-white/10 bg-[#161616] p-8 hover:border-white/30 transition-all hover:-translate-y-1"
+                  className="group relative block overflow-hidden border border-white/10 bg-[#23251f] p-8 hover:border-white/30 transition-all hover:-translate-y-1"
                 >
                   <span className="mono-label text-[9px] text-[#FFB800] tracking-widest block mb-4">0{idx + 1}</span>
                   <h3 className="font-display text-xl font-black uppercase tracking-wider text-white group-hover:text-[#FFB800] transition-colors">{cat.title}</h3>
@@ -234,7 +234,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
             <div className="mt-12 text-center">
               <Link
                 href="/catalog"
-                className="inline-flex items-center gap-2 border border-white bg-white text-black px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 border border-[#ffb800] bg-[#ffb800] text-[#151613] px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
               >
                 {t("btn_explore_all")}
               </Link>
@@ -243,14 +243,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 4. Legacy Section (2nd Generation Notes) */}
-        <section className="relative overflow-hidden bg-[#bdbdb9] px-5 py-20 text-black sm:px-8 lg:px-12 lg:py-28">
+        <section className="relative overflow-hidden bg-[#e9e2d5] px-5 py-20 text-[#151613] sm:px-8 lg:px-12 lg:py-28">
           <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
             <div className="space-y-6">
               <span className="mono-label text-[10px] text-black/50 uppercase">{t("legacy_label")}</span>
               <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.82]">
                 {t("legacy_title")}
               </h2>
-              <div className="h-0.5 bg-black/20 w-16" />
+              <div className="h-0.5 bg-[#151613]/20 w-16" />
               <p className="max-w-xl text-sm leading-relaxed text-black/75 sm:text-base">
                 {t("legacy_desc")}
               </p>
@@ -277,7 +277,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* Featured Brands Marquee */}
-        <section className="bg-white py-12 text-black overflow-hidden border-t border-black/5">
+        <section className="bg-[#f7f2e9] py-12 text-[#151613] overflow-hidden border-t border-[#151613]/8">
           <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
             <p className="mono-label text-[9px] text-black/45 uppercase tracking-widest text-center mb-6">
               {language === "hi" ? "हमारे भागीदारों से सोर्सिंग करने वाले चुनिंदा ब्रांड" : "Featured Brands Sourcing From Our Partners"}
@@ -305,7 +305,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         <HorizontalProducts />
 
         {/* 6. Why Himat Textile Section */}
-        <section className="bg-[#111111] py-24 px-5 sm:px-8 lg:px-12 border-t border-white/5">
+        <section className="bg-[#1e201c] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#f7f2e9]/8">
           <div className="mx-auto max-w-[1500px]">
             <div className="max-w-3xl mb-16 space-y-4">
               <span className="mono-label text-[10px] text-[#FFB800] tracking-widest uppercase block">// {t("why_label")}</span>
@@ -325,7 +325,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="border border-white/10 bg-[#0d0d0d] p-8 hover:border-white/20 transition-all"
+                  className="border border-white/10 bg-[#1e201c] p-8 hover:border-white/20 transition-all"
                 >
                   <span className="font-mono text-xs text-[#FFB800] block mb-4">0{idx + 1}</span>
                   <h3 className="font-display text-lg font-black uppercase tracking-wider text-white mb-2">{item.title}</h3>
@@ -337,7 +337,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 7. Private Label Customizer */}
-        <section className="relative overflow-hidden bg-black px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <section className="relative overflow-hidden bg-[#151613] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div className="absolute inset-0 opacity-15">
             <img
               src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200"
@@ -385,7 +385,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 8. B2B Solutions Interactive Segment Hover */}
-        <section className="relative overflow-hidden bg-black px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
+        <section className="relative overflow-hidden bg-[#151613] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
           <div ref={solutionsBgRef} className="absolute inset-0 pointer-events-none transition-all duration-700">
             {translatedSolutions.map((sol, idx) => (
               <div
@@ -394,7 +394,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 style={{ backgroundImage: `url(${sol.image})` }}
               />
             ))}
-            <div className="absolute inset-0 bg-black/85" />
+            <div className="absolute inset-0 bg-[#151613]/85" />
           </div>
 
           <div className="relative mx-auto max-w-[1500px]">
@@ -423,7 +423,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 9. Business Guide Section */}
-        <section className="bg-[#080808] py-24 px-5 sm:px-8 lg:px-12 border-t border-white/5">
+        <section className="bg-[#151613] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#f7f2e9]/8">
           <div className="mx-auto max-w-[1500px]">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div className="space-y-6">
@@ -434,14 +434,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 <p className="text-sm leading-relaxed text-white/70">
                   {t("bg_subtitle")}
                 </p>
-                <div className="h-px bg-white/10 w-24" />
+                <div className="h-px bg-[#ffb800]/10 w-24" />
                 <p className="text-xs font-mono uppercase tracking-wider text-white/55">
                   {t("bg_desc")}
                 </p>
                 <div className="pt-2">
                   <Link
                     href="/#enquiry"
-                    className="inline-flex items-center gap-2 border border-white bg-white text-black px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 border border-[#ffb800] bg-[#ffb800] text-[#151613] px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
                   >
                     {t("btn_talk_team")}
                   </Link>
@@ -473,7 +473,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         <IndiaNetwork />
 
         {/* 11. Export section */}
-        <section className="bg-black py-24 px-5 sm:px-8 lg:px-12 text-white border-t border-white/5">
+        <section className="bg-[#151613] py-24 px-5 sm:px-8 lg:px-12 text-white border-t border-white/5">
           <div className="mx-auto max-w-[1500px]">
             <span className="mono-label text-[10px] text-white/40 uppercase">{t("ex_label")}</span>
             <div className="grid gap-12 border-t border-white/10 pt-6 mt-4 lg:grid-cols-2">
@@ -501,7 +501,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 <div className="pt-2">
                   <Link
                     href="/#enquiry"
-                    className="inline-flex items-center gap-2 border border-white bg-white text-black px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 border border-[#ffb800] bg-[#ffb800] text-[#151613] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
                   >
                     {t("btn_discuss_requirement")}
                   </Link>
@@ -512,7 +512,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 12. Price Segment Cards */}
-        <section className="bg-[#141414] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-white/5">
+        <section className="bg-[#23251f] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#f7f2e9]/8">
           <div className="mx-auto max-w-[1500px]">
             <span className="mono-label text-[10px] text-white/40 uppercase">{t("price_label")}</span>
             <h2 className="mt-2 font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
@@ -537,7 +537,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   moq: "100 Pcs"
                 }
               ].map(item => (
-                <div key={item.name} className="flex flex-col justify-between border border-white/10 bg-[#0d0d0d] p-6 hover:border-white/20 transition-all">
+                <div key={item.name} className="flex flex-col justify-between border border-white/10 bg-[#1e201c] p-6 hover:border-white/20 transition-all">
                   <div>
                     <h3 className="font-display text-xl font-black uppercase tracking-wider text-white">{item.name}</h3>
                     <p className="mt-4 text-xs leading-relaxed text-white/60">{item.desc}</p>
@@ -554,12 +554,12 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
         {/* 12.5 Featured Promotions / B2B Sponsorships */}
         {advertisements && advertisements.some(ad => ad.placement === "hero" && ad.isActive && !hiddenAdIds.includes(ad.id)) && (
-          <section className="bg-black py-16 px-5 sm:px-8 lg:px-12 border-t border-white/5">
+          <section className="bg-[#151613] py-16 px-5 sm:px-8 lg:px-12 border-t border-white/5">
             <div className="mx-auto max-w-[1500px]">
               <span className="mono-label text-[10px] text-white/40 uppercase">{language === "hi" ? "प्रायोजित विज्ञापन" : "Featured Sponsorships"}</span>
               <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {advertisements.filter(ad => ad.placement === "hero" && ad.isActive && !hiddenAdIds.includes(ad.id)).map(ad => (
-                  <div key={ad.id} className="relative border border-white/10 bg-[#0d0d0d] p-5 flex flex-col justify-between group hover:border-white/20 transition-all">
+                  <div key={ad.id} className="relative border border-white/10 bg-[#1e201c] p-5 flex flex-col justify-between group hover:border-white/20 transition-all">
                     <button
                       suppressHydrationWarning={true}
                       onClick={() => handleHideAd(ad.id)}
@@ -574,7 +574,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         </div>
                       )}
                       <div>
-                        <span className="mono-label text-[8px] bg-white/15 px-2 py-0.5 text-white/70 uppercase">{language === "hi" ? "प्रचार" : "Promotion"}</span>
+                        <span className="mono-label text-[8px] bg-[#ffb800]/15 px-2 py-0.5 text-white/70 uppercase">{language === "hi" ? "प्रचार" : "Promotion"}</span>
                         <h3 className="mt-2 font-display text-lg font-black uppercase tracking-wider text-white">{ad.title}</h3>
                         {ad.description && <p className="mt-2 text-xs leading-relaxed text-white/60">{ad.description}</p>}
                       </div>
@@ -600,7 +600,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         )}
 
         {/* 13. Google Reviews */}
-        <section className="bg-[#bdbdb9] px-5 py-24 text-black sm:px-8 lg:px-12 lg:py-32">
+        <section className="bg-[#f7f2e9] px-5 py-24 text-[#151613] sm:px-8 lg:px-12 lg:py-32">
           <div className="mx-auto max-w-[1500px]">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <div className="space-y-6">
@@ -626,7 +626,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   <button
                     suppressHydrationWarning={true}
                     onClick={() => setIsReviewModalOpen(true)}
-                    className="border border-black bg-black text-white px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
+                    className="border border-[#f05a24] bg-[#f05a24] text-[#f7f2e9] px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
                   >
                     {t("trust_btn")}
                   </button>
@@ -667,7 +667,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex gap-4">
-                    <MapPin className="text-[#3b82f6] shrink-0 mt-1" size={20} />
+                    <MapPin className="text-[#f05a24] shrink-0 mt-1" size={20} />
                     <div>
                       <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_address_title")}</h4>
                       <p className="mt-1 text-sm text-white/80 leading-relaxed max-w-sm">
@@ -678,7 +678,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
                   {/* Hours */}
                   <div className="flex gap-4">
-                    <Clock className="text-[#3b82f6] shrink-0 mt-1" size={20} />
+                    <Clock className="text-[#f05a24] shrink-0 mt-1" size={20} />
                     <div>
                       <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_hours_title")}</h4>
                       <p className="mt-1 text-sm text-white/80">
@@ -689,10 +689,10 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
                   {/* Contact */}
                   <div className="flex gap-4">
-                    <Phone className="text-[#3b82f6] shrink-0 mt-1" size={20} />
+                    <Phone className="text-[#f05a24] shrink-0 mt-1" size={20} />
                     <div>
                       <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_call_title")}</h4>
-                      <a href="tel:+919873938095" className="mt-1 text-sm text-[#3b82f6] hover:underline font-mono">
+                      <a href="tel:+919873938095" className="mt-1 text-sm text-[#f05a24] hover:underline font-mono">
                         +91 98739 38095
                       </a>
                     </div>
@@ -704,7 +704,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     href="https://maps.google.com/?q=Himat+Textile+Ahmedabad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-white bg-white text-black px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 border border-[#ffb800] bg-[#ffb800] text-[#151613] px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
                   >
                     {t("loc_directions_btn")} <ArrowUpRight size={14} />
                   </a>
@@ -712,7 +712,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               </div>
 
               {/* Embedded Google Map */}
-              <div className="relative border border-white/10 overflow-hidden bg-black/40 h-[450px]">
+              <div className="relative border border-white/10 overflow-hidden bg-[#151613]/40 h-[450px]">
                 <iframe
                   width="100%"
                   height="100%"
@@ -730,8 +730,8 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
         {/* Review Submission Dialog Modal */}
         {isReviewModalOpen && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 backdrop-blur-md p-4">
-            <div className="relative w-full max-w-lg border border-white/10 bg-[#0d0d0d] p-8 text-white">
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#151613]/85 backdrop-blur-md p-4">
+            <div className="relative w-full max-w-lg border border-white/10 bg-[#1e201c] p-8 text-white">
               <button
                 onClick={() => {
                   setIsReviewModalOpen(false);
@@ -756,7 +756,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     placeholder={t("rev_placeholder_name")}
                     value={newReviewForm.author}
                     onChange={(e) => setNewReviewForm({ ...newReviewForm, author: e.target.value })}
-                    className="w-full bg-[#161616] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none"
+                    className="w-full bg-[#23251f] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none"
                   />
                 </div>
 
@@ -788,7 +788,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     placeholder={t("rev_placeholder_feedback")}
                     value={newReviewForm.text}
                     onChange={(e) => setNewReviewForm({ ...newReviewForm, text: e.target.value })}
-                    className="w-full bg-[#161616] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none resize-none"
+                    className="w-full bg-[#23251f] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none resize-none"
                   />
                 </div>
 
@@ -804,7 +804,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   suppressHydrationWarning={true}
                   type="submit"
                   disabled={isReviewSubmitting}
-                  className="w-full bg-white text-black py-4 text-[10px] font-bold uppercase tracking-[.18em] flex items-center justify-center gap-2 hover:bg-white/95 transition-all"
+                  className="w-full bg-[#ffb800] text-[#151613] py-4 text-[10px] font-bold uppercase tracking-[.18em] flex items-center justify-center gap-2 hover:bg-[#ffb800]/85 transition-all"
                 >
                   {isReviewSubmitting ? (
                     <>
@@ -840,7 +840,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => recordAdAction(ad.id, "click")}
-                    className="mt-4 inline-flex items-center gap-2 border border-white bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-black"
+                    className="mt-4 inline-flex items-center gap-2 border border-white bg-[#ffb800] px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-black"
                   >
                     {ad.buttonText || (language === "hi" ? "अधिक जानें" : "Learn More")} <ArrowUpRight size={14} />
                   </a>
@@ -851,7 +851,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         )}
 
         {/* 15. Final Brand Statement Section */}
-        <section className="bg-black py-24 px-5 sm:px-8 lg:px-12 border-t border-white/5">
+        <section className="bg-[#151613] py-24 px-5 sm:px-8 lg:px-12 border-t border-white/5">
           <div className="mx-auto max-w-[1500px] text-center space-y-6">
             <span className="mono-label text-[10px] text-[#FFB800] tracking-[0.3em] uppercase block">
               // {t("bs_location")}
@@ -861,7 +861,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               <span className="block text-transparent stroke-text">{t("bs_title_2")}</span>
               <span className="block text-white">{t("bs_title_3")}</span>
             </h2>
-            <div className="mx-auto h-0.5 bg-white/20 w-24 my-4" />
+            <div className="mx-auto h-0.5 bg-[#ffb800]/20 w-24 my-4" />
             <p className="mx-auto max-w-2xl text-xs sm:text-sm font-semibold tracking-wider text-white/70 uppercase leading-relaxed">
               {t("bs_subtitle")}
             </p>
@@ -876,7 +876,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           const activePopup = advertisements?.find(ad => ad.placement === "popup" && ad.isActive && !hiddenAdIds.includes(ad.id));
           if (!activePopup) return null;
           return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-5 backdrop-blur-sm">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#151613]/85 p-5 backdrop-blur-sm">
               <div className="relative w-full max-w-lg border border-white/10 bg-stone-900 p-8 text-white space-y-6">
                 <button
                   onClick={() => handleHideAd(activePopup.id)}
@@ -903,7 +903,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => recordAdAction(activePopup.id, "click")}
-                      className="flex-1 border border-white bg-white py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-black transition-colors hover:bg-transparent hover:text-white"
+                      className="flex-1 border border-white bg-[#ffb800] py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-black transition-colors hover:bg-transparent hover:text-white"
                     >
                       {activePopup.buttonText || (language === "hi" ? "सौदा देखें" : "View Deal")}
                     </a>
@@ -925,9 +925,9 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           const activeFooterAd = advertisements?.find(ad => ad.placement === "footer" && ad.isActive && !hiddenAdIds.includes(ad.id));
           if (!activeFooterAd) return null;
           return (
-            <div className="fixed bottom-4 inset-x-5 z-40 mx-auto max-w-[1440px] border border-white/15 bg-black/95 p-5 text-white backdrop-blur-md flex flex-col justify-between items-center gap-4 md:flex-row shadow-2xl">
+            <div className="fixed bottom-4 inset-x-5 z-40 mx-auto max-w-[1440px] border border-white/15 bg-[#151613]/95 p-5 text-white backdrop-blur-md flex flex-col justify-between items-center gap-4 md:flex-row shadow-2xl">
               <div className="flex items-center gap-4">
-                <span className="mono-label text-[8px] bg-white/10 px-2 py-1 text-white/70 uppercase">{language === "hi" ? "नवीनतम संक्षिप्त" : "LATEST BRIEF"}</span>
+                <span className="mono-label text-[8px] bg-[#ffb800]/10 px-2 py-1 text-white/70 uppercase">{language === "hi" ? "नवीनतम संक्षिप्त" : "LATEST BRIEF"}</span>
                 <div>
                   <h4 className="font-display text-base font-black uppercase tracking-tight leading-none">{activeFooterAd.title}</h4>
                   {activeFooterAd.description && <p className="text-xs text-white/60 mt-1">{activeFooterAd.description}</p>}
@@ -940,7 +940,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => recordAdAction(activeFooterAd.id, "click")}
-                    className="border border-white bg-white px-4 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-black hover:bg-transparent hover:text-white transition-colors text-center w-full md:w-auto"
+                    className="border border-white bg-[#ffb800] px-4 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-black hover:bg-transparent hover:text-white transition-colors text-center w-full md:w-auto"
                   >
                     {activeFooterAd.buttonText || (language === "hi" ? "अधिक जानें" : "Learn More")}
                   </a>

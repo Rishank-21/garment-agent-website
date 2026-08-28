@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { MoveUpRight } from "lucide-react";
+import { ArrowDownRight, MoveUpRight } from "lucide-react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -14,186 +14,99 @@ const images = [
 
 export default function HeroSlider() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const taglineRef = useRef<HTMLSpanElement>(null);
-  const titleSpan1Ref = useRef<HTMLSpanElement>(null);
-  const titleSpan2Ref = useRef<HTMLSpanElement>(null);
-  const titleSpan3Ref = useRef<HTMLSpanElement>(null);
-  const descRef = useRef<HTMLParagraphElement>(null);
-  const desc2Ref = useRef<HTMLParagraphElement>(null);
-  const buttonsRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
   const imageRefs = useRef<HTMLDivElement[]>([]);
-
+  const contentRef = useRef<HTMLDivElement>(null);
   const { t } = useLanguage();
 
-  // Slide transition logic (Auto-slide every 5 seconds)
   useEffect(() => {
     const interval = setInterval(() => {
       const nextIndex = (activeIndex + 1) % images.length;
-
       const currentImage = imageRefs.current[activeIndex];
       const nextImage = imageRefs.current[nextIndex];
+      if (!currentImage || !nextImage) return;
 
-      if (currentImage && nextImage) {
-        // Prepare next image
-        gsap.set(nextImage, {
-          clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-          scale: 1.15,
-          zIndex: 10,
-          opacity: 1
-        });
-
-        // Animate reveal of next image via clipPath
-        gsap.to(nextImage, {
-          clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0 100%)",
-          scale: 1.05,
-          duration: 1.8,
-          ease: "power3.inOut"
-        });
-
-        // Slight parallax scale down and fade out on old image
-        gsap.to(currentImage, {
-          scale: 1,
-          opacity: 0,
-          duration: 1.8,
-          ease: "power3.inOut",
-          onComplete: () => {
-            gsap.set(currentImage, { zIndex: 1 });
-            setActiveIndex(nextIndex);
-          }
-        });
-      }
-    }, 5000);
-
+      gsap.set(nextImage, { clipPath: "inset(100% 0 0 0)", scale: 1.12, zIndex: 10, opacity: 1 });
+      gsap.to(nextImage, { clipPath: "inset(0% 0 0 0)", scale: 1.04, duration: 1.6, ease: "power3.inOut" });
+      gsap.to(currentImage, {
+        scale: 1,
+        opacity: 0,
+        duration: 1.6,
+        ease: "power3.inOut",
+        onComplete: () => {
+          gsap.set(currentImage, { zIndex: 1 });
+          setActiveIndex(nextIndex);
+        },
+      });
+    }, 5500);
     return () => clearInterval(interval);
   }, [activeIndex]);
 
-  // Initial page load animations
   useEffect(() => {
-    // Setup initial state
-    gsap.set(taglineRef.current, { y: 20, opacity: 0 });
-    gsap.set([titleSpan1Ref.current, titleSpan2Ref.current, titleSpan3Ref.current], { y: 80, opacity: 0 });
-    gsap.set([descRef.current, desc2Ref.current], { y: 40, opacity: 0 });
-    gsap.set(buttonsRef.current, { y: 30, opacity: 0 });
-    gsap.set(counterRef.current, { opacity: 0 });
-
-    // Initial background slide setup
     const initialSlide = imageRefs.current[0];
-    if (initialSlide) {
-      gsap.fromTo(initialSlide,
-        { scale: 1.12, opacity: 0 },
-        { scale: 1.05, opacity: 1, duration: 1.8, ease: "power3.out" }
-      );
-    }
-
-    // Text Reveal Timeline
+    if (initialSlide) gsap.fromTo(initialSlide, { scale: 1.12, opacity: 0 }, { scale: 1.04, opacity: 1, duration: 1.8, ease: "power3.out" });
     const hasVisited = typeof window !== "undefined" && sessionStorage.getItem("himat_preloader_visited") === "true";
-    const animDelay = hasVisited ? 0.3 : 3.8; // Delay animation until preloader rolls up
-
-    const tl = gsap.timeline({ delay: animDelay });
-    tl.to(taglineRef.current, {
-      y: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power3.out"
-    })
-      .to([titleSpan1Ref.current, titleSpan2Ref.current, titleSpan3Ref.current], {
-        y: 0,
-        opacity: 1,
-        stagger: 0.12,
-        duration: 1.2,
-        ease: "power4.out"
-      }, "-=0.4")
-      .to([descRef.current, desc2Ref.current], {
-        y: 0,
-        opacity: 1,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.6")
-      .to(buttonsRef.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.5")
-      .to(counterRef.current, {
-        opacity: 1,
-        duration: 0.5
-      }, "-=0.4");
-
+    const revealElements = contentRef.current?.querySelectorAll("[data-reveal]");
+    if (revealElements) {
+      gsap.fromTo(revealElements, { y: 28, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: hasVisited ? 0.7 : 0.95, delay: hasVisited ? 0.25 : 3.7, ease: "power3.out" });
+    }
   }, []);
 
   return (
-    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#0a0a0a]">
-      {/* Background Images */}
+    <section className="relative min-h-[720px] h-screen w-full overflow-hidden bg-[#151613]">
       <div className="absolute inset-0">
         {images.map((img, idx) => (
           <div
             key={img}
             ref={(el) => { if (el) imageRefs.current[idx] = el; }}
-            className="absolute inset-0 h-full w-full bg-cover bg-center transition-transform duration-[4500ms]"
+            className="absolute inset-0 h-full w-full bg-cover bg-center"
             style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.55)), url(${img})`,
+              backgroundImage: `linear-gradient(90deg, rgba(21,22,19,.92) 0%, rgba(21,22,19,.72) 42%, rgba(21,22,19,.25) 100%), linear-gradient(0deg, rgba(21,22,19,.84) 0%, transparent 58%), url(${img})`,
               zIndex: idx === activeIndex ? 5 : 1,
               opacity: idx === activeIndex ? 1 : 0,
             }}
           />
         ))}
       </div>
+      <div className="noise-layer absolute inset-0 z-10" />
 
-      {/* Stable Text Content */}
-      <div className="absolute inset-x-0 bottom-0 top-0 z-20 mx-auto flex max-w-[1600px] flex-col justify-between px-5 py-24 sm:px-8 lg:px-12">
-        <div className="flex-1" />
-
-        <div className="max-w-[850px] space-y-6">
-          {/* Tagline */}
-          <span ref={taglineRef} className="mono-label text-[11px] tracking-[0.25em] text-[#FFB800] uppercase block">
-            // {t("hero_tagline")}
-          </span>
-
-          <h1 className="font-display text-5xl font-black uppercase leading-[0.9] tracking-[-0.04em] text-white sm:text-7xl md:text-8xl">
-            <span ref={titleSpan1Ref} className="block overflow-hidden">{t("hero_title_1")}</span>
-            <span ref={titleSpan2Ref} className="block overflow-hidden text-transparent stroke-text">{t("hero_title_2")}</span>
-            <span ref={titleSpan3Ref} className="block overflow-hidden">{t("hero_title_3")}</span>
-          </h1>
-
-          <div className="space-y-3 max-w-xl">
-            <p ref={descRef} className="text-sm font-semibold leading-relaxed text-white/90 sm:text-base">
-              {t("hero_subtitle")}
-            </p>
-            <p ref={desc2Ref} className="text-xs leading-relaxed text-white/70">
-              {t("hero_description")}
-            </p>
+      <div ref={contentRef} className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-between px-5 pb-8 pt-32 sm:px-8 lg:px-12">
+        <div className="flex items-center justify-between" data-reveal>
+          <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#f7f2e9]/55">
+            <span className="h-2 w-2 bg-[#f05a24]" /> Ahmedabad, India
           </div>
-
-          <div ref={buttonsRef} className="flex flex-wrap items-center gap-4 pt-4">
-            <Link
-              href="/catalog"
-              className="flex items-center gap-2 border border-white bg-white px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-black transition-transform hover:-translate-y-0.5"
-            >
-              {t("btn_view_collection")} <MoveUpRight size={14} />
-            </Link>
-            <Link
-              href="/#enquiry"
-              className="flex items-center gap-2 border border-white/30 bg-black/40 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-white backdrop-blur-md transition-all hover:border-white hover:-translate-y-0.5"
-            >
-              {t("btn_start_enquiry_upper")}
-            </Link>
+          <div className="hidden items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#f7f2e9]/55 md:flex">
+            Sourcing <span className="text-[#ffb800]">•</span> Wholesale <span className="text-[#ffb800]">•</span> Private Label <span className="text-[#ffb800]">•</span> Export
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-t border-white/10 pt-8 mt-12">
-          <div ref={counterRef} className="mono-label text-xs tracking-widest text-white/50">
-            {String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}
+        <div className="max-w-[900px] pb-7">
+          <span data-reveal className="mono-label block text-[10px] tracking-[0.26em] text-[#ffb800] uppercase">{t("hero_tagline")}</span>
+          <div className="mt-5 h-[3px] w-16 bg-gradient-to-r from-[#f05a24] to-[#ffb800]" data-reveal />
+          <h1 className="mt-6 font-display text-[clamp(3.8rem,10vw,9rem)] font-black uppercase leading-[0.86] tracking-[-0.065em] text-[#f7f2e9]">
+            <span data-reveal className="block">{t("hero_title_1")}</span>
+            <span data-reveal className="block text-transparent stroke-text">{t("hero_title_2")}</span>
+            <span data-reveal className="block">{t("hero_title_3")}</span>
+          </h1>
+          <div className="mt-7 max-w-xl space-y-3">
+            <p data-reveal className="text-base font-semibold leading-relaxed text-[#f7f2e9] sm:text-lg">{t("hero_subtitle")}</p>
+            <p data-reveal className="text-sm leading-relaxed text-[#f7f2e9]/68 sm:text-[15px]">{t("hero_description")}</p>
           </div>
-          <div className="mono-label hidden text-[10px] tracking-widest text-white/30 sm:block uppercase">
-            {t("hero_small_text")}
+          <div data-reveal className="mt-8 flex flex-wrap items-center gap-3">
+            <Link href="/catalog" className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5">{t("btn_view_collection")} <MoveUpRight size={14} /></Link>
+            <Link href="/#enquiry" className="inline-flex items-center gap-2 border border-[#f7f2e9]/35 bg-[#151613]/30 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-[#f7f2e9] backdrop-blur-md transition-all hover:border-[#f05a24] hover:text-[#ffb800]">{t("btn_start_enquiry_upper")}</Link>
           </div>
+        </div>
+
+        <div className="flex items-end justify-between border-t border-[#f7f2e9]/18 pt-5" data-reveal>
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-xs tracking-widest text-[#f7f2e9]/65">{String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
+            <div className="flex gap-1.5" aria-label="Hero slide position">
+              {images.map((_, idx) => <span key={idx} className={`h-1 w-10 transition-colors ${idx === activeIndex ? "bg-[#f05a24]" : "bg-[#f7f2e9]/25"}`} />)}
+            </div>
+          </div>
+          <a href="#categories" className="hidden items-center gap-2 font-mono text-[9px] uppercase tracking-[.2em] text-[#f7f2e9]/55 transition-colors hover:text-[#ffb800] sm:flex">Explore the collection <ArrowDownRight size={15} /></a>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
-

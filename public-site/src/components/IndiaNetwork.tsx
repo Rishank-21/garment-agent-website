@@ -80,25 +80,25 @@ export default function IndiaNetwork() {
   }, []);
 
   return (
-    <section id="network" className="scroll-mt-28 relative bg-[#0d0d0d] py-24 border-t border-white/5">
+    <section id="network" className="scroll-mt-28 relative bg-[#151613] py-24 border-t border-[#f7f2e9]/8">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           {/* Info Text */}
           <div className="space-y-6">
-            <span className="mono-label text-[10px] tracking-widest text-[#a8a29e] uppercase">07 / Multi-City Network</span>
+            <span className="mono-label text-[10px] tracking-widest text-[#c4bcae] uppercase">07 / Multi-City Network</span>
             <h2 className="font-display text-4xl font-black uppercase tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl">
               India's Apparel<br />Supply Backbone.
             </h2>
-            <p className="max-w-md text-sm leading-relaxed text-[#a8a29e]">
+            <p className="max-w-md text-sm leading-relaxed text-[#c4bcae]">
               We operate across major garment and fabric hubs, connecting raw materials, spinning mills, design centers, and wholesale networks to serve growing fashion brands countrywide.
             </p>
             <div className="space-y-4 border-t border-white/10 pt-6">
               {networkNodes.map((node) => (
                 <div key={node.name} className="flex items-center gap-4">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#f05a24] animate-pulse" />
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-white">{node.name}</h4>
-                    <p className="text-[11px] text-[#a8a29e]">{node.desc}</p>
+                    <p className="text-[11px] text-[#c4bcae]">{node.desc}</p>
                   </div>
                 </div>
               ))}
@@ -130,7 +130,7 @@ export default function IndiaNetwork() {
                       d={loc.path}
                       className={`transition-all duration-300 ${
                         isActive
-                          ? "fill-red-600/90 stroke-stone-600/30 hover:fill-red-500"
+                          ? "fill-[#f05a24]/90 stroke-[#6d725d]/40 hover:fill-[#ffb800]"
                           : "fill-stone-200/90 stroke-stone-400/40 hover:fill-stone-100"
                       }`}
                       strokeWidth="0.75"
@@ -152,14 +152,14 @@ export default function IndiaNetwork() {
                       cx={pin.x}
                       cy={pin.y}
                       r="12"
-                      className="animate-ping fill-none stroke-blue-500/20"
+                      className="animate-ping fill-none stroke-[#ffb800]/25"
                       style={{ transformOrigin: `${pin.x}px ${pin.y}px`, animationDuration: "3s" }}
                     />
                     {/* Pointer Pin Shape */}
                     <path
                       d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                      fill="#3b82f6"
-                      stroke="#1e3a8a"
+                      fill="#ffb800"
+                      stroke="#f05a24"
                       strokeWidth="1"
                       transform={`translate(${pin.x - 12}, ${pin.y - 22})`}
                     />
@@ -194,8 +194,8 @@ export default function IndiaNetwork() {
                         y={rectY}
                         width={pin.w}
                         height={pin.h}
-                        fill="white"
-                        stroke="#b91c1c"
+                        fill="#f7f2e9"
+                        stroke="#f05a24"
                         strokeWidth="0.5"
                         rx="1"
                       />
