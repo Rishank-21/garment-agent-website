@@ -3,6 +3,7 @@
 import React, { FormEvent, useState } from "react";
 import { LoaderCircle, MoveUpRight, Phone, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const requirementsOptions = [
   "Men's Wear",
@@ -19,6 +20,7 @@ const initialState = {
   email: "",
   phone: "",
   quantity: "",
+  station: "",
   message: "",
 };
 
@@ -32,6 +34,7 @@ export function HimatInquiry({
   const [form, setForm] = useState(initialState);
   const [selectedReqs, setSelectedReqs] = useState<string[]>([]);
   const [isPending, setIsPending] = useState(false);
+  const { language, t } = useLanguage();
 
   React.useEffect(() => {
     if (initialMessage) {
@@ -65,7 +68,7 @@ export function HimatInquiry({
   const onSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (selectedReqs.length === 0) {
-      toast.warning("Please select at least one garment requirement.");
+      toast.warning(language === "hi" ? "कृपया कम से कम एक गारमेंट आवश्यकता चुनें।" : "Please select at least one garment requirement.");
       return;
     }
 
@@ -80,51 +83,56 @@ export function HimatInquiry({
           email: form.email || null,
           phone: form.phone || null,
           productInterest: selectedReqs.join(", "),
+          station: form.station || null,
         }),
       });
 
       if (response.ok) {
-        toast.success("Your enquiry has been received by Himat Textile.");
+        toast.success(language === "hi" ? "आपकी पूछताछ हिम्मत टेक्सटाइल द्वारा प्राप्त कर ली गई है।" : "Your enquiry has been received by Himat Textile.");
         setForm(initialState);
         setSelectedReqs([]);
       } else {
         const errorText = await response.text();
-        toast.error(errorText || "Something went wrong.");
+        toast.error(errorText || (language === "hi" ? "कुछ गलत हो गया।" : "Something went wrong."));
       }
     } catch (e) {
-      toast.error("Failed to submit enquiry.");
+      toast.error(language === "hi" ? "पूछताछ सबमिट करने में विफल।" : "Failed to submit enquiry.");
     } finally {
       setIsPending(false);
     }
   };
 
   return (
-    <section id="enquiry" className="bg-[#e7e7e4] px-5 py-16 text-black sm:px-8 lg:px-12 lg:py-24">
+    <section id="enquiry" className="scroll-mt-28 bg-[#e7e7e4] px-5 py-16 text-black sm:px-8 lg:px-12 lg:py-24">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         {/* Info Column */}
         <div className="space-y-6">
-          <span className="mono-label text-[10px] text-black/55 uppercase">08 / Begin a Sourcing Conversation</span>
-          <h2 className="font-display text-5xl font-black uppercase leading-[0.88] tracking-[-.08em] sm:text-7xl">
-            Let's Build<br />Your Next<br />Collection.
+          <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_label")}</span>
+          <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-.08em] sm:text-7xl sm:leading-[0.88]">
+            {language === "hi" ? (
+              <>आइए आपका<br />अगला कलेक्शन<br />बनाएं।</>
+            ) : (
+              <>Let's Build<br />Your Next<br />Collection.</>
+            )}
           </h2>
           <p className="max-w-md text-sm leading-relaxed text-black/65">
-            Tell Himat Textile what you are building. Selecting your product lines and estimated order size helps our design and fabric teams prepare the right brief.
+            {t("enq_desc_p")}
           </p>
 
           <div className="flex flex-col gap-3 pt-6 border-t border-black/10">
             <a
-              href="https://wa.me/919999999999"
+              href="https://wa.me/919873938095"
               target="_blank"
               rel="noreferrer"
               className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-black hover:opacity-75 transition-opacity"
             >
-              <MessageSquare size={16} /> WhatsApp: Sourcing Chat ↗
+              <MessageSquare size={16} /> {t("whatsapp_chat_desk")}
             </a>
             <a
-              href="tel:+919999999999"
+              href="tel:+919873938095"
               className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-black hover:opacity-75 transition-opacity"
             >
-              <Phone size={16} /> Call: Direct Desk
+              <Phone size={16} /> {t("call_direct_desk")}
             </a>
           </div>
         </div>
@@ -132,36 +140,36 @@ export function HimatInquiry({
         {/* Form Column */}
         <form onSubmit={onSubmit} className="grid gap-6 border-t-2 border-black pt-6 sm:grid-cols-2">
           <Field
-            label="Name / Contact Person"
+            label={t("enq_field_name")}
             value={form.contactName}
             onChange={(value) => update("contactName", value)}
-            placeholder="e.g. Rajesh Kumar"
+            placeholder={language === "hi" ? "उदा. राजेश कुमार" : "e.g. Rajesh Kumar"}
           />
           <Field
-            label="Business / Company name *"
+            label={t("enq_field_company")}
             value={form.companyName}
             onChange={(value) => update("companyName", value)}
             required
-            placeholder="e.g. Kumar Retails Ltd."
+            placeholder={language === "hi" ? "उदा. कुमार रिटेल्स लिमिटेड" : "e.g. Kumar Retails Ltd."}
           />
           <Field
-            label="Work email"
+            label={t("enq_field_email")}
             value={form.email}
             type="email"
             onChange={(value) => update("email", value)}
             placeholder="e.g. sourcing@company.com"
           />
           <Field
-            label="Phone Number *"
+            label={t("enq_field_phone")}
             value={form.phone}
             onChange={(value) => update("phone", value)}
             required
-            placeholder="e.g. +91 99999 99999"
+            placeholder="e.g. +91 98739 38095"
           />
 
           {/* Garment Requirements Multi-select Checklist */}
           <div className="sm:col-span-2 space-y-3">
-            <span className="mono-label text-[10px] text-black/55 uppercase">Garment Requirements *</span>
+            <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_field_requirement")}</span>
             <div className="flex flex-wrap gap-2">
               {requirementsOptions.map((req) => {
                 const isSelected = selectedReqs.includes(req);
@@ -177,7 +185,12 @@ export function HimatInquiry({
                         : "bg-transparent text-black border-black/25 hover:border-black/60"
                     }`}
                   >
-                    {req}
+                    {req === "Men's Wear" && language === "hi" ? "मेन्स वियर" :
+                     req === "Women's Wear" && language === "hi" ? "विमेन्स वियर" :
+                     req === "Kids Wear" && language === "hi" ? "किड्स वियर" :
+                     req === "Wholesale Garments" && language === "hi" ? "थोक परिधान" :
+                     req === "Private Label" && language === "hi" ? "प्राइवेट लेबल" :
+                     req === "Export" && language === "hi" ? "निर्यात" : req}
                   </button>
                 );
               })}
@@ -185,22 +198,29 @@ export function HimatInquiry({
           </div>
 
           <Field
-            label="Target Quantity *"
+            label={t("enq_field_quantity")}
             value={form.quantity}
             onChange={(value) => update("quantity", value)}
+            placeholder={language === "hi" ? "उदा. 500 इकाइयां / स्टाइल" : "e.g. 500 units / style"}
+          />
+
+          <Field
+            label={t("enq_field_station")}
+            value={form.station}
+            onChange={(value) => update("station", value)}
             required
-            placeholder="e.g. 500 units / style"
+            placeholder={t("enq_placeholder_station")}
           />
 
           <label className="grid gap-2 sm:col-span-2">
-            <span className="mono-label text-[10px] text-black/55 uppercase">Sourcing Message *</span>
+            <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_field_message")}</span>
             <textarea
               suppressHydrationWarning={true}
               required
               value={form.message}
               onChange={(event) => update("message", event.target.value)}
               minLength={10}
-              placeholder="Provide context regarding material specifications, design tech packs, or delivery schedules."
+              placeholder={t("enq_placeholder_msg")}
               className="min-h-32 resize-y border-b border-black/35 bg-transparent py-3 text-sm outline-none placeholder:text-black/35 focus:border-black"
             />
           </label>
@@ -210,7 +230,7 @@ export function HimatInquiry({
             disabled={isPending}
             className="group mt-2 flex w-full items-center justify-between bg-black px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2"
           >
-            <span>{isPending ? "Sending Inquiry" : "Send Inquiry Request"}</span>
+            <span>{isPending ? (language === "hi" ? "भेजा जा रहा है..." : "Sending...") : t("btn_send_enquiry")}</span>
             {isPending ? (
               <LoaderCircle size={16} className="animate-spin" />
             ) : (

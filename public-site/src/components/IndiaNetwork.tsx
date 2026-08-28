@@ -7,13 +7,14 @@ import indiaMap from "@svg-maps/india";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const activeStateIds = new Set(["pb", "dl", "rj", "gj", "mh", "ka"]);
+const activeStateIds = new Set(["pb", "dl", "rj", "gj", "mh", "ka", "mp"]);
 
 const networkNodes = [
   { name: "Ludhiana", desc: "Woolen & Knitwear Hub" },
   { name: "Delhi", desc: "Capital Garment Sourcing & Retail" },
   { name: "Jaipur", desc: "Artistic Prints & Handlooms" },
   { name: "Ahmedabad", desc: "Cotton & Spinning Mills" },
+  { name: "Indore", desc: "Central India Logistical Hub" },
   { name: "Mumbai", desc: "Corporate Distribution & Fashion Hub" },
   { name: "Nagpur", desc: "Central India Logistical Center" },
   { name: "Bangalore", desc: "Export-grade Denim & Apparel Tech" },
@@ -24,6 +25,7 @@ const networkPins = [
   { name: "Delhi", x: 186, y: 210, dx: 35, dy: -20, w: 45, h: 16 },
   { name: "Jaipur", x: 112, y: 249, dx: -35, dy: -20, w: 45, h: 16 },
   { name: "Ahmedabad", x: 66, y: 355, dx: -45, dy: -20, w: 65, h: 16 },
+  { name: "Indore", x: 135, y: 370, dx: 35, dy: -15, w: 45, h: 16 },
   { name: "Mumbai", x: 130, y: 440, dx: -35, dy: 15, w: 50, h: 16 },
   { name: "Nagpur", x: 200, y: 410, dx: 45, dy: -15, w: 55, h: 16 },
   { name: "Bangalore", x: 171, y: 519, dx: -45, dy: -15, w: 60, h: 16 },
@@ -78,7 +80,7 @@ export default function IndiaNetwork() {
   }, []);
 
   return (
-    <section id="network" className="relative bg-[#0d0d0d] py-24 border-t border-white/5">
+    <section id="network" className="scroll-mt-28 relative bg-[#0d0d0d] py-24 border-t border-white/5">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           {/* Info Text */}

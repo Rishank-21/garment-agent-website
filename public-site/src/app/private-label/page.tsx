@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 export default function PrivateLabelPage() {
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-28">
+      <main className="pt-16 lg:pt-28">
         <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:px-12">
           <span className="mono-label text-[10px] text-white/50 uppercase">05 / Custom Brand Solutions</span>
-          <h1 className="mt-4 font-display text-5xl font-black uppercase tracking-tight sm:text-7xl">
+          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
             Private Label Sourcing.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">

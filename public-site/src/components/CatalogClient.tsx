@@ -85,7 +85,7 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
 
   return (
     <div className="min-h-screen bg-[#101010] text-white">
-      <main className="pt-[76px]">
+      <main className="pt-16 lg:pt-28">
         {/* Banner Advertisements */}
         {activeAds.length > 0 && (
           <div className="mx-auto max-w-[1440px] px-5 pt-8 sm:px-8 lg:px-12">
@@ -137,7 +137,7 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
         <section className="border-b border-white/15 px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
           <div className="mx-auto max-w-[1440px]">
             <p className="mono-label mb-5 text-[10px] text-white/50">Garment catalog / sourcing start point</p>
-            <h1 className="font-display max-w-5xl text-6xl font-black uppercase leading-[.78] tracking-[-.1em] sm:text-8xl">
+            <h1 className="font-display max-w-5xl text-6xl font-black uppercase leading-none tracking-[-.1em] sm:text-8xl sm:leading-[.78]">
               Built around
               <br />
               the garment brief.
@@ -183,7 +183,7 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
                       <p className="mono-label text-[10px] text-white/45">
                         {product.category} / MOQ {product.moq}
                       </p>
-                      <h2 className="mt-3 font-display text-3xl font-black uppercase leading-[.9] tracking-[-.07em]">
+                      <h2 className="mt-3 font-display text-3xl font-black uppercase leading-none tracking-[-.07em] sm:leading-[.9]">
                         {product.title}
                       </h2>
                       <p className="mt-4 text-sm leading-6 text-white/60">{product.description}</p>

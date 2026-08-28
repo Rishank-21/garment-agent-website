@@ -51,7 +51,7 @@ export function HimatProductGrid({ compact = false, products = [] }: { compact?:
             </div>
             <div>
               <p className="mono-label mb-3 text-[10px] text-white/65">{item.category}</p>
-              <h3 className="font-display text-3xl font-black uppercase leading-[.9] tracking-[-.07em]">{item.title}</h3>
+              <h3 className="font-display text-3xl font-black uppercase leading-none tracking-[-.07em] sm:leading-[.9]">{item.title}</h3>
               <p className="mt-4 max-w-xs text-xs leading-5 text-white/70">{item.copy}</p>
               <Link 
                 href="/#enquiry" 

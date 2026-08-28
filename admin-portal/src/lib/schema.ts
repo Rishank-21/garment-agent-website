@@ -110,6 +110,7 @@ export type Inquiry = {
   message: string;
   status: "NEW" | "REPLIED" | "ARCHIVED";
   adminNotes: string | null;
+  station: string | null;
   createdAt: Date;
 };
 
@@ -123,6 +124,7 @@ export type InquiryValues = {
   message: string;
   status?: "NEW" | "REPLIED" | "ARCHIVED";
   adminNotes?: string | null;
+  station?: string | null;
 };
 
 export type Brand = {

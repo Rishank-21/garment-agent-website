@@ -16,10 +16,10 @@ export default async function BusinessGuidePage() {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-28">
+      <main className="pt-16 lg:pt-28">
         <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:px-12">
           <span className="mono-label text-[10px] text-white/50 uppercase">Garment Business Sourcing Guide</span>
-          <h1 className="mt-4 font-display text-5xl font-black uppercase tracking-tight sm:text-7xl">
+          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
             Editorial Guides & Insights.
           </h1>
           <p className="mt-4 max-w-md text-sm text-white/60">

@@ -5,14 +5,8 @@ import { Menu, MoveUpRight, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
-
-const links = [
-  { label: "About", href: "/about" },
-  { label: "Garments", href: "/catalog" },
-  { label: "Capabilities", href: "/capabilities" },
-  { label: "Network", href: "/network" },
-  { label: "Business Guide", href: "/guide" },
-];
+import { HimatLogoIcon } from "@/components/HimatLogo";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function HimatHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +17,16 @@ export function HimatHeader() {
   const logoTextRef = useRef<HTMLSpanElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileLinksRef = useRef<HTMLDivElement>(null);
+
+  const { language, setLanguage, t } = useLanguage();
+
+  const translatedLinks = [
+    { label: t("nav_about"), href: "/about" },
+    { label: t("nav_garments"), href: "/catalog" },
+    { label: t("nav_capabilities"), href: "/capabilities" },
+    { label: t("nav_network"), href: "/network" },
+    { label: t("nav_guide"), href: "/guide" },
+  ];
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -77,23 +81,24 @@ export function HimatHeader() {
   // Handle scroll animation of the header via GSAP
   useEffect(() => {
     const handleScroll = () => {
+      const isMobile = window.innerWidth < 1024;
       const isScrolled = window.scrollY > 50;
       setScrolled(isScrolled);
 
       if (isScrolled) {
         gsap.to(headerRef.current, {
-          height: 64,
+          height: isMobile ? 56 : 64,
           backgroundColor: "rgba(13, 13, 13, 0.85)",
           backdropFilter: "blur(20px)",
           borderBottomColor: "rgba(255, 255, 255, 0.1)",
           duration: 0.4,
           ease: "power2.out",
         });
-        gsap.to(logoBoxRef.current, { scale: 0.85, duration: 0.4, ease: "power2.out" });
-        gsap.to(logoTextRef.current, { scale: 0.95, duration: 0.4, ease: "power2.out" });
+        gsap.to(logoBoxRef.current, { scale: isMobile ? 0.8 : 0.85, duration: 0.4, ease: "power2.out" });
+        gsap.to(logoTextRef.current, { scale: isMobile ? 0.9 : 0.95, duration: 0.4, ease: "power2.out" });
       } else {
         gsap.to(headerRef.current, {
-          height: 88,
+          height: isMobile ? 64 : 88,
           backgroundColor: "rgba(0, 0, 0, 0)",
           backdropFilter: "blur(0px)",
           borderBottomColor: "rgba(255, 255, 255, 0)",
@@ -154,16 +159,13 @@ export function HimatHeader() {
     <>
       <header
         ref={headerRef}
-        className="fixed inset-x-0 top-0 z-[110] flex h-22 items-center border-b border-transparent bg-transparent transition-colors duration-300"
+        className="fixed inset-x-0 top-0 z-[110] flex h-16 lg:h-[88px] items-center border-b border-transparent bg-transparent transition-colors duration-300"
       >
         <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo Section */}
           <Link href="/" className="relative z-[60] flex items-center gap-3 text-white">
-            <span
-              ref={logoBoxRef}
-              className="grid h-9 w-9 origin-left place-items-center border border-white/50 text-xs font-black transition-transform"
-            >
-              HT
+            <span ref={logoBoxRef} className="origin-left transition-transform">
+              <HimatLogoIcon className="h-9 w-9" />
             </span>
             <span
               ref={logoTextRef}
@@ -175,7 +177,7 @@ export function HimatHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-8 lg:flex">
-            {links.map((link) => (
+            {translatedLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -186,13 +188,19 @@ export function HimatHeader() {
             ))}
           </nav>
 
-          {/* Call to Action Button */}
+          {/* Call to Action Button & Language Switcher */}
           <div className="hidden items-center gap-4 lg:flex">
+            <button
+              onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+              className="border border-white/20 hover:border-white px-3 py-1.5 text-[9px] font-mono uppercase tracking-[.12em] text-white/70 hover:text-white transition-colors"
+            >
+              {language === "en" ? "हिंदी" : "EN"}
+            </button>
             <Link
               href="/#enquiry"
               className="flex items-center gap-2 border border-white bg-white px-5 py-2.5 text-[10px] font-bold uppercase tracking-[.18em] text-black transition-transform hover:-translate-y-0.5"
             >
-              Start Enquiry <MoveUpRight size={14} />
+              {t("btn_start_enquiry")} <MoveUpRight size={14} />
             </Link>
           </div>
 
@@ -213,7 +221,7 @@ export function HimatHeader() {
         className="fixed inset-0 z-[100] flex -translate-y-full flex-col justify-between bg-[#0d0d0d] px-6 pb-12 pt-28 opacity-0 lg:hidden"
       >
         <div ref={mobileLinksRef} className="flex flex-col gap-6 pt-8">
-          {links.map((link) => (
+          {translatedLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
@@ -222,20 +230,29 @@ export function HimatHeader() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/#enquiry"
-            className="mobile-link-item mt-4 inline-flex w-fit items-center gap-2 border border-white bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-[.18em] text-black"
-          >
-            Start Enquiry <MoveUpRight size={16} />
-          </Link>
+          <div className="mobile-link-item flex flex-col gap-4 mt-4">
+            <button
+              onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+              className="w-fit border border-white/30 bg-transparent px-4 py-2.5 text-xs font-bold uppercase tracking-[.18em] text-white"
+            >
+              {language === "en" ? "HINDI / हिंदी" : "ENGLISH / EN"}
+            </button>
+            <Link
+              href="/#enquiry"
+              className="inline-flex w-fit items-center gap-2 border border-white bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-[.18em] text-black"
+            >
+              {t("btn_start_enquiry")} <MoveUpRight size={16} />
+            </Link>
+          </div>
         </div>
 
         <div className="border-t border-white/10 pt-6">
           <p className="mono-label text-[10px] tracking-wider text-white/40 uppercase">
-            Himat Textile — Your Garment Partner for India's Growing Fashion Business
+            Himat Textile — {t("hero_tagline")}
           </p>
         </div>
       </div>
     </>
   );
 }
+

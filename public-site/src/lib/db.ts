@@ -981,6 +981,7 @@ export async function createInquiry(values: InquiryValues): Promise<Inquiry | un
       message: values.message,
       status: values.status ?? "NEW",
       adminNotes: values.adminNotes ?? null,
+      station: values.station ?? null,
       createdAt: new Date()
     };
     memoryStore.inquiries.push(inquiry);
@@ -998,6 +999,7 @@ export async function createInquiry(values: InquiryValues): Promise<Inquiry | un
     message: values.message,
     status: values.status ?? "NEW",
     adminNotes: values.adminNotes ?? null,
+    station: values.station ?? null,
     createdAt: new Date()
   };
   await db.collection("himat_inquiries").insertOne(inquiry);

@@ -35,7 +35,7 @@ export default async function GuideDetailsPage({ params }: GuideDetailsProps) {
 
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-28">
+      <main className="pt-16 lg:pt-28">
         <div className="mx-auto max-w-[900px] px-5 py-12 sm:px-8">
           <Link
             href="/guide"

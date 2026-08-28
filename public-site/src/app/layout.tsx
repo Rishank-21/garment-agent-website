@@ -7,6 +7,7 @@ import CustomCursor from "@/components/CustomCursor";
 import BlackThemePreloader from "@/components/BlackThemePreloader";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -39,17 +40,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable} ${archivoBlack.variable} ${dmMono.variable}`}>
       <body className="bg-background text-foreground font-sans antialiased">
-        <SmoothScroll>
-          <div className="relative min-h-screen flex flex-col justify-between">
-            <HimatHeader />
-            <main className="flex-grow">{children}</main>
-            <HimatFooter />
-          </div>
-          <CustomCursor />
-          <BlackThemePreloader />
-          <Toaster position="bottom-right" theme="dark" />
-        </SmoothScroll>
+        <LanguageProvider>
+          <SmoothScroll>
+            <div className="relative min-h-screen flex flex-col justify-between">
+              <HimatHeader />
+              <main className="flex-grow">{children}</main>
+              <HimatFooter />
+            </div>
+            <CustomCursor />
+            <BlackThemePreloader />
+            <Toaster position="bottom-right" theme="dark" />
+          </SmoothScroll>
+        </LanguageProvider>
       </body>
     </html>
   );
 }
+

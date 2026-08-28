@@ -14,7 +14,7 @@ interface NetworkClientProps {
 export default function NetworkClient({ cities, brands }: NetworkClientProps) {
   return (
     <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-28">
+      <main className="pt-16 lg:pt-28">
         
         {/* Banner Header */}
         <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:px-12">

@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const body = (await req.json()) as InquiryValues;
 
-    if (!body.companyName || !body.productInterest || !body.quantity || !body.message) {
+    if (!body.companyName || !body.productInterest || !body.message || !body.station) {
       return new NextResponse("Missing required fields", { status: 400 });
     }
 
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         productInterest: body.productInterest,
         quantity: body.quantity,
         message: body.message,
+        station: body.station,
       });
     } catch (e) {
       console.warn("[API/Inquiry] Failed to send email alert:", e);

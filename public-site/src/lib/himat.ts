@@ -7,8 +7,9 @@ export type InquiryAlertPayload = {
   email?: string | null;
   phone?: string | null;
   productInterest: string;
-  quantity: string;
+  quantity?: string | null;
   message: string;
+  station?: string | null;
 };
 
 export function buildInquiryOwnerAlert(input: InquiryAlertPayload) {
@@ -20,6 +21,7 @@ export function buildInquiryOwnerAlert(input: InquiryAlertPayload) {
     ["Phone", value(input.phone)],
     ["Product interest", value(input.productInterest)],
     ["Quantity", value(input.quantity)],
+    ["Station", value(input.station)],
     ["Message", value(input.message)],
   ];
 
