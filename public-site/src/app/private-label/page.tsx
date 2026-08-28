@@ -1,48 +1,21 @@
+import { Palette, Scissors, Tag, Truck } from "lucide-react";
 import { HimatInquiry } from "@/components/HimatInquiry";
+import { EditorialPageIntro } from "@/components/EditorialPageIntro";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Custom Private Label Sourcing | Himat Textile",
-  description: "Build brand equity with customized garment lines under your own label. Low MOQ options, custom dyeing, and custom branding services.",
-};
+export const metadata: Metadata = { title: "Custom Private Label Sourcing | Himat Textile", description: "Build brand equity with customized garment lines under your own label through Himat Textile's sourcing and production network." };
+
+const steps = [
+  { step: "01", title: "Shape the concept", desc: "Share the product direction, market, fit, quantity and commercial intention behind your collection.", icon: Palette },
+  { step: "02", title: "Develop the product", desc: "Work through fabric selection, product development, sampling and the details that make the garment yours.", icon: Scissors },
+  { step: "03", title: "Apply your brand", desc: "Coordinate labels, tags, packaging, trims and other branding requirements for your private label.", icon: Tag },
+  { step: "04", title: "Prepare the order", desc: "Move from approved samples to production planning, quality checks and delivery coordination.", icon: Truck },
+];
 
 export default function PrivateLabelPage() {
-  return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-16 lg:pt-28">
-        <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:px-12">
-          <span className="mono-label text-[10px] text-white/50 uppercase">05 / Custom Brand Solutions</span>
-          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
-            Private Label Sourcing.
-          </h1>
-          <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            Complete design-to-delivery support for brands looking to launch custom apparel lines. We handle technical pattern making, custom yarn dye, bulk stitching, and tagging.
-          </p>
-        </section>
-
-        <section className="border-t border-white/10 py-16 bg-[#111]">
-          <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
-            <div className="grid gap-8 md:grid-cols-4">
-              {[
-                { step: "01", title: "Select Concept", desc: "Select from our structured fit catalog (slim fit, relaxed fit, oversized) or submit custom tech packs." },
-                { step: "02", title: "Select Fabric", desc: "Choose fabric weights (220-400 GSM), organic blends, fleece, loopback, or custom washes." },
-                { step: "03", title: "Apply Branding", desc: "Configure main labels, neck prints, customized hang tags, and custom embroidery or graphic printing." },
-                { step: "04", title: "Production & Delivery", desc: "Our partners handle high-volume bulk stitching, QC inspection, and complete logistics packaging." }
-              ].map(item => (
-                <div key={item.step} className="border border-white/10 bg-[#0d0d0d] p-6 flex flex-col justify-between">
-                  <div>
-                    <span className="mono-label text-[11px] text-white/40">{item.step}</span>
-                    <h3 className="mt-4 font-display text-xl font-black uppercase tracking-wider">{item.title}</h3>
-                  </div>
-                  <p className="mt-4 text-xs leading-relaxed text-white/55">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <HimatInquiry />
-      </main>
-    </div>
-  );
+  return <div className="min-h-screen bg-[#151613] text-[#f7f2e9]"><main>
+    <EditorialPageIntro eyebrow="05 / Private Label" title={<>Your brand.<br /><span className="text-transparent stroke-text">Your vision.</span><br />Our expertise.</>} description="From concept to finished garment, we support businesses looking to create their own apparel collections through a relevant sourcing and manufacturing network." image="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400" imageAlt="Private label apparel development" ctaLabel="Start your private label" ctaHref="/#enquiry" />
+    <section className="paper-surface px-5 py-20 sm:px-8 lg:px-12 lg:py-28"><div className="mx-auto max-w-[1500px]"><div className="flex flex-col justify-between gap-6 border-b border-[#151613]/15 pb-8 lg:flex-row lg:items-end"><div><span className="mono-label text-[10px] text-[#f05a24]">Make your own brand</span><div className="accent-rule mt-5" /><h2 className="mt-7 max-w-4xl font-display text-5xl font-black uppercase leading-[.86] tracking-[-.08em] sm:text-7xl">A collection is more<br />than a product list.</h2></div><p className="max-w-sm text-sm leading-relaxed text-[#151613]/65">Build a focused range of cotton pants, shirts, T-shirts, ladies wear, kids wear or a custom garment collection around your customer and market.</p></div><div className="mt-14 grid gap-px bg-[#151613]/15 md:grid-cols-2 lg:grid-cols-4">{steps.map(({ step, title, desc, icon: Icon }) => <article key={step} className="bg-[#f7f2e9] p-7 transition-colors hover:bg-[#e9e2d5]"><div className="flex items-center justify-between"><Icon size={22} className="text-[#f05a24]" /><span className="font-mono text-[10px] text-[#151613]/45">{step}</span></div><h3 className="mt-16 font-display text-2xl font-black uppercase leading-[.9] tracking-[-.06em]">{title}</h3><p className="mt-4 text-sm leading-relaxed text-[#151613]/65">{desc}</p></article>)}</div></div></section>
+    <section className="bg-[#1e201c] px-5 py-20 sm:px-8 lg:px-12 lg:py-24"><div className="mx-auto grid max-w-[1500px] gap-10 lg:grid-cols-2"><h2 className="font-display text-4xl font-black uppercase leading-[.86] tracking-[-.07em] sm:text-6xl">Custom design.<br />Fabric sourcing.<br />Production support.</h2><div className="border-t border-[#f7f2e9]/15 pt-5 text-sm leading-relaxed text-[#f7f2e9]/65"><p>Private label is a working process. The final scope depends on the garment category, fabric, quantity, sampling requirements, branding details and delivery plan.</p><p className="mt-5 text-[#f7f2e9]/85">Bring your vision and we will help map the next practical step.</p></div></div></section>
+    <HimatInquiry /></main></div>;
 }

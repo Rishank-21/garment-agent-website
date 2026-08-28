@@ -103,11 +103,11 @@ export function HimatInquiry({
   };
 
   return (
-    <section id="enquiry" className="scroll-mt-28 bg-[#e7e7e4] px-5 py-16 text-black sm:px-8 lg:px-12 lg:py-24">
+    <section id="enquiry" className="scroll-mt-28 bg-[#f7f2e9] px-5 py-20 text-[#151613] sm:px-8 lg:px-12 lg:py-28">
       <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         {/* Info Column */}
         <div className="space-y-6">
-          <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_label")}</span>
+          <span className="mono-label text-[10px] text-[#f05a24] uppercase">{t("enq_label")}</span>
           <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-.08em] sm:text-7xl sm:leading-[0.88]">
             {language === "hi" ? (
               <>आइए आपका<br />अगला कलेक्शन<br />बनाएं।</>
@@ -124,13 +124,13 @@ export function HimatInquiry({
               href="https://wa.me/919873938095"
               target="_blank"
               rel="noreferrer"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-black hover:opacity-75 transition-opacity"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#151613] hover:text-[#f05a24] transition-colors"
             >
               <MessageSquare size={16} /> {t("whatsapp_chat_desk")}
             </a>
             <a
               href="tel:+919873938095"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-black hover:opacity-75 transition-opacity"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#151613] hover:text-[#f05a24] transition-colors"
             >
               <Phone size={16} /> {t("call_direct_desk")}
             </a>
@@ -169,7 +169,7 @@ export function HimatInquiry({
 
           {/* Garment Requirements Multi-select Checklist */}
           <div className="sm:col-span-2 space-y-3">
-            <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_field_requirement")}</span>
+            <span className="mono-label text-[10px] text-[#f05a24] uppercase">{t("enq_field_requirement")}</span>
             <div className="flex flex-wrap gap-2">
               {requirementsOptions.map((req) => {
                 const isSelected = selectedReqs.includes(req);
@@ -181,8 +181,8 @@ export function HimatInquiry({
                     onClick={() => toggleRequirement(req)}
                     className={`border px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all ${
                       isSelected
-                        ? "bg-black text-white border-black"
-                        : "bg-transparent text-black border-black/25 hover:border-black/60"
+                        ? "bg-[#f05a24] text-[#f7f2e9] border-[#f05a24]"
+                        : "bg-transparent text-[#151613] border-[#151613]/25 hover:border-[#f05a24]"
                     }`}
                   >
                     {req === "Men's Wear" && language === "hi" ? "मेन्स वियर" :
@@ -213,7 +213,7 @@ export function HimatInquiry({
           />
 
           <label className="grid gap-2 sm:col-span-2">
-            <span className="mono-label text-[10px] text-black/55 uppercase">{t("enq_field_message")}</span>
+            <span className="mono-label text-[10px] text-[#f05a24] uppercase">{t("enq_field_message")}</span>
             <textarea
               suppressHydrationWarning={true}
               required
@@ -221,14 +221,14 @@ export function HimatInquiry({
               onChange={(event) => update("message", event.target.value)}
               minLength={10}
               placeholder={t("enq_placeholder_msg")}
-              className="min-h-32 resize-y border-b border-black/35 bg-transparent py-3 text-sm outline-none placeholder:text-black/35 focus:border-black"
+              className="min-h-32 resize-y border-b border-[#151613]/35 bg-transparent py-3 text-sm outline-none placeholder:text-[#151613]/35 focus:border-[#f05a24]"
             />
           </label>
 
           <button
             suppressHydrationWarning={true}
             disabled={isPending}
-            className="group mt-2 flex w-full items-center justify-between bg-black px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2"
+            className="group mt-2 flex w-full items-center justify-between bg-[#f05a24] px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-[#f7f2e9] transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2"
           >
             <span>{isPending ? (language === "hi" ? "भेजा जा रहा है..." : "Sending...") : t("btn_send_enquiry")}</span>
             {isPending ? (
@@ -260,7 +260,7 @@ function Field({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="mono-label text-[10px] text-black/55 uppercase">{label}</span>
+      <span className="mono-label text-[10px] text-[#f05a24] uppercase">{label}</span>
       <input
         suppressHydrationWarning={true}
         required={required}
@@ -268,7 +268,7 @@ function Field({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="border-b border-black/35 bg-transparent py-3 text-sm outline-none placeholder:text-black/35 focus:border-black"
+        className="border-b border-[#151613]/35 bg-transparent py-3 text-sm outline-none placeholder:text-[#151613]/35 focus:border-[#f05a24]"
       />
     </label>
   );

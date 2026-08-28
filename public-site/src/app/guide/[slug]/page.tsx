@@ -1,80 +1,19 @@
 import { getBusinessGuideBySlug, recordGuideView } from "@/lib/db";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
-
+import { HimatInquiry } from "@/components/HimatInquiry";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
-
-export async function generateMetadata({ params }: GuideDetailsProps): Promise<Metadata> {
-  const { slug } = await params;
-  if (!slug) return { title: "Guide Not Found | Himat Textile" };
-  const guide = await getBusinessGuideBySlug(slug);
-  if (!guide) return { title: "Guide Not Found | Himat Textile" };
-  return {
-    title: `${guide.title} | Himat Textile Sourcing Guide`,
-    description: guide.content.substring(0, 155) + "...",
-  };
-}
-
-interface GuideDetailsProps {
-  params: Promise<{ slug: string }>;
-}
+interface GuideDetailsProps { params: Promise<{ slug: string }>; }
+export async function generateMetadata({ params }: GuideDetailsProps): Promise<Metadata> { const { slug } = await params; const guide = await getBusinessGuideBySlug(slug); if (!guide) return { title: "Guide Not Found | Himat Textile" }; return { title: `${guide.title} | Himat Textile Sourcing Guide`, description: `${guide.content.substring(0, 155)}...` }; }
 
 export default async function GuideDetailsPage({ params }: GuideDetailsProps) {
-  const { slug } = await params;
-  if (!slug) notFound();
-
-  // Fetch the guide
-  const guide = await getBusinessGuideBySlug(slug);
-  if (!guide) notFound();
-
-  // Increment view count directly on the server
-  await recordGuideView(slug);
-
-  return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-16 lg:pt-28">
-        <div className="mx-auto max-w-[900px] px-5 py-12 sm:px-8">
-          <Link
-            href="/guide"
-            className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white mb-8"
-          >
-            <ArrowLeft size={12} /> Back to Sourcing Guide
-          </Link>
-
-          <article className="space-y-8">
-            <div className="space-y-4">
-              <span className="mono-label text-[10px] text-white/50 uppercase">Himat Textile Sourcing Guide</span>
-              <h1 className="font-display text-4xl font-black uppercase leading-tight tracking-tight sm:text-5xl md:text-6xl">
-                {guide.title}
-              </h1>
-              <div className="flex items-center gap-4 text-xs text-white/40 pt-2 border-y border-white/10 py-3">
-                <span>Published in India</span>
-                <span>•</span>
-                <span>{guide.views + 1} Views</span>
-              </div>
-            </div>
-
-            {guide.coverImage && (
-              <div className="aspect-video w-full overflow-hidden bg-neutral-900 border border-white/10">
-                <img
-                  src={guide.coverImage}
-                  alt={guide.title}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            )}
-
-            <div className="prose prose-invert max-w-none text-sm sm:text-base leading-relaxed text-white/80 space-y-6">
-              {guide.content.split("\n\n").map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </article>
-        </div>
-      </main>
-    </div>
-  );
+  const { slug } = await params; if (!slug) notFound(); const guide = await getBusinessGuideBySlug(slug); if (!guide) notFound(); await recordGuideView(slug);
+  return <div className="min-h-screen bg-[#151613] text-[#f7f2e9]"><main>
+    <section className="bg-[#151613] px-5 pb-16 pt-32 sm:px-8 lg:px-12 lg:pb-24 lg:pt-40"><div className="mx-auto max-w-[1000px]"><Link href="/guide" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#f7f2e9]/50 transition-colors hover:text-[#ffb800]"><ArrowLeft size={12} /> Back to sourcing guide</Link><div className="mt-10"><span className="mono-label text-[10px] text-[#ffb800]">Himat Textile / Business Guide</span><div className="mt-5 h-[3px] w-16 bg-gradient-to-r from-[#f05a24] to-[#ffb800]" /><h1 className="mt-7 font-display text-[clamp(3rem,7vw,6rem)] font-black uppercase leading-[.88] tracking-[-.07em]">{guide.title}</h1><div className="mt-8 flex flex-wrap items-center gap-4 border-y border-[#f7f2e9]/15 py-3 font-mono text-[10px] uppercase tracking-wider text-[#f7f2e9]/45"><span>Published in India</span><span className="text-[#f05a24]">•</span><span>{guide.views + 1} views</span></div></div></div></section>
+    <section className="paper-surface px-5 py-16 sm:px-8 lg:px-12 lg:py-24"><div className="mx-auto max-w-[900px]">{guide.coverImage && <div className="mb-12 aspect-video w-full overflow-hidden bg-[#e9e2d5]"><img src={guide.coverImage} alt={guide.title} className="h-full w-full object-cover" /></div>}<article className="space-y-6 text-base leading-8 text-[#151613]/75 sm:text-lg">{guide.content.split("\n\n").map((para, i) => <p key={i}>{para}</p>)}</article><div className="mt-14 border-t border-[#151613]/15 pt-6"><Link href="/#enquiry" className="orange-button inline-flex items-center gap-2 px-5 py-3 text-[10px] font-bold uppercase tracking-[.16em]">Talk to our garment team <ArrowUpRight size={14} /></Link></div></div></section>
+    <HimatInquiry />
+  </main></div>;
 }

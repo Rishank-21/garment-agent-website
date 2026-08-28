@@ -1,79 +1,16 @@
 import { listPublicBusinessGuides } from "@/lib/db";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
-
+import { EditorialPageIntro } from "@/components/EditorialPageIntro";
 import type { Metadata } from "next";
 
 export const revalidate = 60;
-
-export const metadata: Metadata = {
-  title: "Garment Sourcing Guides & Industry Insights | Himat Textile",
-  description: "Access editorial guides and B2B apparel industry insights on starting a garment brand, managing MOQ cycles, and catalog sourcing logistics.",
-};
+export const metadata: Metadata = { title: "Garment Sourcing Guides & Industry Insights | Himat Textile", description: "Access editorial guides and B2B apparel industry insights on starting a garment brand, managing MOQ cycles, and catalog sourcing logistics." };
 
 export default async function BusinessGuidePage() {
   const guides = await listPublicBusinessGuides();
-
-  return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white selection:bg-white selection:text-black">
-      <main className="pt-16 lg:pt-28">
-        <section className="mx-auto max-w-[1500px] px-5 py-12 sm:px-8 lg:px-12">
-          <span className="mono-label text-[10px] text-white/50 uppercase">Garment Business Sourcing Guide</span>
-          <h1 className="mt-4 font-display text-5xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
-            Editorial Guides & Insights.
-          </h1>
-          <p className="mt-4 max-w-md text-sm text-white/60">
-            Articles and resources to help retailers, fashion brands, and emerging labels navigate catalog sourcing, private label production, and supply chains.
-          </p>
-        </section>
-
-        {/* Blogs Grid */}
-        <section className="border-t border-white/10 py-16 bg-[#111]">
-          <div className="mx-auto max-w-[1500px] px-5 sm:px-8 lg:px-12">
-            {guides.length === 0 ? (
-              <div className="text-center py-12 mono-label text-white/40">No guides found.</div>
-            ) : (
-              <div className="grid gap-8 sm:grid-cols-2">
-                {guides.map((guide) => (
-                  <div
-                    key={guide.id}
-                    className="group border border-white/10 bg-[#0d0d0d] p-6 hover:border-white/20 transition-all flex flex-col justify-between"
-                  >
-                    <div>
-                      {guide.coverImage && (
-                        <div className="aspect-video overflow-hidden bg-neutral-900 mb-6">
-                          <img
-                            src={guide.coverImage}
-                            alt={guide.title}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                        </div>
-                      )}
-                      <span className="mono-label text-[9px] text-white/40">PUBLISHED ARTICLE</span>
-                      <h3 className="mt-2 font-display text-2xl font-black uppercase tracking-tight text-white group-hover:text-white/80 transition-colors">
-                        {guide.title}
-                      </h3>
-                      <p className="mt-3 text-xs leading-relaxed text-white/60 line-clamp-3">
-                        {guide.content}
-                      </p>
-                    </div>
-
-                    <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between">
-                      <span className="mono-label text-[9px] text-white/40">{guide.views} Reads</span>
-                      <Link
-                        href={`/guide/${guide.slug}`}
-                        className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white"
-                      >
-                        Read Guide <MoveRight size={12} />
-                      </Link>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
-      </main>
-    </div>
-  );
+  return <div className="min-h-screen bg-[#151613] text-[#f7f2e9]"><main>
+    <EditorialPageIntro eyebrow="06 / Business Guide" title={<>Your garment<br /><span className="text-transparent stroke-text">guide in</span><br />Ahmedabad.</>} description="Buying garments is not only about finding products. It is about finding the right products, the right quantities and the right price for your market." image="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400" imageAlt="Textile sourcing consultation" ctaLabel="Talk to our garment team" ctaHref="/#enquiry" />
+    <section className="paper-surface border-t border-[#151613]/10 px-5 py-20 sm:px-8 lg:px-12 lg:py-28"><div className="mx-auto max-w-[1500px]"><div className="flex flex-col justify-between gap-6 border-b border-[#151613]/15 pb-7 lg:flex-row lg:items-end"><div><span className="mono-label text-[10px] text-[#f05a24]">Product selection / stock planning / market guidance</span><div className="accent-rule mt-5" /><h2 className="mt-7 font-display text-5xl font-black uppercase leading-[.86] tracking-[-.08em] sm:text-7xl">Make smarter<br />buying decisions.</h2></div><p className="max-w-md text-sm leading-relaxed text-[#151613]/65">Articles and resources for retailers, wholesalers, fashion brands and emerging labels navigating garment sourcing.</p></div>{guides.length === 0 ? <div className="py-16 text-center font-mono text-[10px] uppercase tracking-widest text-[#151613]/45">No guides found.</div> : <div className="mt-12 grid gap-px bg-[#151613]/15 sm:grid-cols-2">{guides.map((guide) => <article key={guide.id} className="group bg-[#f7f2e9] p-6 transition-colors hover:bg-[#e9e2d5] sm:p-8">{guide.coverImage && <div className="mb-7 aspect-video overflow-hidden bg-[#e9e2d5]"><img src={guide.coverImage} alt={guide.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" /></div>}<span className="mono-label text-[9px] text-[#f05a24]">Published article</span><h3 className="mt-3 font-display text-3xl font-black uppercase leading-[.9] tracking-[-.06em] text-[#151613]">{guide.title}</h3><p className="mt-4 line-clamp-3 text-sm leading-relaxed text-[#151613]/65">{guide.content}</p><div className="mt-8 flex items-center justify-between border-t border-[#151613]/15 pt-4"><span className="mono-label text-[9px] text-[#151613]/45">{guide.views} reads</span><Link href={`/guide/${guide.slug}`} className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#151613] transition-colors hover:text-[#f05a24]">Read guide <MoveRight size={12} /></Link></div></article>)}</div>}</div></section>
+  </main></div>;
 }

@@ -80,7 +80,7 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         HIMAT TEXTILE
       </text>
 
-      {/* B2B Garment Supplier */}
+      {/* Your Garment Guide In Ahmedabad */}
       <text
         x="200"
         y="198"
@@ -91,10 +91,10 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         fontWeight="500"
         letterSpacing="3"
       >
-        B2B Garment Supplier
+        Your Garment Guide In Ahmedabad
       </text>
 
-      {/* Connecting Brands Across India */}
+      {/* Sourcing • Wholesale • Private Label • Export */}
       <text
         x="200"
         y="218"
@@ -105,7 +105,7 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         fontWeight="500"
         letterSpacing="1.5"
       >
-        Connecting Brands Across India
+        Sourcing • Wholesale • Private Label • Export
       </text>
     </svg>
   );
