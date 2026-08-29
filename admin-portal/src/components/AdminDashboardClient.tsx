@@ -23,6 +23,7 @@ import {
   FolderTree
 } from "lucide-react";
 import { toast } from "sonner";
+import { HimatLogoIcon } from "@/components/HimatLogo";
 import {
   Product,
   Advertisement,
@@ -248,28 +249,26 @@ export default function AdminDashboardClient({
   };
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white flex flex-col md:flex-row selection:bg-white selection:text-black">
+    <div className="min-h-screen bg-background text-foreground flex flex-col md:flex-row selection:bg-primary selection:text-primary-foreground">
       {/* Mobile Sidebar Overlay Backdrop */}
       {sidebarOpen && (
         <div 
           onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm md:hidden"
         />
       )}
 
       {/* 1. Left Sidebar Navigation */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-white/10 bg-[#090909] flex flex-col justify-between p-6 shrink-0 h-screen md:sticky md:top-0 transition-transform duration-300 md:translate-x-0 ${
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-border bg-sidebar flex flex-col justify-between p-6 shrink-0 h-screen md:sticky md:top-0 transition-transform duration-300 md:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}>
         <div className="space-y-8">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center border border-white font-display text-xs font-black tracking-tighter">
-              HT
-            </div>
+            <HimatLogoIcon className="h-10 w-10 shrink-0" />
             <div>
-              <h2 className="font-display text-sm font-black uppercase leading-none">Himat Control</h2>
-              <span className="mono-label text-[8px] text-white/40 block mt-1">CMS PORTAL v2.0</span>
+              <h2 className="font-display text-sm font-black uppercase leading-none text-[#F4EFE6] tracking-wider">Himat Control</h2>
+              <span className="mono-label text-[8px] text-[#F4EFE6]/50 block mt-1">CMS PORTAL v2.0</span>
             </div>
           </div>
  
@@ -291,8 +290,8 @@ export default function AdminDashboardClient({
                 onClick={() => handleTabChange(item.id as Tab)}
                 className={`w-full flex items-center gap-3 px-3 py-3 text-xs font-bold uppercase tracking-wider transition-colors ${
                   activeTab === item.id
-                    ? "bg-white text-black"
-                    : "text-white/60 hover:bg-white/5 hover:text-white"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-sidebar-foreground/75 hover:bg-foreground/5 hover:text-foreground"
                 }`}
               >
                 <item.icon size={16} />
@@ -303,14 +302,14 @@ export default function AdminDashboardClient({
         </div>
 
         {/* Footer info & Logout */}
-        <div className="space-y-4 pt-6 border-t border-white/10">
+        <div className="space-y-4 pt-6 border-t border-border">
           <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="mono-label text-[8px] text-white/50">Authorized: Himat Admin</span>
+            <div className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse" />
+            <span className="mono-label text-[8px] text-[#F4EFE6]/60">Authorized: Himat Admin</span>
           </div>
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center justify-between border border-white/20 hover:border-white hover:bg-white hover:text-black py-2.5 px-4 text-[9px] font-bold uppercase tracking-[0.16em] transition-colors"
+            className="w-full flex items-center justify-between border border-border hover:border-foreground hover:bg-foreground hover:text-background py-2.5 px-4 text-[9px] font-bold uppercase tracking-[0.16em] transition-colors"
           >
             <span>Sign Out</span>
             <LogOut size={12} />
@@ -321,11 +320,11 @@ export default function AdminDashboardClient({
       {/* 2. Main Portal Space */}
       <div className="flex-grow flex flex-col min-w-0">
         {/* Header Bar */}
-        <header className="h-16 border-b border-white/10 px-4 md:px-8 flex items-center justify-between bg-[#090909]/60 backdrop-blur-md sticky top-0 z-40">
+        <header className="h-16 border-b border-border px-4 md:px-8 flex items-center justify-between bg-sidebar/80 backdrop-blur-md sticky top-0 z-40">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setSidebarOpen(true)}
-              className="p-2 border border-white/20 hover:border-white text-white md:hidden"
+              className="p-2 border border-border hover:border-foreground text-foreground md:hidden"
               aria-label="Open sidebar"
             >
               <Menu size={18} />
@@ -341,7 +340,7 @@ export default function AdminDashboardClient({
               {activeTab === "settings" && "Portal Settings"}
               {activeTab === "categories" && "Garment Categories"}
             </h1>
-            {isPending && <LoaderCircle className="animate-spin text-white/40" size={14} />}
+            {isPending && <LoaderCircle className="animate-spin text-foreground/45" size={14} />}
           </div>
           
           <div className="flex items-center gap-4">
