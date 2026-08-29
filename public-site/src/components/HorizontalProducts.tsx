@@ -11,32 +11,48 @@ gsap.registerPlugin(ScrollTrigger);
 const productSections = [
   {
     title: "Men's Wear",
-    subtitle: "Premium Shirts, Denim & Woven Garments",
-    description: "Built for urban brands looking for exceptional fits, bio-washed cotton polos, durable slub denim shirts, and premium trousers.",
+    subtitle: "Cotton Pants, Shirts, Lowers, Linen Wear & T-Shirts",
+    description: "Premium Ahmedabad-manufactured cotton pants, linen-blend casual shirts, comfortable lowers, and t-shirts tailored for B2B brands and wholesalers.",
     moq: "200 Pcs / Style",
     image: "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=800",
     href: "/catalog?category=mens wear"
   },
   {
     title: "Women's Wear",
-    subtitle: "Modern Tops, Knitwear & High-street Fashion",
-    description: "Highly curated lines of high-street coordinates, premium knitwear, casual summer tops, and denim skirts with customized dye washes.",
+    subtitle: "Ethnic, 3pc Sets, Kurtis, Co-ord Sets, Palazzo, Leggings & Dupatta",
+    description: "Contemporary slub rayon co-ord sets, traditional ethnic embroidery kurtis, palazzo pants, leggings, and dupattas crafted by skilled process houses.",
     moq: "150 Pcs / Style",
     image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800",
     href: "/catalog?category=womens wear"
   },
   {
     title: "Kids Wear",
-    subtitle: "Soft Knitwear, Organic Cotton Rompers & Playsuits",
-    description: "Strict quality control and non-toxic materials. Soft cotton pullovers, playsuits, organic cotton t-shirts, and durable joggers.",
+    subtitle: "Soft Cotton Pants, Shirts, Lowers & Linen Playwear",
+    description: "Durable playwear, soft combed cotton pants, shirts, and lowers designed for child comfort and hypoallergenic safety.",
     moq: "300 Pcs / Style",
     image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=800",
     href: "/catalog?category=kids wear"
   },
   {
-    title: "Private Label",
+    title: "Bedsheets",
+    subtitle: "Packed & Roll Formats direct from Manufacturer",
+    description: "Percale and cotton bedsheets supplied in export-grade packed formats or continuous rolls for institutional and retail buyers.",
+    moq: "100 Rolls / Design",
+    image: "/images/ahmedabad_market_newcloth.jpg",
+    href: "/catalog?category=bedsheets"
+  },
+  {
+    title: "Fabrics Sourcing",
+    subtitle: "Mills & Dyeing Process House Assortments",
+    description: "Direct dye-house processed cotton fabric bolts, slub denim, and custom fabric blends with uniform color consistency.",
+    moq: "1000 Meters / Blend",
+    image: "/images/ahmedabad_market_safal.jpg",
+    href: "/catalog?category=fabrics"
+  },
+  {
+    title: "White Labeling",
     subtitle: "End-to-End Bespoke Custom Apparel Sourcing",
-    description: "Complete design-to-delivery support. Custom tech pack creation, fabric sourcing, customized embroidery, and global export packaging.",
+    description: "Complete design-to-delivery support. Custom tech pack creation, fabric selection, branding accessories, and custom packaging.",
     moq: "100 Pcs / Custom Design",
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800",
     href: "/#enquiry"
@@ -124,7 +140,7 @@ export default function HorizontalProducts() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-5 left-5">
-                  <span className="mono-label text-[10px] tracking-widest text-white/50">M.O.Q. / {section.moq}</span>
+                  <span className="mono-label text-[10px] tracking-widest text-white/50">WHOLESALE / WHITE LABELING</span>
                 </div>
               </div>
 

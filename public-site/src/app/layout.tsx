@@ -29,7 +29,7 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: "Himat Textile — Garment Partner",
-  description: "Himat Textile is a B2B garment partner for wholesale, private label and growing fashion businesses.",
+  description: "Himat Textile is a B2B garment partner for wholesale, white labeling and growing fashion businesses.",
 };
 
 export default function RootLayout({

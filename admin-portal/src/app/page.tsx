@@ -6,7 +6,8 @@ import {
   listAdminBrands,
   listAdminCities,
   listAdminBusinessGuides,
-  listSettings
+  listSettings,
+  listAdminCategories
 } from "@/lib/db";
 import AdminDashboardClient from "@/components/AdminDashboardClient";
 
@@ -21,7 +22,8 @@ export default async function AdminDashboardPage() {
     brands,
     cities,
     guides,
-    settings
+    settings,
+    categories
   ] = await Promise.all([
     listInquiries(),
     listAdminProducts(),
@@ -30,7 +32,8 @@ export default async function AdminDashboardPage() {
     listAdminBrands(),
     listAdminCities(),
     listAdminBusinessGuides(),
-    listSettings()
+    listSettings(),
+    listAdminCategories()
   ]);
 
   return (
@@ -43,6 +46,7 @@ export default async function AdminDashboardPage() {
       initialCities={cities}
       initialGuides={guides}
       initialSettings={settings}
+      initialCategories={categories}
     />
   );
 }

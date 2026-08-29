@@ -52,7 +52,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <section className="relative min-h-[720px] h-screen w-full overflow-hidden bg-[#151613]">
+    <section className="relative min-h-[720px] h-screen w-full overflow-hidden bg-[#161612]">
       <div className="absolute inset-0">
         {images.map((img, idx) => (
           <div
@@ -69,42 +69,42 @@ export default function HeroSlider() {
       </div>
       <div className="noise-layer absolute inset-0 z-10" />
 
-      <div ref={contentRef} className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-between px-5 pb-8 pt-32 sm:px-8 lg:px-12">
+      <div ref={contentRef} className="relative z-20 mx-auto flex h-full max-w-[1600px] flex-col justify-between px-5 pb-6 pt-24 sm:px-8 sm:pb-8 sm:pt-28 lg:px-12 lg:pt-24">
         <div className="flex items-center justify-between" data-reveal>
-          <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#f7f2e9]/55">
-            <span className="h-2 w-2 bg-[#f05a24]" /> Ahmedabad, India
+          <div className="flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#F4EFE6]/55">
+            <span className="h-2 w-2 bg-[#C95A1A]" /> Ahmedabad, India
           </div>
-          <div className="hidden items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#f7f2e9]/55 md:flex">
-            Sourcing <span className="text-[#ffb800]">•</span> Wholesale <span className="text-[#ffb800]">•</span> Private Label <span className="text-[#ffb800]">•</span> Export
+          <div className="hidden items-center gap-3 font-mono text-[9px] uppercase tracking-[0.22em] text-[#F4EFE6]/55 md:flex">
+            Sourcing <span className="text-[#C19040]">•</span> Wholesale <span className="text-[#C19040]">•</span> White Labeling <span className="text-[#C19040]">•</span> Export
           </div>
         </div>
 
         <div className="max-w-[900px] pb-7">
-          <span data-reveal className="mono-label block text-[10px] tracking-[0.26em] text-[#ffb800] uppercase">{t("hero_tagline")}</span>
-          <div className="mt-5 h-[3px] w-16 bg-gradient-to-r from-[#f05a24] to-[#ffb800]" data-reveal />
-          <h1 className="mt-6 font-display text-[clamp(3.8rem,10vw,9rem)] font-black uppercase leading-[0.86] tracking-[-0.065em] text-[#f7f2e9]">
+          <span data-reveal className="mono-label block text-[10px] tracking-[0.26em] text-[#C19040] uppercase">{t("hero_tagline")}</span>
+          <div className="mt-4 h-[3px] w-16 bg-gradient-to-r from-[#C95A1A] to-[#C19040]" data-reveal />
+          <h1 className="mt-4 font-display text-[clamp(2.2rem,5.2vw,4.8rem)] font-black uppercase leading-[0.9] tracking-[-0.06em] text-[#F4EFE6] md:mt-5">
             <span data-reveal className="block">{t("hero_title_1")}</span>
             <span data-reveal className="block text-transparent stroke-text">{t("hero_title_2")}</span>
             <span data-reveal className="block">{t("hero_title_3")}</span>
           </h1>
-          <div className="mt-7 max-w-xl space-y-3">
-            <p data-reveal className="text-base font-semibold leading-relaxed text-[#f7f2e9] sm:text-lg">{t("hero_subtitle")}</p>
-            <p data-reveal className="text-sm leading-relaxed text-[#f7f2e9]/68 sm:text-[15px]">{t("hero_description")}</p>
+          <div className="mt-5 max-w-xl space-y-2">
+            <p data-reveal className="text-base font-semibold leading-relaxed text-[#F4EFE6] sm:text-lg">{t("hero_subtitle")}</p>
+            <p data-reveal className="text-xs sm:text-sm leading-relaxed text-[#F4EFE6]/68">{t("hero_description")}</p>
           </div>
-          <div data-reveal className="mt-8 flex flex-wrap items-center gap-3">
+          <div data-reveal className="mt-6 flex flex-wrap items-center gap-3">
             <Link href="/catalog" className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5">{t("btn_view_collection")} <MoveUpRight size={14} /></Link>
-            <Link href="/#enquiry" className="inline-flex items-center gap-2 border border-[#f7f2e9]/35 bg-[#151613]/30 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-[#f7f2e9] backdrop-blur-md transition-all hover:border-[#f05a24] hover:text-[#ffb800]">{t("btn_start_enquiry_upper")}</Link>
+            <Link href="/#enquiry" className="inline-flex items-center gap-2 border border-[#F4EFE6]/35 bg-[#161612]/30 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-[#F4EFE6] backdrop-blur-md transition-all hover:border-[#C95A1A] hover:text-[#C19040]">{t("btn_start_enquiry_upper")}</Link>
           </div>
         </div>
 
-        <div className="flex items-end justify-between border-t border-[#f7f2e9]/18 pt-5" data-reveal>
+        <div className="flex items-end justify-between border-t border-[#F4EFE6]/18 pt-5" data-reveal>
           <div className="flex items-center gap-4">
-            <span className="font-mono text-xs tracking-widest text-[#f7f2e9]/65">{String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
+            <span className="font-mono text-xs tracking-widest text-[#F4EFE6]/65">{String(activeIndex + 1).padStart(2, "0")} / {String(images.length).padStart(2, "0")}</span>
             <div className="flex gap-1.5" aria-label="Hero slide position">
-              {images.map((_, idx) => <span key={idx} className={`h-1 w-10 transition-colors ${idx === activeIndex ? "bg-[#f05a24]" : "bg-[#f7f2e9]/25"}`} />)}
+              {images.map((_, idx) => <span key={idx} className={`h-1 w-10 transition-colors ${idx === activeIndex ? "bg-[#C95A1A]" : "bg-[#F4EFE6]/25"}`} />)}
             </div>
           </div>
-          <a href="#categories" className="hidden items-center gap-2 font-mono text-[9px] uppercase tracking-[.2em] text-[#f7f2e9]/55 transition-colors hover:text-[#ffb800] sm:flex">Explore the collection <ArrowDownRight size={15} /></a>
+          <a href="#categories" className="hidden items-center gap-2 font-mono text-[9px] uppercase tracking-[.2em] text-[#F4EFE6]/55 transition-colors hover:text-[#C19040] sm:flex">Explore the collection <ArrowDownRight size={15} /></a>
         </div>
       </div>
     </section>

@@ -19,7 +19,8 @@ import {
   LoaderCircle,
   X,
   FileCheck,
-  Menu
+  Menu,
+  FolderTree
 } from "lucide-react";
 import { toast } from "sonner";
 import {
@@ -35,11 +36,13 @@ import {
   ReviewValues,
   BrandValues,
   CityValues,
-  BusinessGuideValues
+  BusinessGuideValues,
+  Category,
+  CategoryValues
 } from "@/lib/schema";
 import * as actions from "@/app/actions";
 
-type Tab = "overview" | "products" | "advertisements" | "enquiries" | "reviews" | "network" | "guides" | "settings";
+type Tab = "overview" | "products" | "advertisements" | "enquiries" | "reviews" | "network" | "guides" | "settings" | "categories";
 
 interface AdminDashboardClientProps {
   initialInquiries: any[];
@@ -50,6 +53,7 @@ interface AdminDashboardClientProps {
   initialCities: City[];
   initialGuides: BusinessGuide[];
   initialSettings: Setting[];
+  initialCategories?: Category[];
 }
 
 export default function AdminDashboardClient({
@@ -60,7 +64,8 @@ export default function AdminDashboardClient({
   initialBrands,
   initialCities,
   initialGuides,
-  initialSettings
+  initialSettings,
+  initialCategories = []
 }: AdminDashboardClientProps) {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -81,6 +86,12 @@ export default function AdminDashboardClient({
   const [cities, setCities] = useState(initialCities);
   const [guides, setGuides] = useState(initialGuides);
   const [settings, setSettings] = useState(initialSettings);
+  const [categories, setCategories] = useState<Category[]>(initialCategories);
+
+  const [categoryModal, setCategoryModal] = useState<{ open: boolean; editId?: number; form: { name: string; slug: string; subcategoriesText: string; isActive: boolean } }>({
+    open: false,
+    form: { name: "", slug: "", subcategoriesText: "", isActive: true }
+  });
 
   // Search filter local states
   const [prodSearch, setProdSearch] = useState("");
@@ -89,7 +100,7 @@ export default function AdminDashboardClient({
   // Modals state
   const [productModal, setProductModal] = useState<{ open: boolean; editId?: number; form: ProductValues }>({
     open: false,
-    form: { title: "", slug: "", category: "mens wear", description: "", fabricDetails: "", moq: "200 Pcs", imageUrl: "", style: "", targetMarket: "", isActive: true }
+    form: { title: "", slug: "", category: "mens wear", description: "", fabricDetails: "", imageUrl: "", style: "", targetMarket: "", isActive: true }
   });
 
   const [adModal, setAdModal] = useState<{ open: boolean; editId?: number; form: AdvertisementValues }>({
@@ -117,9 +128,8 @@ export default function AdminDashboardClient({
     form: { title: "", slug: "", content: "", coverImage: "", status: "DRAFT" }
   });
 
-  const [inquiryNotesModal, setInquiryNotesModal] = useState<{ open: boolean; id?: number; notes: string; status: "NEW" | "REPLIED" | "ARCHIVED" }>({
+  const [inquiryNotesModal, setInquiryNotesModal] = useState<{ open: boolean; id?: number; status: "NEW" | "REPLIED" | "ARCHIVED" }>({
     open: false,
-    notes: "",
     status: "NEW"
   });
 
@@ -131,7 +141,7 @@ export default function AdminDashboardClient({
   const refreshData = () => {
     startTransition(async () => {
       try {
-        const [p, ad, inq, rev, b, c, g, s] = await Promise.all([
+        const [p, ad, inq, rev, b, c, g, s, cats] = await Promise.all([
           actions.listProducts(),
           actions.listAdvertisements(),
           actions.listInquiries(),
@@ -139,7 +149,8 @@ export default function AdminDashboardClient({
           actions.listBrands(),
           actions.listCities(),
           actions.listBusinessGuides(),
-          actions.listSettings()
+          actions.listSettings(),
+          actions.listCategories()
         ]);
         setProducts(p);
         setAdvertisements(ad);
@@ -149,6 +160,7 @@ export default function AdminDashboardClient({
         setCities(c);
         setGuides(g);
         setSettings(s);
+        setCategories(cats);
       } catch (err) {
         toast.error("Failed to sync latest database changes.");
       }
@@ -270,6 +282,7 @@ export default function AdminDashboardClient({
               { id: "enquiries", label: "B2B Enquiries", icon: MessageSquare },
               { id: "reviews", label: "Client Reviews", icon: Star },
               { id: "network", label: "Network & Brands", icon: Globe },
+              { id: "categories", label: "Categories", icon: FolderTree },
               { id: "guides", label: "Business Guides", icon: FileText },
               { id: "settings", label: "System Settings", icon: SettingsIcon },
             ].map((item) => (
@@ -326,6 +339,7 @@ export default function AdminDashboardClient({
               {activeTab === "network" && "Network, Cities & Brands"}
               {activeTab === "guides" && "Editorial Sourcing Guides"}
               {activeTab === "settings" && "Portal Settings"}
+              {activeTab === "categories" && "Garment Categories"}
             </h1>
             {isPending && <LoaderCircle className="animate-spin text-white/40" size={14} />}
           </div>
@@ -430,7 +444,7 @@ export default function AdminDashboardClient({
                   className="bg-[#111] border border-white/15 py-2.5 px-4 text-xs text-white outline-none focus:border-white min-w-xs"
                 />
                 <button
-                  onClick={() => setProductModal({ open: true, form: { title: "", slug: "", category: "mens wear", description: "", fabricDetails: "", moq: "200 Pcs", imageUrl: "", style: "", targetMarket: "", isActive: true } })}
+                  onClick={() => setProductModal({ open: true, form: { title: "", slug: "", category: categories[0]?.slug || "mens wear", subcategory: (categories[0]?.subcategories || [])[0] || "", description: "", fabricDetails: "", imageUrl: "", style: "", targetMarket: "", isActive: true } })}
                   className="bg-white text-black font-bold uppercase tracking-wider text-[10px] px-5 py-3.5 flex items-center gap-2 hover:bg-neutral-200 transition-colors"
                 >
                   <Plus size={14} /> Add New Product
@@ -457,7 +471,7 @@ export default function AdminDashboardClient({
                           </span>
                         </div>
                         <div className="p-5 space-y-3">
-                          <span className="mono-label text-[9px] text-white/45 block">{p.category} / MOQ {p.moq}</span>
+                          <span className="mono-label text-[9px] text-white/45 block">{p.category} {p.subcategory ? `/ ${p.subcategory}` : ""}</span>
                           <h3 className="font-display text-xl font-black uppercase tracking-tight leading-none text-white">{p.title}</h3>
                           <p className="text-xs text-white/50 line-clamp-3">{p.description}</p>
                           <div className="border-t border-white/10 pt-3 text-[10px] text-white/40">
@@ -584,82 +598,77 @@ export default function AdminDashboardClient({
                 className="bg-[#111] border border-white/15 py-2.5 px-4 text-xs text-white outline-none focus:border-white min-w-xs"
               />
 
-              {/* Leads Table */}
-              <div className="border border-white/10 bg-[#111] overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead className="mono-label text-[9px] text-white/50 border-b border-white/10 bg-[#090909]">
-                    <tr>
-                      <th className="p-4">Company & Buyer</th>
-                      <th className="p-4">Contact Channels</th>
-                      <th className="p-4">Interest & Volume</th>
-                      <th className="p-4">Message</th>
-                      <th className="p-4">Admin Notes</th>
-                      <th className="p-4">Status</th>
-                      <th className="p-4 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5">
-                    {inquiries
-                      .filter(i => 
-                        (i.companyName || "").toLowerCase().includes(enqSearch.toLowerCase()) || 
-                        (i.contactName || "").toLowerCase().includes(enqSearch.toLowerCase()) ||
-                        (i.email || "").toLowerCase().includes(enqSearch.toLowerCase())
-                      )
-                      .map((inq) => (
-                        <tr key={inq.id} className="hover:bg-white/5 align-top">
-                          <td className="p-4">
-                            <h4 className="font-bold text-white uppercase">{inq.companyName}</h4>
-                            <span className="text-[10px] text-white/45 block mt-0.5">{inq.contactName || "no name"}</span>
-                          </td>
-                          <td className="p-4 space-y-1 text-white/60">
-                            <div className="font-mono text-[10px]">{inq.email || "—"}</div>
-                            <div className="text-[10px]">{inq.phone || "—"}</div>
-                          </td>
-                          <td className="p-4">
-                            <span className="font-bold text-white uppercase tracking-wider text-[10px] block">{inq.productInterest}</span>
-                            <span className="text-[10px] text-white/45 mt-0.5 block">MOQ Qty: {inq.quantity}</span>
-                          </td>
-                          <td className="p-4 max-w-xs">
-                            <p className="text-white/70 line-clamp-3 text-[11px] leading-relaxed break-words">{inq.message}</p>
-                          </td>
-                          <td className="p-4 max-w-xs text-amber-300/80 text-[10px] italic leading-normal">
-                            {inq.adminNotes || "No notes"}
-                          </td>
-                          <td className="p-4">
-                            <span className={`px-2 py-0.5 text-[8px] font-bold uppercase mono-label ${
-                              inq.status === "NEW" ? "bg-red-950 text-red-400 border border-red-800" :
-                              inq.status === "REPLIED" ? "bg-emerald-950 text-emerald-400 border border-emerald-800" :
-                              "bg-stone-900 text-stone-400 animate-none"
-                            }`}>
-                              {inq.status}
-                            </span>
-                          </td>
-                          <td className="p-4 text-right">
-                            <div className="flex gap-2 justify-end">
-                              <button
-                                onClick={() => setInquiryNotesModal({ open: true, id: inq.id, notes: inq.adminNotes || "", status: inq.status })}
-                                className="border border-white/10 hover:border-white px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors"
-                              >
-                                <FileCheck size={11} /> Reply / Log
-                              </button>
-                              <button
-                                onClick={async () => {
-                                  if (!confirm("Delete lead permanently?")) return;
-                                  await actions.deleteInquiry(inq.id);
-                                  toast.success("Lead removed.");
-                                  refreshData();
-                                }}
-                                className="border border-red-950 text-red-400 hover:bg-red-950/20 p-2.5 transition-colors"
-                                aria-label="Delete inquiry"
-                              >
-                                <Trash2 size={12} />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+              {/* Leads Card Grid */}
+              <div className="grid gap-6">
+                {inquiries
+                  .filter(i => 
+                    (i.companyName || "").toLowerCase().includes(enqSearch.toLowerCase()) || 
+                    (i.contactName || "").toLowerCase().includes(enqSearch.toLowerCase()) ||
+                    (i.email || "").toLowerCase().includes(enqSearch.toLowerCase())
+                  )
+                  .map((inq) => (
+                    <div key={inq.id} className="border border-white/10 bg-black/40 p-6 space-y-4 hover:border-white/20 transition-colors">
+                      <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/5 pb-4">
+                        <div>
+                          <span className={`px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider border mr-3 ${
+                            inq.status === "NEW" ? "border-red-500/35 text-red-400 bg-red-500/5" :
+                            inq.status === "REPLIED" ? "border-emerald-500/35 text-emerald-400 bg-emerald-500/5" :
+                            "border-white/20 text-white/40"
+                          }`}>
+                            {inq.status}
+                          </span>
+                          <h4 className="font-display text-lg font-black uppercase tracking-wider inline-block text-white">
+                            {inq.companyName}
+                          </h4>
+                          <span className="mono-label text-[9px] text-white/40 block mt-1">
+                            Contact Person: <strong className="text-white/80">{inq.contactName || "N/A"}</strong>
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => setInquiryNotesModal({ open: true, id: inq.id, status: inq.status })}
+                            className="border border-white/20 hover:bg-white hover:text-black px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors"
+                          >
+                            <FileCheck size={11} /> Update Status
+                          </button>
+                          <button
+                            onClick={async () => {
+                              if (!confirm("Delete lead permanently?")) return;
+                              await actions.deleteInquiry(inq.id);
+                              toast.success("Lead removed.");
+                              refreshData();
+                            }}
+                            className="border border-red-950 hover:bg-red-950/20 p-2 text-red-400 transition-colors"
+                            aria-label="Delete inquiry"
+                          >
+                            <Trash2 size={12} />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-6 sm:grid-cols-3 text-xs">
+                        <div className="space-y-1">
+                          <span className="mono-label text-[8px] text-white/40 uppercase block">Product Interest</span>
+                          <span className="font-bold text-white uppercase bg-white/5 border border-white/10 px-2 py-1 inline-block tracking-wider">
+                            {inq.productInterest || "General Sourcing"}
+                          </span>
+                        </div>
+                        <div className="space-y-1">
+                          <span className="mono-label text-[8px] text-white/40 uppercase block">Email Address</span>
+                          <span className="font-mono text-white/80">{inq.email || "—"}</span>
+                        </div>
+                        <div className="space-y-1">
+                          <span className="mono-label text-[8px] text-white/40 uppercase block">Phone / Mobile</span>
+                          <span className="text-white/80">{inq.phone || "—"}</span>
+                        </div>
+                      </div>
+
+                      <div className="bg-black/50 border border-white/5 p-4 rounded space-y-1 text-xs">
+                        <span className="mono-label text-[8px] text-white/45 uppercase block">Enquiry Message</span>
+                        <p className="text-white/70 whitespace-pre-wrap leading-relaxed break-words">{inq.message}</p>
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
           )}
@@ -884,6 +893,83 @@ export default function AdminDashboardClient({
             </div>
           )}
 
+          {/* ================= CATEGORIES TAB ================= */}
+          {activeTab === "categories" && (
+            <div className="space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <h3 className="font-display text-xl font-black uppercase tracking-wider">Manage Product Categories</h3>
+                  <p className="text-xs text-white/50">Create and modify dynamic categories and subcategories visible on the main website.</p>
+                </div>
+                <button
+                  onClick={() => setCategoryModal({ open: true, form: { name: "", slug: "", subcategoriesText: "", isActive: true } })}
+                  className="inline-flex items-center gap-2 border border-white px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] hover:bg-white hover:text-black transition-colors"
+                >
+                  <Plus size={12} /> Add Category
+                </button>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {categories.map((cat) => (
+                  <div key={cat.id} className="border border-white/10 bg-black/40 p-5 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h4 className="font-display text-lg font-black uppercase tracking-wider">{cat.name}</h4>
+                        <span className="mono-label text-[8px] text-white/40">slug: {cat.slug}</span>
+                      </div>
+                      <span className={`mono-label text-[8px] px-2 py-0.5 border ${cat.isActive ? "border-emerald-500/35 text-emerald-400 bg-emerald-500/5" : "border-white/20 text-white/40"}`}>
+                        {cat.isActive ? "Active" : "Inactive"}
+                      </span>
+                    </div>
+
+                    <div className="space-y-2">
+                      <span className="mono-label text-[8px] text-white/50 block uppercase">Subcategories</span>
+                      <div className="flex flex-wrap gap-1">
+                        {cat.subcategories.map((sub, i) => (
+                          <span key={i} className="bg-white/5 border border-white/10 text-white/70 px-2 py-1 text-[9px] font-mono rounded">
+                            {sub}
+                          </span>
+                        ))}
+                        {cat.subcategories.length === 0 && (
+                          <span className="text-[10px] text-white/30 italic">No subcategories defined</span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-end gap-3 pt-3 border-t border-white/5">
+                      <button
+                        onClick={() => setCategoryModal({
+                          open: true,
+                          editId: cat.id,
+                          form: {
+                            name: cat.name,
+                            slug: cat.slug,
+                            subcategoriesText: cat.subcategories.join(", "),
+                            isActive: cat.isActive
+                          }
+                        })}
+                        className="text-white/60 hover:text-white transition-colors"
+                      >
+                        <Edit size={14} />
+                      </button>
+                      <button
+                        onClick={async () => {
+                          if (!confirm("Are you sure you want to delete this category? This might affect products using it.")) return;
+                          await actions.deleteCategory(cat.id);
+                          toast.success("Category deleted successfully.");
+                          refreshData();
+                        }}
+                        className="text-red-400 hover:text-red-500 transition-colors"
+                      >
+                        <Trash2 size={14} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* ================= SETTINGS TAB ================= */}
           {activeTab === "settings" && (
             <div className="max-w-2xl border border-white/10 bg-[#111] p-8 space-y-6">
@@ -965,15 +1051,46 @@ export default function AdminDashboardClient({
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="space-y-1">
                   <label className="mono-label text-[9px] text-white/50 block">Category</label>
-                  <select value={productModal.form.category} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, category: e.target.value as any } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white">
-                    <option value="mens wear">men's wear</option>
-                    <option value="womens wear">women's wear</option>
-                    <option value="kids wear">kids' wear</option>
+                  <select
+                    value={productModal.form.category}
+                    onChange={e => {
+                      const catSlug = e.target.value;
+                      const catObj = categories.find(c => c.slug === catSlug);
+                      const subcats = catObj ? catObj.subcategories : [];
+                      setProductModal({
+                        ...productModal,
+                        form: {
+                          ...productModal.form,
+                          category: catSlug,
+                          subcategory: subcats[0] || null
+                        }
+                      });
+                    }}
+                    className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white uppercase text-[10px]"
+                  >
+                    {categories.map(c => (
+                      <option key={c.id} value={c.slug}>{c.name}</option>
+                    ))}
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">MOQ Requirement</label>
-                  <input required type="text" value={productModal.form.moq} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, moq: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-white/50 block">Subcategory</label>
+                  <select
+                    value={productModal.form.subcategory || ""}
+                    onChange={e => setProductModal({
+                      ...productModal,
+                      form: {
+                        ...productModal.form,
+                        subcategory: e.target.value || null
+                      }
+                    })}
+                    className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white uppercase text-[10px]"
+                  >
+                    <option value="">None</option>
+                    {(categories.find(c => c.slug === productModal.form.category)?.subcategories || []).map(sub => (
+                      <option key={sub} value={sub}>{sub}</option>
+                    ))}
+                  </select>
                 </div>
                 <div className="space-y-1">
                   <label className="mono-label text-[9px] text-white/50 block">Garment Style</label>
@@ -1314,19 +1431,18 @@ export default function AdminDashboardClient({
       {inquiryNotesModal.open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setInquiryNotesModal({ open: false, notes: "", status: "NEW" })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">Update B2B Lead Status</h3>
+            <button onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">Update Lead Status</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
               if (inquiryNotesModal.id) {
                 await actions.updateInquiry(inquiryNotesModal.id, {
-                  status: inquiryNotesModal.status,
-                  adminNotes: inquiryNotesModal.notes
+                  status: inquiryNotesModal.status
                 });
                 toast.success("Lead status updated.");
               }
-              setInquiryNotesModal({ open: false, notes: "", status: "NEW" });
+              setInquiryNotesModal({ open: false, status: "NEW" });
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
@@ -1338,14 +1454,80 @@ export default function AdminDashboardClient({
                 </select>
               </div>
 
+              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
+                <button type="button" onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
+                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Update Status</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ================= CATEGORY MODAL ================= */}
+      {categoryModal.open && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
+            <button onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">
+              {categoryModal.editId ? "Edit Category" : "Add Category"}
+            </h3>
+
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              if (!categoryModal.form.name || !categoryModal.form.slug) {
+                toast.error("Name and Slug are required.");
+                return;
+              }
+              const subcategories = categoryModal.form.subcategoriesText
+                .split(",")
+                .map(s => s.trim().toLowerCase())
+                .filter(Boolean);
+
+              const values = {
+                name: categoryModal.form.name,
+                slug: categoryModal.form.slug,
+                subcategories,
+                isActive: categoryModal.form.isActive,
+              };
+
+              if (categoryModal.editId) {
+                await actions.updateCategory(categoryModal.editId, values);
+                toast.success("Category updated successfully.");
+              } else {
+                await actions.createCategory(values);
+                toast.success("Category created successfully.");
+              }
+              setCategoryModal({ open: false, form: { name: "", slug: "", subcategoriesText: "", isActive: true } });
+              refreshData();
+            }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Internal Admin Notes & Log</label>
-                <textarea rows={4} value={inquiryNotesModal.notes} onChange={e => setInquiryNotesModal({ ...inquiryNotesModal, notes: e.target.value })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-white/50 block">Category Name</label>
+                <input required type="text" value={categoryModal.form.name} onChange={e => {
+                  const name = e.target.value;
+                  const slug = name.toLowerCase().replace(/[^a-z0-9\s]+/g, "").trim();
+                  setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, name, slug } });
+                }} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. Men's Wear" />
+              </div>
+
+              <div className="space-y-1">
+                <label className="mono-label text-[9px] text-white/50 block">URL Slug</label>
+                <input required type="text" value={categoryModal.form.slug} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, slug: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. mens wear" />
+              </div>
+
+              <div className="space-y-1">
+                <label className="mono-label text-[9px] text-white/50 block">Subcategories (comma separated)</label>
+                <input required type="text" value={categoryModal.form.subcategoriesText} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, subcategoriesText: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. shirts, pants, lowers" />
+                <span className="text-[9px] text-white/40 block mt-1">Enter values separated by commas.</span>
+              </div>
+
+              <div className="flex items-center gap-2 pt-2">
+                <input type="checkbox" id="catActive" checked={categoryModal.form.isActive} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, isActive: e.target.checked } })} className="bg-black border border-white/10 outline-none" />
+                <label htmlFor="catActive" className="mono-label text-[9px] text-white/50 cursor-pointer">Active (Show on public site)</label>
               </div>
 
               <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setInquiryNotesModal({ open: false, notes: "", status: "NEW" })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Lead</button>
+                <button type="button" onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
+                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Category</button>
               </div>
             </form>
           </div>

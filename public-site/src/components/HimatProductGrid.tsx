@@ -6,16 +6,18 @@ import { Product } from "@/lib/schema";
 
 export function HimatProductGrid({ compact = false, products = [] }: { compact?: boolean; products?: Product[] }) {
   const categoryPrograms = [
-    { category: "mens wear" as const, title: "Men's wear programme", copy: "Flexible essentials and custom tailored retail programs for men.", image: "/manus-storage/wholesale-collection_ccc56985.jpeg" },
-    { category: "womens wear" as const, title: "Women's wear programme", copy: "Structured fashion items and bespoke collections for women.", image: "/manus-storage/apparel-rack_8a025232.jpeg" },
-    { category: "kids wear" as const, title: "Kids' wear programme", copy: "Comfort-first, durable playwear and knitwear collections for kids.", image: "/manus-storage/factory-tailoring_2f8b96ce.jpg" },
+    { category: "mens wear" as const, title: "Men's Wear", copy: "Cotton Pants, Shirts, Lowers, Linen Wear, and T-Shirts.", image: "/manus-storage/wholesale-collection_ccc56985.jpeg" },
+    { category: "womens wear" as const, title: "Women's Wear", copy: "Ethnic, 3pc, Kurtis, Co-ord Sets, Palazzo, Leggings, and Dupatta.", image: "/manus-storage/apparel-rack_8a025232.jpeg" },
+    { category: "kids wear" as const, title: "Kids' Wear", copy: "Cotton Pants, Shirts, Lowers, Linen Wear, and T-Shirts for children.", image: "/manus-storage/factory-tailoring_2f8b96ce.jpg" },
+    { category: "bedsheets" as const, title: "Bedsheets", copy: "Packed and Roll formats direct from manufacture.", image: "/images/ahmedabad_market_newcloth.jpg" },
+    { category: "fabrics" as const, title: "Fabrics Sourcing", copy: "Mills, Process House, and custom Assortments.", image: "/images/ahmedabad_market_safal.jpg" },
   ];
   
   const list = products.length 
     ? products.slice(0, compact ? 4 : 100).map(product => ({ 
         category: product.category, 
         title: product.title, 
-        copy: `${product.fabricDetails} · MOQ ${product.moq}`, 
+        copy: product.subcategory ? `${product.fabricDetails} · ${product.subcategory}` : product.fabricDetails, 
         image: product.imageUrl || "/manus-storage/garment-floor_4c6cab52.jpg", 
         live: true 
       })) 

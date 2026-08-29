@@ -7,7 +7,8 @@ import {
   ReviewValues,
   BrandValues,
   CityValues,
-  BusinessGuideValues
+  BusinessGuideValues,
+  CategoryValues
 } from "@/lib/schema";
 import { revalidatePath } from "next/cache";
 
@@ -169,5 +170,27 @@ export async function listSettings() {
 
 export async function setSetting(key: string, value: string) {
   await db.setSetting(key, value);
+  revalidatePath("/");
+}
+
+// Categories Actions
+export async function listCategories() {
+  return db.listAdminCategories();
+}
+
+export async function createCategory(values: CategoryValues) {
+  const cat = await db.createCategory(values);
+  revalidatePath("/");
+  return cat;
+}
+
+export async function updateCategory(id: number, values: Partial<CategoryValues>) {
+  const cat = await db.updateCategory(id, values);
+  revalidatePath("/");
+  return cat;
+}
+
+export async function deleteCategory(id: number) {
+  await db.deleteCategory(id);
   revalidatePath("/");
 }

@@ -10,27 +10,27 @@ export function HimatLogoIcon({ className = "h-9 w-9" }: { className?: string })
       className={className}
     >
       {/* T Top Bar (Yellow) */}
-      <path d="M10 10H110V22H10V10Z" fill="#FFB800" />
+      <path d="M10 10H110V22H10V10Z" fill="#C19040" />
       
       {/* T Vertical Stem (Yellow) */}
-      <path d="M54 22H66V120H54V22Z" fill="#FFB800" />
+      <path d="M54 22H66V120H54V22Z" fill="#C19040" />
 
       {/* H Left Stem (Orange) */}
-      <path d="M22 30H38V110H22V30Z" fill="#F05A24" />
+      <path d="M22 30H38V110H22V30Z" fill="#C95A1A" />
       {/* H Right Stem (Orange) */}
-      <path d="M82 30H98V110H82V30Z" fill="#F05A24" />
+      <path d="M82 30H98V110H82V30Z" fill="#C95A1A" />
       {/* H Crossbar (Orange) */}
-      <path d="M38 64H82V76H38V64Z" fill="#F05A24" />
+      <path d="M38 64H82V76H38V64Z" fill="#C95A1A" />
 
       {/* Serif Details for H (Orange) */}
       {/* Left top serif */}
-      <path d="M16 30H44V34H16V30Z" fill="#F05A24" />
+      <path d="M16 30H44V34H16V30Z" fill="#C95A1A" />
       {/* Left bottom serif */}
-      <path d="M16 106H44V110H16V106Z" fill="#F05A24" />
+      <path d="M16 106H44V110H16V106Z" fill="#C95A1A" />
       {/* Right top serif */}
-      <path d="M76 30H104V34H76V30Z" fill="#F05A24" />
+      <path d="M76 30H104V34H76V30Z" fill="#C95A1A" />
       {/* Right bottom serif */}
-      <path d="M76 106H104V110H76V106Z" fill="#F05A24" />
+      <path d="M76 106H104V110H76V106Z" fill="#C95A1A" />
     </svg>
   );
 }
@@ -47,23 +47,23 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
       {/* HT Monogram Icon shifted to center */}
       <g transform="translate(140, 15)">
         {/* T Top Bar (Yellow) */}
-        <path d="M10 10H110V22H10V10Z" fill="#FFB800" />
+        <path d="M10 10H110V22H10V10Z" fill="#C19040" />
         
         {/* T Vertical Stem (Yellow) */}
-        <path d="M54 22H66V120H54V22Z" fill="#FFB800" />
+        <path d="M54 22H66V120H54V22Z" fill="#C19040" />
 
         {/* H Left Stem (Orange) */}
-        <path d="M22 30H38V110H22V30Z" fill="#F05A24" />
+        <path d="M22 30H38V110H22V30Z" fill="#C95A1A" />
         {/* H Right Stem (Orange) */}
-        <path d="M82 30H98V110H82V30Z" fill="#F05A24" />
+        <path d="M82 30H98V110H82V30Z" fill="#C95A1A" />
         {/* H Crossbar (Orange) */}
-        <path d="M38 64H82V76H38V64Z" fill="#F05A24" />
+        <path d="M38 64H82V76H38V64Z" fill="#C95A1A" />
 
         {/* Serif Details for H (Orange) */}
-        <path d="M16 30H44V34H16V30Z" fill="#F05A24" />
-        <path d="M16 106H44V110H16V106Z" fill="#F05A24" />
-        <path d="M76 30H104V34H76V30Z" fill="#F05A24" />
-        <path d="M76 106H104V110H76V106Z" fill="#F05A24" />
+        <path d="M16 30H44V34H16V30Z" fill="#C95A1A" />
+        <path d="M16 106H44V110H16V106Z" fill="#C95A1A" />
+        <path d="M76 30H104V34H76V30Z" fill="#C95A1A" />
+        <path d="M76 106H104V110H76V106Z" fill="#C95A1A" />
       </g>
 
       {/* HIMAT TEXTILE */}
@@ -85,7 +85,7 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         x="200"
         y="198"
         textAnchor="middle"
-        fill="#FFB800"
+        fill="#C19040"
         fontFamily="var(--font-mono), 'DM Mono', monospace"
         fontSize="12"
         fontWeight="500"
@@ -94,7 +94,7 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         Your Garment Guide In Ahmedabad
       </text>
 
-      {/* Sourcing • Wholesale • Private Label • Export */}
+      {/* Sourcing • Wholesale • White Labeling • Export */}
       <text
         x="200"
         y="218"
@@ -105,7 +105,7 @@ export default function HimatLogo({ className = "h-24 w-auto", light = false }: 
         fontWeight="500"
         letterSpacing="1.5"
       >
-        Sourcing • Wholesale • Private Label • Export
+        Sourcing • Wholesale • White Labeling • Export
       </text>
     </svg>
   );

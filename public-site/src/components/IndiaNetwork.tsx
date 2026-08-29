@@ -80,7 +80,7 @@ export default function IndiaNetwork() {
   }, []);
 
   return (
-    <section id="network" className="scroll-mt-28 relative bg-[#151613] py-24 border-t border-[#f7f2e9]/8">
+    <section id="network" className="scroll-mt-28 relative bg-[#161612] py-24 border-t border-[#F4EFE6]/8">
       <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           {/* Info Text */}
@@ -95,7 +95,7 @@ export default function IndiaNetwork() {
             <div className="space-y-4 border-t border-white/10 pt-6">
               {networkNodes.map((node) => (
                 <div key={node.name} className="flex items-center gap-4">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#f05a24] animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#C95A1A] animate-pulse" />
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-wider text-white">{node.name}</h4>
                     <p className="text-[11px] text-[#c4bcae]">{node.desc}</p>
@@ -130,7 +130,7 @@ export default function IndiaNetwork() {
                       d={loc.path}
                       className={`transition-all duration-300 ${
                         isActive
-                          ? "fill-[#f05a24]/90 stroke-[#6d725d]/40 hover:fill-[#ffb800]"
+                          ? "fill-[#C95A1A]/90 stroke-[#6d725d]/40 hover:fill-[#C19040]"
                           : "fill-stone-200/90 stroke-stone-400/40 hover:fill-stone-100"
                       }`}
                       strokeWidth="0.75"
@@ -152,14 +152,14 @@ export default function IndiaNetwork() {
                       cx={pin.x}
                       cy={pin.y}
                       r="12"
-                      className="animate-ping fill-none stroke-[#ffb800]/25"
+                      className="animate-ping fill-none stroke-[#C19040]/25"
                       style={{ transformOrigin: `${pin.x}px ${pin.y}px`, animationDuration: "3s" }}
                     />
                     {/* Pointer Pin Shape */}
                     <path
                       d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                      fill="#ffb800"
-                      stroke="#f05a24"
+                      fill="#C19040"
+                      stroke="#C95A1A"
                       strokeWidth="1"
                       transform={`translate(${pin.x - 12}, ${pin.y - 22})`}
                     />
@@ -194,8 +194,8 @@ export default function IndiaNetwork() {
                         y={rectY}
                         width={pin.w}
                         height={pin.h}
-                        fill="#f7f2e9"
-                        stroke="#f05a24"
+                        fill="#F4EFE6"
+                        stroke="#C95A1A"
                         strokeWidth="0.5"
                         rx="1"
                       />

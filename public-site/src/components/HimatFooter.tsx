@@ -10,18 +10,18 @@ export function HimatFooter() {
   const { t } = useLanguage();
 
   return (
-    <footer className="border-t border-[#151613]/15 bg-[#f7f2e9] text-[#151613]">
+    <footer className="border-t border-[#161612]/15 bg-[#F4EFE6] text-[#161612]">
       <div className="grid max-w-[1600px] grid-cols-1 gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1.45fr_.75fr_.9fr] lg:px-12 lg:py-20">
         <div>
           <div className="mb-4">
             <HimatLogo light={true} className="h-20 w-auto -ml-3" />
           </div>
-          <p className="max-w-sm text-sm leading-6 text-[#151613]/65">
+          <p className="max-w-sm text-sm leading-6 text-[#161612]/65">
             {t("foot_desc")}
           </p>
         </div>
         <div>
-          <p className="mono-label mb-5 text-[10px] text-[#f05a24] uppercase tracking-widest">{t("foot_quick_links")}</p>
+          <p className="mono-label mb-5 text-[10px] text-[#C95A1A] uppercase tracking-widest">{t("foot_quick_links")}</p>
           <div className="grid gap-3 text-sm font-semibold">
             <Link href="/about">{t("nav_about")}</Link>
             <Link href="/catalog">{t("nav_garments")}</Link>
@@ -32,22 +32,22 @@ export function HimatFooter() {
           </div>
         </div>
         <div>
-          <p className="mono-label mb-5 text-[10px] text-[#f05a24] uppercase tracking-widest">{t("foot_contact")}</p>
+          <p className="mono-label mb-5 text-[10px] text-[#C95A1A] uppercase tracking-widest">{t("foot_contact")}</p>
           <div className="grid gap-3 text-sm font-semibold">
-            <div className="text-xs text-[#151613]/75 mb-2 leading-relaxed">
-              <span className="font-mono text-[9px] uppercase text-[#151613]/50 block mb-1">Ahmedabad Office</span>
+            <div className="text-xs text-[#161612]/75 mb-2 leading-relaxed">
+              <span className="font-mono text-[9px] uppercase text-[#161612]/50 block mb-1">Ahmedabad Office</span>
               {t("foot_address")}
             </div>
             
-            <a className="flex items-center gap-2 transition-colors hover:text-[#f05a24]" href="mailto:himmattextile@gmail.com">
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C95A1A]" href="mailto:himmattextile@gmail.com">
               <Mail size={15} /> himmattextile@gmail.com
             </a>
             
-            <a className="flex items-center gap-2 transition-colors hover:text-[#f05a24]" href="tel:+919873938095">
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C95A1A]" href="tel:+919873938095">
               <Phone size={15} /> +91 98739 38095
             </a>
 
-            <a className="flex items-center gap-2 transition-colors hover:text-[#f05a24]" href="https://wa.me/919873938095" target="_blank" rel="noreferrer">
+            <a className="flex items-center gap-2 transition-colors hover:text-[#C95A1A]" href="https://wa.me/919873938095" target="_blank" rel="noreferrer">
               <MessageSquare size={15} /> {t("btn_whatsapp_us")}
             </a>
 
@@ -57,7 +57,7 @@ export function HimatFooter() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noreferrer"
-                className="grid h-9 w-9 place-items-center border border-[#151613]/35 transition-colors hover:border-[#f05a24] hover:bg-[#f05a24] hover:text-[#f7f2e9]"
+                className="grid h-9 w-9 place-items-center border border-[#161612]/35 transition-colors hover:border-[#C95A1A] hover:bg-[#C95A1A] hover:text-[#F4EFE6]"
               >
                 <Linkedin size={15} />
               </a>
@@ -66,14 +66,14 @@ export function HimatFooter() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noreferrer"
-                className="grid h-9 w-9 place-items-center border border-[#151613]/35 transition-colors hover:border-[#f05a24] hover:bg-[#f05a24] hover:text-[#f7f2e9]"
+                className="grid h-9 w-9 place-items-center border border-[#161612]/35 transition-colors hover:border-[#C95A1A] hover:bg-[#C95A1A] hover:text-[#F4EFE6]"
               >
                 <Instagram size={15} />
               </a>
               <Link
                 aria-label="Start an inquiry"
                 href="/#enquiry"
-                className="grid h-9 w-9 place-items-center border border-[#151613]/35 transition-colors hover:border-[#f05a24] hover:bg-[#f05a24] hover:text-[#f7f2e9]"
+                className="grid h-9 w-9 place-items-center border border-[#161612]/35 transition-colors hover:border-[#C95A1A] hover:bg-[#C95A1A] hover:text-[#F4EFE6]"
               >
                 <ArrowUpRight size={15} />
               </Link>
@@ -81,9 +81,9 @@ export function HimatFooter() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col justify-between gap-2 border-t border-[#151613]/15 px-5 py-5 text-[10px] uppercase tracking-[.16em] text-[#151613]/50 sm:flex-row sm:px-8 lg:px-12">
+      <div className="flex flex-col justify-between gap-2 border-t border-[#161612]/15 px-5 py-5 text-[10px] uppercase tracking-[.16em] text-[#161612]/50 sm:flex-row sm:px-8 lg:px-12">
         <span>© {new Date().getFullYear()} HIMAT TEXTILE. {t("foot_rights")}</span>
-        <span>Ahmedabad, India · Sourcing · Wholesale · Private Label · Export</span>
+        <span>Ahmedabad, India · Sourcing · Wholesale · White Labeling · Export</span>
       </div>
     </footer>
   );

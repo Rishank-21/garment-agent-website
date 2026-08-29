@@ -30,9 +30,9 @@ export type Product = {
   id: number;
   title: string;
   slug: string;
-  category: "mens wear" | "womens wear" | "kids wear";
+  category: string;
+  subcategory: string | null;
   fabricDetails: string;
-  moq: string;
   style: string | null;
   targetMarket: string | null;
   description: string;
@@ -46,9 +46,9 @@ export type Product = {
 export type ProductValues = {
   title: string;
   slug: string;
-  category: "mens wear" | "womens wear" | "kids wear";
+  category: string;
+  subcategory?: string | null;
   fabricDetails: string;
-  moq: string;
   style?: string | null;
   targetMarket?: string | null;
   description: string;
@@ -204,4 +204,21 @@ export type Setting = {
   key: string;
   value: string;
   updatedAt: Date;
+};
+
+export type Category = {
+  id: number;
+  name: string;
+  slug: string;
+  subcategories: string[];
+  isActive: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export type CategoryValues = {
+  name: string;
+  slug: string;
+  subcategories: string[];
+  isActive?: boolean;
 };

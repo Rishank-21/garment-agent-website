@@ -16,7 +16,9 @@ import {
   BusinessGuideValues,
   Review,
   ReviewValues,
-  Setting
+  Setting,
+  Category,
+  CategoryValues
 } from "./schema";
 
 let _db: Db | null = null;
@@ -112,6 +114,7 @@ export async function getDb(): Promise<Db | null> {
       await _db.collection("himat_business_guides").createIndex({ slug: 1 }, { unique: true });
       await _db.collection("himat_cities").createIndex({ name: 1 }, { unique: true });
       await _db.collection("himat_settings").createIndex({ key: 1 }, { unique: true });
+      await _db.collection("himat_categories").createIndex({ slug: 1 }, { unique: true });
 
       // Seed Google reviews if collection is empty
       const reviewsCount = await _db.collection("himat_reviews").countDocuments();
@@ -125,6 +128,13 @@ export async function getDb(): Promise<Db | null> {
         ];
         await _db.collection("himat_reviews").insertMany(seedReviews);
         console.log("[Database] Seeded 5 real Google reviews successfully.");
+      }
+
+      // Seed categories if empty
+      const categoriesCount = await _db.collection("himat_categories").countDocuments();
+      if (categoriesCount === 0) {
+        await _db.collection("himat_categories").insertMany(mockCategories);
+        console.log("[Database] Seeded dynamic categories successfully.");
       }
       return _db;
     } catch (error) {
@@ -198,9 +208,9 @@ const mockGuides: BusinessGuide[] = [
   },
   {
     id: 2,
-    slug: "wholesale-vs-private-label",
-    title: "Wholesale vs Private Label Sourcing",
-    content: "B2B buyers face a choice between purchasing stock catalogs (wholesale) or manufacturing customized garments under their own label (private-label). Wholesale is fast and has lower MOQ, while private-label builds brand equity. Read this breakdown to decide.",
+    title: "Wholesale vs White Labeling Sourcing",
+    slug: "wholesale-vs-white-labeling",
+    content: "B2B buyers face a choice between purchasing stock catalogs (wholesale) or manufacturing customized garments under their own label (white-labeling). Wholesale is fast and has zero MOQ limits, while white-labeling builds brand equity. Read this breakdown to decide.",
     coverImage: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600",
     coverImageKey: null,
     status: "PUBLISHED",
@@ -211,8 +221,12 @@ const mockGuides: BusinessGuide[] = [
 ];
 
 const mockProducts: Product[] = [
-  { id: 1, title: "Premium Cotton Polo Shirts", slug: "premium-cotton-polo", category: "mens wear", fabricDetails: "100% Pique Cotton, 220 GSM, Bio-washed", moq: "200 Pcs", style: "Casual Smart", targetMarket: "Urban Men", description: "Premium quality pique polo shirts with double-needle stitching, rib-knit collar, and fade-resistant dye. Perfect for wholesale distribution and private labeling.", imageUrl: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
-  { id: 2, title: "Vintage Indigo Denim Jackets", slug: "vintage-indigo-denim-jacket", category: "womens wear", fabricDetails: "12 oz Slub Denim, 100% Cotton", moq: "100 Pcs", style: "Classic Trucker Jacket", targetMarket: "Youth / Unisex", description: "Heavy-duty denim jackets with classic button closures, adjustable waist tabs, and premium metal buttons. Heavily reinforced pockets for longevity.", imageUrl: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 1, title: "Premium Cotton Polo Shirts", slug: "premium-cotton-polo", category: "mens wear", subcategory: "t-shirts", fabricDetails: "100% Pique Cotton, 220 GSM, Bio-washed", style: "Casual Smart", targetMarket: "Urban Men", description: "Premium quality pique polo shirts with double-needle stitching, rib-knit collar, and fade-resistant dye. Perfect for wholesale distribution and white labeling.", imageUrl: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 2, title: "Vintage Indigo Denim Jackets", slug: "vintage-indigo-denim-jacket", category: "womens wear", subcategory: "jackets", fabricDetails: "12 oz Slub Denim, 100% Cotton", style: "Classic Trucker Jacket", targetMarket: "Youth / Unisex", description: "Heavy-duty denim jackets with classic button closures, adjustable waist tabs, and premium metal buttons. Heavily reinforced pockets for longevity.", imageUrl: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 3, title: "Premium Mulberry Silk Coord Sets", slug: "premium-silk-coord-sets", category: "womens wear", subcategory: "co-ord sets", fabricDetails: "100% Mulberry Silk, 16 Momme, Digital Print", style: "Luxury Loungewear", targetMarket: "Luxury Boutiques / High-End Brands", description: "Exquisite 100% Mulberry silk co-ord sets with elegant hand-stitched detailing and high-end French seams. Truly premium design for luxury retail.", imageUrl: "https://images.unsplash.com/photo-1608748010899-18f300247112?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 4, title: "Egyptian Cotton Executive Shirts", slug: "egyptian-cotton-executive-shirts", category: "mens wear", subcategory: "shirts", fabricDetails: "100% Egyptian Giza Cotton, 120s Double Yarn", style: "Classic Formal Fit", targetMarket: "Executive Menswear Labels", description: "Bespoke executive wear cotton shirts with stiff semi-spread collars, mother-of-pearl buttons, and double-cuff options. Ahmedabad's finest export tailoring.", imageUrl: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 5, title: "Handcrafted Indio Cotton Kurtis", slug: "handcrafted-indigo-kurtis", category: "womens wear", subcategory: "kurtis", fabricDetails: "Handloom Khadi Cotton, Natural Indigo Dyes", style: "Anarkali Kurti", targetMarket: "Traditional Ethnic Boutiques", description: "Artisanal hand-spun Khadi cotton kurtis, featuring authentic block print motifs and delicate hand embroidery on the yoke. Eco-friendly and premium.", imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 6, title: "Luxury Percale Hotel Bedsheets", slug: "luxury-percale-hotel-bedsheets", category: "bedsheets", subcategory: "packed", fabricDetails: "100% Giza Cotton, 400 Thread Count, Satin Stripe", style: "5-Star Hospitality Collection", targetMarket: "Premium Hotels & Home Stores", description: "Bespoke satin-stripe bedsheets crafted for elite hotel suites. Super soft hand-feel, high tear strength, and long-lasting sheen.", imageUrl: "https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=600", imageKey: null, isActive: true, createdAt: new Date(), updatedAt: new Date() }
 ];
 
 const mockAdvertisements: Advertisement[] = [
@@ -246,6 +260,14 @@ const mockBrands: Brand[] = [
   { id: 2, name: "StitchCrafters", logoUrl: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=120", logoKey: null, isActive: true, createdAt: new Date() }
 ];
 
+const mockCategories: Category[] = [
+  { id: 1, name: "Men's Wear", slug: "mens-wear", subcategories: ["shirts", "pants", "lowers", "t-shirts", "linen wear"], isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 2, name: "Women's Wear", slug: "womens-wear", subcategories: ["ethnic", "kurtis", "co-ord sets", "palazzo", "leggings", "dupatta", "jackets"], isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 3, name: "Kids Wear", slug: "kids-wear", subcategories: ["shirts", "pants", "lowers", "t-shirts"], isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 4, name: "Bedsheets", slug: "bedsheets", subcategories: ["packed", "roll"], isActive: true, createdAt: new Date(), updatedAt: new Date() },
+  { id: 5, name: "Fabrics", slug: "fabrics", subcategories: ["mills", "process house", "assortments"], isActive: true, createdAt: new Date(), updatedAt: new Date() },
+];
+
 const memoryStore = {
   users: [] as User[],
   products: mockProducts,
@@ -256,6 +278,7 @@ const memoryStore = {
   businessGuides: mockGuides,
   reviews: mockReviews,
   settings: [] as Setting[],
+  categories: mockCategories,
 };
 
 // =============================================================================
@@ -393,8 +416,8 @@ export async function createProduct(values: ProductValues): Promise<Product | un
       title: values.title,
       slug: values.slug,
       category: values.category,
+      subcategory: values.subcategory ?? null,
       fabricDetails: values.fabricDetails,
-      moq: values.moq,
       description: values.description,
       imageUrl: values.imageUrl ?? null,
       imageKey: values.imageKey ?? null,
@@ -414,8 +437,8 @@ export async function createProduct(values: ProductValues): Promise<Product | un
     title: values.title,
     slug: values.slug,
     category: values.category,
+    subcategory: values.subcategory ?? null,
     fabricDetails: values.fabricDetails,
-    moq: values.moq,
     description: values.description,
     imageUrl: values.imageUrl ?? null,
     imageKey: values.imageKey ?? null,
@@ -621,7 +644,7 @@ export async function recordWhatsappClick(id: number): Promise<void> {
 
 export async function listPublicBrands(): Promise<Brand[]> {
   const db = await getDb();
-  if (!db) return memoryStore.brands.filter(b => b.isActive);
+  if (!db) return memoryStore.brands.filter((b: Brand) => b.isActive);
   const results = await db.collection("himat_brands").find({ isActive: true }).toArray();
   return results as any[] as Brand[];
 }
@@ -656,7 +679,7 @@ export async function createBrand(values: BrandValues): Promise<Brand | undefine
 export async function updateBrand(id: number, values: Partial<BrandValues>): Promise<Brand | undefined> {
   const db = await getDb();
   if (!db) {
-    const idx = memoryStore.brands.findIndex(b => b.id === id);
+    const idx = memoryStore.brands.findIndex((b: Brand) => b.id === id);
     if (idx === -1) return undefined;
     memoryStore.brands[idx] = { ...memoryStore.brands[idx], ...values };
     return memoryStore.brands[idx];
@@ -674,7 +697,7 @@ export async function updateBrand(id: number, values: Partial<BrandValues>): Pro
 export async function deleteBrand(id: number): Promise<void> {
   const db = await getDb();
   if (!db) {
-    memoryStore.brands = memoryStore.brands.filter(b => b.id !== id);
+    memoryStore.brands = memoryStore.brands.filter((b: Brand) => b.id !== id);
     return;
   }
   await db.collection("himat_brands").deleteOne({ id });
@@ -1050,4 +1073,76 @@ export async function deleteInquiry(id: number): Promise<void> {
     return;
   }
   await db.collection("himat_inquiries").deleteOne({ id });
+}
+
+// Categories CMS Helpers
+export async function listPublicCategories(): Promise<Category[]> {
+  const db = await getDb();
+  if (!db) return memoryStore.categories.filter(c => c.isActive);
+  const results = await db.collection("himat_categories").find({ isActive: true }).toArray();
+  return results as any[] as Category[];
+}
+
+export async function listAdminCategories(): Promise<Category[]> {
+  const db = await getDb();
+  if (!db) return memoryStore.categories;
+  const results = await db.collection("himat_categories").find().toArray();
+  return results as any[] as Category[];
+}
+
+export async function createCategory(values: CategoryValues): Promise<Category | undefined> {
+  const db = await getDb();
+  if (!db) {
+    const c: Category = {
+      id: memoryStore.categories.length + 1,
+      name: values.name,
+      slug: values.slug,
+      subcategories: values.subcategories,
+      isActive: values.isActive ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    memoryStore.categories.push(c);
+    return c;
+  }
+  const id = await getNextSequence("categories", db);
+  const category = {
+    id,
+    name: values.name,
+    slug: values.slug,
+    subcategories: values.subcategories,
+    isActive: values.isActive ?? true,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  };
+  await db.collection("himat_categories").insertOne(category);
+  return category as any as Category;
+}
+
+export async function updateCategory(id: number, values: Partial<CategoryValues>): Promise<Category | undefined> {
+  const db = await getDb();
+  const updateData = { ...values, updatedAt: new Date() };
+  if (!db) {
+    const idx = memoryStore.categories.findIndex(c => c.id === id);
+    if (idx === -1) return undefined;
+    memoryStore.categories[idx] = { ...memoryStore.categories[idx], ...updateData };
+    return memoryStore.categories[idx];
+  }
+  const result = await db.collection("himat_categories").findOneAndUpdate(
+    { id },
+    { $set: updateData },
+    { returnDocument: "after" }
+  );
+  if (!result) return undefined;
+  const doc = (result as any).value || result;
+  return doc as any as Category;
+}
+
+export async function deleteCategory(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    memoryStore.categories = memoryStore.categories.filter(c => c.id !== id);
+    return;
+  }
+  await db.collection("himat_categories").deleteOne({ id });
 }
