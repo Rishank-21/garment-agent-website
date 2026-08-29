@@ -1019,10 +1019,10 @@ export default function AdminDashboardClient({
 
       {/* ================= PRODUCT MODAL ================= */}
       {productModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-2xl border border-white/10 bg-stone-900 p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto">
-            <button onClick={() => setProductModal({ open: false, form: productModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{productModal.editId ? "Edit Product" : "Add Product"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl border border-border bg-card p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto text-foreground">
+            <button onClick={() => setProductModal({ open: false, form: productModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{productModal.editId ? "Edit Product" : "Add Product"}</h3>
             
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1038,18 +1038,18 @@ export default function AdminDashboardClient({
             }} className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Product Title</label>
-                  <input required type="text" value={productModal.form.title} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, title: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Product Title</label>
+                  <input required type="text" value={productModal.form.title} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, title: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Slug</label>
-                  <input required type="text" value={productModal.form.slug} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, slug: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Slug</label>
+                  <input required type="text" value={productModal.form.slug} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, slug: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-3">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Category</label>
+                  <label className="mono-label text-[9px] text-foreground/50 block">Category</label>
                   <select
                     value={productModal.form.category}
                     onChange={e => {
@@ -1065,7 +1065,7 @@ export default function AdminDashboardClient({
                         }
                       });
                     }}
-                    className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white uppercase text-[10px]"
+                    className="admin-input w-full px-3 py-2 outline-none uppercase text-[10px]"
                   >
                     {categories.map(c => (
                       <option key={c.id} value={c.slug}>{c.name}</option>
@@ -1073,7 +1073,7 @@ export default function AdminDashboardClient({
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Subcategory</label>
+                  <label className="mono-label text-[9px] text-foreground/50 block">Subcategory</label>
                   <select
                     value={productModal.form.subcategory || ""}
                     onChange={e => setProductModal({
@@ -1083,7 +1083,7 @@ export default function AdminDashboardClient({
                         subcategory: e.target.value || null
                       }
                     })}
-                    className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white uppercase text-[10px]"
+                    className="admin-input w-full px-3 py-2 outline-none uppercase text-[10px]"
                   >
                     <option value="">None</option>
                     {(categories.find(c => c.slug === productModal.form.category)?.subcategories || []).map(sub => (
@@ -1092,57 +1092,57 @@ export default function AdminDashboardClient({
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Garment Style</label>
-                  <input type="text" placeholder="e.g. Polo Shirt" value={productModal.form.style || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, style: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Garment Style</label>
+                  <input type="text" placeholder="e.g. Polo Shirt" value={productModal.form.style || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, style: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Fabric Type & Specifications</label>
-                  <input required type="text" placeholder="e.g. 240 GSM Combed Cotton" value={productModal.form.fabricDetails} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, fabricDetails: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Fabric Type & Specifications</label>
+                  <input required type="text" placeholder="e.g. 240 GSM Combed Cotton" value={productModal.form.fabricDetails} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, fabricDetails: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Target Sourcing Market</label>
-                  <input type="text" placeholder="e.g. Premium retail brands" value={productModal.form.targetMarket || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, targetMarket: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Target Sourcing Market</label>
+                  <input type="text" placeholder="e.g. Premium retail brands" value={productModal.form.targetMarket || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, targetMarket: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               {/* Gemini AI Generator */}
-              <div className="border border-white/10 bg-black/40 p-4 space-y-3">
+              <div className="border border-border bg-background/50 p-4 space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="mono-label text-[9px] text-amber-400 font-bold flex items-center gap-1"><Sparkles size={11} /> Gemini AI Sourcing Copywriter</span>
-                  <button type="button" disabled={isAiGenerating} onClick={() => handleAiGenerate(productModal.form.fabricDetails, productModal.form.style || "", productModal.form.targetMarket || "", desc => setProductModal({ ...productModal, form: { ...productModal.form, description: desc } }))} className="bg-amber-500 hover:bg-amber-600 disabled:bg-amber-800/40 text-black font-black uppercase text-[8px] px-3 py-1.5 tracking-wider">
+                  <span className="mono-label text-[9px] text-amber-500 font-bold flex items-center gap-1"><Sparkles size={11} /> Gemini AI Sourcing Copywriter</span>
+                  <button type="button" disabled={isAiGenerating} onClick={() => handleAiGenerate(productModal.form.fabricDetails, productModal.form.style || "", productModal.form.targetMarket || "", desc => setProductModal({ ...productModal, form: { ...productModal.form, description: desc } }))} className="bg-amber-600 hover:bg-amber-700 disabled:bg-amber-900/45 text-white font-black uppercase text-[8px] px-3 py-1.5 tracking-wider transition-colors">
                     {isAiGenerating ? "Generating..." : "Generate Description"}
                   </button>
                 </div>
-                <p className="text-[10px] text-white/40 leading-normal">Fills the description area using authoritative copy optimized for B2B buyers.</p>
+                <p className="text-[10px] text-foreground/45 leading-normal">Fills the description area using authoritative copy optimized for B2B buyers.</p>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Product Description</label>
-                <textarea required rows={4} value={productModal.form.description} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, description: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Product Description</label>
+                <textarea required rows={4} value={productModal.form.description} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, description: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 items-end">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Product Image URL</label>
-                  <input type="text" value={productModal.form.imageUrl || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, imageUrl: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Product Image URL</label>
+                  <input type="text" value={productModal.form.imageUrl || ""} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, imageUrl: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Upload Image to Cloudinary</label>
-                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "products", url => setProductModal({ ...productModal, form: { ...productModal.form, imageUrl: url } }))} className="w-full bg-black border border-white/10 px-3 py-1 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Upload Image to Cloudinary</label>
+                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "products", url => setProductModal({ ...productModal, form: { ...productModal.form, imageUrl: url } }))} className="admin-input w-full px-3 py-1 outline-none file:text-[#F4EFE6] file:border-none file:bg-white/10 file:px-2 file:py-1 file:cursor-pointer" />
                 </div>
               </div>
 
               <div className="flex items-center gap-2 pt-2">
-                <input type="checkbox" id="prod-active" checked={productModal.form.isActive} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, isActive: e.target.checked } })} />
-                <label htmlFor="prod-active" className="mono-label text-[9px] text-white/60">Display active in catalog</label>
+                <input type="checkbox" id="prod-active" checked={productModal.form.isActive} onChange={e => setProductModal({ ...productModal, form: { ...productModal.form, isActive: e.target.checked } })} className="accent-[#C95A1A]" />
+                <label htmlFor="prod-active" className="mono-label text-[9px] text-foreground/60 cursor-pointer">Display active in catalog</label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setProductModal({ open: false, form: productModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Product</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setProductModal({ open: false, form: productModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Product</button>
               </div>
             </form>
           </div>
@@ -1151,10 +1151,10 @@ export default function AdminDashboardClient({
 
       {/* ================= ADVERTISEMENT MODAL ================= */}
       {adModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-lg border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setAdModal({ open: false, form: adModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{adModal.editId ? "Edit Advertisement" : "Add Advertisement"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-lg border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setAdModal({ open: false, form: adModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{adModal.editId ? "Edit Advertisement" : "Add Advertisement"}</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1169,19 +1169,19 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Campaign Title</label>
-                <input required type="text" value={adModal.form.title} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, title: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Campaign Title</label>
+                <input required type="text" value={adModal.form.title} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, title: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Campaign Description</label>
-                <textarea rows={3} value={adModal.form.description || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, description: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Campaign Description</label>
+                <textarea rows={3} value={adModal.form.description || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, description: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Placement Zone</label>
-                  <select value={adModal.form.placement} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, placement: e.target.value as any } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white">
+                  <label className="mono-label text-[9px] text-foreground/50 block">Placement Zone</label>
+                  <select value={adModal.form.placement} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, placement: e.target.value as any } })} className="admin-input w-full px-3 py-2 outline-none">
                     <option value="homepage">Homepage Banner</option>
                     <option value="hero">Featured Sponsorship</option>
                     <option value="midpage">Midpage Announcement</option>
@@ -1190,35 +1190,35 @@ export default function AdminDashboardClient({
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Button Text</label>
-                  <input type="text" value={adModal.form.buttonText || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, buttonText: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Button Text</label>
+                  <input type="text" value={adModal.form.buttonText || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, buttonText: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Call-to-Action Link URL</label>
-                <input type="text" placeholder="https://" value={adModal.form.linkUrl || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, linkUrl: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Call-to-Action Link URL</label>
+                <input type="text" placeholder="https://" value={adModal.form.linkUrl || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, linkUrl: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 items-end">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Banner Image URL</label>
-                  <input type="text" value={adModal.form.imageUrl || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, imageUrl: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Banner Image URL</label>
+                  <input type="text" value={adModal.form.imageUrl || ""} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, imageUrl: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Upload Image</label>
-                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "advertisements", url => setAdModal({ ...adModal, form: { ...adModal.form, imageUrl: url } }))} className="w-full bg-black border border-white/10 px-3 py-1 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Upload Image</label>
+                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "advertisements", url => setAdModal({ ...adModal, form: { ...adModal.form, imageUrl: url } }))} className="admin-input w-full px-3 py-1 outline-none" />
                 </div>
               </div>
 
               <div className="flex items-center gap-2 pt-2">
-                <input type="checkbox" id="ad-active" checked={adModal.form.isActive} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, isActive: e.target.checked } })} />
-                <label htmlFor="ad-active" className="mono-label text-[9px] text-white/60">Activate campaign</label>
+                <input type="checkbox" id="ad-active" checked={adModal.form.isActive} onChange={e => setAdModal({ ...adModal, form: { ...adModal.form, isActive: e.target.checked } })} className="accent-[#C95A1A]" />
+                <label htmlFor="ad-active" className="mono-label text-[9px] text-foreground/60 cursor-pointer">Activate campaign</label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setAdModal({ open: false, form: adModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Ad</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setAdModal({ open: false, form: adModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Ad</button>
               </div>
             </form>
           </div>
@@ -1227,10 +1227,10 @@ export default function AdminDashboardClient({
 
       {/* ================= REVIEW MODAL ================= */}
       {reviewModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setReviewModal({ open: false, form: reviewModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{reviewModal.editId ? "Edit Review" : "Add Review"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setReviewModal({ open: false, form: reviewModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{reviewModal.editId ? "Edit Review" : "Add Review"}</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1245,33 +1245,33 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Author & Title</label>
-                <input required type="text" placeholder="e.g. Ramesh K. (Distributor)" value={reviewModal.form.author} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, author: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Author & Title</label>
+                <input required type="text" placeholder="e.g. Ramesh K. (Distributor)" value={reviewModal.form.author} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, author: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Rating Stars (1-5)</label>
-                  <select value={reviewModal.form.rating} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, rating: Number(e.target.value) } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white">
+                  <label className="mono-label text-[9px] text-foreground/50 block">Rating Stars (1-5)</label>
+                  <select value={reviewModal.form.rating} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, rating: Number(e.target.value) } })} className="admin-input w-full px-3 py-2 outline-none">
                     <option value={5}>5 Stars</option>
                     <option value={4}>4 Stars</option>
                     <option value={3}>3 Stars</option>
                   </select>
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Published Date</label>
-                  <input required type="text" value={reviewModal.form.date || ""} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, date: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Published Date</label>
+                  <input required type="text" value={reviewModal.form.date || ""} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, date: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Review Text Content</label>
-                <textarea required rows={4} value={reviewModal.form.text} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, text: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Review Text Content</label>
+                <textarea required rows={4} value={reviewModal.form.text} onChange={e => setReviewModal({ ...reviewModal, form: { ...reviewModal.form, text: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setReviewModal({ open: false, form: reviewModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Review</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setReviewModal({ open: false, form: reviewModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Review</button>
               </div>
             </form>
           </div>
@@ -1280,10 +1280,10 @@ export default function AdminDashboardClient({
 
       {/* ================= BRAND MODAL ================= */}
       {brandModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setBrandModal({ open: false, form: brandModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{brandModal.editId ? "Edit Brand" : "Add Brand"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setBrandModal({ open: false, form: brandModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{brandModal.editId ? "Edit Brand" : "Add Brand"}</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1298,24 +1298,24 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Brand Name</label>
-                <input required type="text" value={brandModal.form.name} onChange={e => setBrandModal({ ...brandModal, form: { ...brandModal.form, name: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Brand Name</label>
+                <input required type="text" value={brandModal.form.name} onChange={e => setBrandModal({ ...brandModal, form: { ...brandModal.form, name: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 items-end">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Logo Image URL</label>
-                  <input type="text" value={brandModal.form.logoUrl || ""} onChange={e => setBrandModal({ ...brandModal, form: { ...brandModal.form, logoUrl: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Logo Image URL</label>
+                  <input type="text" value={brandModal.form.logoUrl || ""} onChange={e => setBrandModal({ ...brandModal, form: { ...brandModal.form, logoUrl: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Upload Logo</label>
-                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "brands", url => setBrandModal({ ...brandModal, form: { ...brandModal.form, logoUrl: url } }))} className="w-full bg-black border border-white/10 px-3 py-1 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Upload Logo</label>
+                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "brands", url => setBrandModal({ ...brandModal, form: { ...brandModal.form, logoUrl: url } }))} className="admin-input w-full px-3 py-1 outline-none" />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setBrandModal({ open: false, form: brandModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Brand</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setBrandModal({ open: false, form: brandModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Brand</button>
               </div>
             </form>
           </div>
@@ -1324,10 +1324,10 @@ export default function AdminDashboardClient({
 
       {/* ================= CITY MODAL ================= */}
       {cityModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setCityModal({ open: false, form: cityModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{cityModal.editId ? "Edit City Hub" : "Add City Hub"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setCityModal({ open: false, form: cityModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{cityModal.editId ? "Edit City Hub" : "Add City Hub"}</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1342,24 +1342,24 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">City Hub Name</label>
-                <input required type="text" value={cityModal.form.name} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, name: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                <label className="mono-label text-[9px] text-foreground/50 block">City Hub Name</label>
+                <input required type="text" value={cityModal.form.name} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, name: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Latitude (Y mapping)</label>
-                  <input required type="text" value={cityModal.form.latitude || ""} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, latitude: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Latitude (Y mapping)</label>
+                  <input required type="text" value={cityModal.form.latitude || ""} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, latitude: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Longitude (X mapping)</label>
-                  <input required type="text" value={cityModal.form.longitude || ""} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, longitude: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Longitude (X mapping)</label>
+                  <input required type="text" value={cityModal.form.longitude || ""} onChange={e => setCityModal({ ...cityModal, form: { ...cityModal.form, longitude: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setCityModal({ open: false, form: cityModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Hub</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setCityModal({ open: false, form: cityModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Hub</button>
               </div>
             </form>
           </div>
@@ -1368,10 +1368,10 @@ export default function AdminDashboardClient({
 
       {/* ================= GUIDE MODAL ================= */}
       {guideModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-2xl border border-white/10 bg-stone-900 p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto">
-            <button onClick={() => setGuideModal({ open: false, form: guideModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-white/10 pb-3">{guideModal.editId ? "Edit Business Guide" : "Add Business Guide"}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-2xl border border-border bg-card p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto text-foreground">
+            <button onClick={() => setGuideModal({ open: false, form: guideModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{guideModal.editId ? "Edit Business Guide" : "Add Business Guide"}</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1387,39 +1387,39 @@ export default function AdminDashboardClient({
             }} className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Guide Title</label>
-                  <input required type="text" value={guideModal.form.title} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, title: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Guide Title</label>
+                  <input required type="text" value={guideModal.form.title} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, title: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] text-white/50 block">Slug (URL friendly)</label>
-                  <input required type="text" value={guideModal.form.slug} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, slug: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
+                  <label className="mono-label text-[9px] text-foreground/50 block">Slug (URL friendly)</label>
+                  <input required type="text" value={guideModal.form.slug} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, slug: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Cover Image URL</label>
+                <label className="mono-label text-[9px] text-foreground/50 block">Cover Image URL</label>
                 <div className="flex gap-4 items-end">
-                  <input type="text" value={guideModal.form.coverImage || ""} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, coverImage: e.target.value } })} className="flex-1 bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" />
-                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "guides", url => setGuideModal({ ...guideModal, form: { ...guideModal.form, coverImage: url } }))} className="bg-black border border-white/10 px-3 py-1 text-white outline-none focus:border-white text-[10px]" />
+                  <input type="text" value={guideModal.form.coverImage || ""} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, coverImage: e.target.value } })} className="flex-grow admin-input px-3 py-2 outline-none" />
+                  <input type="file" accept="image/*" disabled={isUploading} onChange={e => handleImageUpload(e, "guides", url => setGuideModal({ ...guideModal, form: { ...guideModal.form, coverImage: url } }))} className="admin-input px-3 py-1 outline-none text-[10px]" />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Publish Status</label>
-                <select value={guideModal.form.status} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, status: e.target.value as any } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white">
+                <label className="mono-label text-[9px] text-foreground/50 block">Publish Status</label>
+                <select value={guideModal.form.status} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, status: e.target.value as any } })} className="admin-input w-full px-3 py-2 outline-none">
                   <option value="DRAFT">draft</option>
                   <option value="PUBLISHED">published</option>
                 </select>
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Article Markdown Content</label>
-                <textarea required rows={10} value={guideModal.form.content} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, content: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white font-mono" />
+                <label className="mono-label text-[9px] text-foreground/50 block">Article Markdown Content</label>
+                <textarea required rows={10} value={guideModal.form.content} onChange={e => setGuideModal({ ...guideModal, form: { ...guideModal.form, content: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none font-mono" />
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setGuideModal({ open: false, form: guideModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Guide</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setGuideModal({ open: false, form: guideModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Guide</button>
               </div>
             </form>
           </div>
@@ -1428,10 +1428,10 @@ export default function AdminDashboardClient({
 
       {/* ================= INQUIRY NOTES MODAL ================= */}
       {inquiryNotesModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">Update Lead Status</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">Update Lead Status</h3>
 
             <form onSubmit={async (e) => {
               e.preventDefault();
@@ -1445,17 +1445,17 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Lead Status</label>
-                <select value={inquiryNotesModal.status} onChange={e => setInquiryNotesModal({ ...inquiryNotesModal, status: e.target.value as any })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white">
+                <label className="mono-label text-[9px] text-foreground/50 block">Lead Status</label>
+                <select value={inquiryNotesModal.status} onChange={e => setInquiryNotesModal({ ...inquiryNotesModal, status: e.target.value as any })} className="admin-input w-full px-3 py-2 outline-none">
                   <option value="NEW">NEW</option>
                   <option value="REPLIED">REPLIED</option>
                   <option value="ARCHIVED">ARCHIVED</option>
                 </select>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Update Status</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Update Status</button>
               </div>
             </form>
           </div>
@@ -1464,10 +1464,10 @@ export default function AdminDashboardClient({
 
       {/* ================= CATEGORY MODAL ================= */}
       {categoryModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-5 backdrop-blur-sm">
-          <div className="relative w-full max-w-md border border-white/10 bg-stone-900 p-8 space-y-6 text-xs">
-            <button onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="absolute right-4 top-4 text-white/40 hover:text-white"><X size={18} /></button>
-            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-white/10 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+          <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
+            <button onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
+            <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">
               {categoryModal.editId ? "Edit Category" : "Add Category"}
             </h3>
 
@@ -1500,33 +1500,33 @@ export default function AdminDashboardClient({
               refreshData();
             }} className="space-y-4">
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Category Name</label>
+                <label className="mono-label text-[9px] text-foreground/50 block">Category Name</label>
                 <input required type="text" value={categoryModal.form.name} onChange={e => {
                   const name = e.target.value;
                   const slug = name.toLowerCase().replace(/[^a-z0-9\s]+/g, "").trim();
                   setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, name, slug } });
-                }} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. Men's Wear" />
+                }} className="admin-input w-full px-3 py-2 outline-none" placeholder="e.g. Men's Wear" />
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">URL Slug</label>
-                <input required type="text" value={categoryModal.form.slug} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, slug: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. mens wear" />
+                <label className="mono-label text-[9px] text-foreground/50 block">URL Slug</label>
+                <input required type="text" value={categoryModal.form.slug} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, slug: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" placeholder="e.g. mens wear" />
               </div>
 
               <div className="space-y-1">
-                <label className="mono-label text-[9px] text-white/50 block">Subcategories (comma separated)</label>
-                <input required type="text" value={categoryModal.form.subcategoriesText} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, subcategoriesText: e.target.value } })} className="w-full bg-black border border-white/10 px-3 py-2 text-white outline-none focus:border-white" placeholder="e.g. shirts, pants, lowers" />
-                <span className="text-[9px] text-white/40 block mt-1">Enter values separated by commas.</span>
+                <label className="mono-label text-[9px] text-foreground/50 block">Subcategories (comma separated)</label>
+                <input required type="text" value={categoryModal.form.subcategoriesText} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, subcategoriesText: e.target.value } })} className="admin-input w-full px-3 py-2 outline-none" placeholder="e.g. shirts, pants, lowers" />
+                <span className="text-[9px] text-foreground/45 block mt-1">Enter values separated by commas.</span>
               </div>
 
               <div className="flex items-center gap-2 pt-2">
-                <input type="checkbox" id="catActive" checked={categoryModal.form.isActive} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, isActive: e.target.checked } })} className="bg-black border border-white/10 outline-none" />
-                <label htmlFor="catActive" className="mono-label text-[9px] text-white/50 cursor-pointer">Active (Show on public site)</label>
+                <input type="checkbox" id="catActive" checked={categoryModal.form.isActive} onChange={e => setCategoryModal({ ...categoryModal, form: { ...categoryModal.form, isActive: e.target.checked } })} className="accent-[#C95A1A]" />
+                <label htmlFor="catActive" className="mono-label text-[9px] text-foreground/50 cursor-pointer">Active (Show on public site)</label>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-                <button type="button" onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="border border-white/15 px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-white">Cancel</button>
-                <button type="submit" className="bg-white text-black font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 hover:bg-neutral-200">Save Category</button>
+              <div className="flex justify-end gap-3 pt-4 border-t border-border">
+                <button type="button" onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="border border-border text-foreground px-4 py-2.5 uppercase font-bold text-[9px] tracking-wider hover:border-foreground hover:bg-foreground/5 transition-colors">Cancel</button>
+                <button type="submit" className="bg-[#C95A1A] hover:bg-[#b04a14] text-white font-bold uppercase text-[9px] tracking-wider px-6 py-2.5 transition-colors">Save Category</button>
               </div>
             </form>
           </div>
