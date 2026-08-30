@@ -110,7 +110,7 @@ export default function IndiaNetwork() {
             <svg
               ref={mapRef}
               viewBox="0 0 612 696"
-              className="h-[500px] w-full max-w-[500px] text-white sm:h-[600px]"
+              className="h-auto aspect-[612/696] w-full max-w-[500px] text-white"
             >
               {/* Grid Background Pattern */}
               <defs>

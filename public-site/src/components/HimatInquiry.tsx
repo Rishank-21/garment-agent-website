@@ -108,7 +108,7 @@ export function HimatInquiry({
         {/* Info Column */}
         <div className="space-y-6">
           <span className="mono-label text-[10px] text-[#C95A1A] uppercase">{t("enq_label")}</span>
-          <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-.08em] sm:text-7xl sm:leading-[0.88]">
+          <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-.08em] sm:text-7xl sm:leading-[0.88]">
             {language === "hi" ? (
               <>आइए आपका<br />अगला कलेक्शन<br />बनाएं।</>
             ) : (

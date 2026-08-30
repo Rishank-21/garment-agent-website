@@ -78,17 +78,17 @@ export function HimatHeader() {
     gsap.killTweensOf([mobileMenuRef.current, ".mobile-link-item"]);
     if (menuOpen) {
       gsap.timeline()
-        .to(mobileMenuRef.current, { y: "0%", opacity: 1, duration: 0.55, ease: "power4.out" })
+        .to(mobileMenuRef.current, { yPercent: 0, opacity: 1, duration: 0.55, ease: "power4.out" })
         .fromTo(".mobile-link-item", { y: 34, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.42, ease: "power3.out" }, "-=0.25");
     } else {
       gsap.timeline()
         .to(".mobile-link-item", { y: -16, opacity: 0, stagger: 0.03, duration: 0.2, ease: "power3.in" })
-        .to(mobileMenuRef.current, { y: "-100%", opacity: 0, duration: 0.42, ease: "power4.in" }, "-=0.12");
+        .to(mobileMenuRef.current, { yPercent: -100, opacity: 0, duration: 0.42, ease: "power4.in" }, "-=0.12");
     }
   }, [menuOpen]);
 
-  const foregroundClass = scrolled ? "text-[#161612]" : "text-[#F4EFE6]";
-  const mutedClass = scrolled ? "text-[#161612]/65 hover:text-[#C95A1A]" : "text-[#F4EFE6]/78 hover:text-[#C19040]";
+  const foregroundClass = menuOpen || !scrolled ? "text-[#F4EFE6]" : "text-[#161612]";
+  const mutedClass = menuOpen || !scrolled ? "text-[#F4EFE6]/78 hover:text-[#C19040]" : "text-[#161612]/65 hover:text-[#C95A1A]";
 
   return (
     <>
@@ -124,13 +124,13 @@ export function HimatHeader() {
             </Link>
           </div>
 
-          <button className={`relative z-[60] grid h-10 w-10 place-items-center border transition-colors lg:hidden ${scrolled ? "border-[#161612]/25 hover:border-[#C95A1A]" : "border-[#F4EFE6]/35 hover:border-[#C19040]"}`} onClick={() => setMenuOpen((prev) => !prev)} aria-label={menuOpen ? "Close menu" : "Open menu"}>
+          <button className={`relative z-[60] grid h-10 w-10 place-items-center border transition-colors lg:hidden ${menuOpen || !scrolled ? "border-[#F4EFE6]/35 text-[#F4EFE6] hover:border-[#C19040]" : "border-[#161612]/25 text-[#161612] hover:border-[#C95A1A]"}`} onClick={() => setMenuOpen((prev) => !prev)} aria-label={menuOpen ? "Close menu" : "Open menu"}>
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </header>
 
-      <div ref={mobileMenuRef} className="fixed inset-0 z-[100] flex -translate-y-full flex-col justify-between bg-[#161612] px-6 pb-10 pt-28 opacity-0 lg:hidden">
+      <div ref={mobileMenuRef} className="fixed inset-0 z-[100] flex flex-col justify-between bg-[#161612] px-6 pb-10 pt-28 lg:hidden" style={{ transform: "translateY(-100%)", opacity: 0 }}>
         <div className="flex flex-col gap-5 pt-8">
           <div className="mobile-link-item mb-3 flex items-center gap-3 border-b border-white/10 pb-6">
             <HimatLogoIcon className="h-12 w-12" />

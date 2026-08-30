@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { HimatLogoIcon } from "@/components/HimatLogo";
 
 export default function BlackThemePreloader() {
   const [shouldRender, setShouldRender] = useState(false);
@@ -94,9 +95,9 @@ export default function BlackThemePreloader() {
         {/* Centered Box Logo */}
         <div
           ref={logoRef}
-          className="flex h-20 w-20 items-center justify-center border border-white/20 bg-transparent font-display text-2xl font-black tracking-tight"
+          className="flex h-20 w-20 items-center justify-center border border-white/20 bg-transparent"
         >
-          HT
+          <HimatLogoIcon className="h-12 w-12" />
         </div>
 
         {/* Accent Horizontal Line */}

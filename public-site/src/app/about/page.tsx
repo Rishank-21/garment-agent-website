@@ -34,7 +34,7 @@ export default function AboutPage() {
             <div>
               <span className="mono-label text-[10px] text-[#C95A1A]">Story / not a slogan</span>
               <div className="accent-rule mt-5" />
-              <h2 className="mt-7 font-display text-5xl font-black uppercase leading-[.88] tracking-[-.08em] sm:text-7xl">Experience becomes more useful when it evolves.</h2>
+              <h2 className="mt-7 font-display text-4xl font-black uppercase leading-[.88] tracking-[-.08em] sm:text-7xl">Experience becomes more useful when it evolves.</h2>
             </div>
             <div className="space-y-5 text-sm leading-relaxed text-[#161612]/70 sm:text-base">
               <p>Himat Textile is positioned as a garment partner rather than simply a textile supplier. That distinction matters to buyers who need a conversation about products, categories, market positioning and delivery expectations.</p>
@@ -51,7 +51,7 @@ export default function AboutPage() {
         <section className="bg-[#1E211E] px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <div className="mx-auto max-w-[1440px]">
             <div className="mb-10 flex items-end justify-between border-b border-[#F4EFE6]/15 pb-5">
-              <div><span className="mono-label text-[10px] text-[#C19040]">Capabilities / factory highlights</span><h2 className="mt-4 font-display text-5xl font-black uppercase leading-[.86] tracking-[-.08em] sm:text-7xl">Verify the detail.<br />Keep the vision.</h2></div>
+              <div><span className="mono-label text-[10px] text-[#C19040]">Capabilities / factory highlights</span><h2 className="mt-4 font-display text-4xl font-black uppercase leading-[.86] tracking-[-.08em] sm:text-7xl">Verify the detail.<br />Keep the vision.</h2></div>
               <Building2 size={26} className="hidden text-[#C95A1A] sm:block" />
             </div>
             <div className="grid gap-px bg-[#F4EFE6]/12 sm:grid-cols-2">
@@ -64,7 +64,7 @@ export default function AboutPage() {
 
         <section className="paper-surface border-y border-[#161612]/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
           <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[.7fr_1.3fr]">
-            <div><span className="mono-label text-[10px] text-[#C95A1A]">Certifications status</span><h2 className="mt-4 font-display text-4xl font-black uppercase leading-[.88] tracking-[-.08em] sm:text-5xl">Evidence belongs in the buying file.</h2></div>
+            <div><span className="mono-label text-[10px] text-[#C95A1A]">Certifications status</span><h2 className="mt-4 font-display text-3xl font-black uppercase leading-[.88] tracking-[-.08em] sm:text-5xl">Evidence belongs in the buying file.</h2></div>
             <div className="grid gap-px bg-[#161612]/15 sm:grid-cols-3">
               {[['Current status','Confirm with Himat Textile'],['Buyer action','Request the relevant current certificates for your product and market.'],['Documentation','Verified files can be shared as part of the sourcing and compliance discussion.']].map(([label, text]) => <div key={label} className="bg-[#F4EFE6] p-6"><p className="mono-label text-[10px] text-[#161612]/45">{label}</p><p className="mt-8 font-display text-xl font-black uppercase leading-[.9] tracking-[-.06em]">{text}</p></div>)}
             </div>

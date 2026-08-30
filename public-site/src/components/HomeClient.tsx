@@ -233,7 +233,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
             <div className="space-y-6">
               <span className="mono-label text-[10px] text-black/50 uppercase">{t("legacy_label")}</span>
-              <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.82]">
+              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.82]">
                 {t("legacy_title")}
               </h2>
               <div className="h-0.5 bg-[#161612]/20 w-16" />
@@ -351,7 +351,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           <div className="relative mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div className="space-y-6">
               <span className="mono-label text-[10px] text-white/50 uppercase">05 / White Labeling</span>
-              <h2 className="font-display text-5xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.8] md:text-8xl">
+              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.8] md:text-8xl">
                 {t("pl_title_1")}<br />{t("pl_title_2")}<br />{t("pl_title_3")}
               </h2>
               <p className="max-w-md text-sm leading-relaxed text-white/70">
@@ -395,21 +395,52 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               {t("solutions_title")}
             </h2>
             
-            <div className="mt-12 divide-y divide-white/10 border-t border-white/10">
-              {translatedSolutions.map((sol, idx) => (
-                <div
-                  key={sol.name}
-                  onMouseEnter={() => handleSolutionHover(idx)}
-                  className="group py-8 flex flex-col justify-between md:flex-row md:items-center cursor-pointer transition-colors"
-                >
-                  <h3 className="font-display text-3xl font-black uppercase tracking-tight text-white/50 group-hover:text-white transition-colors sm:text-4xl md:text-5xl">
-                    {sol.name}
-                  </h3>
-                  <p className="mt-2 max-w-sm text-sm text-white/45 group-hover:text-white/80 transition-colors md:mt-0">
-                    {sol.copy}
-                  </p>
+            <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] mt-12">
+              <div className="divide-y divide-white/10 border-t border-b border-white/10">
+                {translatedSolutions.map((sol, idx) => (
+                  <div
+                    key={sol.name}
+                    onMouseEnter={() => handleSolutionHover(idx)}
+                    className={`group py-8 flex flex-col justify-between md:flex-row md:items-center cursor-pointer transition-colors ${
+                      activeSolution === idx ? "border-l-2 border-[#C19040] pl-4 bg-white/3" : ""
+                    }`}
+                  >
+                    <h3 className={`font-display text-3xl font-black uppercase tracking-tight transition-colors sm:text-4xl md:text-5xl ${
+                      activeSolution === idx ? "text-[#C19040]" : "text-white/50 group-hover:text-white"
+                    }`}>
+                      {sol.name}
+                    </h3>
+                    <p className={`mt-2 max-w-sm text-sm transition-colors md:mt-0 ${
+                      activeSolution === idx ? "text-[#F4EFE6]" : "text-white/45 group-hover:text-white/80"
+                    }`}>
+                      {sol.copy}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Dynamic Solution Image Preview (Premium Visual Component) */}
+              <div className="hidden lg:block relative h-full min-h-[420px] border border-white/10 bg-stone-900 overflow-hidden">
+                {translatedSolutions.map((sol, idx) => (
+                  <div
+                    key={`sol-img-${idx}`}
+                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                      activeSolution === idx ? "opacity-60 scale-100" : "opacity-0 scale-105 pointer-events-none"
+                    }`}
+                  >
+                    <img
+                      src={sol.image}
+                      alt={sol.name}
+                      className="w-full h-full object-cover grayscale transition-transform duration-[4000ms] hover:scale-110"
+                    />
+                  </div>
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#161612] via-transparent to-transparent" />
+                <div className="absolute bottom-8 left-8">
+                  <span className="mono-label text-[9px] text-[#C19040] tracking-widest block mb-2">0{activeSolution + 1} / Solutions</span>
+                  <h4 className="font-display text-2xl font-black uppercase text-white tracking-wider">{translatedSolutions[activeSolution]?.name}</h4>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
@@ -469,7 +500,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           <div className="mx-auto max-w-[1500px]">
             <span className="mono-label text-[10px] text-white/40 uppercase">{t("ex_label")}</span>
             <div className="grid gap-12 border-t border-white/10 pt-6 mt-4 lg:grid-cols-2">
-              <h2 className="font-display text-5xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
+              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
                 {t("ex_title_1")}<br />{t("ex_title_2")}
               </h2>
               <div className="space-y-8">

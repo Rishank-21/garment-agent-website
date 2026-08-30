@@ -25,7 +25,7 @@ export function EditorialPageIntro({ eyebrow, title, description, image, imageAl
         <div className="max-w-4xl">
           <span className="mono-label block text-[10px] tracking-[0.24em] text-[#C19040]">{eyebrow}</span>
           <div className="mt-5 h-[3px] w-16 bg-gradient-to-r from-[#C95A1A] to-[#C19040]" />
-          <h1 className="mt-7 font-display text-[clamp(3.5rem,8vw,7.5rem)] font-black uppercase leading-[0.86] tracking-[-0.07em]">{title}</h1>
+          <h1 className="mt-7 font-display text-[clamp(2.4rem,7vw,7.5rem)] font-black uppercase leading-[0.86] tracking-[-0.07em]">{title}</h1>
           <p className="mt-8 max-w-xl text-sm leading-relaxed text-[#F4EFE6]/70 sm:text-base">{description}</p>
           {ctaLabel && ctaHref && (
             <Link href={ctaHref} className="gold-button mt-8 inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5">
