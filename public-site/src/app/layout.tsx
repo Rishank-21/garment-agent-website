@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Archivo_Black, DM_Mono } from "next/font/google";
+import { Manrope, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { HimatHeader } from "@/components/HimatHeader";
 import { HimatFooter } from "@/components/HimatFooter";
@@ -9,16 +9,16 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["400", "500", "600", "700"],
 });
 
-const archivoBlack = Archivo_Black({
+const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: "400",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const dmMono = DM_Mono({
@@ -28,8 +28,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Himat Textile — Garment Partner",
-  description: "Himat Textile is a B2B garment partner for wholesale, white labeling and growing fashion businesses.",
+  title: "Himat Textile | Garment Sourcing & Wholesale Supplier in Ahmedabad",
+  description: "Himat Textile is a garment sourcing, white labeling, and wholesale partner in Ahmedabad, India. Explore men's wear, women's wear, kids wear, fabrics, bedsheets, white labeling, and apparel export support.",
 };
 
 export default function RootLayout({
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${archivoBlack.variable} ${dmMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${manrope.variable} ${dmMono.variable}`}>
       <body className="bg-background text-foreground font-sans antialiased">
         <LanguageProvider>
           <SmoothScroll>

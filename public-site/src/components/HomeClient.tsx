@@ -154,122 +154,85 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
   };
 
   return (
-    <div className="min-h-screen overflow-hidden bg-[#161612] text-[#F4EFE6] selection:bg-[#C95A1A] selection:text-[#F4EFE6]">
+    <div className="min-h-screen overflow-hidden bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
         {/* 1. Fullscreen Hero Slider */}
         <HeroSlider />
 
         {/* 2. Trust Strip Marquee */}
-        <section className="relative overflow-hidden border-y border-[#161612]/12 bg-[#F4EFE6] py-4 text-[#161612] transition-colors hover:bg-[#E7E0D3]">
+        <section className="relative overflow-hidden border-y border-[#E8E2D8] bg-[#F6F3ED] py-4 text-[#1A1A1A]">
           <div className="flex select-none overflow-hidden">
-            <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-display text-2xl font-black uppercase tracking-tight md:text-3xl">
+            <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-display text-2xl font-bold uppercase tracking-tight md:text-3xl">
               {Array(4).fill(0).map((_, i) => (
                 <React.Fragment key={i}>
                   <span>{t("strip_text_1")}</span>
-                  <span className="mx-6 text-black/30">•</span>
+                  <span className="mx-6 text-[#C89A3D]">•</span>
                   <span>{t("strip_text_2")}</span>
-                  <span className="mx-6 text-black/30">•</span>
+                  <span className="mx-6 text-[#C89A3D]">•</span>
                   <span>{t("strip_text_3")}</span>
-                  <span className="mx-6 text-black/30">•</span>
+                  <span className="mx-6 text-[#C89A3D]">•</span>
                   <span>{t("strip_text_4")}</span>
-                  <span className="mx-6 text-black/30">•</span>
+                  <span className="mx-6 text-[#C89A3D]">•</span>
                 </React.Fragment>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 3. Category Grid Section */}
-        <section id="categories" className="bg-[#0f0f0f] py-24 px-5 sm:px-8 lg:px-12 border-b border-white/5">
-          <div className="mx-auto max-w-[1500px]">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
-              <div>
-                <span className="mono-label text-[10px] text-white/40 uppercase tracking-widest block mb-3">// {t("cat_title")}</span>
-                <h2 className="font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
-                  {t("cat_title")}
-                </h2>
-              </div>
-              <p className="mt-4 md:mt-0 max-w-md text-sm text-white/60">
-                {t("cat_subtitle")}
-              </p>
-            </div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[
-                { title: t("cat_mens_title"), desc: t("cat_mens_desc"), link: "/catalog?category=mens%20wear" },
-                { title: t("cat_womens_title"), desc: t("cat_womens_desc"), link: "/catalog?category=womens%20wear" },
-                { title: t("cat_kids_title"), desc: t("cat_kids_desc"), link: "/catalog?category=kids%20wear" },
-                { title: t("cat_bedsheets_title"), desc: t("cat_bedsheets_desc"), link: "/catalog?category=bedsheets" },
-                { title: t("cat_fabrics_title"), desc: t("cat_fabrics_desc"), link: "/catalog?category=fabrics" },
-                { title: t("cat_private_label_title"), desc: t("cat_private_label_desc"), link: "/#enquiry" },
-              ].map((cat, idx) => (
-                <Link
-                  key={idx}
-                  href={cat.link}
-                  className="group relative block overflow-hidden border border-white/10 bg-[#23251f] p-8 hover:border-white/30 transition-all hover:-translate-y-1"
-                >
-                  <span className="mono-label text-[9px] text-[#C19040] tracking-widest block mb-4">0{idx + 1}</span>
-                  <h3 className="font-display text-xl font-black uppercase tracking-wider text-white group-hover:text-[#C19040] transition-colors">{cat.title}</h3>
-                  <p className="mt-2 text-xs text-white/50">{cat.desc}</p>
-                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight size={16} className="text-white" />
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <div className="mt-12 text-center">
-              <Link
-                href="/catalog"
-                className="inline-flex items-center gap-2 border border-[#C19040] bg-[#C19040] text-[#161612] px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
-              >
-                {t("btn_explore_all")}
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Legacy Section (2nd Generation Notes) */}
-        <section className="relative overflow-hidden bg-[#E7E0D3] px-5 py-20 text-[#161612] sm:px-8 lg:px-12 lg:py-28">
-          <div className="mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-            <div className="space-y-6">
-              <span className="mono-label text-[10px] text-black/50 uppercase">{t("legacy_label")}</span>
-              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.82]">
-                {t("legacy_title")}
+        {/* 3. About / Our Story (Page 2: Who We Are) */}
+        <section id="about" className="relative overflow-hidden bg-[#FFFFFF] px-5 py-20 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-28">
+          <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div className="space-y-8">
+              <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-widest block">// WHO WE ARE</span>
+              <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-6xl text-[#0A1F2B]">
+                TWO GENERATIONS.<br />ONE TRUSTED VISION.
               </h2>
-              <div className="h-0.5 bg-[#161612]/20 w-16" />
-              <p className="max-w-xl text-sm leading-relaxed text-black/75 sm:text-base">
-                {t("legacy_desc")}
+              <p className="text-base font-semibold text-[#C89A3D]">
+                From traditional wholesale expertise to modern garment sourcing.
               </p>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] border-b border-black pb-1 hover:opacity-70 transition-opacity"
-              >
-                {t("legacy_link")} <ArrowUpRight size={14} />
-              </Link>
+              <p className="max-w-xl text-sm leading-relaxed text-[#667085]">
+                Built on trust, relationships and decades of textile experience, Himat Textile connects traditional Indian wholesale expertise with the evolving needs of modern fashion businesses.
+              </p>
+              
+              {/* Stat Points Grid */}
+              <div className="grid gap-6 border-t border-[#E8E2D8] pt-8 sm:grid-cols-3">
+                <div className="space-y-1">
+                  <span className="block font-display text-3xl font-bold text-[#0A1F2B]">2 GEN</span>
+                  <span className="mono-label text-[8px] text-[#667085] tracking-wider block">Family Business</span>
+                </div>
+                <div className="space-y-1">
+                  <span className="block font-display text-3xl font-bold text-[#0A1F2B]">TRUSTED</span>
+                  <span className="mono-label text-[8px] text-[#667085] tracking-wider block">Wholesale Network</span>
+                </div>
+                <div className="space-y-1">
+                  <span className="block font-display text-3xl font-bold text-[#0A1F2B]">GLOBAL</span>
+                  <span className="mono-label text-[8px] text-[#667085] tracking-wider block">India → Worldwide</span>
+                </div>
+              </div>
             </div>
 
-             <div className="relative overflow-hidden border border-black/10 bg-stone-900 aspect-video lg:aspect-[4/3]">
+            <div className="relative overflow-hidden border border-[#E8E2D8] bg-[#F6F3ED] aspect-video lg:aspect-[4/3] rounded-xl">
               <img
                 src="/images/weaving_loom.png"
                 alt="Industrial weaving loom heritage"
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute left-6 top-6 grid h-12 w-12 place-items-center rounded-full border border-black/30 font-display text-xs font-black">
-                02
+              <div className="absolute left-6 top-6 grid h-10 w-10 place-items-center rounded-md border border-[#E8E2D8] bg-[#FFFFFF] font-display text-xs font-bold text-[#0A1F2B]">
+                HT
               </div>
             </div>
           </div>
         </section>
 
         {/* Featured Brands Marquee */}
-        <section className="bg-[#F4EFE6] py-12 text-[#161612] overflow-hidden border-t border-[#161612]/8">
-          <div className="mx-auto max-w-[1600px] px-5 sm:px-8 lg:px-12">
-            <p className="mono-label text-[9px] text-black/45 uppercase tracking-widest text-center mb-6">
+        <section className="bg-[#F6F3ED] py-12 text-[#1A1A1A] overflow-hidden border-t border-[#E8E2D8]/50">
+          <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
+            <p className="mono-label text-[9px] text-[#667085] uppercase tracking-widest text-center mb-6">
               {language === "hi" ? "हमारे भागीदारों से सोर्सिंग करने वाले चुनिंदा ब्रांड" : "Featured Brands Sourcing From Our Partners"}
             </p>
             <div className="flex select-none overflow-hidden">
-              <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-display text-2xl font-black uppercase tracking-tight md:text-3xl text-black/25">
+              <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-display text-2xl font-bold uppercase tracking-tight md:text-3xl text-[#1A1A1A]/20">
                 {(() => {
                   const list = brands && brands.length > 0
                     ? brands
@@ -284,7 +247,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   const repeated = Array(6).fill(list).flat();
                   return repeated.map((brand, idx) => (
                     <React.Fragment key={`${brand.name}-${idx}`}>
-                      <span className="mx-8 hover:text-black transition-colors inline-flex items-center gap-3">
+                      <span className="mx-8 hover:text-[#0A1F2B] transition-colors inline-flex items-center gap-3">
                         {brand.logoUrl && (
                           <img
                             src={brand.logoUrl}
@@ -294,7 +257,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         )}
                         <span>{brand.name}</span>
                       </span>
-                      <span className="mx-4 opacity-35 select-none">•</span>
+                      <span className="mx-4 opacity-25 select-none">•</span>
                     </React.Fragment>
                   ));
                 })()}
@@ -303,44 +266,94 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         </section>
 
-        {/* 5. Horizontal Scrolling Product Gallery */}
-        <HorizontalProducts />
-
-        {/* 6. Why Himat Textile Section */}
-        <section className="bg-[#1E211E] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#F4EFE6]/8">
-          <div className="mx-auto max-w-[1500px]">
-            <div className="max-w-3xl mb-16 space-y-4">
-              <span className="mono-label text-[10px] text-[#C19040] tracking-widest uppercase block">// {t("why_label")}</span>
-              <h2 className="font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl lg:text-6xl leading-none">
-                {t("why_title")}
-              </h2>
+        {/* Explore Our Garments Section (Page 3) */}
+        <section id="categories" className="bg-[#F6F3ED] py-24 px-5 sm:px-8 lg:px-12 border-b border-[#E8E2D8] text-[#1A1A1A]">
+          <div className="mx-auto max-w-[1280px]">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+              <div>
+                <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-widest block mb-3">// GARMENT SOURCING</span>
+                <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B] sm:text-5xl">
+                  EXPLORE OUR<br />GARMENT COLLECTION.
+                </h2>
+              </div>
+              <p className="mt-4 md:mt-0 max-w-md text-sm text-[#667085]">
+                Discover commercially relevant styles selected for today's wholesale and retail markets.
+              </p>
             </div>
 
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { title: t("why_01_title"), desc: t("why_01_desc") },
-                { title: t("why_02_title"), desc: t("why_02_desc") },
-                { title: t("why_03_title"), desc: t("why_03_desc") },
-                { title: t("why_04_title"), desc: t("why_04_desc") },
-                { title: t("why_05_title"), desc: t("why_05_desc") },
-                { title: t("why_06_title"), desc: t("why_06_desc") },
-              ].map((item, idx) => (
-                <div
+                { title: "WOMEN'S WEAR", desc: "Contemporary styles • Ethnic • Western", link: "/catalog?category=womens%20wear" },
+                { title: "MEN'S WEAR", desc: "Casual • Fashion • Everyday Essentials", link: "/catalog?category=mens%20wear" },
+                { title: "KIDS WEAR", desc: "Trendy • Comfortable • Value-focused", link: "/catalog?category=kids%20wear" },
+                { title: "ETHNIC WEAR", desc: "Traditional craftsmanship with modern styling.", link: "/catalog?category=ethnic%20wear" },
+                { title: "WESTERN WEAR", desc: "Contemporary fashion for modern and global markets.", link: "/catalog?category=western%20wear" },
+                { title: "CUSTOM / WHITE LABELING", desc: "Develop your own collection with Himat Textile.", link: "/#enquiry" },
+              ].map((cat, idx) => (
+                <Link
                   key={idx}
-                  className="border border-white/10 bg-[#1E211E] p-8 hover:border-white/20 transition-all"
+                  href={cat.link}
+                  className="group relative block overflow-hidden border border-[#E8E2D8] bg-[#FFFFFF] p-8 rounded-xl hover:border-[#C89A3D] transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <span className="font-mono text-xs text-[#C19040] block mb-4">0{idx + 1}</span>
-                  <h3 className="font-display text-lg font-black uppercase tracking-wider text-white mb-2">{item.title}</h3>
-                  <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
-                </div>
+                  <span className="mono-label text-[9px] text-[#C89A3D] tracking-widest block mb-4">0{idx + 1}</span>
+                  <h3 className="font-display text-xl font-bold uppercase tracking-wider text-[#0A1F2B] group-hover:text-[#C89A3D] transition-colors">{cat.title}</h3>
+                  <p className="mt-2 text-xs text-[#667085] leading-relaxed">{cat.desc}</p>
+                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight size={16} className="text-[#C89A3D]" />
+                  </div>
+                </Link>
               ))}
+            </div>
+            <div className="mt-12 text-center">
+              <Link
+                href="/catalog"
+                className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
+              >
+                EXPLORE ALL GARMENTS <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </section>
 
-        {/* 7. Private Label Customizer */}
-        <section className="relative overflow-hidden bg-[#161612] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-          <div className="absolute inset-0 opacity-15">
+        {/* Curated Collection Lookbook Section (Page 8) */}
+        <section className="bg-[#FFFFFF] py-24 border-t border-[#E8E2D8]">
+          <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 mb-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between">
+              <div>
+                <span className="mono-label text-[10px] text-[#C89A3D] uppercase block mb-3">// EDITORIAL LOOKBOOK</span>
+                <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B] sm:text-5xl">
+                  CURATED FOR<br />YOUR MARKET.
+                </h2>
+              </div>
+              <p className="mt-4 md:mt-0 max-w-sm text-sm text-[#667085]">
+                A constantly evolving selection of garments designed around changing customer preferences.
+              </p>
+            </div>
+            
+            {/* Filter Tabs Preview */}
+            <div className="flex flex-wrap gap-2 mt-8 border-b border-[#E8E2D8] pb-4 text-[9px] font-bold uppercase tracking-widest text-[#667085]">
+              <span className="border-r border-[#E8E2D8] pr-4 text-[#0A1F2B] font-extrabold">NEW ARRIVALS</span>
+              <span className="border-r border-[#E8E2D8] px-4">BEST SELLERS</span>
+              <span className="border-r border-[#E8E2D8] px-4">TRENDING STYLES</span>
+              <span className="pl-4">WHOLESALE PICKS</span>
+            </div>
+          </div>
+          
+          <HorizontalProducts />
+
+          <div className="text-center mt-12">
+            <Link
+              href="/catalog"
+              className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
+            >
+              VIEW COLLECTION <ArrowRight size={14} />
+            </Link>
+          </div>
+        </section>
+
+        {/* 5. White Labeling Section (Page 4) */}
+        <section id="white-labeling" className="relative overflow-hidden bg-[#0A1F2B] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#E8E2D8]/10 text-[#FFFFFF]">
+          <div className="absolute inset-0 opacity-10">
             <img
               src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200"
               alt="Apparel manufacturing catalog background"
@@ -348,70 +361,71 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               loading="lazy"
             />
           </div>
-          <div className="relative mx-auto grid max-w-[1500px] gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+          <div className="relative mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div className="space-y-6">
-              <span className="mono-label text-[10px] text-white/50 uppercase">05 / White Labeling</span>
-              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-0.07em] sm:text-7xl sm:leading-[0.8] md:text-8xl">
-                {t("pl_title_1")}<br />{t("pl_title_2")}<br />{t("pl_title_3")}
+              <span className="mono-label text-[10px] text-[#C89A3D] uppercase block tracking-wider">// WHITE LABELING SERVICES</span>
+              <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-7xl">
+                YOUR BRAND.<br />YOUR VISION.<br />OUR EXPERTISE.
               </h2>
-              <p className="max-w-md text-sm leading-relaxed text-white/70">
-                {t("pl_description")}
+              <p className="max-w-md text-sm leading-relaxed text-[#FFFFFF]/70">
+                From concept to finished garment, we support businesses looking to create their own apparel collections.
               </p>
+              <div className="pt-4">
+                <Link
+                  href="/#enquiry"
+                  className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
+                >
+                  START WHITE LABELING <ArrowRight size={14} />
+                </Link>
+              </div>
             </div>
 
             <div className="border-l border-white/20 pl-6 space-y-6">
               {[
-                { step: "01", name: t("pl_step_1"), desc: language === "hi" ? "आपकी आवश्यकताओं के अनुसार डिजाइन।" : "Design according to your specifications." },
-                { step: "02", name: t("pl_step_2"), desc: language === "hi" ? "गुणवत्तापूर्ण कपड़े और धागे का चयन।" : "Selecting quality yarn and fabrics." },
-                { step: "03", name: t("pl_step_3"), desc: language === "hi" ? "उत्पादन से पहले प्री-प्रोडक्शन सैंपल।" : "Pre-production sample before bulk." },
-                { step: "04", name: t("pl_step_4"), desc: language === "hi" ? "गुणवत्ता नियंत्रण के साथ थोक उत्पादन।" : "Bulk manufacturing with quality controls." },
-                { step: "05", name: t("pl_step_5"), desc: language === "hi" ? "कस्टम टैग और ब्रांडेड पैकिंग।" : "Custom tagging and branded packaging." },
-                { step: "06", name: t("pl_step_6"), desc: language === "hi" ? "वैश्विक शिपिंग और परिवहन सहायता।" : "Global shipping and logistics assistance." },
+                { step: "01", name: "CUSTOM DESIGN", desc: "Design according to your specifications." },
+                { step: "02", name: "FABRIC SOURCING", desc: "Selecting quality yarn and fabrics." },
+                { step: "03", name: "SAMPLING", desc: "Pre-production sample before bulk." },
+                { step: "04", name: "PRODUCTION", desc: "Bulk manufacturing with quality controls." },
+                { step: "05", name: "PACKAGING", desc: "Custom tagging and branded packaging." },
+                { step: "06", name: "EXPORT SUPPORT", desc: "Global shipping and logistics assistance." },
               ].map((item) => (
                 <div key={item.step} className="group border-b border-white/10 pb-4">
                   <div className="flex items-baseline justify-between">
                     <span className="mono-label text-[10px] text-white/40 group-hover:text-white transition-colors">{item.step}</span>
-                    <h3 className="font-display text-lg font-black uppercase tracking-wide text-white">{item.name}</h3>
+                    <h3 className="font-display text-lg font-bold uppercase tracking-wide text-white">{item.name}</h3>
                   </div>
-                  <p className="mt-1 text-xs text-white/60">{item.desc}</p>
+                  <p className="mt-1 text-xs text-[#FFFFFF]/60">{item.desc}</p>
                 </div>
               ))}
-              <Link
-                href="/#enquiry"
-                className="inline-flex items-center gap-2 pt-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:opacity-75"
-              >
-                {t("btn_start_private_label")}
-              </Link>
             </div>
           </div>
         </section>
 
-        {/* 8. B2B Solutions Interactive Segment Hover */}
-        <section className="relative overflow-hidden bg-[#161612] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-
-          <div className="relative mx-auto max-w-[1500px]">
-            <span className="mono-label text-[10px] text-white/40 uppercase">{t("solutions_label")}</span>
-            <h2 className="mt-2 font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl lg:text-6xl">
+        {/* 6. B2B Solutions Interactive Segment Hover */}
+        <section className="relative overflow-hidden bg-[#F6F3ED] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#E8E2D8]">
+          <div className="relative mx-auto max-w-[1280px]">
+            <span className="mono-label text-[10px] text-[#C89A3D] uppercase block mb-2">// {t("solutions_label")}</span>
+            <h2 className="mt-2 font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B] sm:text-5xl lg:text-6xl">
               {t("solutions_title")}
             </h2>
             
             <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] mt-12">
-              <div className="divide-y divide-white/10 border-t border-b border-white/10">
+              <div className="divide-y divide-[#E8E2D8] border-t border-b border-[#E8E2D8]">
                 {translatedSolutions.map((sol, idx) => (
                   <div
                     key={sol.name}
                     onMouseEnter={() => handleSolutionHover(idx)}
                     className={`group py-8 flex flex-col justify-between md:flex-row md:items-center cursor-pointer transition-colors ${
-                      activeSolution === idx ? "border-l-2 border-[#C19040] pl-4 bg-white/3" : ""
+                      activeSolution === idx ? "border-l-2 border-[#C89A3D] pl-4 bg-[#C89A3D]/5" : ""
                     }`}
                   >
-                    <h3 className={`font-display text-3xl font-black uppercase tracking-tight transition-colors sm:text-4xl md:text-5xl ${
-                      activeSolution === idx ? "text-[#C19040]" : "text-white/50 group-hover:text-white"
+                    <h3 className={`font-display text-3xl font-bold uppercase tracking-tight transition-colors sm:text-4xl md:text-5xl ${
+                      activeSolution === idx ? "text-[#C89A3D]" : "text-[#0A1F2B]/50 group-hover:text-[#0A1F2B]"
                     }`}>
                       {sol.name}
                     </h3>
                     <p className={`mt-2 max-w-sm text-sm transition-colors md:mt-0 ${
-                      activeSolution === idx ? "text-[#F4EFE6]" : "text-white/45 group-hover:text-white/80"
+                      activeSolution === idx ? "text-[#1A1A1A]" : "text-[#667085]/60 group-hover:text-[#667085]"
                     }`}>
                       {sol.copy}
                     </p>
@@ -420,70 +434,70 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               </div>
 
               {/* Dynamic Solution Image Preview (Premium Visual Component) */}
-              <div className="hidden lg:block relative h-full min-h-[420px] border border-white/10 bg-stone-900 overflow-hidden">
+              <div className="hidden lg:block relative h-full min-h-[420px] border border-[#E8E2D8] bg-[#FFFFFF] overflow-hidden rounded-xl">
                 {translatedSolutions.map((sol, idx) => (
                   <div
                     key={`sol-img-${idx}`}
                     className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                      activeSolution === idx ? "opacity-60 scale-100" : "opacity-0 scale-105 pointer-events-none"
+                      activeSolution === idx ? "opacity-90 scale-100" : "opacity-0 scale-105 pointer-events-none"
                     }`}
                   >
                     <img
                       src={sol.image}
                       alt={sol.name}
-                      className="w-full h-full object-cover grayscale transition-transform duration-[4000ms] hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-[4000ms] hover:scale-105"
                     />
                   </div>
                 ))}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#161612] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#F6F3ED] via-transparent to-transparent" />
                 <div className="absolute bottom-8 left-8">
-                  <span className="mono-label text-[9px] text-[#C19040] tracking-widest block mb-2">0{activeSolution + 1} / Solutions</span>
-                  <h4 className="font-display text-2xl font-black uppercase text-white tracking-wider">{translatedSolutions[activeSolution]?.name}</h4>
+                  <span className="mono-label text-[9px] text-[#C89A3D] tracking-widest block mb-2">0{activeSolution + 1} / Solutions</span>
+                  <h4 className="font-display text-2xl font-bold uppercase text-[#0A1F2B] tracking-wider">{translatedSolutions[activeSolution]?.name}</h4>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 9. Business Guide Section */}
-        <section className="bg-[#161612] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#F4EFE6]/8">
-          <div className="mx-auto max-w-[1500px]">
+        {/* 7. Business Guide Section (Page 5) */}
+        <section className="bg-[#FFFFFF] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#E8E2D8] text-[#1A1A1A]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
               <div className="space-y-6">
-                <span className="mono-label text-[10px] text-[#C19040] tracking-widest uppercase block">// {t("nav_guide")}</span>
-                <h2 className="font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl lg:text-6xl leading-none">
-                  {t("bg_title")}
+                <span className="mono-label text-[10px] text-[#C89A3D] tracking-widest uppercase block">// B2B SOURCING SUPPORT</span>
+                <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B] sm:text-5xl lg:text-6xl leading-none">
+                  YOUR GARMENT GUIDE<br />IN AHMEDABAD.
                 </h2>
-                <p className="text-sm leading-relaxed text-white/70">
-                  {t("bg_subtitle")}
+                <p className="text-sm font-semibold text-[#C89A3D]">
+                  Buying garments is not only about finding products. It's about finding the RIGHT products, RIGHT quantities and RIGHT price.
                 </p>
-                <div className="h-px bg-[#C19040]/10 w-24" />
-                <p className="text-xs font-mono uppercase tracking-wider text-white/55">
-                  {t("bg_desc")}
+                <div className="h-px bg-[#E8E2D8] w-24" />
+                <p className="text-xs leading-relaxed text-[#667085]">
+                  We guide you through the textile markets of Ahmedabad to select products that sell fast, reduce capital lock-ups, and match seasonal retail demands.
                 </p>
                 <div className="pt-2">
                   <Link
                     href="/#enquiry"
-                    className="inline-flex items-center gap-2 border border-[#C19040] bg-[#C19040] text-[#161612] px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
+                    className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
                   >
-                    {t("btn_talk_team")}
+                    TALK TO OUR GARMENT TEAM <ArrowRight size={14} />
                   </Link>
                 </div>
               </div>
 
               <div className="grid gap-6">
                 {[
-                  { step: "01", title: t("bg_point_1_title"), desc: t("bg_point_1_desc") },
-                  { step: "02", title: t("bg_point_2_title"), desc: t("bg_point_2_desc") },
-                  { step: "03", title: t("bg_point_3_title"), desc: t("bg_point_3_desc") },
-                  { step: "04", title: t("bg_point_4_title"), desc: t("bg_point_4_desc") },
-                  { step: "05", title: t("bg_point_5_title"), desc: t("bg_point_5_desc") },
+                  { step: "01", title: "PRODUCT SELECTION", desc: "Choose commercially relevant varieties." },
+                  { step: "02", title: "STOCK PLANNING", desc: "Avoid overstocking and unnecessary inventory." },
+                  { step: "03", title: "SIZE-WISE BUYING", desc: "Plan quantities according to market demand." },
+                  { step: "04", title: "VARIETY MANAGEMENT", desc: "More useful variety without blocking excessive capital." },
+                  { step: "05", title: "PURCHASING GUIDANCE", desc: "Make smarter buying decisions." },
                 ].map((item) => (
-                  <div key={item.step} className="flex gap-6 border-b border-white/10 pb-5 items-start">
-                    <span className="font-mono text-xs text-[#C19040] shrink-0 mt-1">{item.step}</span>
+                  <div key={item.step} className="flex gap-6 border-b border-[#E8E2D8] pb-5 items-start">
+                    <span className="font-mono text-xs text-[#C89A3D] shrink-0 mt-1">{item.step}</span>
                     <div>
-                      <h3 className="font-display text-base font-black uppercase tracking-wider text-white">{item.title}</h3>
-                      <p className="mt-1 text-xs text-white/55">{item.desc}</p>
+                      <h3 className="font-display text-base font-bold uppercase tracking-wider text-[#0A1F2B]">{item.title}</h3>
+                      <p className="mt-1 text-xs text-[#667085] leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -492,41 +506,41 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         </section>
 
-        {/* 10. India Network Map Section */}
+        {/* 8. India Network Map Section */}
         <IndiaNetwork />
 
-        {/* 11. Export section */}
-        <section className="bg-[#161612] py-24 px-5 sm:px-8 lg:px-12 text-white border-t border-white/5">
-          <div className="mx-auto max-w-[1500px]">
-            <span className="mono-label text-[10px] text-white/40 uppercase">{t("ex_label")}</span>
+        {/* 9. Export Section (Page 6) */}
+        <section className="bg-[#0A1F2B] py-24 px-5 sm:px-8 lg:px-12 text-[#FFFFFF] border-t border-[#E8E2D8]/10">
+          <div className="mx-auto max-w-[1280px]">
+            <span className="mono-label text-[10px] text-[#C89A3D] uppercase block tracking-wider">// GLOBAL APPAREL EXPORTS</span>
             <div className="grid gap-12 border-t border-white/10 pt-6 mt-4 lg:grid-cols-2">
-              <h2 className="font-display text-4xl font-black uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.85]">
-                {t("ex_title_1")}<br />{t("ex_title_2")}
+              <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.88] text-white">
+                FROM AHMEDABAD<br />TO GLOBAL MARKETS.
               </h2>
               <div className="space-y-8">
-                <p className="text-sm leading-relaxed text-white/70">
-                  {t("ex_desc")}
+                <p className="text-sm leading-relaxed text-[#FFFFFF]/70">
+                  With our sourcing and manufacturing network, Himat Textile supports apparel businesses looking for reliable garment solutions from India.
                 </p>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
                     { title: t("ex_badge_sourcing"), desc: language === "hi" ? "विदेशी शिपमेंट के लिए सोर्सिंग क्षमता का विस्तार करें।" : "Scale capacity for overseas containers." },
                     { title: t("ex_badge_production"), desc: language === "hi" ? "आकार परीक्षण, सिकुड़न और रंग की जांच।" : "Sizing tests, shrinkage checks, colorfastness." },
-                    { title: t("ex_badge_private_label"), desc: language === "hi" ? "कस्टम पैकिंग, पॉलीबैग, थोक डिब्बे।" : "Custom labelling, polybags, bulk cartons." },
+                    { title: "WHITE LABELING", desc: language === "hi" ? "कस्टम पैकिंग, पॉलीबैग, थोक डिब्बे।" : "Custom labelling, polybags, bulk cartons." },
                     { title: t("ex_badge_export"), desc: language === "hi" ? "दस्तावेज़ीकरण, सीमा शुल्क निकासी सहायता।" : "Documentation, bill of lading assistance." }
                   ].map(item => (
-                    <div key={item.title} className="border border-white/10 bg-[#111] p-5">
-                      <ShieldCheck size={20} className="text-white/60" />
-                      <h4 className="mt-6 font-display text-base font-black uppercase tracking-wider">{item.title}</h4>
-                      <p className="mt-1 text-xs text-white/50">{item.desc}</p>
+                    <div key={item.title} className="border border-white/10 bg-[#122D3B] p-5 rounded-xl">
+                      <ShieldCheck size={20} className="text-[#C89A3D]" />
+                      <h4 className="mt-6 font-display text-base font-bold uppercase tracking-wider text-white">{item.title}</h4>
+                      <p className="mt-1 text-xs text-[#FFFFFF]/60 leading-relaxed">{item.desc}</p>
                     </div>
                   ))}
                 </div>
                 <div className="pt-2">
                   <Link
                     href="/#enquiry"
-                    className="inline-flex items-center gap-2 border border-[#C19040] bg-[#C19040] text-[#161612] px-6 py-3.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5"
+                    className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
                   >
-                    {t("btn_discuss_requirement")}
+                    DISCUSS YOUR REQUIREMENT <ArrowRight size={14} />
                   </Link>
                 </div>
               </div>
@@ -534,12 +548,12 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         </section>
 
-        {/* 12. Price Segment Cards */}
-        <section className="bg-[#23251f] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#F4EFE6]/8">
-          <div className="mx-auto max-w-[1500px]">
-            <span className="mono-label text-[10px] text-white/40 uppercase">{t("price_label")}</span>
-            <h2 className="mt-2 font-display text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">
-              {t("price_title")}
+        {/* 10. Price Segment Cards */}
+        <section className="bg-[#FFFFFF] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#E8E2D8] text-[#1A1A1A]">
+          <div className="mx-auto max-w-[1280px]">
+            <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block mb-2">// PRICE SEGMENTS</span>
+            <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B] sm:text-5xl">
+              TAILORED FOR YOUR<br />BUSINESS MODEL.
             </h2>
             
             <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -560,14 +574,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   moq: language === "hi" ? "1 पीस (सैंपल)" : "1 Pc (Sample)"
                 }
               ].map(item => (
-                <div key={item.name} className="flex flex-col justify-between border border-white/10 bg-[#1E211E] p-6 hover:border-white/20 transition-all">
+                <div key={item.name} className="flex flex-col justify-between border border-[#E8E2D8] bg-[#FFFFFF] p-6 rounded-xl hover:border-[#C89A3D] transition-all hover:-translate-y-1 hover:shadow-lg">
                   <div>
-                    <h3 className="font-display text-xl font-black uppercase tracking-wider text-white">{item.name}</h3>
-                    <p className="mt-4 text-xs leading-relaxed text-white/60">{item.desc}</p>
+                    <h3 className="font-display text-xl font-bold uppercase tracking-wider text-[#0A1F2B]">{item.name}</h3>
+                    <p className="mt-4 text-xs leading-relaxed text-[#667085]">{item.desc}</p>
                   </div>
-                  <div className="mt-8 border-t border-white/10 pt-4 flex items-center justify-between">
-                    <span className="mono-label text-[9px] text-white/40 uppercase">{language === "hi" ? "न्यूनतम ऑर्डर" : "Minimum Order"}</span>
-                    <span className="text-xs font-bold text-white">{item.moq}</span>
+                  <div className="mt-8 border-t border-[#E8E2D8] pt-4 flex items-center justify-between">
+                    <span className="mono-label text-[9px] text-[#667085] uppercase">{language === "hi" ? "न्यूनतम ऑर्डर" : "Minimum Order"}</span>
+                    <span className="text-xs font-bold text-[#C89A3D]">{item.moq}</span>
                   </div>
                 </div>
               ))}
@@ -622,51 +636,51 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </section>
         )}
 
-        {/* 13. Google Reviews */}
-        <section className="bg-[#F4EFE6] px-5 py-24 text-[#161612] sm:px-8 lg:px-12 lg:py-32">
-          <div className="mx-auto max-w-[1500px]">
+        {/* 11. Google Reviews */}
+        <section className="bg-[#F6F3ED] px-5 py-24 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-32 border-t border-[#E8E2D8]">
+          <div className="mx-auto max-w-[1280px]">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <div className="space-y-6">
-                <span className="mono-label text-[10px] text-black/50 uppercase block">{t("trust_label")}</span>
-                <h2 className="font-display text-4xl font-black uppercase tracking-tight sm:text-5xl">
-                  Himat Textile
+                <span className="mono-label text-[10px] text-[#C89A3D] uppercase block tracking-wider">// B2B CLIENT TRUST</span>
+                <h2 className="font-display text-4xl font-bold uppercase tracking-tight text-[#0A1F2B]">
+                  WHAT OUR PARTNERS SAY.
                 </h2>
                 <div className="flex items-center gap-3 pt-2">
-                  <span className="text-5xl font-black tracking-tighter">5.0</span>
+                  <span className="text-5xl font-bold tracking-tighter text-[#0A1F2B]">5.0</span>
                   <div className="space-y-0.5">
-                    <div className="flex text-amber-500 fill-amber-500">
+                    <div className="flex text-[#C89A3D] fill-[#C89A3D]">
                       {Array(5).fill(0).map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
                     </div>
-                    <p className="text-[10px] uppercase font-bold text-black/75 tracking-wider">
-                      {t("trust_sub")}
+                    <p className="text-[10px] uppercase font-bold text-[#667085] tracking-wider">
+                      Based on Wholesale Reviews
                     </p>
                   </div>
                 </div>
-                <p className="text-xs text-black/60 font-mono tracking-wider uppercase">
-                  {t("trust_desc")}
+                <p className="text-xs text-[#667085]/80 font-mono tracking-wider uppercase">
+                  Consistent Quality & Delivery for Wholesalers & Retailers
                 </p>
                 <div className="pt-4">
                   <button
                     suppressHydrationWarning={true}
                     onClick={() => setIsReviewModalOpen(true)}
-                    className="border border-[#C95A1A] bg-[#C95A1A] text-[#F4EFE6] px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
+                    className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-md"
                   >
-                    {t("trust_btn")}
+                    WRITE A REVIEW
                   </button>
                 </div>
               </div>
 
               <div className="space-y-6">
                 {(reviews && reviews.length > 0 ? reviews.filter(r => r.isActive) : fallbackReviews).map(rev => (
-                  <div key={rev.id} className="border-b border-black/15 pb-6">
+                  <div key={rev.id} className="border-b border-[#E8E2D8] pb-6">
                     <div className="flex items-center gap-2">
-                      <div className="flex text-amber-600 fill-amber-600">
+                      <div className="flex text-[#C89A3D] fill-[#C89A3D]">
                         {Array(rev.rating).fill(0).map((_, i) => <Star key={i} size={12} fill="currentColor" />)}
                       </div>
-                      <span className="text-[10px] text-black/45">{rev.date || (language === "hi" ? "सत्यापित" : "verified")}</span>
+                      <span className="text-[10px] text-[#667085]/60">{rev.date || (language === "hi" ? "सत्यापित" : "verified")}</span>
                     </div>
-                    <p className="mt-3 text-sm leading-relaxed text-black/85">"{rev.text}"</p>
-                    <h4 className="mt-2 text-xs font-bold uppercase tracking-wider text-black/60">{rev.author}</h4>
+                    <p className="mt-3 text-sm leading-relaxed text-[#1A1A1A]">"{rev.text}"</p>
+                    <h4 className="mt-2 text-xs font-bold uppercase tracking-wider text-[#667085]">{rev.author}</h4>
                   </div>
                 ))}
               </div>
@@ -674,26 +688,26 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         </section>
 
-        {/* 13b. Google Map Office Location Section */}
-        <section className="bg-[#0a0a0a] border-y border-white/10 text-white px-5 py-20 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-[1500px]">
+        {/* 12. Google Map Office Location Section */}
+        <section className="bg-[#FFFFFF] border-y border-[#E8E2D8] text-[#1A1A1A] px-5 py-20 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-[1280px]">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] items-center">
               {/* Location Details */}
               <div className="space-y-8">
                 <div>
-                  <span className="mono-label text-[10px] text-white/40 tracking-widest uppercase block mb-3">{t("loc_label")}</span>
-                  <h2 className="font-display text-4xl font-black uppercase tracking-tight sm:text-5xl text-white">
-                    {t("loc_title")}
+                  <span className="mono-label text-[10px] text-[#C89A3D] tracking-widest uppercase block mb-3">// VISIT OUR SHOWROOM</span>
+                  <h2 className="font-display text-4xl font-bold uppercase tracking-tight sm:text-5xl text-[#0A1F2B]">
+                    HEADQUARTERS
                   </h2>
                 </div>
 
                 <div className="space-y-6">
                   {/* Address */}
                   <div className="flex gap-4">
-                    <MapPin className="text-[#C95A1A] shrink-0 mt-1" size={20} />
+                    <MapPin className="text-[#C89A3D] shrink-0 mt-1" size={20} />
                     <div>
-                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_address_title")}</h4>
-                      <p className="mt-1 text-sm text-white/80 leading-relaxed max-w-sm">
+                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#667085]">{t("loc_address_title")}</h4>
+                      <p className="mt-1 text-sm text-[#1A1A1A] leading-relaxed max-w-sm">
                         {t("loc_address_text")}
                       </p>
                     </div>
@@ -701,10 +715,10 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
                   {/* Hours */}
                   <div className="flex gap-4">
-                    <Clock className="text-[#C95A1A] shrink-0 mt-1" size={20} />
+                    <Clock className="text-[#C89A3D] shrink-0 mt-1" size={20} />
                     <div>
-                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_hours_title")}</h4>
-                      <p className="mt-1 text-sm text-white/80">
+                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#667085]">{t("loc_hours_title")}</h4>
+                      <p className="mt-1 text-sm text-[#1A1A1A]">
                         {t("loc_hours_text")}
                       </p>
                     </div>
@@ -712,10 +726,10 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
                   {/* Contact */}
                   <div className="flex gap-4">
-                    <Phone className="text-[#C95A1A] shrink-0 mt-1" size={20} />
+                    <Phone className="text-[#C89A3D] shrink-0 mt-1" size={20} />
                     <div>
-                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-white/50">{t("loc_call_title")}</h4>
-                      <a href="tel:+919873938095" className="mt-1 text-sm text-[#C95A1A] hover:underline font-mono">
+                      <h4 className="font-display text-xs font-bold uppercase tracking-wider text-[#667085]">{t("loc_call_title")}</h4>
+                      <a href="tel:+919873938095" className="mt-1 text-sm text-[#C89A3D] hover:underline font-mono font-bold">
                         +91 98739 38095
                       </a>
                     </div>
@@ -727,19 +741,19 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     href="https://maps.google.com/?q=Himat+Textile+Ahmedabad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border border-[#C19040] bg-[#C19040] text-[#161612] px-6 py-3 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5"
+                    className="gold-button inline-flex items-center gap-2 px-6 py-4 text-[10px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5 rounded-md"
                   >
-                    {t("loc_directions_btn")} <ArrowUpRight size={14} />
+                    GET DIRECTIONS <ArrowUpRight size={14} />
                   </a>
                 </div>
               </div>
 
               {/* Embedded Google Map */}
-              <div className="relative border border-white/10 overflow-hidden bg-[#161612]/40 h-[450px]">
+              <div className="relative border border-[#E8E2D8] overflow-hidden bg-[#F6F3ED] h-[450px] rounded-xl shadow-sm">
                 <iframe
                   width="100%"
                   height="100%"
-                  className="w-full h-full"
+                  className="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
                   style={{ border: 0 }}
                   loading="lazy"
                   allowFullScreen
@@ -753,25 +767,25 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
         {/* Review Submission Dialog Modal */}
         {isReviewModalOpen && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#161612]/85 backdrop-blur-md p-4">
-            <div className="relative w-full max-w-lg border border-white/10 bg-[#1E211E] p-8 text-white">
+          <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#0A1F2B]/90 backdrop-blur-md p-4">
+            <div className="relative w-full max-w-lg border border-[#E8E2D8] bg-[#FFFFFF] p-8 text-[#1A1A1A] rounded-xl shadow-2xl">
               <button
                 onClick={() => {
                   setIsReviewModalOpen(false);
                   setReviewMessage("");
                 }}
-                className="absolute right-4 top-4 text-white/50 hover:text-white"
+                className="absolute right-4 top-4 text-[#667085] hover:text-[#0A1F2B]"
               >
                 <X size={20} />
               </button>
 
-              <h3 className="font-display text-2xl font-black uppercase tracking-tight">{t("rev_modal_title")}</h3>
-              <p className="text-xs text-white/50 mt-1">{t("rev_modal_subtitle")}</p>
+              <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-[#0A1F2B]">{t("rev_modal_title")}</h3>
+              <p className="text-xs text-[#667085] mt-1">{t("rev_modal_subtitle")}</p>
 
               <form onSubmit={handleReviewSubmit} className="mt-6 space-y-5">
                 {/* Author Name */}
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] uppercase tracking-wider text-white/50 block">{t("rev_label_name")}</label>
+                  <label className="mono-label text-[9px] uppercase tracking-wider text-[#667085] block">{t("rev_label_name")}</label>
                   <input
                     suppressHydrationWarning={true}
                     type="text"
@@ -779,13 +793,13 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     placeholder={t("rev_placeholder_name")}
                     value={newReviewForm.author}
                     onChange={(e) => setNewReviewForm({ ...newReviewForm, author: e.target.value })}
-                    className="w-full bg-[#23251f] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none"
+                    className="w-full bg-[#F6F3ED] border border-[#E8E2D8] px-4 py-3 text-sm rounded-md focus:border-[#C89A3D] focus:outline-none"
                   />
                 </div>
 
                 {/* Stars Rating Selection */}
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] uppercase tracking-wider text-white/50 block">{t("rev_label_rating")}</label>
+                  <label className="mono-label text-[9px] uppercase tracking-wider text-[#667085] block">{t("rev_label_rating")}</label>
                   <div className="flex gap-2">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
@@ -793,7 +807,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         key={star}
                         type="button"
                         onClick={() => setNewReviewForm({ ...newReviewForm, rating: star })}
-                        className={`text-2xl ${newReviewForm.rating >= star ? "text-amber-500" : "text-white/20"}`}
+                        className={`text-2xl ${newReviewForm.rating >= star ? "text-[#C89A3D]" : "text-stone-300"}`}
                       >
                         ★
                       </button>
@@ -803,7 +817,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
                 {/* Review Text */}
                 <div className="space-y-1">
-                  <label className="mono-label text-[9px] uppercase tracking-wider text-white/50 block">{t("rev_label_feedback")}</label>
+                  <label className="mono-label text-[9px] uppercase tracking-wider text-[#667085] block">{t("rev_label_feedback")}</label>
                   <textarea
                     suppressHydrationWarning={true}
                     required
@@ -811,13 +825,13 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     placeholder={t("rev_placeholder_feedback")}
                     value={newReviewForm.text}
                     onChange={(e) => setNewReviewForm({ ...newReviewForm, text: e.target.value })}
-                    className="w-full bg-[#23251f] border border-white/15 px-4 py-3 text-sm focus:border-white focus:outline-none resize-none"
+                    className="w-full bg-[#F6F3ED] border border-[#E8E2D8] px-4 py-3 text-sm rounded-md focus:border-[#C89A3D] focus:outline-none resize-none"
                   />
                 </div>
 
                 {/* Action Feedback */}
                 {reviewMessage && (
-                  <p className="text-xs text-amber-400 leading-relaxed font-mono">
+                  <p className="text-xs text-[#C89A3D] leading-relaxed font-mono font-semibold">
                     {reviewMessage}
                   </p>
                 )}
@@ -827,7 +841,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   suppressHydrationWarning={true}
                   type="submit"
                   disabled={isReviewSubmitting}
-                  className="w-full bg-[#C19040] text-[#161612] py-4 text-[10px] font-bold uppercase tracking-[.18em] flex items-center justify-center gap-2 hover:bg-[#C19040]/85 transition-all"
+                  className="w-full gold-button py-4 text-[10px] font-bold uppercase tracking-[.18em] flex items-center justify-center gap-2 rounded-md"
                 >
                   {isReviewSubmitting ? (
                     <>
@@ -843,9 +857,9 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         )}
 
-        {/* 14. Dynamic Advertisement Space / Announcement Banner */}
+        {/* 13. Dynamic Announcement Banner */}
         {advertisements && advertisements.some(ad => ad.placement === "midpage" && ad.isActive && !hiddenAdIds.includes(ad.id)) && (
-          <section className="relative bg-stone-900 py-16 px-5 sm:px-8 lg:px-12 text-white text-center border-y border-white/10">
+          <section className="relative bg-[#0A1F2B] py-16 px-5 sm:px-8 lg:px-12 text-[#FFFFFF] text-center border-y border-white/10">
             {advertisements.filter(ad => ad.placement === "midpage" && ad.isActive && !hiddenAdIds.includes(ad.id)).slice(0, 1).map(ad => (
               <div key={ad.id} className="max-w-3xl mx-auto space-y-4 relative">
                 <button
@@ -854,16 +868,16 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 >
                   {language === "hi" ? "[बंद करें]" : "[CLOSE AD]"}
                 </button>
-                <span className="mono-label text-[9px] text-white/50 uppercase tracking-widest block">{language === "hi" ? "घोषणा" : "ANNOUNCEMENT"}</span>
-                <h3 className="font-display text-3xl font-black uppercase tracking-wide mt-2">{ad.title}</h3>
-                {ad.description && <p className="text-sm text-white/70">{ad.description}</p>}
+                <span className="mono-label text-[9px] text-[#C89A3D] uppercase tracking-widest block">{language === "hi" ? "घोषणा" : "ANNOUNCEMENT"}</span>
+                <h3 className="font-display text-3xl font-bold uppercase tracking-wide mt-2 text-white">{ad.title}</h3>
+                {ad.description && <p className="text-sm text-[#FFFFFF]/70">{ad.description}</p>}
                 {ad.linkUrl && (
                   <a
                     href={ad.linkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => recordAdAction(ad.id, "click")}
-                    className="mt-4 inline-flex items-center gap-2 border border-white bg-[#C19040] px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-black"
+                    className="mt-4 inline-flex items-center gap-2 border border-[#C89A3D] bg-[#C89A3D] px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-black rounded-md hover:bg-[#A9781D] hover:border-[#A9781D]"
                   >
                     {ad.buttonText || (language === "hi" ? "अधिक जानें" : "Learn More")} <ArrowUpRight size={14} />
                   </a>
@@ -873,34 +887,34 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </section>
         )}
 
+        {/* 14. Enquiry Lead Generation */}
+        <HimatInquiry />
+
         {/* 15. Final Brand Statement Section */}
-        <section className="bg-[#161612] py-24 px-5 sm:px-8 lg:px-12 border-t border-white/5">
-          <div className="mx-auto max-w-[1500px] text-center space-y-6">
-            <span className="mono-label text-[10px] text-[#C19040] tracking-[0.3em] uppercase block">
+        <section className="bg-[#0A1F2B] py-24 px-5 sm:px-8 lg:px-12 border-t border-[#E8E2D8]/10 text-white">
+          <div className="mx-auto max-w-[1280px] text-center space-y-6">
+            <span className="mono-label text-[10px] text-[#C89A3D] tracking-[0.3em] uppercase block">
               // {t("bs_location")}
             </span>
-            <h2 className="font-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
+            <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-6xl md:text-7xl lg:text-8xl text-white">
               <span className="block text-white">{t("bs_title_1")}</span>
               <span className="block text-transparent stroke-text">{t("bs_title_2")}</span>
               <span className="block text-white">{t("bs_title_3")}</span>
             </h2>
-            <div className="mx-auto h-0.5 bg-[#C19040]/20 w-24 my-4" />
+            <div className="mx-auto h-0.5 bg-[#C89A3D]/25 w-24 my-4" />
             <p className="mx-auto max-w-2xl text-xs sm:text-sm font-semibold tracking-wider text-white/70 uppercase leading-relaxed">
               {t("bs_subtitle")}
             </p>
           </div>
         </section>
 
-        {/* 16. Inquiry Lead Generation */}
-        <HimatInquiry />
-
         {/* Active Popup Overlay Advertisement */}
         {mounted && (() => {
           const activePopup = advertisements?.find(ad => ad.placement === "popup" && ad.isActive && !hiddenAdIds.includes(ad.id));
           if (!activePopup) return null;
           return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/85 p-5 backdrop-blur-sm">
-              <div className="relative w-full max-w-lg border border-white/10 bg-stone-900 p-8 text-white space-y-6">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/90 p-5 backdrop-blur-sm">
+              <div className="relative w-full max-w-lg border border-white/10 bg-[#122D3B] p-8 text-white space-y-6 rounded-xl">
                 <button
                   onClick={() => handleHideAd(activePopup.id)}
                   className="absolute right-4 top-4 border border-white/20 bg-transparent px-3 py-1.5 text-[9px] font-bold uppercase tracking-widest text-white/60 hover:border-white hover:text-white"
@@ -908,15 +922,15 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   [X]
                 </button>
                 <div className="space-y-3">
-                  <span className="mono-label text-[8px] text-white/50 uppercase tracking-widest">{language === "hi" ? "सीमित समय अलर्ट" : "LIMITED TIME ALERT"}</span>
-                  <h3 className="font-display text-4xl font-black uppercase leading-none tracking-tight">{activePopup.title}</h3>
-                  {activePopup.description && <p className="text-sm leading-relaxed text-white/77">{activePopup.description}</p>}
+                  <span className="mono-label text-[8px] text-[#C89A3D] uppercase tracking-widest">{language === "hi" ? "सीमित समय अलर्ट" : "LIMITED TIME ALERT"}</span>
+                  <h3 className="font-display text-4xl font-bold uppercase leading-none tracking-tight text-white">{activePopup.title}</h3>
+                  {activePopup.description && <p className="text-sm leading-relaxed text-white/75">{activePopup.description}</p>}
                 </div>
                 {activePopup.imageUrl && (
                   <img
                     src={activePopup.imageUrl}
                     alt="Highlight"
-                    className="w-full h-48 object-cover border border-white/10"
+                    className="w-full h-48 object-cover border border-white/10 rounded-md"
                   />
                 )}
                 <div className="flex gap-4 pt-2">
@@ -926,14 +940,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => recordAdAction(activePopup.id, "click")}
-                      className="flex-1 border border-white bg-[#C19040] py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-black transition-colors hover:bg-transparent hover:text-white"
+                      className="flex-1 bg-[#C89A3D] py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-black rounded-md transition-colors hover:bg-[#A9781D]"
                     >
                       {activePopup.buttonText || (language === "hi" ? "सौदा देखें" : "View Deal")}
                     </a>
                   )}
                   <button
                     onClick={() => handleHideAd(activePopup.id)}
-                    className="flex-1 border border-white/30 bg-transparent py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-white transition-colors hover:border-white"
+                    className="flex-1 border border-white/30 bg-transparent py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-white rounded-md transition-colors hover:border-white"
                   >
                     {language === "hi" ? "बंद करें" : "Dismiss"}
                   </button>
@@ -948,11 +962,11 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           const activeFooterAd = advertisements?.find(ad => ad.placement === "footer" && ad.isActive && !hiddenAdIds.includes(ad.id));
           if (!activeFooterAd) return null;
           return (
-            <div className="fixed bottom-4 inset-x-5 z-40 mx-auto max-w-[1440px] border border-white/15 bg-[#161612]/95 p-5 text-white backdrop-blur-md flex flex-col justify-between items-center gap-4 md:flex-row shadow-2xl">
+            <div className="fixed bottom-4 inset-x-5 z-40 mx-auto max-w-[1280px] border border-white/15 bg-[#0A1F2B]/95 p-5 text-white backdrop-blur-md flex flex-col justify-between items-center gap-4 md:flex-row shadow-2xl rounded-xl">
               <div className="flex items-center gap-4">
-                <span className="mono-label text-[8px] bg-[#C19040]/10 px-2 py-1 text-white/70 uppercase">{language === "hi" ? "नवीनतम संक्षिप्त" : "LATEST BRIEF"}</span>
+                <span className="mono-label text-[8px] bg-[#C89A3D]/10 px-2 py-1 text-[#C89A3D] uppercase font-bold">{language === "hi" ? "नवीनतम संक्षिप्त" : "LATEST BRIEF"}</span>
                 <div>
-                  <h4 className="font-display text-base font-black uppercase tracking-tight leading-none">{activeFooterAd.title}</h4>
+                  <h4 className="font-display text-base font-bold uppercase tracking-tight leading-none text-white">{activeFooterAd.title}</h4>
                   {activeFooterAd.description && <p className="text-xs text-white/60 mt-1">{activeFooterAd.description}</p>}
                 </div>
               </div>
@@ -963,14 +977,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => recordAdAction(activeFooterAd.id, "click")}
-                    className="border border-white bg-[#C19040] px-4 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-black hover:bg-transparent hover:text-white transition-colors text-center w-full md:w-auto"
+                    className="bg-[#C89A3D] px-4 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-black hover:bg-[#A9781D] transition-colors text-center w-full md:w-auto rounded-md"
                   >
                     {activeFooterAd.buttonText || (language === "hi" ? "अधिक जानें" : "Learn More")}
                   </a>
                 )}
                 <button
                   onClick={() => handleHideAd(activeFooterAd.id)}
-                  className="border border-white/20 bg-transparent px-3 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-white/60 hover:border-white hover:text-white transition-colors"
+                  className="border border-white/20 bg-transparent px-3 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-white/60 hover:border-white hover:text-white transition-colors rounded-md"
                 >
                   {language === "hi" ? "[बंद करें]" : "[DISMISS]"}
                 </button>

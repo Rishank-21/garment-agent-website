@@ -103,42 +103,42 @@ export function HimatInquiry({
   };
 
   return (
-    <section id="enquiry" className="scroll-mt-28 bg-[#F4EFE6] px-5 py-20 text-[#161612] sm:px-8 lg:px-12 lg:py-28">
-      <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+    <section id="enquiry" className="scroll-mt-28 bg-[#F6F3ED] px-5 py-20 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-28 border-t border-[#E8E2D8]">
+      <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         {/* Info Column */}
         <div className="space-y-6">
-          <span className="mono-label text-[10px] text-[#C95A1A] uppercase">{t("enq_label")}</span>
-          <h2 className="font-display text-4xl font-black uppercase leading-none tracking-[-.08em] sm:text-7xl sm:leading-[0.88]">
+          <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">// {t("enq_label")}</span>
+          <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.9] text-[#0A1F2B]">
             {language === "hi" ? (
               <>आइए आपका<br />अगला कलेक्शन<br />बनाएं।</>
             ) : (
               <>Let's Build<br />Your Next<br />Collection.</>
             )}
           </h2>
-          <p className="max-w-md text-sm leading-relaxed text-black/65">
+          <p className="max-w-md text-sm leading-relaxed text-[#667085]">
             {t("enq_desc_p")}
           </p>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-black/10">
+          <div className="flex flex-col gap-3 pt-6 border-t border-[#E8E2D8]">
             <a
               href="https://wa.me/919873938095"
               target="_blank"
               rel="noreferrer"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#161612] hover:text-[#C95A1A] transition-colors"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#0A1F2B] hover:text-[#C89A3D] transition-colors"
             >
-              <MessageSquare size={16} /> {t("whatsapp_chat_desk")}
+              <MessageSquare size={16} className="text-[#C89A3D]" /> {t("whatsapp_chat_desk")}
             </a>
             <a
               href="tel:+919873938095"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#161612] hover:text-[#C95A1A] transition-colors"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#0A1F2B] hover:text-[#C89A3D] transition-colors"
             >
-              <Phone size={16} /> {t("call_direct_desk")}
+              <Phone size={16} className="text-[#C89A3D]" /> {t("call_direct_desk")}
             </a>
           </div>
         </div>
 
         {/* Form Column */}
-        <form onSubmit={onSubmit} className="grid gap-6 border-t-2 border-black pt-6 sm:grid-cols-2">
+        <form onSubmit={onSubmit} className="grid gap-6 border-t-2 border-[#0A1F2B] pt-6 sm:grid-cols-2">
           <Field
             label={t("enq_field_name")}
             value={form.contactName}
@@ -169,7 +169,7 @@ export function HimatInquiry({
 
           {/* Garment Requirements Multi-select Checklist */}
           <div className="sm:col-span-2 space-y-3">
-            <span className="mono-label text-[10px] text-[#C95A1A] uppercase">{t("enq_field_requirement")}</span>
+            <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{t("enq_field_requirement")}</span>
             <div className="flex flex-wrap gap-2">
               {requirementsOptions.map((req) => {
                 const isSelected = selectedReqs.includes(req);
@@ -179,10 +179,10 @@ export function HimatInquiry({
                     key={req}
                     type="button"
                     onClick={() => toggleRequirement(req)}
-                    className={`border px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all ${
+                    className={`border px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all rounded-md ${
                       isSelected
-                        ? "bg-[#C95A1A] text-[#F4EFE6] border-[#C95A1A]"
-                        : "bg-transparent text-[#161612] border-[#161612]/25 hover:border-[#C95A1A]"
+                        ? "bg-[#C89A3D] text-[#FFFFFF] border-[#C89A3D]"
+                        : "bg-transparent text-[#1A1A1A] border-[#E8E2D8] hover:border-[#C89A3D]"
                     }`}
                   >
                     {req === "Men's Wear" && language === "hi" ? "मेन्स वियर (पुरुष परिधान)" :
@@ -208,7 +208,7 @@ export function HimatInquiry({
           </div>
 
           <label className="grid gap-2 sm:col-span-2">
-            <span className="mono-label text-[10px] text-[#C95A1A] uppercase">{t("enq_field_message")}</span>
+            <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{t("enq_field_message")}</span>
             <textarea
               suppressHydrationWarning={true}
               required
@@ -216,14 +216,14 @@ export function HimatInquiry({
               onChange={(event) => update("message", event.target.value)}
               minLength={10}
               placeholder={t("enq_placeholder_msg")}
-              className="min-h-32 resize-y border-b border-[#161612]/35 bg-transparent py-3 text-sm outline-none placeholder:text-[#161612]/35 focus:border-[#C95A1A]"
+              className="min-h-32 resize-y border-b border-[#E8E2D8] bg-transparent py-3 text-sm outline-none placeholder:text-[#667085]/55 focus:border-[#C89A3D]"
             />
           </label>
 
           <button
             suppressHydrationWarning={true}
             disabled={isPending}
-            className="group mt-2 flex w-full items-center justify-between bg-[#C95A1A] px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-[#F4EFE6] transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2"
+            className="group mt-2 flex w-full items-center justify-between bg-[#C89A3D] hover:bg-[#A9781D] px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2 rounded-md"
           >
             <span>{isPending ? (language === "hi" ? "भेजा जा रहा है..." : "Sending...") : t("btn_send_enquiry")}</span>
             {isPending ? (
@@ -255,7 +255,7 @@ function Field({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="mono-label text-[10px] text-[#C95A1A] uppercase">{label}</span>
+      <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{label}</span>
       <input
         suppressHydrationWarning={true}
         required={required}
@@ -263,7 +263,7 @@ function Field({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="border-b border-[#161612]/35 bg-transparent py-3 text-sm outline-none placeholder:text-[#161612]/35 focus:border-[#C95A1A]"
+        className="border-b border-[#E8E2D8] bg-transparent py-3 text-sm outline-none placeholder:text-[#667085]/55 focus:border-[#C89A3D]"
       />
     </label>
   );

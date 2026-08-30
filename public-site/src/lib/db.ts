@@ -339,7 +339,7 @@ const mockAdvertisements: Advertisement[] = [
   {
     id: 1,
     title: "Built for the Business of Fashion",
-    description: "Your B2B garment partner for wholesale, private label, and growing fashion brands.",
+    description: "Your B2B garment partner for wholesale, white labeling, and growing fashion brands.",
     imageUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200",
     mobileImage: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=600",
     imageKey: null,
