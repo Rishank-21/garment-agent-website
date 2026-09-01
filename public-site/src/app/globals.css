@@ -8,9 +8,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Manrope", sans-serif;
-  --font-mono: "DM Mono", monospace;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-display), "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-mono: var(--font-mono), "DM Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -30,52 +30,45 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --radius: 12px;
-  --button-radius: 6px;
-  --background: #FFFFFF;
+  --radius: 4px;
+  --button-radius: 3px;
+  
+  /* Primary Theme Tokens based on Himat Textile Logo Golden Yellow */
+  --background: #FAF8F5;
   --foreground: #1A1A1A;
   --card: #FFFFFF;
   --card-foreground: #1A1A1A;
+  --card-muted: #EFE9DE;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  --primary: #C89A3D;
-  --primary-foreground: #0A1F2B;
-  --secondary: #0A1F2B;
-  --secondary-foreground: #F6F3ED;
-  --muted: #F6F3ED;
-  --muted-foreground: #667085;
-  --accent: #122D3B;
-  --accent-foreground: #F6F3ED;
-  --border: #E8E2D8;
-  --input: #E8E2D8;
-  --ring: #C89A3D;
-  --sidebar: #FFFFFF;
-  --sidebar-foreground: #1A1A1A;
-  --sidebar-primary: #C89A3D;
-  --sidebar-primary-foreground: #0A1F2B;
-  --sidebar-accent: #F6F3ED;
-  --sidebar-border: #E8E2D8;
-  --sidebar-ring: #C89A3D;
+  --primary: #F5B014;
+  --primary-foreground: #181511;
+  --secondary: #FFC933;
+  --secondary-foreground: #181511;
+  --muted: #F3EFEA;
+  --muted-foreground: #66625D;
+  --accent: #E0950B;
+  --accent-foreground: #FFFFFF;
+  --border: #E2DDD5;
+  --input: #E2DDD5;
+  --ring: #F5B014;
 
-  --himat-navy: #0A1F2B;
-  --himat-sec-navy: #122D3B;
-  --himat-gold: #C89A3D;
-  --himat-gold-hover: #A9781D;
-  --himat-ivory: #F6F3ED;
-  --himat-white: #FFFFFF;
-  --himat-border: #E8E2D8;
-  --himat-ink: #1A1A1A;
-  --himat-muted: #667085;
+  /* Himat Logo Golden Yellow & Luxury Warm Palette */
+  --ht-gold: #F5B014;
+  --ht-gold-light: #FFD44D;
+  --ht-gold-dark: #C98500;
+  --ht-gold-rich: #E0950B;
+  --ht-ivory: #FAF8F5;
+  --ht-offwhite: #F3EFEA;
+  --ht-beige: #EAE4DA;
+  --ht-charcoal: #1A1A1A;
+  --ht-charcoal-deep: #121212;
+  --ht-secondary-text: #66625D;
+  --ht-border: #E2DDD5;
+  --ht-white: #FFFFFF;
 }
 
 .dark { color-scheme: dark; }
@@ -84,25 +77,84 @@
   * { @apply border-border outline-ring/50; }
   html { scroll-behavior: smooth; }
   body { @apply bg-background text-foreground font-sans antialiased; }
-  button:not(:disabled), [role="button"]:not([aria-disabled="true"]), [type="button"]:not(:disabled), [type="button"]:not(:disabled), [type="submit"]:not(:disabled), [type="reset"]:not(:disabled), a[href], select:not(:disabled), input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled) { @apply cursor-pointer rounded-md; }
-  ::selection { background: var(--himat-gold); color: var(--himat-navy); }
+  button:not(:disabled), [role="button"]:not([aria-disabled="true"]), [type="button"]:not(:disabled), [type="submit"]:not(:disabled), [type="reset"]:not(:disabled), a[href], select:not(:disabled), input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled) { @apply cursor-pointer; }
+  ::selection { background: #F5B014; color: #181511; }
 }
 
 @layer components {
   .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
   .editorial-rule { height: 1px; background: currentColor; opacity: .12; }
-  .accent-rule { height: 3px; width: 4rem; background: var(--himat-gold); }
-  .paper-surface { background: var(--himat-ivory); color: var(--himat-ink); }
-  .ink-surface { background: var(--himat-navy); color: var(--himat-ivory); }
-  .orange-button { background: var(--himat-gold); color: #FFFFFF; @apply rounded-md font-medium transition-colors hover:bg-[#A9781D]; }
-  .gold-button { background: var(--himat-gold); color: #FFFFFF; @apply rounded-md font-medium transition-colors hover:bg-[#A9781D]; }
+  .accent-rule { height: 2px; width: 3.5rem; background: var(--ht-gold); }
+  .ivory-surface { background: var(--ht-ivory); color: var(--ht-charcoal); }
+  .offwhite-surface { background: var(--ht-offwhite); color: var(--ht-charcoal); }
+  .beige-surface { background: var(--ht-beige); color: var(--ht-charcoal); }
+  .dark-surface { background: var(--ht-charcoal); color: var(--ht-ivory); }
+  
+  /* Brand Golden Yellow Gradient Utility */
+  .brand-gradient {
+    background: linear-gradient(135deg, #FFD44D 0%, #F5B014 50%, #E0950B 100%);
+  }
+  .brand-gradient-subtle {
+    background: linear-gradient(135deg, rgba(245, 176, 20, 0.15) 0%, rgba(224, 149, 11, 0.1) 100%);
+  }
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #FFD44D 0%, #F5B014 45%, #C98500 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Ultra-Luxury Golden Yellow Button System */
+  .gold-button, .orange-button, .red-button, .burgundy-button, .gradient-button { 
+    background: linear-gradient(135deg, #FFD043 0%, #F5B014 50%, #E0950B 100%); 
+    color: #181511; 
+    border: 1px solid rgba(245, 176, 20, 0.4);
+    @apply font-black uppercase tracking-wider transition-all duration-300 hover:brightness-105 hover:shadow-lg active:scale-[0.98]; 
+  }
+  .dark-button { 
+    background: #1A1A1A; 
+    color: #FAF8F5; 
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#282828] hover:border-[#F5B014] border border-white/10 shadow-xs; 
+  }
+  .outline-button, .outline-gold-button, .outline-orange-button, .outline-burgundy-button { 
+    border: 1.5px solid #F5B014; 
+    color: #C98500; 
+    background: transparent;
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#F5B014] hover:text-[#181511] shadow-xs; 
+  }
+  .outline-light-button {
+    border: 1.5px solid rgba(250, 248, 245, 0.4);
+    color: #FAF8F5;
+    background: transparent;
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#FAF8F5] hover:text-[#1A1A1A] hover:border-[#FAF8F5];
+  }
+
+  /* Card Surfaces */
+  .luxury-card {
+    background: #FFFFFF;
+    border: 1px solid #E2DDD5;
+    @apply transition-all duration-500 hover:border-[#F5B014] hover:shadow-xl;
+  }
+  .luxury-dark-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    @apply transition-all duration-500 hover:border-[#F5B014]/70 hover:bg-white/[0.07];
+  }
+  .gold-badge, .orange-badge, .amber-badge {
+    background: rgba(245, 176, 20, 0.12);
+    border: 1px solid rgba(245, 176, 20, 0.35);
+    color: #B87400;
+    @apply font-mono font-bold uppercase tracking-widest text-[9px] px-3 py-1 rounded-xs shadow-xs;
+  }
+  
   @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
-  @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1280px; } }
+  @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1320px; } }
 }
 
-.font-display { font-family: var(--font-display), "Manrope", sans-serif; }
-.mono-label { font-family: "DM Mono", monospace; letter-spacing: .16em; text-transform: uppercase; }
-.noise-layer { opacity: .06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); mix-blend-mode: soft-light; pointer-events: none; }
+.font-serif-display { font-family: var(--font-display), "Playfair Display", Georgia, serif; }
+.italic-accent { font-family: var(--font-display), Georgia, serif; font-style: italic; color: #FE6311; }
+.mono-label { font-family: var(--font-mono), "DM Mono", monospace; letter-spacing: .14em; text-transform: uppercase; font-size: 0.72rem; }
+.noise-layer { opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); mix-blend-mode: multiply; pointer-events: none; }
 .marquee-track { animation: marquee 35s linear infinite; width: max-content; }
 .marquee-track:hover { animation-play-state: paused; }
 .hero-reveal { animation: fade-up 600ms cubic-bezier(.25, 1, .5, 1) both; }
@@ -110,11 +162,16 @@
 .admin-input option { color: black; }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
 
 .stroke-text {
-  -webkit-text-stroke: 1px rgba(247, 242, 233, 0.78);
-  text-stroke: 1px rgba(247, 242, 233, 0.78);
+  -webkit-text-stroke: 1px rgba(37, 37, 37, 0.25);
+  text-stroke: 1px rgba(37, 37, 37, 0.25);
+}
+.stroke-text-light {
+  -webkit-text-stroke: 1px rgba(250, 249, 246, 0.65);
+  text-stroke: 1px rgba(250, 249, 246, 0.65);
 }
 
 html.lenis, html.lenis body { height: auto; }
@@ -122,3 +179,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+
+
+
+

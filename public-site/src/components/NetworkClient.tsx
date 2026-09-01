@@ -1,79 +1,78 @@
-"use client";
+﻿"use client";
 
 import React from "react";
 import { Globe, MapPin } from "lucide-react";
 import IndiaNetwork from "@/components/IndiaNetwork";
 import { City, Brand } from "@/lib/schema";
 import { HimatInquiry } from "@/components/HimatInquiry";
-import { EditorialPageIntro } from "@/components/EditorialPageIntro";
 
 interface NetworkClientProps { cities: City[]; brands: Brand[]; }
 
 export default function NetworkClient({ cities, brands }: NetworkClientProps) {
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
+    <div className="min-h-screen bg-[#FAF9F6] text-[#252525] selection:bg-[#FFB51A] selection:text-[#252525]">
       <main>
-        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-8 pt-28 text-[#FFFFFF] sm:px-8 lg:px-12 lg:pt-36 border-b border-white/10">
-          <div className="noise-layer absolute inset-0 opacity-5" />
+        {/* Network Hero */}
+        <section className="relative overflow-hidden bg-[#141414] px-5 pb-12 pt-28 text-[#FAF8F5] sm:px-8 lg:px-12 lg:pt-36 border-b border-black/30">
           <div className="relative mx-auto max-w-[1500px]">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#F5B014]">
                 <span>Home</span>
                 <span className="opacity-50">/</span>
-                <span className="text-white/60">Supply Chain Network</span>
+                <span className="text-[#FAF8F5]/80">Supply Chain Network</span>
               </div>
-              <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight text-white">
+              <h1 className="font-serif-display text-[clamp(2.2rem,5.2vw,4.8rem)] font-black uppercase leading-[0.95] tracking-tight text-[#FAF8F5]">
                 Garment Market Logistics Hubs.
               </h1>
-              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-white/70">
+              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-[#FAF8F5]/85">
                 Ahmedabad connects you directly to primary garment hubs and B2B transit routes across India. View our active supply chain hubs and regional connections mapped below.
               </p>
             </div>
           </div>
         </section>
-        <div className="border-t border-[#E8E2D8]"><IndiaNetwork /></div>
+        <div className="border-t border-[#E2DDD5]"><IndiaNetwork /></div>
 
-        <section className="bg-[#0A1F2B] text-[#FFFFFF] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 border-t border-[#E8E2D8]/10">
+        <section className="bg-[#141414] text-[#FAF8F5] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 border-t border-black/30">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col justify-between gap-5 border-b border-white/10 pb-6 lg:flex-row lg:items-end">
+            <div className="flex flex-col justify-between gap-5 border-b border-white/15 pb-6 lg:flex-row lg:items-end">
               <div>
-                <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">Sourcing ecosystem</span>
-                <h2 className="mt-3 font-display text-3xl font-bold uppercase leading-none tracking-tight sm:text-5xl text-white">Relevant hubs.<br />Better context.</h2>
+                <span className="mono-label text-[9px] font-bold text-[#F5B014] uppercase tracking-wider block">Sourcing ecosystem</span>
+                <h2 className="mt-3 font-serif-display text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl text-[#FAF8F5]">Relevant hubs.<br /><span className="italic font-normal text-[#F5B014]">Better context.</span></h2>
               </div>
-              <p className="max-w-md text-sm leading-relaxed text-[#FFFFFF]/70">Use the network as a starting point for product discovery, not as a substitute for requirement-specific verification.</p>
+              <p className="max-w-md text-sm leading-relaxed text-[#FAF8F5]/85">Use the network as a starting point for product discovery, not as a substitute for requirement-specific verification.</p>
             </div>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {cities.map((city) => (
-                <div key={city.id} className="border border-white/10 bg-[#122D3B] p-6 rounded-xl transition-colors hover:bg-[#122D3B]/80">
+                <div key={city.id} className="border border-white/15 bg-white/5 p-6 rounded-xs transition-all hover:border-[#F5B014] shadow-xs">
                   <div className="flex items-center justify-between">
-                    <MapPin className="text-[#C89A3D]" size={20} />
-                    <span className="mono-label border border-[#C89A3D]/40 px-2 py-1 text-[8px] text-[#C89A3D] rounded-md font-bold">Active hub</span>
+                    <MapPin className="text-[#F5B014]" size={20} />
+                    <span className="mono-label bg-white/10 border border-white/15 px-2.5 py-1 text-[8.5px] text-[#F5B014] rounded-xs font-bold uppercase">Active hub</span>
                   </div>
-                  <h4 className="mt-10 font-display text-lg font-bold uppercase tracking-wider text-white">{city.name}</h4>
-                  <p className="mt-2 font-mono text-[10px] text-[#FFFFFF]/60">LAT: {city.latitude}<br />LNG: {city.longitude}</p>
+                  <h4 className="mt-8 font-serif-display text-lg font-bold uppercase tracking-wider text-[#FAF8F5]">{city.name}</h4>
+                  <p className="mt-2 font-mono text-[10px] text-[#FAF8F5]/75 font-semibold">LAT: {city.latitude}<br />LNG: {city.longitude}</p>
                 </div>
               ))}
               {cities.length === 0 && (
-                <div className="border border-white/10 p-6 text-center font-mono text-[10px] text-[#FFFFFF]/60 sm:col-span-2 lg:col-span-4 rounded-xl bg-[#122D3B]">No additional custom hubs registered in database.</div>
+                <div className="border border-white/15 p-6 text-center font-mono text-[10px] text-[#FAF8F5]/75 sm:col-span-2 lg:col-span-4 rounded-xs bg-white/5">No additional custom hubs registered in database.</div>
               )}
             </div>
           </div>
         </section>
 
         {brands.length > 0 && (
-          <section className="paper-surface border-t border-[#E8E2D8] bg-[#F6F3ED] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 text-[#1A1A1A]">
+          <section className="border-t border-[#E2DDD5] bg-[#FAF9F6] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 text-[#252525]">
             <div className="mx-auto max-w-[1280px]">
-              <span className="mono-label text-[10px] text-[#C89A3D] uppercase block tracking-wider">// CLIENT ECOSYSTEM</span>
-              <h2 className="mt-3 font-display text-3xl font-bold uppercase leading-none tracking-tight sm:text-5xl text-[#0A1F2B]">Featured sourcing brands.</h2>
+              <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase tracking-wider inline-block">[ CLIENT ECOSYSTEM ]</span>
+              <h2 className="mt-3 font-serif-display text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl text-[#252525]">Featured sourcing brands.</h2>
               <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
                 {brands.map((brand) => (
-                  <div key={brand.id} className="flex min-h-32 flex-col items-center justify-center gap-3 bg-[#FFFFFF] border border-[#E8E2D8] p-5 text-center rounded-xl transition-colors hover:border-[#C89A3D] hover:shadow-lg">
+                  <div key={brand.id} className="flex min-h-32 flex-col items-center justify-center gap-3 bg-[#FFFFFF] border border-[#E2DDD5] p-5 text-center rounded-xs transition-all hover:border-[#F5B014] hover:shadow-lg shadow-xs">
                     {brand.logoUrl ? (
-                      <img src={brand.logoUrl} alt={brand.name} className="h-10 w-full object-contain opacity-75" />
+                      <img src={brand.logoUrl} alt={brand.name} className="h-10 w-full object-contain opacity-80" />
                     ) : (
-                      <Globe className="text-[#C89A3D]" size={24} />
+                      <Globe className="text-[#F5B014]" size={24} />
                     )}
-                    <span className="mono-label w-full truncate text-[8px] font-bold text-[#667085]">{brand.name}</span>
+                    <span className="mono-label w-full truncate text-[8.5px] font-bold text-[#66625D] uppercase">{brand.name}</span>
                   </div>
                 ))}
               </div>
@@ -85,3 +84,4 @@ export default function NetworkClient({ cities, brands }: NetworkClientProps) {
     </div>
   );
 }
+

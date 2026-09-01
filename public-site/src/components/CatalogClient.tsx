@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { ArrowUpRight, Filter } from "lucide-react";
 import { Product, Advertisement, Category } from "@/lib/schema";
 import { HimatInquiry } from "@/components/HimatInquiry";
-import { EditorialPageIntro } from "@/components/EditorialPageIntro";
 
 interface CatalogClientProps {
   initialProducts: Product[];
@@ -60,7 +59,7 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
 
   const handleCategoryClick = (catSlug: string) => {
     setCategory(catSlug);
-    setSubcategory(""); // Reset subcategory when switching main category
+    setSubcategory("");
   };
 
   const filteredProducts = initialProducts.filter((product) => {
@@ -75,47 +74,47 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
   const activeAds = initialAds.filter((ad) => ad.placement === "homepage" && ad.isActive && !hiddenAdIds.includes(ad.id));
 
   return (
-    <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1A1A1A] selection:bg-[#F5B014] selection:text-[#181511]">
       <main>
-        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-10 pt-28 text-[#FFFFFF] sm:px-8 lg:px-12 lg:pt-36 border-b border-white/10">
-          <div className="noise-layer absolute inset-0 opacity-5" />
+        {/* Catalog Hero Banner */}
+        <section className="relative overflow-hidden bg-[#141414] px-5 pb-14 pt-32 text-[#FAF8F5] sm:px-8 lg:px-12 lg:pt-40 border-b border-black/30">
           <div className="relative mx-auto max-w-[1280px]">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#F5B014]">
                 <span>Home</span>
                 <span className="opacity-50">/</span>
-                <span className="text-white/60">Garment Catalog</span>
+                <span className="text-[#FAF8F5]/80">Garment Catalog</span>
               </div>
-              <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight text-white">
+              <h1 className="font-serif-display text-[clamp(2.2rem,5.2vw,4.8rem)] font-black uppercase leading-[0.95] tracking-tight text-[#FAF8F5]">
                 Explore Our Garment Collection.
               </h1>
-              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-white/70">
-                Browse our commercially relevant wholesale selections or sort by category. Use our B2B enquiry desk to request specific fabric configurations, sampling runs, and customized branding packages.
+              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-[#FAF8F5]/85">
+                Browse our commercially relevant wholesale selections for Men, Women, Kids, and Mill Direct Fabrics. Use our B2B enquiry desk to request specific fabric configurations, sampling runs, and customized branding packages.
               </p>
             </div>
           </div>
         </section>
 
         {activeAds.length > 0 && (
-          <section className="paper-surface px-5 pt-8 sm:px-8 lg:px-12">
+          <section className="px-5 pt-8 sm:px-8 lg:px-12">
             <div className="mx-auto max-w-[1280px]">
               {activeAds.slice(0, 1).map((ad) => (
-                <div key={ad.id} className="flex flex-col items-start justify-between gap-4 border border-[#E8E2D8] bg-[#F6F3ED] p-5 sm:flex-row sm:items-center rounded-xl">
+                <div key={ad.id} className="flex flex-col items-start justify-between gap-4 border border-[#E2DDD5] bg-[#FFFFFF] p-5 sm:flex-row sm:items-center rounded-xs shadow-xs">
                   <div className="flex items-center gap-4">
-                    {ad.imageUrl && <img src={ad.imageUrl} alt="Sourcing highlight" className="hidden h-12 w-12 border border-[#E8E2D8] object-cover sm:block rounded-md" />}
+                    {ad.imageUrl && <img src={ad.imageUrl} alt="Sourcing highlight" className="hidden h-12 w-12 border border-[#E2DDD5] object-cover sm:block rounded-xs" />}
                     <div>
-                      <span className="mono-label text-[8px] text-[#667085] font-bold">Himat sourcing highlight</span>
-                      <h4 className="mt-1 font-display text-lg font-bold uppercase leading-tight text-[#0A1F2B]">{ad.title}</h4>
-                      {ad.description && <p className="mt-1 text-xs text-[#667085]">{ad.description}</p>}
+                      <span className="mono-label text-[8.5px] text-[#D98A00] font-bold uppercase">Himat sourcing highlight</span>
+                      <h4 className="mt-1 font-serif-display text-lg font-bold uppercase leading-tight text-[#1A1A1A]">{ad.title}</h4>
+                      {ad.description && <p className="mt-1 text-xs text-[#66625D]">{ad.description}</p>}
                     </div>
                   </div>
                   <div className="flex w-full shrink-0 items-center justify-end gap-3 sm:w-auto">
                     {ad.linkUrl && (
-                      <a href={ad.linkUrl} target="_blank" rel="noreferrer" onClick={() => recordClick(ad.id)} className="gold-button px-4 py-2.5 text-center text-[9px] font-bold uppercase tracking-[.15em] rounded-md">
+                      <a href={ad.linkUrl} target="_blank" rel="noreferrer" onClick={() => recordClick(ad.id)} className="gold-button px-4 py-2.5 text-center text-[9px] font-black uppercase tracking-[.15em] rounded-xs shadow-xs">
                         {ad.buttonText || "Learn More"}
                       </a>
                     )}
-                    <button onClick={() => handleHideAd(ad.id)} className="border border-[#E8E2D8] px-3 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-[#667085] hover:border-[#C89A3D] rounded-md transition-colors">Close</button>
+                    <button onClick={() => handleHideAd(ad.id)} className="border border-[#E2DDD5] bg-white px-3 py-2.5 text-[9px] font-bold uppercase tracking-[.15em] text-[#66625D] hover:border-[#F5B014] hover:text-[#D98A00] rounded-xs transition-colors">Close</button>
                   </div>
                 </div>
               ))}
@@ -123,21 +122,30 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
           </section>
         )}
 
-        <section className="paper-surface px-5 py-12 sm:px-8 lg:px-12 lg:py-20">
+        <section className="px-5 py-12 sm:px-8 lg:px-12 lg:py-20">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-wrap items-center gap-2 border-b border-[#E8E2D8] pb-5">
-              <Filter size={15} className="mr-2 text-[#C89A3D]" />
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 border-b border-[#E2DDD5] pb-6">
+              <Filter size={16} className="mr-2 text-[#D98A00]" />
               <button
                 onClick={() => handleCategoryClick("all")}
-                className={`border px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] transition-colors rounded-md ${category === "all" ? "border-[#C89A3D] bg-[#C89A3D] text-[#FFFFFF]" : "border-[#E8E2D8] text-[#667085] hover:border-[#C89A3D]"}`}
+                className={`border px-4.5 py-2.5 text-[10.5px] font-bold uppercase tracking-[.16em] transition-all rounded-xs shadow-xs ${
+                  category === "all"
+                    ? "border-[#F5B014] bg-[#F5B014] text-[#181511] font-black"
+                    : "border-[#E2DDD5] bg-[#FFFFFF] text-[#1A1A1A] hover:border-[#F5B014]"
+                }`}
               >
-                All Collection
+                All Collections
               </button>
               {categories.map((cat) => (
                 <button
                   key={cat.id}
                   onClick={() => handleCategoryClick(cat.slug)}
-                  className={`border px-3 py-2 text-[10px] font-bold uppercase tracking-[.14em] transition-colors rounded-md ${category === cat.slug ? "border-[#C89A3D] bg-[#C89A3D] text-[#FFFFFF]" : "border-[#E8E2D8] text-[#667085] hover:border-[#C89A3D]"}`}
+                  className={`border px-4.5 py-2.5 text-[10.5px] font-bold uppercase tracking-[.16em] transition-all rounded-xs shadow-xs ${
+                    category === cat.slug
+                      ? "border-[#F5B014] bg-[#F5B014] text-[#181511] font-black"
+                      : "border-[#E2DDD5] bg-[#FFFFFF] text-[#1A1A1A] hover:border-[#F5B014]"
+                  }`}
                 >
                   {cat.name}
                 </button>
@@ -145,11 +153,13 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
             </div>
 
             {category !== "all" && (
-              <div className="mt-4 flex flex-wrap items-center gap-2 border-b border-[#E8E2D8] pb-5">
-                <span className="mono-label text-[9px] mr-2 text-[#667085]">Subcategories:</span>
+              <div className="mt-4 flex flex-wrap items-center gap-2 border-b border-[#E2DDD5] pb-5">
+                <span className="mono-label text-[9px] mr-2 font-bold text-[#66625D] uppercase">Subcategories:</span>
                 <button
                   onClick={() => setSubcategory("")}
-                  className={`border px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-[.12em] transition-colors rounded-md ${subcategory === "" ? "border-[#C89A3D] bg-[#C89A3D]/10 text-[#C89A3D]" : "border-[#E8E2D8] text-[#667085] hover:border-[#C89A3D]"}`}
+                  className={`border px-3.5 py-2 text-[9.5px] font-bold uppercase tracking-[.14em] transition-colors rounded-xs ${
+                    subcategory === "" ? "border-[#F5B014] bg-[#F5B014] text-[#181511] font-black" : "border-[#E2DDD5] bg-[#FFFFFF] text-[#66625D] hover:border-[#F5B014]"
+                  }`}
                 >
                   All {categories.find(c => c.slug === category)?.name || category}
                 </button>
@@ -157,7 +167,9 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
                   <button
                     key={sub}
                     onClick={() => setSubcategory(sub)}
-                    className={`border px-2.5 py-1.5 text-[9px] font-bold uppercase tracking-[.12em] transition-colors rounded-md ${subcategory === sub ? "border-[#C89A3D] bg-[#C89A3D]/10 text-[#C89A3D]" : "border-[#E8E2D8] text-[#667085] hover:border-[#C89A3D]"}`}
+                    className={`border px-3.5 py-2 text-[9.5px] font-bold uppercase tracking-[.14em] transition-colors rounded-xs ${
+                      subcategory === sub ? "border-[#F5B014] bg-[#F5B014] text-[#181511] font-black" : "border-[#E2DDD5] bg-[#FFFFFF] text-[#66625D] hover:border-[#F5B014]"
+                    }`}
                   >
                     {sub}
                   </button>
@@ -168,30 +180,45 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
             {filteredProducts.length ? (
               <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredProducts.map((product) => (
-                  <article key={product.id} className="group flex flex-col justify-between border border-[#E8E2D8] bg-[#FFFFFF] rounded-xl overflow-hidden transition-all hover:border-[#C89A3D] hover:shadow-lg">
+                  <article key={product.id} className="group flex flex-col justify-between border border-[#E2DDD5] bg-[#FFFFFF] rounded-xs overflow-hidden transition-all hover:border-[#F5B014] hover:shadow-xl shadow-xs">
                     <div>
-                      <div className="aspect-[4/3] overflow-hidden bg-[#F6F3ED]">
-                        {product.imageUrl && <img src={product.imageUrl} alt={product.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />}
+                      <div className="aspect-[4/3] overflow-hidden bg-[#F3EFEA]">
+                        {product.imageUrl && (
+                          <img
+                            src={product.imageUrl}
+                            alt={product.title}
+                            className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                          />
+                        )}
                       </div>
                       <div className="p-6">
-                        <p className="mono-label text-[10px] text-[#C89A3D] font-bold">{product.category} {product.subcategory ? `/ ${product.subcategory}` : ""}</p>
-                        <h2 className="mt-3 font-display text-3xl font-bold uppercase leading-[.95] tracking-tight text-[#0A1F2B]">{product.title}</h2>
-                        <p className="mt-4 text-sm leading-6 text-[#667085]">{product.description}</p>
-                        <p className="mt-5 border-t border-[#E8E2D8] pt-4 text-xs text-[#667085]">{product.fabricDetails}</p>
+                        <span className="mono-label text-[8.5px] text-[#B87400] font-bold uppercase bg-[#FFF9E6] border border-[#F5B014]/40 px-2.5 py-1 rounded-xs">
+                          {product.category} {product.subcategory ? `/ ${product.subcategory}` : ""}
+                        </span>
+                        <h2 className="mt-3 font-serif-display text-2xl font-bold uppercase leading-[1.05] tracking-tight text-[#1A1A1A]">
+                          {product.title}
+                        </h2>
+                        <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#66625D]">{product.description}</p>
+                        <p className="mt-4 border-t border-[#E2DDD5] pt-3 text-[11px] font-mono text-[#1A1A1A] font-semibold">{product.fabricDetails}</p>
                       </div>
                     </div>
                     <div className="px-6 pb-6 pt-0">
-                      <button onClick={() => handleRequestDetails(product)} className="inline-flex items-center gap-2 border-b border-transparent text-[10px] font-bold uppercase tracking-[.15em] text-[#C89A3D] transition-all hover:border-[#C89A3D] pt-4">Request details <ArrowUpRight size={14} /></button>
+                      <button
+                        onClick={() => handleRequestDetails(product)}
+                        className="inline-flex items-center gap-2 gold-button px-4.5 py-3 text-[10px] font-black uppercase tracking-[.16em] rounded-xs shadow-xs"
+                      >
+                        Request Quote <ArrowUpRight size={13} />
+                      </button>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
-              <div className="mt-10 grid min-h-80 place-items-center border border-[#E8E2D8] bg-[#F6F3ED] p-8 text-center rounded-xl">
+              <div className="mt-10 grid min-h-80 place-items-center border border-[#E2DDD5] bg-[#FFFFFF] p-8 text-center rounded-xs shadow-xs">
                 <div>
-                  <p className="font-display text-3xl font-bold uppercase tracking-tight text-[#0A1F2B]">The live catalog is being prepared.</p>
-                  <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-[#667085]">Tell Himat Textile what category, fabric, market and quantity you have in mind. The team can guide your next garment brief.</p>
-                  <a href="#enquiry" className="gold-button mt-7 inline-flex items-center gap-2 px-4 py-3 text-[10px] font-bold uppercase tracking-[.15em] rounded-md">Start an inquiry <ArrowUpRight size={14} /></a>
+                  <p className="font-serif-display text-3xl font-bold uppercase tracking-tight text-[#1A1A1A]">The live catalog is being prepared.</p>
+                  <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-[#66625D]">Tell Himat Textile what category, fabric, market and quantity you have in mind. The team can guide your next garment brief.</p>
+                  <a href="#enquiry" className="gold-button mt-6 inline-flex items-center gap-2 px-6 py-3.5 text-[10px] font-black uppercase tracking-[.16em] rounded-xs shadow-sm">Start an inquiry <ArrowUpRight size={14} /></a>
                 </div>
               </div>
             )}

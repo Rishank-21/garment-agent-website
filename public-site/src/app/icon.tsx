@@ -16,13 +16,14 @@ export default function Icon() {
     (
       <div
         style={{
-          background: "#161612",
+          background: "#5C0A0A",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "4px",
+          padding: "3px",
+          borderRadius: "6px",
         }}
       >
         <svg
@@ -30,24 +31,20 @@ export default function Icon() {
           style={{ width: "100%", height: "100%" }}
           fill="none"
         >
-          {/* T Top Bar (Yellow) */}
-          <path d="M10 10H110V22H10V10Z" fill="#C19040" />
-          
-          {/* T Vertical Stem (Yellow) */}
-          <path d="M54 22H66V120H54V22Z" fill="#C19040" />
+          {/* T Top Angled Bar (Gold #B8924A) */}
+          <path d="M22 10 L108 10 L108 24 L12 24 L22 10 Z" fill="#B8924A" />
 
-          {/* H Left Stem (Orange) */}
-          <path d="M22 30H38V110H22V30Z" fill="#C95A1A" />
-          {/* H Right Stem (Orange) */}
-          <path d="M82 30H98V110H82V30Z" fill="#C95A1A" />
-          {/* H Crossbar (Orange) */}
-          <path d="M38 64H82V76H38V64Z" fill="#C95A1A" />
+          {/* T Vertical Stem (Gold #B8924A) */}
+          <path d="M53 24 H67 V98 L78 116 H42 L53 98 V24 Z" fill="#B8924A" />
 
-          {/* Serif Details for H (Orange) */}
-          <path d="M16 30H44V34H16V30Z" fill="#C95A1A" />
-          <path d="M16 106H44V110H16V106Z" fill="#C95A1A" />
-          <path d="M76 30H104V34H76V30Z" fill="#C95A1A" />
-          <path d="M76 106H104V110H76V106Z" fill="#C95A1A" />
+          {/* H Left Column (Ivory #F8F4EF) */}
+          <path d="M12 30 H44 V36 C38 36 37 39 37 45 V96 C37 102 38 105 44 105 V111 H12 V105 C18 105 19 102 19 96 V45 C19 39 18 36 12 36 V30 Z" fill="#F8F4EF" />
+
+          {/* H Right Column (Ivory #F8F4EF) */}
+          <path d="M76 30 H108 V36 C102 36 101 39 101 45 V96 C101 102 102 105 108 105 V111 H76 V105 C82 105 83 102 83 96 V45 C83 39 82 36 76 36 V30 Z" fill="#F8F4EF" />
+
+          {/* H Crossbar (Gold #B8924A) */}
+          <path d="M37 66 H83 V74 H37 V66 Z" fill="#B8924A" />
         </svg>
       </div>
     ),
@@ -56,3 +53,6 @@ export default function Icon() {
     }
   );
 }
+
+
+

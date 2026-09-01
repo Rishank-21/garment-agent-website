@@ -16,8 +16,8 @@ export function EditorialPageIntro({ eyebrow, title, description, image, imageAl
     <section className="relative overflow-hidden bg-[#161612] px-5 pb-20 pt-32 text-[#F4EFE6] sm:px-8 lg:px-12 lg:pb-28 lg:pt-40">
       {image && (
         <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block">
-          <img src={image} alt={imageAlt || "Himat Textile garment sourcing"} className="h-full w-full object-cover opacity-30 grayscale" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#161612] via-[#161612]/75 to-[#161612]/10" />
+          <img src={image} alt={imageAlt || "Himat Textile garment sourcing"} className="h-full w-full object-cover opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#141414] via-[#141414]/65 to-transparent" />
         </div>
       )}
       <div className="noise-layer absolute inset-0" />

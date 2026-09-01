@@ -9,6 +9,7 @@ const requirementsOptions = [
   "Men's Wear",
   "Women's Wear",
   "Kids Wear",
+  "Ethnic Wear",
   "Bedsheets",
   "Fabrics Sourcing",
   "White Labeling",
@@ -103,42 +104,44 @@ export function HimatInquiry({
   };
 
   return (
-    <section id="enquiry" className="scroll-mt-28 bg-[#F6F3ED] px-5 py-20 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-28 border-t border-[#E8E2D8]">
+    <section id="enquiry" className="scroll-mt-28 bg-[#FAF9F6] px-5 py-20 text-[#252525] sm:px-8 lg:px-12 lg:py-28 border-t border-[#DEDAD2]">
       <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         {/* Info Column */}
         <div className="space-y-6">
-          <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">// {t("enq_label")}</span>
-          <h2 className="font-display text-4xl font-bold uppercase leading-none tracking-tight sm:text-7xl sm:leading-[0.9] text-[#0A1F2B]">
+          <span className="mono-label text-[9px] font-bold text-[#E94B0C] uppercase tracking-widest bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs inline-block">
+            [ 05 / {t("enq_label")} ]
+          </span>
+          <h2 className="font-serif-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl sm:leading-[0.95] text-[#252525]">
             {language === "hi" ? (
-              <>आइए आपका<br />अगला कलेक्शन<br />बनाएं।</>
+              <>आइए आपका<br /><span className="italic font-normal text-[#FE6311]">अगला कलेक्शन</span><br />बनाएं।</>
             ) : (
-              <>Let's Build<br />Your Next<br />Collection.</>
+              <>Let's Build<br /><span className="italic font-normal text-[#FE6311]">Your Next</span><br />Collection.</>
             )}
           </h2>
-          <p className="max-w-md text-sm leading-relaxed text-[#667085]">
+          <p className="max-w-md text-sm leading-relaxed text-[#6B6B6B]">
             {t("enq_desc_p")}
           </p>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-[#E8E2D8]">
+          <div className="flex flex-col gap-3 pt-6 border-t border-[#DEDAD2]">
             <a
               href="https://wa.me/919873938095"
               target="_blank"
               rel="noreferrer"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#0A1F2B] hover:text-[#C89A3D] transition-colors"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#252525] hover:text-[#FE6311] transition-colors"
             >
-              <MessageSquare size={16} className="text-[#C89A3D]" /> {t("whatsapp_chat_desk")}
+              <MessageSquare size={16} className="text-[#25D366]" /> {t("whatsapp_chat_desk")}
             </a>
             <a
               href="tel:+919873938095"
-              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#0A1F2B] hover:text-[#C89A3D] transition-colors"
+              className="flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-wider text-[#252525] hover:text-[#FE6311] transition-colors"
             >
-              <Phone size={16} className="text-[#C89A3D]" /> {t("call_direct_desk")}
+              <Phone size={16} className="text-[#FE6311]" /> {t("call_direct_desk")}
             </a>
           </div>
         </div>
 
         {/* Form Column */}
-        <form onSubmit={onSubmit} className="grid gap-6 border-t-2 border-[#0A1F2B] pt-6 sm:grid-cols-2">
+        <form onSubmit={onSubmit} className="grid gap-6 border-t-2 border-[#FE6311] pt-6 sm:grid-cols-2">
           <Field
             label={t("enq_field_name")}
             value={form.contactName}
@@ -169,7 +172,9 @@ export function HimatInquiry({
 
           {/* Garment Requirements Multi-select Checklist */}
           <div className="sm:col-span-2 space-y-3">
-            <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{t("enq_field_requirement")}</span>
+            <span className="mono-label text-[9.5px] text-[#252525] font-bold uppercase tracking-wider block">
+              {t("enq_field_requirement")}
+            </span>
             <div className="flex flex-wrap gap-2">
               {requirementsOptions.map((req) => {
                 const isSelected = selectedReqs.includes(req);
@@ -179,15 +184,16 @@ export function HimatInquiry({
                     key={req}
                     type="button"
                     onClick={() => toggleRequirement(req)}
-                    className={`border px-4 py-2.5 text-[10px] font-bold uppercase tracking-wider transition-all rounded-md ${
+                    className={`border px-3.5 py-2 text-[9.5px] font-bold uppercase tracking-wider transition-all rounded-xs shadow-xs ${
                       isSelected
-                        ? "bg-[#C89A3D] text-[#FFFFFF] border-[#C89A3D]"
-                        : "bg-transparent text-[#1A1A1A] border-[#E8E2D8] hover:border-[#C89A3D]"
+                        ? "bg-[#FE6311] text-white border-[#FE6311] font-bold shadow-sm"
+                        : "bg-[#FFFFFF] text-[#252525] border-[#DEDAD2] hover:border-[#FE6311] hover:bg-[#FAF9F6]"
                     }`}
                   >
                     {req === "Men's Wear" && language === "hi" ? "मेन्स वियर (पुरुष परिधान)" :
                      req === "Women's Wear" && language === "hi" ? "महिला परिधान" :
                      req === "Kids Wear" && language === "hi" ? "बच्चों के कपड़े" :
+                     req === "Ethnic Wear" && language === "hi" ? "एथनिक वियर" :
                      req === "Bedsheets" && language === "hi" ? "बेडशीट्स" :
                      req === "Fabrics Sourcing" && language === "hi" ? "फैब्रिक्स सोर्सिंग" :
                      req === "White Labeling" && language === "hi" ? "व्हाइट लेबलिंग" : req}
@@ -208,7 +214,9 @@ export function HimatInquiry({
           </div>
 
           <label className="grid gap-2 sm:col-span-2">
-            <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{t("enq_field_message")}</span>
+            <span className="mono-label text-[9.5px] text-[#252525] font-bold uppercase tracking-wider block">
+              {t("enq_field_message")}
+            </span>
             <textarea
               suppressHydrationWarning={true}
               required
@@ -216,16 +224,16 @@ export function HimatInquiry({
               onChange={(event) => update("message", event.target.value)}
               minLength={10}
               placeholder={t("enq_placeholder_msg")}
-              className="min-h-32 resize-y border-b border-[#E8E2D8] bg-transparent py-3 text-sm outline-none placeholder:text-[#667085]/55 focus:border-[#C89A3D]"
+              className="min-h-32 resize-y border-b border-[#DEDAD2] bg-transparent py-3 text-sm outline-none placeholder:text-[#6B6B6B]/50 focus:border-[#FE6311]"
             />
           </label>
 
           <button
             suppressHydrationWarning={true}
             disabled={isPending}
-            className="group mt-2 flex w-full items-center justify-between bg-[#C89A3D] hover:bg-[#A9781D] px-6 py-4 text-left text-[11px] font-bold uppercase tracking-[.15em] text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2 rounded-md"
+            className="group mt-2 flex w-full items-center justify-between orange-button px-6 py-4 text-left text-[10.5px] font-bold uppercase tracking-[.18em] transition-transform hover:-translate-y-0.5 disabled:opacity-60 sm:col-span-2 rounded-xs shadow-md"
           >
-            <span>{isPending ? (language === "hi" ? "भेजा जा रहा है..." : "Sending...") : t("btn_send_enquiry")}</span>
+            <span>{isPending ? (language === "hi" ? "भेजा जा रहा है..." : "Sending...") : "SEND ENQUIRY →"}</span>
             {isPending ? (
               <LoaderCircle size={16} className="animate-spin" />
             ) : (
@@ -255,7 +263,7 @@ function Field({
 }) {
   return (
     <label className="grid gap-2">
-      <span className="mono-label text-[10px] text-[#C89A3D] uppercase tracking-wider block">{label}</span>
+      <span className="mono-label text-[10px] text-[#252525] font-bold uppercase tracking-wider block">{label}</span>
       <input
         suppressHydrationWarning={true}
         required={required}
@@ -263,8 +271,11 @@ function Field({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="border-b border-[#E8E2D8] bg-transparent py-3 text-sm outline-none placeholder:text-[#667085]/55 focus:border-[#C89A3D]"
+        className="border-b border-[#DEDAD2] bg-transparent py-3 text-sm outline-none placeholder:text-[#6B6B6B]/50 focus:border-[#FE6311]"
       />
     </label>
   );
 }
+
+
+

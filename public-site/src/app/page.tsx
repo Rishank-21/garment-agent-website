@@ -6,8 +6,10 @@ import type { Metadata } from "next";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Himat Textile — B2B Garment Manufacturer & Sourcing Partner",
-  description: "Himat Textile is a premium B2B garment partner for wholesale catalog sourcing, custom white labeling production, and global apparel exports from Ahmedabad, India.",
+  title: "Garment Sourcing Agent in Ahmedabad | Wholesale Garment Supplier | Himat Textile",
+
+  description:
+    "Himat Textile connects buyers with trusted garment manufacturers and suppliers in Ahmedabad. Find quality apparel, wholesale garment products, private labeling solutions, and sourcing support at competitive prices.",
 };
 
 export default async function HomePage() {
