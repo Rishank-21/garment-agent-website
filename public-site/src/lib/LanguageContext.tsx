@@ -20,6 +20,8 @@ const translations: Record<Language, Record<string, string>> = {
     nav_capabilities: "Capabilities",
     nav_network: "Network",
     nav_guide: "Business Guide",
+    nav_white_labeling: "White Labeling",
+    nav_export: "Export",
     nav_contact: "Contact",
     btn_start_enquiry: "Start Enquiry",
     
@@ -212,6 +214,8 @@ const translations: Record<Language, Record<string, string>> = {
     nav_capabilities: "क्षमताएं",
     nav_network: "नेटवर्क",
     nav_guide: "बिजनेस गाइड",
+    nav_white_labeling: "व्हाइट लेबलिंग",
+    nav_export: "निर्यात",
     nav_contact: "संपर्क",
     btn_start_enquiry: "पूछताछ शुरू करें",
     

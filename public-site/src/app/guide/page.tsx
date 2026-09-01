@@ -12,15 +12,24 @@ export default async function BusinessGuidePage() {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
-        <EditorialPageIntro
-          eyebrow="06 / Business Guide"
-          title={<>Your garment<br /><span className="text-transparent stroke-text">guide in</span><br />Ahmedabad.</>}
-          description="Buying garments is not only about finding products. It is about finding the right products, the right quantities and the right price for your market."
-          image="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400"
-          imageAlt="Textile sourcing consultation"
-          ctaLabel="Talk to our garment team"
-          ctaHref="/#enquiry"
-        />
+        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-8 pt-28 text-[#FFFFFF] sm:px-8 lg:px-12 lg:pt-36 border-b border-white/10">
+          <div className="noise-layer absolute inset-0 opacity-5" />
+          <div className="relative mx-auto max-w-[1280px]">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+                <span>Home</span>
+                <span className="opacity-50">/</span>
+                <span className="text-white/60">Business Sourcing Guide</span>
+              </div>
+              <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight text-white">
+                Garment Sourcing Intelligence.
+              </h1>
+              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-white/70">
+                Buying smart is the difference between profit and dead stock. Access our editorial guides, B2B procurement tips, and wholesale insights tailored for brand managers and retail purchasers.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="paper-surface border-t border-[#E8E2D8] bg-[#FFFFFF] px-5 py-20 sm:px-8 lg:px-12 lg:py-28 text-[#1A1A1A]">
           <div className="mx-auto max-w-[1280px]">

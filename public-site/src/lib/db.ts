@@ -491,15 +491,20 @@ export async function getUserByOpenId(openId: string): Promise<User | undefined>
 export async function listPublicProducts(category?: string, subcategory?: string): Promise<Product[]> {
   const db = await getDb();
   if (!db) {
-    return memoryStore.products.filter(p => 
-      p.isActive && 
-      (!category || p.category === category) && 
-      (!subcategory || p.subcategory === subcategory)
-    );
+    return memoryStore.products.filter(p => {
+      const matchesCategory = !category || 
+        p.category === category || 
+        p.category.replace(/\s+/g, "-").toLowerCase() === category.replace(/\s+/g, "-").toLowerCase() ||
+        p.category.replace(/-/g, " ").toLowerCase() === category.replace(/-/g, " ").toLowerCase();
+      const matchesSubcategory = !subcategory || p.subcategory === subcategory;
+      return p.isActive && matchesCategory && matchesSubcategory;
+    });
   }
   const query: Record<string, any> = { isActive: true };
   if (category) {
-    query.category = category;
+    const normCategory = category.replace(/-/g, " ");
+    const hyphenCategory = category.replace(/\s+/g, "-");
+    query.category = { $in: [category, normCategory, hyphenCategory] };
   }
   if (subcategory) {
     query.subcategory = subcategory;

@@ -16,15 +16,47 @@ export default function CapabilitiesPage() {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
-        <EditorialPageIntro
-          eyebrow="04 / What We Can Support"
-          title={<>Built around<br /><span className="text-transparent stroke-text">your garment</span><br />requirement.</>}
-          description="Our network connects businesses with relevant sourcing and manufacturing capabilities based on product requirements, market context and commercial priorities."
-          image="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1400"
-          imageAlt="Apparel sourcing and manufacturing"
-          ctaLabel="Discuss your requirement"
-          ctaHref="/#enquiry"
-        />
+        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-16 pt-32 text-white sm:px-8 lg:px-12 lg:pb-24 lg:pt-40 border-b border-white/10">
+          <div className="noise-layer absolute inset-0 opacity-5" />
+          <div className="relative mx-auto max-w-[1500px]">
+            <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+                  <span>Home</span>
+                  <span className="opacity-50">/</span>
+                  <span className="text-white/60">Capabilities</span>
+                </div>
+                <h1 className="font-display text-[clamp(2.2rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tight text-white">
+                  Built Around<br />
+                  <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #FFFFFF" }}>Your Garment</span><br />
+                  Requirements.
+                </h1>
+                <p className="max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
+                  Connecting B2B apparel brands with the right manufacturing and sourcing setups. We streamline fabric selection, styling verification, quality inspection, and transport logistics.
+                </p>
+              </div>
+
+              {/* Technical Capability Summary */}
+              <div className="border border-white/15 bg-[#122D3B] p-6 rounded-xl space-y-4 shadow-xl">
+                <span className="mono-label text-[9px] text-[#C89A3D] block">// OPERATIONS MATRIX</span>
+                <div className="text-xs space-y-3">
+                  <div className="flex justify-between border-b border-white/5 pb-2">
+                    <span className="text-white/60">Yarn / Fabric:</span>
+                    <span className="font-mono text-white">Cotton, Linen, Slub, Knit</span>
+                  </div>
+                  <div className="flex justify-between border-b border-white/5 pb-2">
+                    <span className="text-white/60">Finishing Focus:</span>
+                    <span className="font-mono text-white">Soft washes, Bio-washing, Dyeing</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/60">Logistics Handoff:</span>
+                    <span className="font-mono text-white">Domestic & Global Sea Ports</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="paper-surface px-5 py-20 sm:px-8 lg:px-12 lg:py-28 bg-[#FFFFFF] text-[#1A1A1A]">
           <div className="mx-auto max-w-[1280px]">

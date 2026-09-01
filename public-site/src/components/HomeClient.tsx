@@ -41,10 +41,10 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
   const translatedSolutions = [
     { name: language === "hi" ? "रिटेलर्स (खुदरा विक्रेता)" : "Retailers", image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800", copy: language === "hi" ? "त्वरित इन्वेंट्री पुनःपूर्ति के लिए तैयार कैटलॉग संग्रह।" : "Catalog collections ready for quick inventory replenishment." },
-    { name: language === "hi" ? "होलसेलर्स (थोक विक्रेता)" : "Wholesalers", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800", copy: language === "hi" ? "उच्च मात्रा में कपड़े का प्रसंस्करण और विश्वसनीय परिवहन।" : "High-volume fabric processing and reliable multi-city transport." },
+    { name: language === "hi" ? "होलसेलर्स (थोक विक्रेता)" : "Wholesalers", image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e12?q=80&w=800", copy: language === "hi" ? "उच्च मात्रा में कपड़े का प्रसंस्करण और विश्वसनीय परिवहन।" : "High-volume fabric processing and reliable multi-city transport." },
     { name: language === "hi" ? "डिस्ट्रीब्यूटर्स (वितरक)" : "Distributors", image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800", copy: language === "hi" ? "मौसमी समय-सारिणी के अनुसार कस्टम उत्पादन चक्र।" : "Bespoke production cycles mapped against seasonal schedules." },
     { name: language === "hi" ? "फैशन ब्रांड्स" : "Fashion Brands", image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800", copy: language === "hi" ? "व्हाइट-लेवलिंग निर्माण, स्टाइलिंग विवरण, कस्टम टैग।" : "White-labeling manufacturing, styling details, custom tags." },
-    { name: language === "hi" ? "नए व्यवसाय" : "New Businesses", image: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=800", copy: language === "hi" ? "उत्पाद चयन, स्टाइल और उत्पादन शुरू करने पर मार्गदर्शन।" : "Guidance on product selection, style curation, and wholesale sourcing." },
+    { name: language === "hi" ? "नए व्यवसाय" : "New Businesses", image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=800", copy: language === "hi" ? "उत्पाद चयन, स्टाइल और उत्पादन शुरू करने पर मार्गदर्शन।" : "Guidance on product selection, style curation, and wholesale sourcing." },
   ];
 
   useEffect(() => {

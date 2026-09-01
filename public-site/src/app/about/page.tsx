@@ -19,15 +19,37 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
-        <EditorialPageIntro
-          eyebrow="02 / Who We Are"
-          title={<>Two generations.<br /><span className="text-transparent stroke-text">One trusted</span><br />vision.</>}
-          description="Built on trust, relationships and textile experience, Himat Textile connects traditional Indian wholesale expertise with the evolving needs of modern fashion businesses."
-          image="/images/ahmedabad_market_gheekanta.jpg"
-          imageAlt="Garment tailoring workshop"
-          ctaLabel="Start an enquiry"
-          ctaHref="/#enquiry"
-        />
+        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-16 pt-32 text-white sm:px-8 lg:px-12 lg:pb-24 lg:pt-40 border-b border-white/10">
+          <div className="noise-layer absolute inset-0 opacity-5" />
+          <div className="relative mx-auto max-w-[1500px]">
+            <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div className="space-y-6">
+                <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+                  <span>Home</span>
+                  <span className="opacity-50">/</span>
+                  <span>About Us</span>
+                  <span className="opacity-50">/</span>
+                  <span className="text-white/60">Heritage</span>
+                </div>
+                <h1 className="font-display text-[clamp(2.2rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tight text-white">
+                  Two generations.<br />
+                  <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #FFFFFF" }}>One trusted</span><br />
+                  vision.
+                </h1>
+                <p className="max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
+                  Built on trust, verified B2B relationships, and decades of textile operations in Ahmedabad. We bridge traditional B2B garment reliability with the fast-moving product demands of today's fashion entrepreneurs.
+                </p>
+              </div>
+              <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-white/5 rounded-xl shadow-sm">
+                <img src="/images/ahmedabad_market_gheekanta.jpg" alt="Himat Textile heritage" className="h-full w-full object-cover grayscale opacity-90 transition-transform duration-500 hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1F2B]/40 to-transparent" />
+                <div className="absolute bottom-4 left-4 font-mono text-[9px] uppercase tracking-widest text-[#FFFFFF] bg-[#0A1F2B]/50 px-2 py-1 rounded">
+                  Ahmedabad Garment District
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <section className="paper-surface px-5 py-20 sm:px-8 lg:px-12 lg:py-28 bg-[#FFFFFF] text-[#1A1A1A]">
           <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-start">

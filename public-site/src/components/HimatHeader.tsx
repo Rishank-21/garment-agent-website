@@ -23,6 +23,7 @@ export function HimatHeader() {
     { label: t("nav_garments"), href: "/catalog" },
     { label: t("nav_capabilities"), href: "/capabilities" },
     { label: t("nav_network"), href: "/network" },
+    { label: t("nav_white_labeling"), href: "/white-labeling" },
     { label: t("nav_guide"), href: "/guide" },
   ];
 
@@ -102,12 +103,18 @@ export function HimatHeader() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary navigation">
-            {translatedLinks.map((link) => (
-              <Link key={link.label} href={link.href} className={`mono-label text-[10px] uppercase tracking-[0.18em] transition-colors ${mutedClass}`}>
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden items-center gap-5 lg:flex" aria-label="Primary navigation">
+            {translatedLinks.map((link) => {
+              const isActive = pathname === link.href;
+              const activeColorClass = isActive 
+                ? "text-[#C89A3D] font-extrabold" 
+                : (menuOpen || !scrolled ? "text-[#FFFFFF]/75 hover:text-[#C89A3D]" : "text-[#1A1A1A]/75 hover:text-[#C89A3D]");
+              return (
+                <Link key={link.label} href={link.href} className={`mono-label text-[10px] uppercase tracking-[0.18em] transition-colors ${activeColorClass}`}>
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
@@ -144,21 +151,26 @@ export function HimatHeader() {
               <p className="mono-label mt-1 text-[9px] text-[#C89A3D]">Garment Guide / Ahmedabad</p>
             </div>
           </div>
-          {translatedLinks.map((link, index) => (
-            <Link 
-              key={link.label} 
-              href={link.href} 
-              className={`flex items-baseline justify-between border-b border-white/10 pb-4 font-display text-3xl font-bold uppercase tracking-[-.05em] text-[#FFFFFF] transition-all duration-500 hover:text-[#C89A3D]`}
-              style={{ 
-                transitionDelay: `${100 + index * 50}ms`,
-                transform: menuOpen ? "translateY(0)" : "translateY(16px)",
-                opacity: menuOpen ? 1 : 0
-              }}
-            >
-              <span>{link.label}</span>
-              <span className="font-mono text-[10px] text-[#C89A3D]">0{index + 1}</span>
-            </Link>
-          ))}
+          {translatedLinks.map((link, index) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link 
+                key={link.label} 
+                href={link.href} 
+                className={`flex items-baseline justify-between border-b border-white/10 pb-4 font-display text-3xl font-bold uppercase tracking-[-.05em] transition-all duration-500 hover:text-[#C89A3D] ${
+                  isActive ? "text-[#C89A3D]" : "text-[#FFFFFF]"
+                }`}
+                style={{ 
+                  transitionDelay: `${100 + index * 50}ms`,
+                  transform: menuOpen ? "translateY(0)" : "translateY(16px)",
+                  opacity: menuOpen ? 1 : 0
+                }}
+              >
+                <span>{link.label}</span>
+                <span className="font-mono text-[10px] text-[#C89A3D]">0{index + 1}</span>
+              </Link>
+            );
+          })}
           <div 
             className="mt-3 flex flex-wrap gap-3 transition-all duration-500"
             style={{ 

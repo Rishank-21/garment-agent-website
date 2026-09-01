@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { HimatLogoIcon } from "@/components/HimatLogo";
+import { GOOGLE_FORM_URL } from "@/lib/config";
 import {
   Product,
   Advertisement,
@@ -246,6 +247,40 @@ export default function AdminDashboardClient({
     } finally {
       setIsAiGenerating(false);
     }
+  };
+
+  const handleWhatsAppReply = (inq: any) => {
+    const rawPhone = inq.phone;
+    if (!rawPhone) {
+      toast.error("Customer phone number is missing.");
+      return;
+    }
+
+    let cleaned = rawPhone.replace(/\D/g, "");
+    
+    if (cleaned.startsWith("0")) {
+      cleaned = cleaned.substring(1);
+    }
+    
+    if (cleaned.length === 10) {
+      cleaned = "91" + cleaned;
+    }
+    
+    if (cleaned.length < 10 || cleaned.length > 15) {
+      toast.error(`Invalid phone number format: "${rawPhone}". Needs to be a valid mobile number.`);
+      return;
+    }
+
+    const customerName = inq.contactName || "Valued Customer";
+    const productInterest = inq.productInterest || "Your garment requirement";
+    const enquiryMessage = inq.message || "No additional requirement provided.";
+    
+    const message = `Hello ${customerName} 👋\n\nThank you for contacting *Himat Textile*.\n\nWe have received your enquiry regarding:\n\n📌 *Product Interest:*\n${productInterest}\n\n📝 *Your Requirement:*\n${enquiryMessage}\n\nHimat Textile helps businesses connect with suitable garment manufacturers, wholesale suppliers, and textile solutions.\n\nTo understand your requirements better, please fill out the form below:\n\n👉 ${GOOGLE_FORM_URL}\n\nThank you for your interest.\n\n*Team Himat Textile*`;
+
+    const whatsappUrl = `https://wa.me/${cleaned}?text=${encodeURIComponent(message)}`;
+    
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    toast.success("WhatsApp opened with a pre-filled reply. Please review and click Send.");
   };
 
   return (
@@ -606,7 +641,7 @@ export default function AdminDashboardClient({
                     (i.email || "").toLowerCase().includes(enqSearch.toLowerCase())
                   )
                   .map((inq) => (
-                    <div key={inq.id} className="border border-white/10 bg-black/40 p-6 space-y-4 hover:border-white/20 transition-colors">
+                    <div key={inq.id} className="border border-white/10 bg-[#0A1F2B] p-6 space-y-4 hover:border-white/20 transition-colors">
                       <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/5 pb-4">
                         <div>
                           <span className={`px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider border mr-3 ${
@@ -625,8 +660,14 @@ export default function AdminDashboardClient({
                         </div>
                         <div className="flex items-center gap-3">
                           <button
+                            onClick={() => handleWhatsAppReply(inq)}
+                            className="border border-[#25d366]/40 text-[#25d366] hover:bg-[#25d366]/10 px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors rounded-md"
+                          >
+                            <MessageSquare size={11} /> Reply on WhatsApp
+                          </button>
+                          <button
                             onClick={() => setInquiryNotesModal({ open: true, id: inq.id, status: inq.status })}
-                            className="border border-white/20 hover:bg-white hover:text-black px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors"
+                            className="border border-white/20 hover:bg-white hover:text-black px-3 py-1.5 text-[9px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors rounded-md"
                           >
                             <FileCheck size={11} /> Update Status
                           </button>
@@ -662,7 +703,7 @@ export default function AdminDashboardClient({
                         </div>
                       </div>
 
-                      <div className="bg-black/50 border border-white/5 p-4 rounded space-y-1 text-xs">
+                      <div className="bg-[#0A1F2B]/60 border border-white/5 p-4 rounded space-y-1 text-xs">
                         <span className="mono-label text-[8px] text-white/45 uppercase block">Enquiry Message</span>
                         <p className="text-white/70 whitespace-pre-wrap leading-relaxed break-words">{inq.message}</p>
                       </div>
@@ -752,7 +793,7 @@ export default function AdminDashboardClient({
           {activeTab === "network" && (
             <div className="space-y-8">
               {/* Brands Panel */}
-              <div className="border border-white/10 bg-[#111] p-6 space-y-6">
+              <div className="border border-white/10 bg-[#122D3B] p-6 space-y-6">
                 <div className="flex justify-between items-center border-b border-white/10 pb-3">
                   <h3 className="font-display text-sm font-black uppercase tracking-wider">Partnership Brands</h3>
                   <button
@@ -764,7 +805,7 @@ export default function AdminDashboardClient({
                 </div>
                 <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
                   {brands.map((b) => (
-                    <div key={b.id} className="border border-white/5 bg-black p-4 flex items-center justify-between">
+                    <div key={b.id} className="border border-white/5 bg-[#0A1F2B] p-4 flex items-center justify-between">
                       <div>
                         <h4 className="font-bold text-white uppercase text-xs">{b.name}</h4>
                         {b.logoUrl && <span className="text-[9px] text-white/40 block truncate max-w-[120px] mt-0.5">{b.logoUrl}</span>}
@@ -795,7 +836,7 @@ export default function AdminDashboardClient({
               </div>
 
               {/* Cities Panel */}
-              <div className="border border-white/10 bg-[#111] p-6 space-y-6">
+              <div className="border border-white/10 bg-[#122D3B] p-6 space-y-6">
                 <div className="flex justify-between items-center border-b border-white/10 pb-3">
                   <h3 className="font-display text-sm font-black uppercase tracking-wider">Network Hub Cities</h3>
                   <button
@@ -807,7 +848,7 @@ export default function AdminDashboardClient({
                 </div>
                 <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
                   {cities.map((c) => (
-                    <div key={c.id} className="border border-white/5 bg-black p-4 flex items-center justify-between">
+                    <div key={c.id} className="border border-white/5 bg-[#0A1F2B] p-4 flex items-center justify-between">
                       <div>
                         <h4 className="font-bold text-white uppercase text-xs">{c.name}</h4>
                         <span className="text-[9px] text-white/40 block mt-0.5">Lat: {c.latitude}, Lng: {c.longitude}</span>
@@ -910,7 +951,7 @@ export default function AdminDashboardClient({
 
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {categories.map((cat) => (
-                  <div key={cat.id} className="border border-white/10 bg-black/40 p-5 space-y-4">
+                  <div key={cat.id} className="border border-white/10 bg-[#0A1F2B] p-5 space-y-4">
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="font-display text-lg font-black uppercase tracking-wider">{cat.name}</h4>
@@ -992,7 +1033,7 @@ export default function AdminDashboardClient({
                           defaultValue={savedVal}
                           id={`setting-${item.key}`}
                           placeholder={item.placeholder}
-                          className="flex-1 bg-black border border-white/10 px-4 py-3 text-xs text-white outline-none focus:border-white/30"
+                          className="flex-1 bg-[#0A1F2B] border border-white/10 px-4 py-3 text-xs text-white outline-none focus:border-white/30"
                         />
                         <button
                           onClick={async () => {
@@ -1019,7 +1060,7 @@ export default function AdminDashboardClient({
 
       {/* ================= PRODUCT MODAL ================= */}
       {productModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-2xl border border-border bg-card p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto text-foreground">
             <button onClick={() => setProductModal({ open: false, form: productModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{productModal.editId ? "Edit Product" : "Add Product"}</h3>
@@ -1151,7 +1192,7 @@ export default function AdminDashboardClient({
 
       {/* ================= ADVERTISEMENT MODAL ================= */}
       {adModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-lg border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setAdModal({ open: false, form: adModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{adModal.editId ? "Edit Advertisement" : "Add Advertisement"}</h3>
@@ -1227,7 +1268,7 @@ export default function AdminDashboardClient({
 
       {/* ================= REVIEW MODAL ================= */}
       {reviewModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setReviewModal({ open: false, form: reviewModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{reviewModal.editId ? "Edit Review" : "Add Review"}</h3>
@@ -1280,7 +1321,7 @@ export default function AdminDashboardClient({
 
       {/* ================= BRAND MODAL ================= */}
       {brandModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setBrandModal({ open: false, form: brandModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{brandModal.editId ? "Edit Brand" : "Add Brand"}</h3>
@@ -1324,7 +1365,7 @@ export default function AdminDashboardClient({
 
       {/* ================= CITY MODAL ================= */}
       {cityModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setCityModal({ open: false, form: cityModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">{cityModal.editId ? "Edit City Hub" : "Add City Hub"}</h3>
@@ -1368,7 +1409,7 @@ export default function AdminDashboardClient({
 
       {/* ================= GUIDE MODAL ================= */}
       {guideModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-2xl border border-border bg-card p-8 space-y-6 text-xs max-h-[90vh] overflow-y-auto text-foreground">
             <button onClick={() => setGuideModal({ open: false, form: guideModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-2xl font-black uppercase tracking-wider border-b border-border pb-3">{guideModal.editId ? "Edit Business Guide" : "Add Business Guide"}</h3>
@@ -1428,7 +1469,7 @@ export default function AdminDashboardClient({
 
       {/* ================= INQUIRY NOTES MODAL ================= */}
       {inquiryNotesModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setInquiryNotesModal({ open: false, status: "NEW" })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">Update Lead Status</h3>
@@ -1464,7 +1505,7 @@ export default function AdminDashboardClient({
 
       {/* ================= CATEGORY MODAL ================= */}
       {categoryModal.open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#161612]/80 p-5 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0A1F2B]/85 p-5 backdrop-blur-sm">
           <div className="relative w-full max-w-md border border-border bg-card p-8 space-y-6 text-xs text-foreground">
             <button onClick={() => setCategoryModal({ open: false, form: categoryModal.form })} className="absolute right-4 top-4 text-foreground/45 hover:text-foreground"><X size={18} /></button>
             <h3 className="font-display text-xl font-black uppercase tracking-wider border-b border-border pb-3">

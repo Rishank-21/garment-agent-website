@@ -64,7 +64,11 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
   };
 
   const filteredProducts = initialProducts.filter((product) => {
-    const matchesCategory = category === "all" || product.category === category;
+    const matchesCategory = 
+      category === "all" || 
+      product.category === category || 
+      product.category.replace(/\s+/g, "-").toLowerCase() === category.replace(/\s+/g, "-").toLowerCase() ||
+      product.category.replace(/-/g, " ").toLowerCase() === category.replace(/-/g, " ").toLowerCase();
     const matchesSubcategory = !subcategory || product.subcategory === subcategory;
     return matchesCategory && matchesSubcategory;
   });
@@ -73,15 +77,24 @@ export default function CatalogClient({ initialProducts, initialAds, initialCate
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
-        <EditorialPageIntro
-          eyebrow="03 / Our Garment Collection"
-          title={<>Find the right<br /><span className="text-transparent stroke-text">garments</span><br />for your market.</>}
-          description="Browse active garment listings when available, or use the category view to begin a sourcing conversation with Himat Textile. Product specifications and wholesale details are verified directly in the enquiry process."
-          image="https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=1400"
-          imageAlt="Garment collection racks"
-          ctaLabel="Start a sourcing enquiry"
-          ctaHref="#enquiry"
-        />
+        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-10 pt-28 text-[#FFFFFF] sm:px-8 lg:px-12 lg:pt-36 border-b border-white/10">
+          <div className="noise-layer absolute inset-0 opacity-5" />
+          <div className="relative mx-auto max-w-[1280px]">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+                <span>Home</span>
+                <span className="opacity-50">/</span>
+                <span className="text-white/60">Garment Catalog</span>
+              </div>
+              <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight text-white">
+                Explore Our Garment Collection.
+              </h1>
+              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-white/70">
+                Browse our commercially relevant wholesale selections or sort by category. Use our B2B enquiry desk to request specific fabric configurations, sampling runs, and customized branding packages.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {activeAds.length > 0 && (
           <section className="paper-surface px-5 pt-8 sm:px-8 lg:px-12">

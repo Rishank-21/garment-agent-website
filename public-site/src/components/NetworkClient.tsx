@@ -13,15 +13,24 @@ export default function NetworkClient({ cities, brands }: NetworkClientProps) {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] selection:bg-[#C89A3D] selection:text-[#FFFFFF]">
       <main>
-        <EditorialPageIntro
-          eyebrow="07 / Garment Market Network"
-          title={<>Connected to<br /><span className="text-transparent stroke-text">the garment</span><br />market.</>}
-          description="Ahmedabad is the starting point for a wider sourcing conversation across textile, garment and wholesale ecosystems. Explore the relevant hubs and partner signals below."
-          image="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400"
-          imageAlt="Garment market network"
-          ctaLabel="Talk to our garment team"
-          ctaHref="/#enquiry"
-        />
+        <section className="relative overflow-hidden bg-[#0A1F2B] px-5 pb-8 pt-28 text-[#FFFFFF] sm:px-8 lg:px-12 lg:pt-36 border-b border-white/10">
+          <div className="noise-layer absolute inset-0 opacity-5" />
+          <div className="relative mx-auto max-w-[1500px]">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-[10px] font-mono uppercase tracking-widest text-[#C89A3D]">
+                <span>Home</span>
+                <span className="opacity-50">/</span>
+                <span className="text-white/60">Supply Chain Network</span>
+              </div>
+              <h1 className="font-display text-[clamp(2rem,5vw,4.5rem)] font-black uppercase leading-[0.95] tracking-tight text-white">
+                Garment Market Logistics Hubs.
+              </h1>
+              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-white/70">
+                Ahmedabad connects you directly to primary garment hubs and B2B transit routes across India. View our active supply chain hubs and regional connections mapped below.
+              </p>
+            </div>
+          </div>
+        </section>
         <div className="border-t border-[#E8E2D8]"><IndiaNetwork /></div>
 
         <section className="bg-[#0A1F2B] text-[#FFFFFF] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 border-t border-[#E8E2D8]/10">
