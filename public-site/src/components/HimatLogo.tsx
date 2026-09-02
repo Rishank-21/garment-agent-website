@@ -90,12 +90,12 @@ export default function HimatLogo({
         <HimatLogoImage 
           className={
             isSm 
-              ? "h-11 sm:h-12 w-auto" 
+              ? "h-13 sm:h-16 w-auto" 
               : isXl 
               ? "h-24 sm:h-32 w-auto" 
               : isLg 
-              ? "h-18 sm:h-22 w-auto" 
-              : "h-14 sm:h-18 w-auto"
+              ? "h-20 sm:h-24 w-auto" 
+              : "h-16 sm:h-20 w-auto"
           } 
         />
       </div>
@@ -106,12 +106,12 @@ export default function HimatLogo({
           <span
             className={`font-serif-display font-black uppercase tracking-[0.14em] leading-tight ${
               isSm 
-                ? "text-sm sm:text-base" 
+                ? "text-base sm:text-xl md:text-2xl" 
                 : isXl 
                 ? "text-3xl sm:text-5xl md:text-6xl" 
                 : isLg 
                 ? "text-2xl sm:text-4xl" 
-                : "text-xl sm:text-2xl"
+                : "text-xl sm:text-3xl"
             } ${light ? "text-[#1A1A1A]" : "text-[#FAF8F5]"}`}
           >
             HIMAT <span className={light ? "text-[#D98A00]" : "text-[#F5B014]"}>TEXTILE</span>
@@ -119,19 +119,19 @@ export default function HimatLogo({
         </div>
 
         <div className="flex items-center gap-2 mt-1">
-          <span className={`h-[1px] w-3 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
-          <span className={`font-mono font-bold uppercase tracking-[0.24em] ${light ? "text-[#B87400]" : "text-[#FFD44D]"} ${
+          <span className={`h-[1.5px] w-4 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
+          <span className={`font-mono font-extrabold uppercase tracking-[0.24em] ${light ? "text-[#B87400]" : "text-[#FFD44D]"} ${
             isSm 
-              ? "text-[7.5px]" 
+              ? "text-[9.5px] sm:text-[11px]" 
               : isXl 
-              ? "text-[11px] sm:text-[13px]" 
+              ? "text-[12px] sm:text-[14px]" 
               : isLg 
-              ? "text-[9px] sm:text-[10.5px]" 
-              : "text-[8.5px] sm:text-[9.5px]"
+              ? "text-[11px] sm:text-[12.5px]" 
+              : "text-[10px] sm:text-[12px]"
           }`}>
             YOUR GARMENT GUIDE IN AHMEDABAD
           </span>
-          <span className={`h-[1px] w-3 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
+          <span className={`h-[1.5px] w-4 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
         </div>
       </div>
     </div>

@@ -69,6 +69,13 @@
   --ht-secondary-text: #66625D;
   --ht-border: #E2DDD5;
   --ht-white: #FFFFFF;
+
+  /* Komal Creation Rust & Paper Editorial Palette */
+  --paper: #FAF8F5;
+  --ink: #171A1D;
+  --rust: #B7462E;
+  --rust-hover: #9E3923;
+  --rust-light: #DB725D;
 }
 
 .dark { color-scheme: dark; }
