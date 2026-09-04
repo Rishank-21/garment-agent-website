@@ -5,8 +5,7 @@ import {
   Tag, 
   Truck, 
   ArrowRight, 
-  ArrowUpRight, 
-  ShieldCheck 
+  ArrowUpRight 
 } from "lucide-react";
 import { HimatInquiry } from "@/components/HimatInquiry";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -30,82 +29,50 @@ export default function WhiteLabelingPage() {
       <main>
         {/* White Labeling Hero */}
         <section className="relative overflow-hidden bg-[#F3EEE5] px-5 pb-16 pt-32 text-[#171A1D] sm:px-8 lg:px-12 lg:pb-24 lg:pt-36 border-b border-[rgba(23,26,29,0.12)]">
-          <div className="relative mx-auto max-w-[1500px]">
-            <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-              <div className="space-y-6">
-                <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FE6311]">
-                  <Link href="/" className="hover:underline text-[#171A1D]/60 hover:text-[#FE6311] transition-colors">Home</Link>
-                  <span className="opacity-40 text-[#171A1D]/40">/</span>
-                  <span className="text-[#171A1D]/60">Services</span>
-                  <span className="opacity-40 text-[#171A1D]/40">/</span>
-                  <span className="text-[#171A1D] font-extrabold">White Labeling</span>
-                </div>
-                
-                <h1 className="font-serif text-[clamp(2.4rem,6vw,5.5rem)] font-normal leading-[0.92] tracking-tight text-[#171A1D]">
-                  Your Brand.<br />
-                  <span className="italic font-normal text-[#FE6311]">Your Vision.</span><br />
-                  Our Manufacturing.
-                </h1>
-                
-                <p className="max-w-xl text-base sm:text-lg font-medium leading-relaxed text-[#171A1D]/85">
-                  Bring your garment vision to life. From custom sizing and styling patterns to fabric sourcing and packaging under your own private label, we coordinate every manufacturing detail in Ahmedabad.
-                </p>
-
-                <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <a
-                    href="#steps"
-                    className="inline-flex items-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
-                  >
-                    <span>HOW IT WORKS</span>
-                    <ArrowRight size={14} />
-                  </a>
-                  <a
-                    href="#enquiry"
-                    className="inline-flex items-center gap-2 bg-[#FFFFFF] hover:bg-[#FAF8F5] text-[#171A1D] border border-[rgba(23,26,29,0.15)] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-2xs transition-all hover:-translate-y-0.5 cursor-pointer"
-                  >
-                    <span>START ENQUIRY</span>
-                    <ArrowUpRight size={14} className="text-[#FE6311]" />
-                  </a>
-                  <a
-                    href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20am%20interested%20in%20custom%20white-label%20garment%20manufacturing"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
-                  >
-                    <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
-                    <span>WHATSAPP US</span>
-                  </a>
-                </div>
+          <div className="relative mx-auto max-w-[1280px]">
+            <div className="max-w-3xl space-y-6">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FE6311]">
+                <Link href="/" className="hover:underline text-[#171A1D]/60 hover:text-[#FE6311] transition-colors">Home</Link>
+                <span className="opacity-40 text-[#171A1D]/40">/</span>
+                <span className="text-[#171A1D]/60">Services</span>
+                <span className="opacity-40 text-[#171A1D]/40">/</span>
+                <span className="text-[#171A1D] font-extrabold">White Labeling</span>
               </div>
+              
+              <h1 className="font-serif text-[clamp(2.4rem,6vw,5.5rem)] font-normal leading-[0.92] tracking-tight text-[#171A1D]">
+                Your Brand.<br />
+                <span className="italic font-normal text-[#FE6311]">Your Vision.</span><br />
+                Our Manufacturing.
+              </h1>
+              
+              <p className="max-w-2xl text-base sm:text-lg font-medium leading-relaxed text-[#171A1D]/85">
+                Bring your garment vision to life. From custom sizing and styling patterns to fabric sourcing and packaging under your own private label, we coordinate every manufacturing detail in Ahmedabad.
+              </p>
 
-              {/* Private Label Specifications Checklist */}
-              <div className="border border-[rgba(23,26,29,0.14)] bg-[#FFFFFF] p-6 sm:p-7 rounded-lg space-y-4 shadow-sm">
-                <div className="flex items-center justify-between pb-2 border-b border-[rgba(23,26,29,0.08)]">
-                  <span className="font-mono text-[10px] text-[#FE6311] font-bold tracking-widest uppercase">// MANUFACTURING SPECS</span>
-                  <span className="font-mono text-[9px] bg-[#FE6311]/10 text-[#FE6311] px-2.5 py-0.5 rounded-full font-bold uppercase">AHMEDABAD MILL CLUSTER</span>
-                </div>
-                <div className="divide-y divide-[rgba(23,26,29,0.08)] text-xs">
-                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
-                    <span className="text-[#171A1D]/60 font-medium">Available Lines:</span>
-                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">Cotton Pants, Linen Shirts, Kurtis, Co-ords, Kids Sets</span>
-                  </div>
-                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
-                    <span className="text-[#171A1D]/60 font-medium">Label Types:</span>
-                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">Satin print, Woven labels, Custom tags & barcodes</span>
-                  </div>
-                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
-                    <span className="text-[#171A1D]/60 font-medium">Min. Order:</span>
-                    <span className="font-mono text-[#FE6311] font-bold text-left sm:text-right bg-[#FE6311]/10 px-2 py-0.5 rounded-xs inline-block w-fit sm:w-auto">100 Pcs per design</span>
-                  </div>
-                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
-                    <span className="text-[#171A1D]/60 font-medium">Fabric Options:</span>
-                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">100% Cotton, Linen blends, Twill, Rayon, Denim</span>
-                  </div>
-                </div>
-                <div className="pt-2 flex items-center gap-2 text-[10.5px] font-mono text-[#171A1D]/70 border-t border-[rgba(23,26,29,0.08)]">
-                  <ShieldCheck size={14} className="text-[#FE6311] shrink-0" />
-                  <span>Direct mill pricing with physical pre-production sample verification</span>
-                </div>
+              <div className="pt-2 flex flex-wrap items-center gap-3">
+                <a
+                  href="#steps"
+                  className="inline-flex items-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>HOW IT WORKS</span>
+                  <ArrowRight size={14} />
+                </a>
+                <a
+                  href="#enquiry"
+                  className="inline-flex items-center gap-2 bg-[#FFFFFF] hover:bg-[#FAF8F5] text-[#171A1D] border border-[rgba(23,26,29,0.15)] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-2xs transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>START ENQUIRY</span>
+                  <ArrowUpRight size={14} className="text-[#FE6311]" />
+                </a>
+                <a
+                  href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20am%20interested%20in%20custom%20white-label%20garment%20manufacturing"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
+                  <span>WHATSAPP US</span>
+                </a>
               </div>
             </div>
           </div>
