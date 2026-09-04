@@ -163,7 +163,7 @@ export default function RootLayout({
               <HimatFooter />
             </div>
             <FloatingWhatsApp />
-            <BlackThemePreloader />
+            {/* <BlackThemePreloader /> */}
             <Toaster position="bottom-right" theme="dark" />
           </SmoothScroll>
         </LanguageProvider>
