@@ -40,6 +40,56 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
   const [isReviewSubmitting, setIsReviewSubmitting] = useState(false);
   const [reviewMessage, setReviewMessage] = useState("");
 
+  const whatWeDoTrackRef = useRef<HTMLDivElement>(null);
+  const [activeWhatWeDo, setActiveWhatWeDo] = useState(0);
+  const isWhatWeDoInteracting = useRef(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (isWhatWeDoInteracting.current) return;
+      if (typeof window !== "undefined" && window.innerWidth >= 640) return;
+      if (!whatWeDoTrackRef.current) return;
+
+      const track = whatWeDoTrackRef.current;
+      const nextIdx = (activeWhatWeDo + 1) % 5;
+      const card = track.children[nextIdx] as HTMLElement;
+      if (card) {
+        track.scrollTo({
+          left: card.offsetLeft - track.offsetLeft,
+          behavior: "smooth",
+        });
+        setActiveWhatWeDo(nextIdx);
+      }
+    }, 3800);
+
+    return () => clearInterval(timer);
+  }, [activeWhatWeDo]);
+
+  const handleWhatWeDoScroll = () => {
+    if (!whatWeDoTrackRef.current) return;
+    const track = whatWeDoTrackRef.current;
+    const card = track.children[0] as HTMLElement;
+    if (!card) return;
+    const cardWidth = card.clientWidth + 12;
+    const newIdx = Math.round(track.scrollLeft / cardWidth);
+    if (newIdx >= 0 && newIdx < 5 && newIdx !== activeWhatWeDo) {
+      setActiveWhatWeDo(newIdx);
+    }
+  };
+
+  const scrollToWhatWeDo = (idx: number) => {
+    if (!whatWeDoTrackRef.current) return;
+    const track = whatWeDoTrackRef.current;
+    const card = track.children[idx] as HTMLElement;
+    if (card) {
+      track.scrollTo({
+        left: card.offsetLeft - track.offsetLeft,
+        behavior: "smooth",
+      });
+      setActiveWhatWeDo(idx);
+    }
+  };
+
   const { language, t } = useLanguage();
 
   const translatedSolutions = [
@@ -202,30 +252,85 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                 With strong knowledge of Ahmedabad’s garment market and a wide network of B2B suppliers, we make the buying process simpler, faster and more transparent.
               </p>
 
-              {/* WHAT WE DO (5 Clean Minimal Cards) */}
+              {/* WHAT WE DO (5 Clean Minimal Cards with Mobile Horizontal Auto-Scroll) */}
               <div className="pt-2">
-                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#171A1D]/60 block mb-3">
-                  WHAT WE DO
-                </span>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#171A1D]/60 block">
+                    WHAT WE DO
+                  </span>
+                  <span className="font-mono text-[9px] text-[#FE6311] font-semibold uppercase sm:hidden">
+                    Swipe or auto-scroll &rarr;
+                  </span>
+                </div>
+
+                {/* Cards Track: horizontal swipe & auto-scroll on mobile, 2-col grid on desktop */}
+                <div
+                  ref={whatWeDoTrackRef}
+                  onScroll={handleWhatWeDoScroll}
+                  onTouchStart={() => {
+                    isWhatWeDoInteracting.current = true;
+                  }}
+                  onTouchEnd={() => {
+                    setTimeout(() => {
+                      isWhatWeDoInteracting.current = false;
+                    }, 4000);
+                  }}
+                  onMouseEnter={() => {
+                    isWhatWeDoInteracting.current = true;
+                  }}
+                  onMouseLeave={() => {
+                    isWhatWeDoInteracting.current = false;
+                  }}
+                  className="flex sm:grid sm:grid-cols-2 gap-3 overflow-x-auto sm:overflow-x-visible snap-x snap-mandatory scrollbar-none pb-2 pt-1 -mx-5 px-5 sm:mx-0 sm:px-0 max-w-xl"
+                  style={{ WebkitOverflowScrolling: "touch" }}
+                >
                   {[
                     { title: "Product Sourcing", desc: "Find garments according to your category, quality, style and budget." },
                     { title: "Supplier Connection", desc: "Connect with suitable manufacturers, wholesalers and suppliers." },
                     { title: "Price & Deal Support", desc: "Help you understand market pricing and negotiate better deals." },
                     { title: "Order Coordination", desc: "Stay connected with suppliers and help coordinate your requirements." },
                     { title: "Dispatch Support", desc: "Assist with packing, dispatch and communication until order moves forward." },
-                  ].map((item) => (
+                  ].map((item, idx) => (
                     <div
                       key={item.title}
-                      className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.08)] p-4 rounded-[3px] shadow-2xs hover:border-[#FE6311]/40 transition-colors"
+                      onClick={() => scrollToWhatWeDo(idx)}
+                      className={`min-w-[245px] max-w-[260px] sm:min-w-0 sm:max-w-none snap-start shrink-0 flex-1 bg-[#FFFFFF] border p-4 rounded-[3px] shadow-2xs hover:border-[#FE6311]/40 transition-all flex flex-col justify-between ${
+                        activeWhatWeDo === idx
+                          ? "border-[#FE6311]/50 sm:border-[rgba(23,26,29,0.08)]"
+                          : "border-[rgba(23,26,29,0.08)]"
+                      }`}
                     >
-                      <h4 className="font-serif text-sm font-semibold text-[#171A1D] uppercase tracking-wide mb-1">
-                        {item.title}
-                      </h4>
-                      <p className="text-xs text-[#171A1D]/70 leading-relaxed m-0">
-                        {item.desc}
-                      </p>
+                      <div>
+                        <div className="flex items-center justify-between gap-2 mb-1.5">
+                          <h4 className="font-serif text-sm font-semibold text-[#171A1D] uppercase tracking-wide">
+                            {item.title}
+                          </h4>
+                          <span className="font-mono text-[9px] font-bold text-[#FE6311]/80 sm:hidden">
+                            0{idx + 1}
+                          </span>
+                        </div>
+                        <p className="text-xs text-[#171A1D]/70 leading-relaxed m-0">
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
+                  ))}
+                </div>
+
+                {/* Mobile Dot Indicators for 5 Cards */}
+                <div className="flex sm:hidden items-center justify-center gap-1.5 pt-2 pb-1">
+                  {[0, 1, 2, 3, 4].map((idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => scrollToWhatWeDo(idx)}
+                      className={`h-1.5 transition-all rounded-full ${
+                        activeWhatWeDo === idx
+                          ? "w-5 bg-[#FE6311]"
+                          : "w-1.5 bg-[#171A1D]/20 hover:bg-[#FE6311]/40"
+                      }`}
+                      aria-label={`Go to What We Do card ${idx + 1}`}
+                    />
                   ))}
                 </div>
               </div>
@@ -364,14 +469,49 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
             categories={HIMAT_CATEGORIES}
           />
 
-          {/* Category Decks List (Alternating expanding cards) */}
+          {/* Category Decks List (Showing 3 primary categories on homepage) */}
           <div className="filtered-categories">
             {(selectedCategoryFilter === "all"
-              ? HIMAT_CATEGORIES
+              ? HIMAT_CATEGORIES.slice(0, 3)
               : HIMAT_CATEGORIES.filter((c) => c.id === selectedCategoryFilter)
             ).map((category) => (
               <HimatCategoryDeck key={category.id} category={category} />
             ))}
+          </div>
+
+          {/* Explore More Categories Section */}
+          <div className="bg-[#F3EEE5] border-t border-[rgba(23,26,29,0.12)] py-10 sm:py-14 px-5 sm:px-8 text-center">
+            <div className="max-w-xl mx-auto space-y-3.5">
+              <span className="font-mono text-[9.5px] font-extrabold uppercase tracking-[0.16em] text-[#FE6311] block">
+                {selectedCategoryFilter === "all"
+                  ? "SHOWING 3 OF 7 GARMENT CATEGORIES"
+                  : "MORE SOURCING CATEGORIES"}
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#171A1D] leading-snug">
+                Explore Ethnic, Bedsheets, Mill Fabrics & White Labelling
+              </h3>
+              <p className="text-xs sm:text-sm text-[#171A1D]/75 leading-relaxed">
+                Discover our complete collection of 7 garment categories with mill-direct pricing, custom tech packs, and dispatch schedules.
+              </p>
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <Link
+                  href="/catalog"
+                  className="button button-rust inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs font-mono font-bold uppercase tracking-wider shadow-md w-full sm:w-auto"
+                >
+                  <span>EXPLORE ALL 7 CATEGORIES</span>
+                  <ArrowRight size={15} />
+                </Link>
+                <a
+                  href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20want%20to%20know%20about%20your%20full%20garment%20range"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-[#FFFFFF] border border-[rgba(23,26,29,0.15)] hover:border-[#25D366] text-[#171A1D] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-2xs hover:bg-[#F9F9F8] transition-colors w-full sm:w-auto"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
+                  <span>INQUIRE ON WHATSAPP</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Specification-Led Quote CTA Banner */}

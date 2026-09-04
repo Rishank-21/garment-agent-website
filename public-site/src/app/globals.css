@@ -1022,23 +1022,106 @@ html.lenis, html.lenis body { height: auto; }
     display: none;
   }
 }
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .catalogue-copy {
-    padding: 2.8rem 1.25rem 1.5rem;
+    padding: 2rem 1.25rem 1rem;
+  }
+  .catalogue-index-row {
+    margin-bottom: 0.2rem;
+  }
+  .maker-seal {
+    font-size: 0.44rem;
+    padding: 0.2rem 0.4rem;
+    letter-spacing: 0.08em;
+  }
+  .catalogue-copy h2 {
+    font-size: clamp(1.85rem, 6.5vw, 2.3rem);
+    line-height: 0.94;
+    letter-spacing: -0.04em;
+    margin: 0.65rem 0 0.35rem;
+  }
+  .catalogue-line {
+    font-size: 1.05rem;
+    line-height: 1.22;
+    letter-spacing: -0.015em;
+  }
+  .catalogue-description {
+    font-size: 0.78rem;
+    line-height: 1.55;
+    margin: 0.55rem 0 0.8rem;
+    max-width: 100%;
+  }
+  .catalogue-specs {
+    gap: 0.28rem;
+    margin: 0 0 0.85rem;
+  }
+  .catalogue-specs span {
+    font-size: 0.46rem;
+    padding: 0.2rem 0.42rem;
+    letter-spacing: 0.06em;
+  }
+  .catalogue-proof {
+    gap: 0.6rem;
+    margin: 0 0 0.95rem;
+  }
+  .catalogue-proof img {
+    height: 34px;
+    width: 50px;
+  }
+  .catalogue-proof span {
+    font-size: 0.46rem;
+    line-height: 1.35;
+  }
+  .catalogue-quote {
+    font-size: 0.58rem;
+    padding-bottom: 0.35rem;
+    gap: 0.35rem;
   }
   .category-deck-wrap {
-    padding: 1.25rem;
+    padding: 0.5rem 1.25rem 1.75rem;
+  }
+  .category-deck-controls {
+    margin-bottom: 0.65rem;
+  }
+  .category-deck {
+    height: 350px;
+    min-height: 350px;
   }
   .catalogue-card,
   .catalogue-card.is-active {
-    flex: 0 0 82%;
-    min-width: 82%;
+    flex: 0 0 74%;
+    min-width: 74%;
     scroll-snap-align: center;
   }
   .catalogue-card .catalogue-card-content,
   .catalogue-card .catalogue-card-arrow {
     opacity: 1;
     transform: none;
+  }
+  .catalogue-card .catalogue-card-content {
+    bottom: 0.85rem;
+    left: 0.85rem;
+    right: 3.5rem;
+    padding: 0;
+  }
+  .catalogue-card .catalogue-card-content small {
+    font-size: 0.52rem;
+    margin-bottom: 0.2rem;
+  }
+  .catalogue-card .catalogue-card-content strong {
+    font-size: 1.15rem;
+    line-height: 1.05;
+  }
+  .catalogue-card .catalogue-card-arrow {
+    bottom: 0.85rem;
+    right: 0.85rem;
+    height: 30px;
+    width: 30px;
+  }
+  .catalogue-card .catalogue-card-number {
+    top: 0.85rem;
+    left: 0.85rem;
+    font-size: 0.56rem;
   }
 }
 

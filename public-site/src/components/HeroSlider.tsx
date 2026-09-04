@@ -47,6 +47,24 @@ const tickerItems = [
 export default function HeroSlider() {
   const [activeSlide, setActiveSlide] = useState(0);
   const { t } = useLanguage();
+  const touchStartX = React.useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+      } else {
+        setActiveSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+      }
+    }
+    touchStartX.current = null;
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,8 +86,8 @@ export default function HeroSlider() {
       */}
       <section className="relative flex min-h-[min(720px,100svh)] w-full flex-col justify-center overflow-hidden bg-[#F3EEE5] px-5 pt-28 pb-16 text-[#171A1D] sm:px-10 sm:pt-36 sm:pb-24 lg:px-16 xl:px-24">
         
-        {/* Right 64% Manufacturing Media Layer with Seamless Underlapping Blend */}
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-[1] w-full overflow-hidden opacity-100 lg:w-[64%]">
+        {/* Desktop Manufacturing Media Layer (Right 64% with Seamless Blend) */}
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-[1] w-full overflow-hidden opacity-100 hidden lg:block lg:w-[64%]">
           {HERO_SLIDES.map((slide, index) => {
             const isActive = index === activeSlide;
             return (
@@ -92,19 +110,10 @@ export default function HeroSlider() {
 
           {/* Desktop Continuous Easing Gradient */}
           <span
-            className="pointer-events-none absolute inset-0 z-[2] hidden lg:block"
+            className="pointer-events-none absolute inset-0 z-[2]"
             style={{
               background:
                 "linear-gradient(90deg, #F3EEE5 0%, #F3EEE5 6%, rgba(243,238,229,0.80) 18%, rgba(243,238,229,0.48) 34%, rgba(243,238,229,0.20) 52%, rgba(243,238,229,0.05) 70%, transparent 85%)",
-            }}
-          />
-
-          {/* Mobile / Tablet Vertical Continuous Soft Bleed Gradient */}
-          <span
-            className="pointer-events-none absolute inset-0 z-[2] lg:hidden"
-            style={{
-              background:
-                "linear-gradient(180deg, #F3EEE5 0%, #F3EEE5 45%, rgba(243,238,229,0.88) 72%, rgba(243,238,229,0.35) 100%)",
             }}
           />
         </div>
@@ -152,13 +161,68 @@ export default function HeroSlider() {
             <em className="italic text-[#FE6311]">Scale the garment.</em>
           </h1>
 
+          {/* Mobile Hero Visual Showcase (Clearly displaying Ahmedabad Market photos on phone screens) */}
+          <div 
+            className="lg:hidden my-3 sm:my-4 relative w-full aspect-[16/10] overflow-hidden rounded-[4px] border border-[rgba(23,26,29,0.14)] shadow-md bg-[#EFE9DF] touch-pan-y select-none"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            {HERO_SLIDES.map((slide, index) => {
+              const isActive = index === activeSlide;
+              return (
+                <div
+                  key={slide.label}
+                  className="absolute inset-0 transition-opacity duration-700 ease-in-out"
+                  style={{ opacity: isActive ? 1 : 0 }}
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.label}
+                    className="h-full w-full object-cover object-center brightness-[1.02] contrast-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-2.5 left-3 right-3 flex items-end justify-between gap-2 text-white">
+                    <div className="min-w-0 pr-2">
+                      <div className="flex items-center gap-1.5 font-mono text-[9px] font-bold uppercase tracking-wider text-[#FFD44D]">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#FE6311] animate-pulse shrink-0" />
+                        <span className="truncate">{slide.label}</span>
+                      </div>
+                      <span className="text-[10px] text-white/80 block truncate font-sans">
+                        Ahmedabad Textile & Garment District
+                      </span>
+                    </div>
+                    <span className="font-mono text-[8px] font-bold uppercase bg-black/50 border border-white/25 backdrop-blur-xs px-2 py-0.5 rounded-[2px] text-white shrink-0">
+                      {slide.category}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Mobile Slide Navigation Dots inside the photo card */}
+            <div className="absolute top-2.5 right-2.5 z-10 flex items-center gap-1 bg-black/50 backdrop-blur-xs px-2 py-1 rounded-full border border-white/20">
+              {HERO_SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`h-1.5 transition-all rounded-full ${
+                    idx === activeSlide
+                      ? "w-4 bg-[#FE6311]"
+                      : "w-1.5 bg-white/50 hover:bg-white"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+
           {/* Editorial Paragraph */}
           <p className="mt-2.5 sm:mt-3.5 max-w-[50ch] font-sans text-[clamp(0.88rem,1.08vw,1.02rem)] leading-[1.62] sm:leading-[1.68] text-[#171A1D]/85 font-medium">
             Your trusted B2B garment sourcing partner in Ahmedabad. We connect retailers, wholesalers, and growing fashion brands with reliable manufacturers across men&apos;s, women&apos;s, kids&apos; wear, and mill-direct fabrics.
           </p>
 
           {/* Action Buttons: Stacked on mobile with 48px touch targets */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-6 pt-5 sm:pt-7">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-6 pt-4 sm:pt-7">
             <Link
               href="/catalog"
               className="button button-rust inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-xs sm:text-[10.5px] tracking-[0.14em] shadow-md min-h-[46px] w-full sm:w-auto"
@@ -176,8 +240,8 @@ export default function HeroSlider() {
           </div>
         </div>
 
-        {/* Slide Selector Pill Indicators (Visible on both mobile & desktop) */}
-        <div className="absolute right-5 bottom-3.5 sm:bottom-6 lg:bottom-7 lg:right-20 z-[4] flex items-center gap-1.5">
+        {/* Slide Selector Pill Indicators (Visible on desktop) */}
+        <div className="absolute right-5 bottom-3.5 sm:bottom-6 lg:bottom-7 lg:right-20 z-[4] hidden lg:flex items-center gap-1.5">
           {HERO_SLIDES.map((_, idx) => (
             <button
               key={idx}
