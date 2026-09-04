@@ -23,6 +23,7 @@ const translations: Record<Language, Record<string, string>> = {
     nav_white_labeling: "White Labeling",
     nav_export: "Export",
     nav_contact: "Contact",
+    nav_reviews: "Reviews",
     btn_start_enquiry: "Start Enquiry",
     
     // Hero
@@ -217,6 +218,7 @@ const translations: Record<Language, Record<string, string>> = {
     nav_white_labeling: "व्हाइट लेबलिंग",
     nav_export: "निर्यात",
     nav_contact: "संपर्क",
+    nav_reviews: "समीक्षाएं",
     btn_start_enquiry: "पूछताछ शुरू करें",
     
     // Hero

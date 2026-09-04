@@ -814,7 +814,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 12. Client Reviews Section */}
-        <section className="bg-[#F3EFEA] px-5 py-24 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-32 border-t border-[#E2DDD5]">
+        <section id="reviews" className="scroll-mt-24 bg-[#F3EFEA] px-5 py-24 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-32 border-t border-[#E2DDD5]">
           <div className="mx-auto max-w-[1280px]">
             <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
               <div className="space-y-6">

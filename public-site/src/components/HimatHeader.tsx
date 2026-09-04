@@ -25,6 +25,7 @@ export function HimatHeader() {
     { label: t("nav_white_labeling"), href: "/white-labeling" },
     { label: t("nav_network"), href: "/network" },
     { label: t("nav_guide"), href: "/guide" },
+    { label: t("nav_reviews"), href: "/reviews" },
   ];
 
   useEffect(() => {

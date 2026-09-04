@@ -34,6 +34,7 @@ export function HimatFooter() {
             <Link href="/white-labeling" className="hover:text-white transition-colors">{t("nav_white_labeling")}</Link>
             <Link href="/network" className="hover:text-white transition-colors">{t("nav_network")}</Link>
             <Link href="/guide" className="hover:text-white transition-colors">{t("nav_guide")}</Link>
+            <Link href="/reviews" className="hover:text-white transition-colors">{t("nav_reviews")}</Link>
             <Link href="/#enquiry" className="hover:text-white transition-colors">{t("btn_start_enquiry")}</Link>
           </div>
         </div>
