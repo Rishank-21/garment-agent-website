@@ -1515,11 +1515,49 @@ html.lenis, html.lenis body { height: auto; }
     gap: 2rem;
   }
   .brand-lab-steps {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 1rem;
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .brand-lab-steps::-webkit-scrollbar {
+    display: none;
+  }
+  .brand-step {
+    flex: 0 0 85%;
+    min-width: 85%;
+    max-width: 320px;
+    scroll-snap-align: start;
   }
   .brand-step-image {
-    height: 220px;
+    height: 180px;
+  }
+  .brand-step-copy {
+    padding: 1.25rem 1rem;
+  }
+  .brand-step-copy h3 {
+    font-size: 1.35rem;
+    margin: 0.5rem 0;
+  }
+  .brand-step-copy p {
+    font-size: 0.78rem;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand-step {
+    flex: 0 0 82%;
+    min-width: 82%;
   }
 }
 

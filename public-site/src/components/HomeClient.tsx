@@ -90,6 +90,108 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
     }
   };
 
+  // White-Label 3 Workflow Steps Auto-Scroll on Mobile
+  const brandStepsTrackRef = useRef<HTMLDivElement>(null);
+  const [activeBrandStep, setActiveBrandStep] = useState(0);
+  const isBrandStepInteracting = useRef(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (isBrandStepInteracting.current) return;
+      if (typeof window !== "undefined" && window.innerWidth >= 1024) return;
+      if (!brandStepsTrackRef.current) return;
+
+      const track = brandStepsTrackRef.current;
+      const nextIdx = (activeBrandStep + 1) % 3;
+      const card = track.children[nextIdx] as HTMLElement;
+      if (card) {
+        track.scrollTo({
+          left: card.offsetLeft - track.offsetLeft,
+          behavior: "smooth",
+        });
+        setActiveBrandStep(nextIdx);
+      }
+    }, 4200);
+
+    return () => clearInterval(timer);
+  }, [activeBrandStep]);
+
+  const handleBrandStepScroll = () => {
+    if (!brandStepsTrackRef.current) return;
+    const track = brandStepsTrackRef.current;
+    const card = track.children[0] as HTMLElement;
+    if (!card) return;
+    const cardWidth = card.clientWidth + 16;
+    const newIdx = Math.round(track.scrollLeft / cardWidth);
+    if (newIdx >= 0 && newIdx < 3 && newIdx !== activeBrandStep) {
+      setActiveBrandStep(newIdx);
+    }
+  };
+
+  const scrollToBrandStep = (idx: number) => {
+    if (!brandStepsTrackRef.current) return;
+    const track = brandStepsTrackRef.current;
+    const card = track.children[idx] as HTMLElement;
+    if (card) {
+      track.scrollTo({
+        left: card.offsetLeft - track.offsetLeft,
+        behavior: "smooth",
+      });
+      setActiveBrandStep(idx);
+    }
+  };
+
+  // White-Label Capabilities Auto-Scroll on Mobile
+  const capabilitiesTrackRef = useRef<HTMLDivElement>(null);
+  const [activeCapability, setActiveCapability] = useState(0);
+  const isCapabilityInteracting = useRef(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (isCapabilityInteracting.current) return;
+      if (typeof window !== "undefined" && window.innerWidth >= 1024) return;
+      if (!capabilitiesTrackRef.current) return;
+
+      const track = capabilitiesTrackRef.current;
+      const nextIdx = (activeCapability + 1) % 6;
+      const card = track.children[nextIdx] as HTMLElement;
+      if (card) {
+        track.scrollTo({
+          left: card.offsetLeft - track.offsetLeft,
+          behavior: "smooth",
+        });
+        setActiveCapability(nextIdx);
+      }
+    }, 3400);
+
+    return () => clearInterval(timer);
+  }, [activeCapability]);
+
+  const handleCapabilitiesScroll = () => {
+    if (!capabilitiesTrackRef.current) return;
+    const track = capabilitiesTrackRef.current;
+    const card = track.children[0] as HTMLElement;
+    if (!card) return;
+    const cardWidth = card.clientWidth + 12;
+    const newIdx = Math.round(track.scrollLeft / cardWidth);
+    if (newIdx >= 0 && newIdx < 6 && newIdx !== activeCapability) {
+      setActiveCapability(newIdx);
+    }
+  };
+
+  const scrollToCapability = (idx: number) => {
+    if (!capabilitiesTrackRef.current) return;
+    const track = capabilitiesTrackRef.current;
+    const card = track.children[idx] as HTMLElement;
+    if (card) {
+      track.scrollTo({
+        left: card.offsetLeft - track.offsetLeft,
+        behavior: "smooth",
+      });
+      setActiveCapability(idx);
+    }
+  };
+
   const { language, t } = useLanguage();
 
   const translatedSolutions = [
@@ -631,84 +733,174 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               </div>
             </div>
 
-            {/* 3 Iconic Architecture Step Cards (Komal Creation Style) */}
-            <div className="brand-lab-steps">
-              {/* Step 1 */}
-              <article className="brand-step group">
-                <div className="brand-step-image">
-                  <img
-                    src="/manus-storage/mafatlal-materials-detail_6b9c0b66.jpg"
-                    alt="Custom design and tech pack verification"
-                    loading="lazy"
-                  />
-                  <span className="brand-step-number">01</span>
-                </div>
-                <div className="brand-step-copy">
-                  <small>BRIEF THE IDEA / PATTERN · FIT · PALETTE</small>
-                  <h3>Start with your product concept.</h3>
-                  <p>
-                    Bring a reference sample, technical sketch, or market benchmark. We align custom pattern grading, fabric composition, GSM, and target retail price points.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Patterns</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Graded Sizing</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Mill Lab Dips</span>
-                  </div>
-                </div>
-              </article>
+            {/* 3 Iconic Architecture Step Cards with Mobile Horizontal Auto-Scroll */}
+            <div className="mt-8 lg:mt-14">
+              <div className="flex items-center justify-between mb-3 lg:hidden">
+                <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-[#171A1D]/60">
+                  PRIVATE LABEL WORKFLOW
+                </span>
+                <span className="font-mono text-[9px] text-[#FE6311] font-semibold uppercase">
+                  Swipe or auto-scroll &rarr;
+                </span>
+              </div>
 
-              {/* Step 2 */}
-              <article className="brand-step group">
-                <div className="brand-step-image">
-                  <img
-                    src="/manus-storage/mafatlal-tailoring_9872bd9e.jpg"
-                    alt="Sample development and precision stitching"
-                    loading="lazy"
-                  />
-                  <span className="brand-step-number">02</span>
-                </div>
-                <div className="brand-step-copy">
-                  <small>BUILD THE SAMPLE / STITCH · EMBROIDERY · PRINT</small>
-                  <h3>Turn it into an approved piece.</h3>
-                  <p>
-                    Our sample masters cut, stitch, and finish pre-production prototypes. Review real drape, seam strength, pocket placement, and wash feel before bulk cutting begins.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pre-Prod Sample</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Screen & Digital Print</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Durability QC</span>
+              <div
+                ref={brandStepsTrackRef}
+                onScroll={handleBrandStepScroll}
+                onTouchStart={() => {
+                  isBrandStepInteracting.current = true;
+                }}
+                onTouchEnd={() => {
+                  setTimeout(() => {
+                    isBrandStepInteracting.current = false;
+                  }, 4000);
+                }}
+                onMouseEnter={() => {
+                  isBrandStepInteracting.current = true;
+                }}
+                onMouseLeave={() => {
+                  isBrandStepInteracting.current = false;
+                }}
+                className="brand-lab-steps"
+                style={{ WebkitOverflowScrolling: "touch" }}
+              >
+                {/* Step 1 */}
+                <article
+                  onClick={() => scrollToBrandStep(0)}
+                  className={`brand-step group transition-all cursor-pointer ${
+                    activeBrandStep === 0 ? "border-[#FE6311]/50 lg:border-[rgba(23,26,29,0.08)]" : ""
+                  }`}
+                >
+                  <div className="brand-step-image">
+                    <img
+                      src="/manus-storage/mafatlal-materials-detail_6b9c0b66.jpg"
+                      alt="Custom design and tech pack verification"
+                      loading="lazy"
+                    />
+                    <span className="brand-step-number">01</span>
                   </div>
-                </div>
-              </article>
+                  <div className="brand-step-copy">
+                    <small>BRIEF THE IDEA / PATTERN · FIT · PALETTE</small>
+                    <h3>Start with your product concept.</h3>
+                    <p>
+                      Bring a reference sample, technical sketch, or market benchmark. We align custom pattern grading, fabric composition, GSM, and target retail price points.
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Patterns</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Graded Sizing</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Mill Lab Dips</span>
+                    </div>
+                  </div>
+                </article>
 
-              {/* Step 3 */}
-              <article className="brand-step group">
-                <div className="brand-step-image">
-                  <img
-                    src="/manus-storage/stitchform-private-label_b6cb424d.jpg"
-                    alt="Private label branding, packaging and dispatch"
-                    loading="lazy"
-                  />
-                  <span className="brand-step-number">03</span>
-                </div>
-                <div className="brand-step-copy">
-                  <small>LABEL FOR LAUNCH / TAGS · PACKAGING · DISPATCH</small>
-                  <h3>Put your name on every garment.</h3>
-                  <p>
-                    Woven neck damask labels, branded satin wash-care tags, custom hangtags, branded buttons, barcode stickers, and retail polybags packaged into shelf-ready cartons.
-                  </p>
-                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Woven Damask</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Hangtags</span>
-                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pan-India Logistics</span>
+                {/* Step 2 */}
+                <article
+                  onClick={() => scrollToBrandStep(1)}
+                  className={`brand-step group transition-all cursor-pointer ${
+                    activeBrandStep === 1 ? "border-[#FE6311]/50 lg:border-[rgba(23,26,29,0.08)]" : ""
+                  }`}
+                >
+                  <div className="brand-step-image">
+                    <img
+                      src="/manus-storage/mafatlal-tailoring_9872bd9e.jpg"
+                      alt="Sample development and precision stitching"
+                      loading="lazy"
+                    />
+                    <span className="brand-step-number">02</span>
                   </div>
-                </div>
-              </article>
+                  <div className="brand-step-copy">
+                    <small>BUILD THE SAMPLE / STITCH · EMBROIDERY · PRINT</small>
+                    <h3>Turn it into an approved piece.</h3>
+                    <p>
+                      Our sample masters cut, stitch, and finish pre-production prototypes. Review real drape, seam strength, pocket placement, and wash feel before bulk cutting begins.
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pre-Prod Sample</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Screen & Digital Print</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Durability QC</span>
+                    </div>
+                  </div>
+                </article>
+
+                {/* Step 3 */}
+                <article
+                  onClick={() => scrollToBrandStep(2)}
+                  className={`brand-step group transition-all cursor-pointer ${
+                    activeBrandStep === 2 ? "border-[#FE6311]/50 lg:border-[rgba(23,26,29,0.08)]" : ""
+                  }`}
+                >
+                  <div className="brand-step-image">
+                    <img
+                      src="/manus-storage/stitchform-private-label_b6cb424d.jpg"
+                      alt="Private label branding, packaging and dispatch"
+                      loading="lazy"
+                    />
+                    <span className="brand-step-number">03</span>
+                  </div>
+                  <div className="brand-step-copy">
+                    <small>LABEL FOR LAUNCH / TAGS · PACKAGING · DISPATCH</small>
+                    <h3>Put your name on every garment.</h3>
+                    <p>
+                      Woven neck damask labels, branded satin wash-care tags, custom hangtags, branded buttons, barcode stickers, and retail polybags packaged into shelf-ready cartons.
+                    </p>
+                    <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Woven Damask</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Hangtags</span>
+                      <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pan-India Logistics</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              {/* Mobile Indicators for 3 Brand Steps */}
+              <div className="flex lg:hidden items-center justify-center gap-1.5 pt-3 pb-1">
+                {[0, 1, 2].map((idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => scrollToBrandStep(idx)}
+                    className={`h-1.5 transition-all rounded-full ${
+                      activeBrandStep === idx
+                        ? "w-6 bg-[#FE6311]"
+                        : "w-2 bg-[#171A1D]/20 hover:bg-[#FE6311]/40"
+                    }`}
+                    aria-label={`Go to Workflow Step ${idx + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
-            {/* Bottom 6-Step Capabilities Horizontal Ribbon */}
-            <div className="mt-14 pt-8 border-t border-[rgba(23,26,29,0.12)]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {/* Bottom 6-Step Capabilities Horizontal Ribbon with Mobile Auto-Scroll */}
+            <div className="mt-10 sm:mt-14 pt-8 border-t border-[rgba(23,26,29,0.12)]">
+              <div className="flex items-center justify-between mb-3 lg:hidden">
+                <span className="font-mono text-[9.5px] font-bold uppercase tracking-wider text-[#171A1D]/60">
+                  MANUFACTURING CAPABILITIES
+                </span>
+                <span className="font-mono text-[9px] text-[#FE6311] font-semibold uppercase">
+                  Swipe or auto-scroll &rarr;
+                </span>
+              </div>
+
+              <div
+                ref={capabilitiesTrackRef}
+                onScroll={handleCapabilitiesScroll}
+                onTouchStart={() => {
+                  isCapabilityInteracting.current = true;
+                }}
+                onTouchEnd={() => {
+                  setTimeout(() => {
+                    isCapabilityInteracting.current = false;
+                  }, 4000);
+                }}
+                onMouseEnter={() => {
+                  isCapabilityInteracting.current = true;
+                }}
+                onMouseLeave={() => {
+                  isCapabilityInteracting.current = false;
+                }}
+                className="flex lg:grid lg:grid-cols-6 gap-3 lg:gap-4 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory scrollbar-none pb-2 pt-1 -mx-5 px-5 lg:mx-0 lg:px-0"
+                style={{ WebkitOverflowScrolling: "touch" }}
+              >
                 {[
                   { step: "01", name: "Custom Tech Packs", desc: "Fits, sizing & styling specs" },
                   { step: "02", name: "Mill-Direct Fabrics", desc: "Quality yarn & precision shades" },
@@ -716,18 +908,45 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   { step: "04", name: "Bulk Production", desc: "Rigid stitch & wash QC lines" },
                   { step: "05", name: "Custom Packaging", desc: "Woven tags, barcodes & boxes" },
                   { step: "06", name: "Pan-India Freight", desc: "Doorstep transport corridors" },
-                ].map((cap) => (
-                  <div key={cap.step} className="bg-[#FFFAF4]/80 border border-[rgba(23,26,29,0.08)] p-3.5 rounded-[3px]">
-                    <span className="font-mono text-[10px] font-bold text-[#FE6311] block mb-1">
-                      {cap.step}
-                    </span>
-                    <h4 className="font-serif text-sm font-semibold text-[#171A1D] leading-tight mb-1">
-                      {cap.name}
-                    </h4>
-                    <p className="text-[11px] text-[#171A1D]/70 leading-snug m-0">
-                      {cap.desc}
-                    </p>
+                ].map((cap, idx) => (
+                  <div
+                    key={cap.step}
+                    onClick={() => scrollToCapability(idx)}
+                    className={`min-w-[210px] max-w-[230px] lg:min-w-0 lg:max-w-none snap-start shrink-0 flex-1 bg-[#FFFAF4]/90 border p-3.5 rounded-[3px] transition-all flex flex-col justify-between cursor-pointer ${
+                      activeCapability === idx
+                        ? "border-[#FE6311]/50 lg:border-[rgba(23,26,29,0.08)]"
+                        : "border-[rgba(23,26,29,0.08)]"
+                    }`}
+                  >
+                    <div>
+                      <span className="font-mono text-[10px] font-bold text-[#FE6311] block mb-1">
+                        {cap.step}
+                      </span>
+                      <h4 className="font-serif text-sm font-semibold text-[#171A1D] leading-tight mb-1">
+                        {cap.name}
+                      </h4>
+                      <p className="text-[11px] text-[#171A1D]/70 leading-snug m-0">
+                        {cap.desc}
+                      </p>
+                    </div>
                   </div>
+                ))}
+              </div>
+
+              {/* Mobile Indicators for Capabilities */}
+              <div className="flex lg:hidden items-center justify-center gap-1.5 pt-2 pb-1">
+                {[0, 1, 2, 3, 4, 5].map((idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => scrollToCapability(idx)}
+                    className={`h-1.5 transition-all rounded-full ${
+                      activeCapability === idx
+                        ? "w-5 bg-[#FE6311]"
+                        : "w-1.5 bg-[#171A1D]/20 hover:bg-[#FE6311]/40"
+                    }`}
+                    aria-label={`Go to Capability ${idx + 1}`}
+                  />
                 ))}
               </div>
             </div>
