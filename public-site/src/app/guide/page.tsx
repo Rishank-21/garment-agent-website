@@ -18,7 +18,7 @@ export default async function BusinessGuidePage() {
         <section className="relative overflow-hidden bg-[#252525] px-5 pb-12 pt-28 text-[#FAF9F6] sm:px-8 lg:px-12 lg:pt-36 border-b border-black/20">
           <div className="relative mx-auto max-w-[1280px]">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FFB51A]">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#E8907B]">
                 <span>Home</span>
                 <span className="opacity-50">/</span>
                 <span className="text-[#FAF9F6]/80">Business Sourcing Guide</span>
@@ -37,7 +37,7 @@ export default async function BusinessGuidePage() {
           <div className="mx-auto max-w-[1280px]">
             <div className="flex flex-col justify-between gap-6 border-b border-[#DEDAD2] pb-7 lg:flex-row lg:items-end">
               <div>
-                <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase tracking-wider inline-block">
+                <span className="font-mono text-[9px] font-bold text-[#FE6311] bg-[#FFFAF4] px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
                   [ PRODUCT SELECTION / STOCK PLANNING / MARKET GUIDANCE ]
                 </span>
                 <div className="mt-4 h-0.5 bg-[#FE6311] w-12" />
@@ -58,7 +58,7 @@ export default async function BusinessGuidePage() {
                         <img src={guide.coverImage} alt={guide.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                       </div>
                     )}
-                    <span className="mono-label text-[8.5px] text-[#FE6311] font-bold uppercase bg-[#FFF9E6] border border-[#FFB51A]/40 px-2.5 py-1 rounded-xs">Published article</span>
+                    <span className="mono-label text-[8.5px] text-[#FE6311] font-bold uppercase bg-[#FFF9E6] px-2.5 py-1 rounded-xs">Published article</span>
                     <h3 className="mt-3 font-serif-display text-2xl font-bold uppercase leading-tight text-[#252525] group-hover:text-[#FE6311] transition-colors">{guide.title}</h3>
                     <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-[#6B6B6B]">{guide.content}</p>
                     <div className="mt-8 flex items-center justify-between border-t border-[#DEDAD2] pt-4">

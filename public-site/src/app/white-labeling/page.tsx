@@ -23,14 +23,14 @@ export default function WhiteLabelingPage() {
           <div className="relative mx-auto max-w-[1500px]">
             <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div className="space-y-6">
-                <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FFB51A]">
+                <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#E8907B]">
                   <span>Home</span>
                   <span className="opacity-50">/</span>
                   <span>Services</span>
                   <span className="opacity-50">/</span>
                   <span className="text-[#FAF9F6]/80">White Labeling</span>
                 </div>
-                <h1 className="font-serif-display text-[clamp(2.2rem,6vw,5.5rem)] font-black uppercase leading-[0.9] tracking-tight text-[#FAF9F6]">
+                <h1 className="font-serif text-[clamp(2.2rem,6vw,5.5rem)] font-normal leading-[0.92] tracking-tight text-[#FAF9F6]">
                   Your Brand.<br />
                   <span className="italic font-normal text-[#FE6311]">Your Vision.</span><br />
                   Our Manufacturing.
@@ -41,8 +41,8 @@ export default function WhiteLabelingPage() {
               </div>
 
               {/* Private Label Specifications Checklist */}
-              <div className="border border-white/20 bg-white/5 p-6 rounded-xs space-y-4 shadow-xl">
-                <span className="mono-label text-[9.5px] text-[#FFB51A] font-bold block">// MANUFACTURING SPECS</span>
+              <div className="border border-[rgba(23,26,29,0.12)] bg-[#FFFAF4] p-6 rounded-lg space-y-4 shadow-sm">
+                <span className="mono-label text-[9.5px] text-[#E8907B] font-bold block">// MANUFACTURING SPECS</span>
                 <div className="divide-y divide-white/15 text-xs">
                   <div className="py-2.5 flex justify-between">
                     <span className="text-[#FAF9F6]/75">Available Lines:</span>
@@ -54,7 +54,7 @@ export default function WhiteLabelingPage() {
                   </div>
                   <div className="py-2.5 flex justify-between">
                     <span className="text-[#FAF9F6]/75">Min. Order:</span>
-                    <span className="font-mono text-[#FFB51A] font-bold">100 Pcs per design</span>
+                    <span className="font-mono text-[#E8907B] font-bold">100 Pcs per design</span>
                   </div>
                   <div className="py-2.5 flex justify-between">
                     <span className="text-[#FAF9F6]/75">Fabric Options:</span>
@@ -71,7 +71,7 @@ export default function WhiteLabelingPage() {
           <div className="mx-auto max-w-[1280px]">
             <div className="flex flex-col justify-between gap-6 border-b border-[#DEDAD2] pb-8 lg:flex-row lg:items-end">
               <div>
-                <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase tracking-wider inline-block">
+                <span className="font-mono text-[9px] font-bold text-[#FE6311] bg-[#FFFAF4] px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
                   [ MAKE YOUR OWN BRAND ]
                 </span>
                 <div className="mt-4 h-0.5 bg-[#FE6311] w-12" />

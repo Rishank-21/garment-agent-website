@@ -3,7 +3,6 @@ import { Playfair_Display, Plus_Jakarta_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { HimatHeader } from "@/components/HimatHeader";
 import { HimatFooter } from "@/components/HimatFooter";
-import CustomCursor from "@/components/CustomCursor";
 import BlackThemePreloader from "@/components/BlackThemePreloader";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
@@ -164,7 +163,6 @@ export default function RootLayout({
               <HimatFooter />
             </div>
             <FloatingWhatsApp />
-            <CustomCursor />
             <BlackThemePreloader />
             <Toaster position="bottom-right" theme="dark" />
           </SmoothScroll>

@@ -44,38 +44,26 @@
   --card-muted: #EFE9DE;
   --popover: #FFFFFF;
   --popover-foreground: #1A1A1A;
-  --primary: #F5B014;
-  --primary-foreground: #181511;
-  --secondary: #FFC933;
-  --secondary-foreground: #181511;
-  --muted: #F3EFEA;
+  --primary: #FE6311;
+  --primary-foreground: #FFFAF4;
+  --secondary: #E8907B;
+  --secondary-foreground: #171A1D;
+  --muted: #F3EEE5;
   --muted-foreground: #66625D;
-  --accent: #E0950B;
-  --accent-foreground: #FFFFFF;
+  --accent: #FE6311;
+  --accent-foreground: #FFFAF4;
   --border: #E2DDD5;
   --input: #E2DDD5;
-  --ring: #F5B014;
+  --ring: #FE6311;
 
-  /* Himat Logo Golden Yellow & Luxury Warm Palette */
-  --ht-gold: #F5B014;
-  --ht-gold-light: #FFD44D;
-  --ht-gold-dark: #C98500;
-  --ht-gold-rich: #E0950B;
-  --ht-ivory: #FAF8F5;
-  --ht-offwhite: #F3EFEA;
-  --ht-beige: #EAE4DA;
-  --ht-charcoal: #1A1A1A;
-  --ht-charcoal-deep: #121212;
-  --ht-secondary-text: #66625D;
-  --ht-border: #E2DDD5;
-  --ht-white: #FFFFFF;
-
-  /* Komal Creation Rust & Paper Editorial Palette */
+  /* Himat & Komal Creation Atelier Color Palette */
   --paper: #FAF8F5;
+  --paper-warm: #F3EEE5;
   --ink: #171A1D;
-  --rust: #B7462E;
-  --rust-hover: #9E3923;
-  --rust-light: #DB725D;
+  --rust: #FE6311;
+  --rust-hover: #E05307;
+  --rust-light: #E8907B;
+  --sage: #839080;
 }
 
 .dark { color-scheme: dark; }
@@ -85,81 +73,100 @@
   html { scroll-behavior: smooth; }
   body { @apply bg-background text-foreground font-sans antialiased; }
   button:not(:disabled), [role="button"]:not([aria-disabled="true"]), [type="button"]:not(:disabled), [type="submit"]:not(:disabled), [type="reset"]:not(:disabled), a[href], select:not(:disabled), input[type="checkbox"]:not(:disabled), input[type="radio"]:not(:disabled) { @apply cursor-pointer; }
-  ::selection { background: #F5B014; color: #181511; }
+  ::selection { background: #FE6311; color: #FFFAF4; }
 }
 
 @layer components {
   .container { width: 100%; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
   .editorial-rule { height: 1px; background: currentColor; opacity: .12; }
-  .accent-rule { height: 2px; width: 3.5rem; background: var(--ht-gold); }
-  .ivory-surface { background: var(--ht-ivory); color: var(--ht-charcoal); }
-  .offwhite-surface { background: var(--ht-offwhite); color: var(--ht-charcoal); }
-  .beige-surface { background: var(--ht-beige); color: var(--ht-charcoal); }
-  .dark-surface { background: var(--ht-charcoal); color: var(--ht-ivory); }
+  .accent-rule { height: 2px; width: 3.5rem; background: var(--rust); }
+  .ivory-surface { background: #FAF8F5; color: var(--ink); }
+  .offwhite-surface { background: #F3EEE5; color: var(--ink); }
+  .beige-surface { background: #EAE4DA; color: var(--ink); }
+  .dark-surface { background: #171A1D; color: #FAF8F5; }
   
-  /* Brand Golden Yellow Gradient Utility */
+  /* Brand Gradient Utility */
   .brand-gradient {
-    background: linear-gradient(135deg, #FFD44D 0%, #F5B014 50%, #E0950B 100%);
+    background: linear-gradient(135deg, #DB725D 0%, #FE6311 50%, #E05307 100%);
   }
   .brand-gradient-subtle {
-    background: linear-gradient(135deg, rgba(245, 176, 20, 0.15) 0%, rgba(224, 149, 11, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(254, 99, 17, 0.12) 0%, rgba(158, 57, 35, 0.06) 100%);
   }
-  .text-gradient-gold {
-    background: linear-gradient(135deg, #FFD44D 0%, #F5B014 45%, #C98500 100%);
+  .text-gradient-gold, .text-gradient-rust {
+    background: linear-gradient(135deg, #DB725D 0%, #FE6311 50%, #E05307 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
-  /* Ultra-Luxury Golden Yellow Button System */
-  .gold-button, .orange-button, .red-button, .burgundy-button, .gradient-button { 
-    background: linear-gradient(135deg, #FFD043 0%, #F5B014 50%, #E0950B 100%); 
-    color: #181511; 
-    border: 1px solid rgba(245, 176, 20, 0.4);
-    @apply font-black uppercase tracking-wider transition-all duration-300 hover:brightness-105 hover:shadow-lg active:scale-[0.98]; 
+  /* Tactile Editorial Button System (Himat Logo Golden Yellow #FFB51A) */
+  .gold-button, .orange-button, .red-button, .burgundy-button, .gradient-button, .button-rust { 
+    background: #FFB51A; 
+    color: #171A1D; 
+    border: none;
+    border-radius: 9999px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    box-shadow: 0 3px 12px rgba(245, 176, 20, 0.32);
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
+  .gold-button:hover, .orange-button:hover, .gradient-button:hover, .button-rust:hover {
+    background: #E59E00;
+    color: #171A1D;
+    box-shadow: 0 6px 20px rgba(245, 176, 20, 0.45);
+    transform: translateY(-1.5px);
+  }
+  .gold-button:active, .orange-button:active, .button-rust:active {
+    background: #CC8800;
+    transform: scale(0.98);
+  }
+
   .dark-button { 
-    background: #1A1A1A; 
+    background: #171A1D; 
     color: #FAF8F5; 
-    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#282828] hover:border-[#F5B014] border border-white/10 shadow-xs; 
+    border-radius: 9999px;
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#282828] hover:border-[#FFB51A] border border-white/10 shadow-xs; 
   }
   .outline-button, .outline-gold-button, .outline-orange-button, .outline-burgundy-button { 
-    border: 1.5px solid #F5B014; 
-    color: #C98500; 
+    border: 1.5px solid #FFB51A; 
+    color: #171A1D; 
     background: transparent;
-    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#F5B014] hover:text-[#181511] shadow-xs; 
+    border-radius: 9999px;
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#FFB51A] hover:text-[#171A1D] shadow-xs; 
   }
   .outline-light-button {
     border: 1.5px solid rgba(250, 248, 245, 0.4);
     color: #FAF8F5;
     background: transparent;
-    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#FAF8F5] hover:text-[#1A1A1A] hover:border-[#FAF8F5];
+    border-radius: 9999px;
+    @apply font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#FAF8F5] hover:text-[#171A1D] hover:border-[#FAF8F5];
   }
 
   /* Card Surfaces */
   .luxury-card {
-    background: #FFFFFF;
-    border: 1px solid #E2DDD5;
-    @apply transition-all duration-500 hover:border-[#F5B014] hover:shadow-xl;
+    background: #FFFAF4;
+    border: 1px solid rgba(23, 26, 29, 0.12);
+    @apply transition-all duration-500 hover:border-[#FE6311] hover:shadow-xl;
   }
   .luxury-dark-card {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.12);
     backdrop-filter: blur(12px);
-    @apply transition-all duration-500 hover:border-[#F5B014]/70 hover:bg-white/[0.07];
+    @apply transition-all duration-500 hover:border-[#E8907B]/70 hover:bg-white/[0.07];
   }
-  .gold-badge, .orange-badge, .amber-badge {
-    background: rgba(245, 176, 20, 0.12);
-    border: 1px solid rgba(245, 176, 20, 0.35);
-    color: #B87400;
-    @apply font-mono font-bold uppercase tracking-widest text-[9px] px-3 py-1 rounded-xs shadow-xs;
+  .gold-badge, .orange-badge, .amber-badge, .rust-badge {
+    background: #FFFAF4;
+    border: 1px solid rgba(254, 99, 17, 0.25);
+    color: #FE6311;
+    @apply font-mono font-bold uppercase tracking-widest text-[9px] px-3 py-1 rounded-full shadow-xs;
   }
   
   @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
   @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; max-width: 1320px; } }
 }
 
-.font-serif-display { font-family: var(--font-display), "Playfair Display", Georgia, serif; }
-.italic-accent { font-family: var(--font-display), Georgia, serif; font-style: italic; color: #FE6311; }
+.font-serif-display { font-family: var(--font-serif), "DM Serif Display", Georgia, serif; }
+.italic-accent { font-family: var(--font-serif), "DM Serif Display", Georgia, serif; font-style: italic; color: #FE6311; }
 .mono-label { font-family: var(--font-mono), "DM Mono", monospace; letter-spacing: .14em; text-transform: uppercase; font-size: 0.72rem; }
 .noise-layer { opacity: .025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); mix-blend-mode: multiply; pointer-events: none; }
 .marquee-track { animation: marquee 35s linear infinite; width: max-content; }
@@ -186,6 +193,1218 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* =========================================================================
+   Komal Creation Signature Expanding Catalogue & Deck System (/uniforms)
+   ========================================================================= */
+.industry-filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(23, 26, 29, 0.12);
+  padding: 1.5rem clamp(1.25rem, 6vw, 6rem);
+  background: var(--paper);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.industry-filter .filter-kicker {
+  color: #FE6311;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: block;
+  font-family: var(--font-mono);
+}
+.industry-filter p {
+  font-size: 0.85rem;
+  margin: 0.15rem 0 0;
+  color: var(--ink);
+}
+.industry-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.industry-filter-chips button {
+  background: #FFFAF4;
+  border: 1px solid rgba(23, 26, 29, 0.12);
+  border-radius: 9999px;
+  color: var(--ink);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.85rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.industry-filter-chips button:hover {
+  background: #F3EEE5;
+  border-color: #FE6311;
+  color: #FE6311;
+}
+.industry-filter-chips button.is-active {
+  background: #171A1D;
+  border-color: #171A1D;
+  color: #FFB51A;
+}
+
+.catalogue-category {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  min-height: 590px;
+  overflow: hidden;
+  position: relative;
+}
+.catalogue-category:nth-of-type(even) .catalogue-copy {
+  order: 2;
+}
+.catalogue-category:nth-of-type(even) .category-deck-wrap {
+  order: 1;
+}
+.catalogue-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2.8rem, 6vw, 6rem);
+  position: relative;
+  z-index: 2;
+}
+.catalogue-index-row {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  max-width: 32rem;
+}
+.catalogue-index {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: #FE6311;
+}
+.maker-seal {
+  align-items: center;
+  border: 1px dashed currentColor;
+  display: inline-flex;
+  font-size: 0.48rem;
+  font-weight: 800;
+  gap: 0.35rem;
+  letter-spacing: 0.09em;
+  opacity: 0.75;
+  padding: 0.28rem 0.45rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.catalogue-copy h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+  font-weight: 400;
+  letter-spacing: -0.06em;
+  line-height: 0.88;
+  margin: 1.25rem 0 0.65rem;
+}
+.catalogue-title-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.catalogue-title-link:hover {
+  color: #FE6311;
+}
+.catalogue-line {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.32rem;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0;
+  font-style: italic;
+  color: #FE6311;
+}
+.catalogue-description {
+  font-size: 0.84rem;
+  line-height: 1.7;
+  margin: 1rem 0;
+  max-width: 34ch;
+  opacity: 0.82;
+}
+.catalogue-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1.1rem;
+}
+.catalogue-specs span {
+  border: 1px solid currentColor;
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+  padding: 0.28rem 0.45rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  border-radius: 9999px;
+}
+.catalogue-proof {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  margin: 0 0 1.5rem;
+}
+.catalogue-proof img {
+  filter: saturate(0.8) contrast(1.05);
+  height: 44px;
+  object-fit: cover;
+  width: 64px;
+  border-radius: 4px;
+}
+.catalogue-proof span {
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.catalogue-proof b {
+  font-weight: 800;
+  color: #FE6311;
+}
+.catalogue-quote {
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.64rem;
+  font-weight: 800;
+  gap: 0.5rem;
+  letter-spacing: 0.08em;
+  padding: 0 0 0.45rem 0;
+  text-transform: uppercase;
+  width: max-content;
+  font-family: var(--font-mono);
+  transition: all 0.2s ease;
+  text-align: left;
+}
+.catalogue-quote:hover {
+  color: #FE6311;
+  border-color: #FE6311;
+}
+.catalogue-quote:hover svg {
+  transform: translate(2px, -2px);
+}
+.catalogue-quote svg {
+  transition: transform 0.2s ease;
+}
+.category-deck-wrap {
+  padding: clamp(1.25rem, 3vw, 3rem);
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.category-deck-controls {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  font-family: var(--font-mono);
+}
+.category-deck-controls > span {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.category-deck-controls > span b {
+  color: #FE6311;
+}
+.category-deck-controls div {
+  display: flex;
+  gap: 0.35rem;
+}
+.category-deck-controls button {
+  align-items: center;
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  opacity: 0.8;
+  width: 34px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.category-deck-controls button:hover {
+  background: #FE6311;
+  border-color: #FE6311;
+  color: #FFFAF4;
+  opacity: 1;
+}
+.category-deck {
+  display: flex;
+  gap: 0.65rem;
+  height: calc(100% - 48px);
+  min-height: 485px;
+}
+.catalogue-card {
+  background: #20282b;
+  border: 0;
+  color: #fffaf4;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: left;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+}
+.catalogue-card.is-active {
+  flex: 2.6 1 0;
+  filter: none;
+}
+.catalogue-card:not(.is-active) {
+  filter: saturate(0.68) brightness(0.78);
+}
+.catalogue-card:hover:not(.is-active) {
+  filter: saturate(0.85) brightness(0.9);
+}
+.catalogue-card img {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+.catalogue-card.is-active img {
+  transform: scale(1.04);
+}
+.catalogue-card:hover img {
+  transform: scale(1.09);
+}
+.catalogue-card-shade {
+  background: linear-gradient(180deg, rgba(23, 26, 29, 0) 30%, rgba(23, 26, 29, 0.45) 65%, rgba(23, 26, 29, 0.94) 100%);
+  inset: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.catalogue-card-number {
+  font-size: 0.62rem;
+  font-weight: 800;
+  left: 1rem;
+  letter-spacing: 0.12em;
+  position: absolute;
+  top: 1rem;
+  font-family: var(--font-mono);
+  color: rgba(255, 250, 244, 0.9);
+}
+.catalogue-card-content {
+  bottom: 1.15rem;
+  left: 1rem;
+  right: 4rem;
+  opacity: 0;
+  position: absolute;
+  transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.34s ease;
+  z-index: 3;
+}
+.catalogue-card.is-active .catalogue-card-content {
+  opacity: 1;
+  transform: none;
+}
+.catalogue-card-content small {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  color: #FE6311;
+  font-family: var(--font-mono);
+}
+.catalogue-card-content strong {
+  display: block;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(1.8rem, 3.2vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  color: #FFFAF4;
+}
+.catalogue-card-arrow {
+  align-items: center;
+  background: #FFB51A;
+  bottom: 1rem;
+  color: #171A1D;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  opacity: 0;
+  position: absolute;
+  right: 1rem;
+  transform: translate(-6px, 6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.2s ease;
+  width: 36px;
+  border-radius: 4px;
+  z-index: 3;
+  cursor: pointer;
+}
+.catalogue-card-arrow:hover {
+  background: #FE6311;
+  color: #FFFAF4;
+}
+.catalogue-card.is-active .catalogue-card-arrow {
+  opacity: 1;
+  transform: none;
+}
+.catalogue-card-specs {
+  background: rgba(23, 26, 29, 0.94);
+  backdrop-filter: blur(10px);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  left: 0;
+  opacity: 0;
+  padding: 1rem;
+  position: absolute;
+  transform: translateY(100%);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  z-index: 4;
+  border-top: 1px solid rgba(255, 250, 244, 0.12);
+}
+.catalogue-card.is-active:hover .catalogue-card-specs {
+  opacity: 1;
+  transform: none;
+}
+.catalogue-card-specs > span:first-child {
+  color: #FE6311;
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.catalogue-card-specs > b {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFFAF4;
+}
+.catalogue-card-specs > small {
+  color: rgba(255, 250, 244, 0.72);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.catalogue-card-colours {
+  align-items: center;
+  border-top: 1px solid rgba(255, 250, 244, 0.18);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  padding-top: 0.45rem;
+}
+.catalogue-card-colours i {
+  color: rgba(255, 250, 244, 0.7);
+  font-size: 0.48rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.catalogue-card-colours > span {
+  display: flex;
+  gap: 0.35rem;
+}
+.catalogue-card-colours em {
+  border: 1px solid rgba(255, 250, 244, 0.55);
+  border-radius: 50%;
+  display: block;
+  height: 12px;
+  width: 12px;
+}
+
+.category-thread {
+  bottom: -1px;
+  height: auto;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  width: 38%;
+  z-index: 3;
+}
+.category-thread path {
+  stroke: #FE6311;
+  stroke-dasharray: 8 8;
+  stroke-width: 1.5;
+}
+
+/* =========================================================================
+   Himat Textile Signature Light Brand Palette (Logo Color Theory: Orange #FE6311 & Gold #FFB51A)
+   ========================================================================= */
+
+/* 1. Tone Paper (Crisp Natural Cotton Parchment) */
+.tone-paper {
+  background: #FAF8F5;
+  color: #171A1D;
+}
+.tone-paper .catalogue-index,
+.tone-paper .category-deck-controls > span b {
+  color: #FE6311;
+}
+.tone-paper .catalogue-specs span {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-paper .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #171A1D;
+}
+.tone-paper .catalogue-quote {
+  color: #171A1D;
+  border-bottom-color: #FE6311;
+}
+.tone-paper .catalogue-quote:hover {
+  color: #FE6311;
+}
+.tone-paper .catalogue-card {
+  background: #171A1D;
+}
+.tone-paper .category-deck-controls button {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-paper .category-deck-controls button:hover {
+  background: #171A1D;
+  color: #FFB51A;
+}
+
+/* 2. Tone Terracotta Light (Light Apricot / Soft Lighter Maroon Blush) */
+.tone-terracotta-light {
+  background: #FBF2ED;
+  color: #171A1D;
+}
+.tone-terracotta-light .catalogue-index,
+.tone-terracotta-light .category-deck-controls > span b {
+  color: #FE6311;
+}
+.tone-terracotta-light .catalogue-specs span {
+  background: rgba(254, 99, 17, 0.08);
+  color: #171A1D;
+}
+.tone-terracotta-light .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #171A1D;
+}
+.tone-terracotta-light .catalogue-quote {
+  color: #171A1D;
+  border-bottom-color: #FE6311;
+}
+.tone-terracotta-light .catalogue-quote:hover {
+  color: #FE6311;
+}
+.tone-terracotta-light .catalogue-card {
+  background: #171A1D;
+}
+.tone-terracotta-light .category-deck-controls button {
+  background: rgba(254, 99, 17, 0.08);
+  color: #171A1D;
+}
+.tone-terracotta-light .category-deck-controls button:hover {
+  background: #171A1D;
+  color: #FFB51A;
+}
+
+/* 3. Tone Gold Light (Luminous Golden Silk Cream) */
+.tone-gold-light {
+  background: #FFF8EC;
+  color: #171A1D;
+}
+.tone-gold-light .catalogue-index,
+.tone-gold-light .category-deck-controls > span b {
+  color: #C68000;
+}
+.tone-gold-light .catalogue-specs span {
+  background: rgba(255, 181, 26, 0.12);
+  color: #171A1D;
+}
+.tone-gold-light .catalogue-proof {
+  border-left: 2px solid #FFB51A;
+  color: #171A1D;
+}
+.tone-gold-light .catalogue-quote {
+  color: #171A1D;
+  border-bottom-color: #FFB51A;
+}
+.tone-gold-light .catalogue-quote:hover {
+  color: #C68000;
+}
+.tone-gold-light .catalogue-card {
+  background: #171A1D;
+}
+.tone-gold-light .category-deck-controls button {
+  background: rgba(255, 181, 26, 0.12);
+  color: #171A1D;
+}
+.tone-gold-light .category-deck-controls button:hover {
+  background: #171A1D;
+  color: #FFB51A;
+}
+
+/* 4. Tone Warm Sand (Natural Milled Unbleached Cotton) */
+.tone-warm-sand {
+  background: #F3EDE4;
+  color: #171A1D;
+}
+.tone-warm-sand .catalogue-index,
+.tone-warm-sand .category-deck-controls > span b {
+  color: #FE6311;
+}
+.tone-warm-sand .catalogue-specs span {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-warm-sand .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #171A1D;
+}
+.tone-warm-sand .catalogue-quote {
+  color: #171A1D;
+  border-bottom-color: #FE6311;
+}
+.tone-warm-sand .catalogue-quote:hover {
+  color: #FE6311;
+}
+.tone-warm-sand .catalogue-card {
+  background: #171A1D;
+}
+.tone-warm-sand .category-deck-controls button {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-warm-sand .category-deck-controls button:hover {
+  background: #171A1D;
+  color: #FFB51A;
+}
+
+/* 5. Tone Slate Light (Crisp Architectural Tailoring Linen) */
+.tone-slate-light {
+  background: #EDF1F3;
+  color: #171A1D;
+}
+.tone-slate-light .catalogue-index,
+.tone-slate-light .category-deck-controls > span b {
+  color: #FE6311;
+}
+.tone-slate-light .catalogue-specs span {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-slate-light .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #171A1D;
+}
+.tone-slate-light .catalogue-quote {
+  color: #171A1D;
+  border-bottom-color: #FE6311;
+}
+.tone-slate-light .catalogue-quote:hover {
+  color: #FE6311;
+}
+.tone-slate-light .catalogue-card {
+  background: #171A1D;
+}
+.tone-slate-light .category-deck-controls button {
+  background: rgba(23, 26, 29, 0.06);
+  color: #171A1D;
+}
+.tone-slate-light .category-deck-controls button:hover {
+  background: #171A1D;
+  color: #FFB51A;
+}
+
+/* 6. Tone Ink (Selective Dark: Deep Charcoal Atelier) */
+.tone-ink {
+  background: #171A1D;
+  color: #FFFAF4;
+}
+.tone-ink .catalogue-index,
+.tone-ink .category-deck-controls > span b {
+  color: #FFB51A;
+}
+.tone-ink .catalogue-line {
+  color: rgba(255, 250, 244, 0.9);
+}
+.tone-ink .catalogue-description {
+  color: rgba(255, 250, 244, 0.75);
+}
+.tone-ink .catalogue-specs span {
+  background: rgba(255, 250, 244, 0.08);
+  color: #FFFAF4;
+}
+.tone-ink .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #FFFAF4;
+}
+.tone-ink .catalogue-quote {
+  color: #FFB51A;
+  border-bottom-color: #FFB51A;
+}
+.tone-ink .catalogue-quote:hover {
+  color: #FE6311;
+  border-bottom-color: #FE6311;
+}
+.tone-ink .category-deck-controls button {
+  background: rgba(255, 250, 244, 0.08);
+  color: #FFFAF4;
+}
+.tone-ink .category-deck-controls button:hover {
+  background: #FFB51A;
+  color: #171A1D;
+}
+
+/* 7. Tone Maroon Rich (Selective Dark: Warm Indian Spice Terracotta Maroon) */
+.tone-maroon-rich {
+  background: #732214;
+  color: #FFFAF4;
+}
+.tone-maroon-rich .catalogue-index,
+.tone-maroon-rich .category-deck-controls > span b {
+  color: #FFB51A;
+}
+.tone-maroon-rich .catalogue-line {
+  color: rgba(255, 250, 244, 0.92);
+}
+.tone-maroon-rich .catalogue-description {
+  color: rgba(255, 250, 244, 0.8);
+}
+.tone-maroon-rich .catalogue-specs span {
+  background: rgba(255, 250, 244, 0.12);
+  color: #FFFAF4;
+}
+.tone-maroon-rich .catalogue-proof {
+  border-left: 2px solid #FFB51A;
+  color: #FFFAF4;
+}
+.tone-maroon-rich .catalogue-quote {
+  color: #FFB51A;
+  border-bottom-color: #FFB51A;
+}
+.tone-maroon-rich .catalogue-quote:hover {
+  color: #FFFAF4;
+  border-bottom-color: #FFFAF4;
+}
+.tone-maroon-rich .category-deck-controls button {
+  background: rgba(255, 250, 244, 0.12);
+  color: #FFFAF4;
+}
+.tone-maroon-rich .category-deck-controls button:hover {
+  background: #FFB51A;
+  color: #171A1D;
+}
+
+/* 8. Tone Slate Dark (Selective Dark: Composite Mill Navy Charcoal) */
+.tone-slate-dark {
+  background: #1A2228;
+  color: #FFFAF4;
+}
+.tone-slate-dark .catalogue-index,
+.tone-slate-dark .category-deck-controls > span b {
+  color: #FFB51A;
+}
+.tone-slate-dark .catalogue-line {
+  color: rgba(255, 250, 244, 0.9);
+}
+.tone-slate-dark .catalogue-description {
+  color: rgba(255, 250, 244, 0.75);
+}
+.tone-slate-dark .catalogue-specs span {
+  background: rgba(255, 250, 244, 0.08);
+  color: #FFFAF4;
+}
+.tone-slate-dark .catalogue-proof {
+  border-left: 2px solid #FE6311;
+  color: #FFFAF4;
+}
+.tone-slate-dark .catalogue-quote {
+  color: #FFB51A;
+  border-bottom-color: #FFB51A;
+}
+.tone-slate-dark .catalogue-quote:hover {
+  color: #FE6311;
+  border-bottom-color: #FE6311;
+}
+.tone-slate-dark .category-deck-controls button {
+  background: rgba(255, 250, 244, 0.08);
+  color: #FFFAF4;
+}
+.tone-slate-dark .category-deck-controls button:hover {
+  background: #FFB51A;
+  color: #171A1D;
+}
+
+@media (max-width: 850px) {
+  .catalogue-category {
+    grid-template-columns: 1fr;
+  }
+  .catalogue-category:nth-of-type(even) .catalogue-copy,
+  .catalogue-category:nth-of-type(even) .category-deck-wrap {
+    order: initial;
+  }
+  .catalogue-copy {
+    padding: 3.5rem 1.5rem 2rem;
+  }
+  .category-deck-wrap {
+    padding: 1.5rem;
+  }
+  .category-deck {
+    height: 460px;
+    min-height: 460px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .category-deck::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .catalogue-copy {
+    padding: 2.8rem 1.25rem 1.5rem;
+  }
+  .category-deck-wrap {
+    padding: 1.25rem;
+  }
+  .catalogue-card,
+  .catalogue-card.is-active {
+    flex: 0 0 82%;
+    min-width: 82%;
+    scroll-snap-align: center;
+  }
+  .catalogue-card .catalogue-card-content,
+  .catalogue-card .catalogue-card-arrow {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================================
+   Komal Creation Signature /uniforms Hero & Intro for Garments Catalog Screen
+   ========================================================================= */
+.uniforms-hero {
+  background: #FAF8F5;
+  color: #171A1D;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  min-height: 700px;
+  overflow: hidden;
+  padding-top: 80px;
+  position: relative;
+  border-bottom: 1px solid rgba(23, 26, 29, 0.1);
+}
+.uniforms-hero-content {
+  align-self: center;
+  padding: clamp(3rem, 7vw, 7.5rem);
+  position: relative;
+  z-index: 2;
+}
+.back-link {
+  align-items: center;
+  color: rgba(23, 26, 29, 0.7);
+  display: inline-flex;
+  font-size: 0.62rem;
+  font-weight: 800;
+  gap: 0.5rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.back-link:hover {
+  color: #FE6311;
+}
+.uniforms-kicker {
+  color: #FE6311;
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  margin-top: 3.2rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.uniforms-hero h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(3.6rem, 6.8vw, 7.2rem);
+  font-weight: 400;
+  letter-spacing: -0.07em;
+  line-height: 0.85;
+  margin: 1.4rem 0;
+  max-width: 9ch;
+  color: #171A1D;
+}
+.uniforms-hero h1 em,
+.uniforms-cta em {
+  color: #FE6311;
+  font-style: italic;
+}
+.uniforms-hero p {
+  color: rgba(23, 26, 29, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 44ch;
+}
+.catalogue-start {
+  align-items: center;
+  border-bottom: 2px solid #FE6311;
+  color: #171A1D;
+  display: inline-flex;
+  font-size: 0.65rem;
+  font-weight: 800;
+  gap: 0.65rem;
+  letter-spacing: 0.09em;
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.catalogue-start:hover {
+  color: #FE6311;
+  border-color: #FE6311;
+}
+.catalogue-start svg {
+  transition: transform 0.2s ease;
+  color: #FE6311;
+}
+.catalogue-start:hover svg {
+  transform: translateX(4px);
+}
+.uniforms-hero-gallery {
+  overflow: hidden;
+  position: relative;
+  min-height: 480px;
+}
+.uniforms-hero-gallery img {
+  object-fit: cover;
+  position: absolute;
+  border-radius: 4px;
+  border: 1px solid rgba(23, 26, 29, 0.08);
+}
+.hero-gallery-one {
+  height: 68%;
+  right: 4%;
+  top: 6%;
+  width: 66%;
+  box-shadow: 0 16px 36px rgba(23, 26, 29, 0.12), 0 4px 12px rgba(23, 26, 29, 0.08);
+}
+.hero-gallery-two {
+  bottom: 8%;
+  height: 52%;
+  left: 6%;
+  width: 50%;
+  box-shadow: 0 16px 36px rgba(23, 26, 29, 0.12), 0 4px 12px rgba(23, 26, 29, 0.08);
+}
+.hero-gallery-three {
+  bottom: 12%;
+  height: 40%;
+  right: 8%;
+  width: 38%;
+  box-shadow: 0 16px 36px rgba(23, 26, 29, 0.12), 0 4px 12px rgba(23, 26, 29, 0.08);
+}
+.uniforms-hero-gallery:after {
+  background: linear-gradient(90deg, #FAF8F5 0%, rgba(250, 248, 245, 0.4) 40%, transparent 85%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.uniforms-hero-gallery svg {
+  bottom: 2rem;
+  height: auto;
+  position: absolute;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.uniforms-hero-gallery path {
+  stroke: #FE6311;
+  stroke-dasharray: 9 8;
+  stroke-width: 1.5;
+}
+
+.uniforms-intro {
+  align-items: center;
+  border-bottom: 1px solid rgba(23, 26, 29, 0.1);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 0.7fr 1.3fr;
+  padding: 2.2rem clamp(1.25rem, 6vw, 6rem);
+  background: #F3EEE5;
+  color: #171A1D;
+}
+.uniforms-intro span {
+  color: #FE6311;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.uniforms-intro p {
+  font-size: clamp(0.95rem, 1.4vw, 1.18rem);
+  line-height: 1.65;
+  margin: 0;
+  color: rgba(23, 26, 29, 0.85);
+  max-width: 52ch;
+  font-family: var(--font-display), Georgia, serif;
+}
+
+@media (max-width: 850px) {
+  .uniforms-hero {
+    grid-template-columns: 1fr;
+    min-height: 720px;
+    padding-top: 67px;
+  }
+  .uniforms-hero-content {
+    padding: 3.5rem 1.5rem;
+  }
+  .uniforms-kicker {
+    margin-top: 2rem;
+  }
+  .uniforms-hero-gallery {
+    min-height: 360px;
+  }
+  .uniforms-intro {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+@media (max-width: 560px) {
+  .uniforms-hero h1 {
+    font-size: clamp(3.2rem, 16vw, 5.2rem);
+  }
+  .uniforms-hero-gallery {
+    min-height: 280px;
+  }
+  .uniforms-intro {
+    padding: 1.8rem 1.25rem;
+  }
+}
+
+/* ==========================================================================
+   KOMAL CREATION STYLE — WHITE LABELING & BRAND LAB ATELIER
+   ========================================================================== */
+.brand-lab-section {
+  background: #E4DBD0;
+  padding: clamp(4.5rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.brand-lab-section::after {
+  content: "";
+  position: absolute;
+  top: 14%;
+  right: -5%;
+  width: 45%;
+  border-bottom: 1.5px dashed rgba(254, 99, 17, 0.45);
+  transform: rotate(-6deg);
+  pointer-events: none;
+}
+.brand-lab-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: 2rem 4rem;
+  position: relative;
+  z-index: 2;
+  align-items: end;
+}
+.brand-lab-heading h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(3.2rem, 6.2vw, 6.4rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: #171A1D;
+  margin: 0;
+}
+.brand-lab-heading h2 em {
+  color: #FE6311;
+  font-style: italic;
+}
+.brand-lab-callout {
+  background: #FE6311;
+  color: #FFFAF4;
+  padding: 1.6rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0 10px 25px -5px rgba(254, 99, 17, 0.3);
+}
+.brand-lab-callout::after {
+  content: "";
+  position: absolute;
+  bottom: 0.85rem;
+  right: -6%;
+  width: 50%;
+  border-bottom: 1px dashed rgba(255, 250, 244, 0.6);
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+.brand-lab-callout > span {
+  color: #FFD2BC;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.brand-lab-callout strong {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+.brand-lab-callout strong em {
+  color: #FFB51A;
+  font-style: italic;
+}
+.brand-lab-callout small {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 250, 244, 0.9);
+}
+
+.brand-lab-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  z-index: 2;
+}
+.brand-step {
+  background: #FFFAF4;
+  border: 1px solid rgba(23, 26, 29, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.brand-step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(23, 26, 29, 0.12);
+  border-color: rgba(254, 99, 17, 0.35);
+}
+.brand-step-image {
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+  background: #EFE9DF;
+}
+.brand-step-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: saturate(0.85) contrast(1.05);
+}
+.brand-step:hover .brand-step-image img {
+  transform: scale(1.06);
+}
+.brand-step-image span.brand-step-number {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 42px;
+  height: 42px;
+  background: #FE6311;
+  color: #FFFAF4;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.brand-step-copy {
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.brand-step-copy > small {
+  color: #FE6311;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: block;
+}
+.brand-step-copy h3 {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #171A1D;
+  margin: 0.75rem 0 0.6rem;
+}
+.brand-step-copy p {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: rgba(23, 26, 29, 0.75);
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+
+@media (max-width: 960px) {
+  .brand-lab-heading {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .brand-lab-steps {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .brand-step-image {
+    height: 220px;
+  }
+}
+
+
 
 
 

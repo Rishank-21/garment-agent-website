@@ -278,7 +278,7 @@ const mockProducts: Product[] = [
     fabricDetails: "Fine Rayon, Chanderi Borders, 180 GSM",
     style: "Ethnic Kurti",
     targetMarket: "Traditional Garment Retailers",
-    description: "Traditional Ahmedabad style kurtis with intricate embroidery work on yoke. High-volume orders across North and South India.",
+    description: "Traditional Ahmedabad style kurtis with thread-embroidered yoke work. High-volume orders across North and South India.",
     imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600",
     imageKey: null,
     isActive: true,

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 export default function FloatingWhatsApp() {
   const { language } = useLanguage();
@@ -61,15 +62,10 @@ export default function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Himat Textile on WhatsApp"
-        className="group relative flex items-center gap-2.5 rounded-full bg-[#25D366] px-4.5 py-3 text-white shadow-2xl transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_10px_30px_rgba(37,211,102,0.45)]"
+        className="group relative flex items-center gap-2.5 rounded-full bg-[#25D366] px-4.5 py-3 text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_8px_24px_rgba(37,211,102,0.4)]"
         onClick={() => setShowTooltip(false)}
       >
-        {/* Pulsing Ping Dot */}
-        <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FFB51A] opacity-75"></span>
-          <span className="relative inline-flex h-3.5 w-3.5 rounded-full bg-[#FE6311]"></span>
-        </span>
-        <MessageCircle size={22} className="fill-white/20 stroke-[2.5]" />
+        <WhatsAppIcon className="w-5 h-5 fill-white" />
         <span className="font-sans text-xs font-bold uppercase tracking-wider hidden sm:inline-block">
           {language === "hi" ? "व्हाट्सएप" : "WhatsApp"}
         </span>

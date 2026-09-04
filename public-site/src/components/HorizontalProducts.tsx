@@ -21,7 +21,7 @@ const productSections = [
   {
     title: "Women's Wear",
     subtitle: "Ethnic Kurtis, Co-Ord Sets, Western Tops & Palazzos",
-    description: "Intricately embroidered kurtis, modern printed co-ord sets, stylish tunics, and ethnic western ensembles tailored with premium Rayon and Chanderi finishes.",
+    description: "Thread-embroidered kurtis, printed co-ord sets, tailored tunics, and ethnic ensembles in 60s Rayon and Chanderi silk.",
     fabric: "Pure Rayon, Chanderi & Cambric",
     image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800",
     href: "/catalog?category=womens-wear",
@@ -112,7 +112,7 @@ export default function HorizontalProducts() {
       <div className="mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12 mb-10 md:mb-0">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="mono-label text-[9px] font-bold tracking-widest text-[#E94B0C] uppercase bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs inline-flex items-center gap-2 shadow-xs">
+            <span className="mono-label text-[9px] font-bold tracking-widest text-[#E94B0C] uppercase bg-[#FFF9E6] px-3.5 py-1.5 rounded-xs inline-flex items-center gap-2 shadow-xs">
               <Sparkles size={12} className="text-[#FE6311]" /> [ 03 / CORE PRODUCT SEGMENTS ]
             </span>
             <h2 className="mt-3.5 font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">

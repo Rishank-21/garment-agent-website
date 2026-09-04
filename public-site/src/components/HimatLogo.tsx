@@ -112,15 +112,15 @@ export default function HimatLogo({
                 : isLg 
                 ? "text-2xl sm:text-4xl" 
                 : "text-xl sm:text-3xl"
-            } ${light ? "text-[#1A1A1A]" : "text-[#FAF8F5]"}`}
+            } ${light ? "text-[#171A1D]" : "text-[#FAF8F5]"}`}
           >
-            HIMAT <span className={light ? "text-[#D98A00]" : "text-[#F5B014]"}>TEXTILE</span>
+            HIMAT <span className={light ? "text-[#FE6311]" : "text-[#FFFAF4]"}>TEXTILE</span>
           </span>
         </div>
 
         <div className="flex items-center gap-2 mt-1">
-          <span className={`h-[1.5px] w-4 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
-          <span className={`font-mono font-extrabold uppercase tracking-[0.24em] ${light ? "text-[#B87400]" : "text-[#FFD44D]"} ${
+          <span className={`h-[1.5px] w-4 ${light ? "bg-[#FFB51A]" : "bg-[#FFB51A]"}`} />
+          <span className={`font-mono font-extrabold uppercase tracking-[0.24em] ${light ? "text-[#C67D00]" : "text-[#FFD44D]"} ${
             isSm 
               ? "text-[9.5px] sm:text-[11px]" 
               : isXl 
@@ -131,7 +131,7 @@ export default function HimatLogo({
           }`}>
             YOUR GARMENT GUIDE IN AHMEDABAD
           </span>
-          <span className={`h-[1.5px] w-4 ${light ? "bg-[#F5B014]" : "bg-[#FFD44D]"}`} />
+          <span className={`h-[1.5px] w-4 ${light ? "bg-[#FFB51A]" : "bg-[#FFB51A]"}`} />
         </div>
       </div>
     </div>

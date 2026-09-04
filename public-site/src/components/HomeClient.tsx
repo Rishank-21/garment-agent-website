@@ -1,19 +1,23 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowUpRight, ShieldCheck, Star, ArrowRight, X, LoaderCircle, MapPin, Clock, Phone, MessageSquare, Sparkles, Shirt, Scissors, Package, Globe } from "lucide-react";
+import { ArrowUpRight, ShieldCheck, Star, ArrowRight, X, LoaderCircle, MapPin, Clock, Phone, Sparkles, Shirt, Scissors, Package, Globe } from "lucide-react";
 import Link from "next/link";
 import { Product, Advertisement, Review, Brand } from "@/lib/schema";
 
 import { HimatInquiry } from "@/components/HimatInquiry";
+import { HIMAT_CATEGORIES } from "@/lib/categoriesData";
+import HimatCategoryDeck from "@/components/HimatCategoryDeck";
+import CategoryChipsFilter from "@/components/CategoryChipsFilter";
+import { triggerInquiryForCategory } from "@/lib/inquiryEvents";
 import HeroSlider from "@/components/HeroSlider";
-import HorizontalProducts from "@/components/HorizontalProducts";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import IndiaNetwork from "@/components/IndiaNetwork";
 import { useLanguage } from "@/lib/LanguageContext";
 
 const fallbackReviews = [
   { id: 1, author: "Rajesh Kumar (Garment Retailer, Delhi)", rating: 5, text: "Excellent collection of cotton twill pants and linen shirts. Pricing is very B2B friendly with fast door-to-door dispatch.", date: "1 week ago" },
-  { id: 2, author: "Priya Sharma (D2C Brand Owner, Mumbai)", rating: 5, text: "Sourced custom white-labeling women's wear from Himat. The quality of stitching, bio-washing, and custom tags is world-class.", date: "3 weeks ago" },
+  { id: 2, author: "Priya Sharma (D2C Brand Owner, Mumbai)", rating: 5, text: "Sourced custom white-labeling women\x27s wear from Himat. The quality of stitching, bio-washing, and custom tags is world-class.", date: "3 weeks ago" },
   { id: 3, author: "Amit Patel (Regional Wholesaler, Indore)", rating: 5, text: "Reliable B2B partner in Ahmedabad. Their direct mill sourcing network saves us 15-20% on fabric procurement.", date: "1 month ago" },
 ];
 
@@ -25,6 +29,7 @@ interface HomeClientProps {
 
 export default function HomeClient({ reviews, brands, advertisements }: HomeClientProps) {
   const [activeSolution, setActiveSolution] = useState(0);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>("all");
   const recordedAdIds = useRef<Set<number>>(new Set());
 
   const [hiddenAdIds, setHiddenAdIds] = useState<number[]>([]);
@@ -167,58 +172,121 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         {/* 1. Fullscreen Hero Slider & Marquee Ticker */}
         <HeroSlider />
 
-        {/* 2. About / Brand Story Section (Asymmetrical Editorial Layout) */}
-        <section id="about" className="relative overflow-hidden bg-[#FAF8F5] px-5 py-20 text-[#1A1A1A] sm:px-8 lg:px-12 lg:py-28">
-          <div className="mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        {/* 2. About Himat Textile / Your Garment Guide in Ahmedabad */}
+        <section id="about" className="relative overflow-hidden bg-[#FAF8F5] px-5 py-20 text-[#171A1D] sm:px-8 lg:px-12 lg:py-28 border-b border-[rgba(23,26,29,0.12)]">
+          <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-6">
-              <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase tracking-widest inline-flex items-center gap-2 shadow-xs">
-                <Sparkles size={12} className="text-[#F5B014]" /> [ 01 / BRAND STORY & HERITAGE ]
-              </span>
-              <h2 className="font-serif-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl text-[#1A1A1A]">
-                TWO GENERATIONS.<br /><span className="italic font-normal text-[#FE6311]">ONE TRUSTED VISION.</span>
+              <div className="space-y-1">
+                <span className="font-mono text-[11px] font-semibold text-[#FE6311] uppercase tracking-[0.18em] block">
+                  ABOUT HIMAT TEXTILE
+                </span>
+                <p className="font-mono text-xs font-semibold text-[#171A1D]/60 uppercase tracking-[0.12em]">
+                  YOUR GARMENT GUIDE IN AHMEDABAD
+                </p>
+              </div>
+
+              <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[0.95] tracking-tight text-[#171A1D]">
+                We Connect You With<br />
+                <em className="italic text-[#FE6311]">The Right Garments.</em>
               </h2>
-              <p className="text-base font-bold text-[#FE6311]">
-                From traditional Ahmedabad wholesale roots to international garment sourcing.
+
+              <p className="text-base font-medium text-[#171A1D]/90 leading-relaxed max-w-xl">
+                Himat Textile is a B2B garment sourcing and buying support partner based in Ahmedabad, helping retailers, wholesalers, resellers and growing fashion businesses find the right products from reliable suppliers.
               </p>
-              <p className="max-w-xl text-sm leading-relaxed text-[#66625D]">
-                Himat Textile operates at the heart of Ahmedabad's textile and garment markets. Built on deep mill relationships, factory connections, and decades of textile insight, we help wholesale buyers, retail chains, and emerging fashion labels source the right products with speed and precision.
+
+              <p className="text-sm leading-relaxed text-[#171A1D]/80 max-w-xl">
+                We understand that garment sourcing is more than just finding a product. It is about getting the right quality, right price, right supplier and right support for your business.
               </p>
-              
-              {/* Statistics Grid */}
-              <div className="grid gap-4 border-t border-[#E2DDD5] pt-8 sm:grid-cols-3">
-                <div className="space-y-1 bg-[#FFFFFF] border border-[#E2DDD5] p-4 rounded-xs shadow-xs">
-                  <span className="block font-serif-display text-3xl font-black text-[#FE6311]">02</span>
-                  <span className="mono-label text-[8.5px] font-bold text-[#1A1A1A] tracking-wider block">GENERATIONS</span>
-                  <span className="text-[11px] text-[#66625D]">Family textile heritage</span>
+
+              <p className="text-sm leading-relaxed text-[#171A1D]/75 max-w-xl">
+                With strong knowledge of Ahmedabad’s garment market and a wide network of B2B suppliers, we make the buying process simpler, faster and more transparent.
+              </p>
+
+              {/* WHAT WE DO (5 Clean Minimal Cards) */}
+              <div className="pt-2">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#171A1D]/60 block mb-3">
+                  WHAT WE DO
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+                  {[
+                    { title: "Product Sourcing", desc: "Find garments according to your category, quality, style and budget." },
+                    { title: "Supplier Connection", desc: "Connect with suitable manufacturers, wholesalers and suppliers." },
+                    { title: "Price & Deal Support", desc: "Help you understand market pricing and negotiate better deals." },
+                    { title: "Order Coordination", desc: "Stay connected with suppliers and help coordinate your requirements." },
+                    { title: "Dispatch Support", desc: "Assist with packing, dispatch and communication until order moves forward." },
+                  ].map((item) => (
+                    <div
+                      key={item.title}
+                      className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.08)] p-4 rounded-[3px] shadow-2xs hover:border-[#FE6311]/40 transition-colors"
+                    >
+                      <h4 className="font-serif text-sm font-semibold text-[#171A1D] uppercase tracking-wide mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-[#171A1D]/70 leading-relaxed m-0">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-                <div className="space-y-1 bg-[#FFFFFF] border border-[#E2DDD5] p-4 rounded-xs shadow-xs">
-                  <span className="block font-serif-display text-3xl font-black text-[#FE6311]">TRUSTED</span>
-                  <span className="mono-label text-[8.5px] font-bold text-[#1A1A1A] tracking-wider block">WHOLESALE NETWORK</span>
-                  <span className="text-[11px] text-[#66625D]">Ahmedabad & Pan-India</span>
-                </div>
-                <div className="space-y-1 bg-[#FFFFFF] border border-[#E2DDD5] p-4 rounded-xs shadow-xs">
-                  <span className="block font-serif-display text-3xl font-black text-[#FE6311]">INDIA</span>
-                  <span className="mono-label text-[8.5px] font-bold text-[#1A1A1A] tracking-wider block">TO WORLDWIDE</span>
-                  <span className="text-[11px] text-[#66625D]">Global apparel exports</span>
+              </div>
+
+              {/* OUR APPROACH */}
+              <div className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.12)] p-6 rounded-[4px] max-w-xl space-y-3 shadow-xs">
+                <span className="font-mono text-[9.5px] font-bold text-[#FE6311] uppercase tracking-wider block">
+                  OUR APPROACH
+                </span>
+                <p className="font-serif text-lg sm:text-xl font-semibold text-[#171A1D]">
+                  Right Product • Right Supplier • Right Deal
+                </p>
+                <p className="text-xs sm:text-sm text-[#171A1D]/75 leading-relaxed m-0">
+                  We don’t believe in simply selling you a product. We help you find what fits your business. From your first requirement to supplier coordination and dispatch, Himat Textile is here to make garment sourcing easier.
+                </p>
+                <div className="pt-3 flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20am%20looking%20for%20garments%20in%20Ahmedabad"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <WhatsAppIcon className="w-4 h-4" />
+                    <span>WHATSAPP US</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      triggerInquiryForCategory({
+                        categoryTitle: "Market Guidance",
+                        variantName: "Ahmedabad Garment Sourcing & Buying Support",
+                      })
+                    }
+                    className="inline-flex items-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span>START ENQUIRY</span>
+                    <ArrowUpRight size={14} className="text-[#FFB51A]" />
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Asymmetrical Heritage Image */}
-            <div className="relative overflow-hidden border border-[#E2DDD5] bg-[#FFFFFF] aspect-video lg:aspect-[4/3] rounded-xs shadow-md group">
-              <img
-                src="/images/weaving_loom.png"
-                alt="Industrial weaving loom heritage"
-                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute left-5 top-5 grid h-11 w-11 place-items-center rounded-xs border border-[#FFB51A]/40 bg-[#FFB51A] text-[#252525] font-serif-display text-sm font-bold shadow-md">
-                <span className="font-black">HT</span>
-              </div>
-              <div className="absolute bottom-5 left-5 right-5 text-white">
-                <span className="mono-label text-[8.5px] text-[#FFD44D] font-bold uppercase tracking-widest block mb-1">AHMEDABAD GARMENT DISTRICT</span>
-                <p className="font-serif-display text-sm font-bold uppercase text-white">Traditional Craft Meets Modern B2B Supply Chains</p>
+            {/* Clean Ground Working Photo */}
+            <div>
+              <div className="relative overflow-hidden border border-[rgba(23,26,29,0.12)] bg-[#FFFFFF] rounded-[4px] shadow-md group">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-[#EFE9DF]">
+                  <img
+                    src="/images/ahmedabad_market_gheekanta.jpg"
+                    alt="Ahmedabad Garment Wholesale Market Hub"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-5 bg-[#FFFFFF] border-t border-[rgba(23,26,29,0.08)]">
+                  <p className="font-serif text-base font-semibold text-[#171A1D] mb-1">
+                    Ahmedabad Garment Market Hub
+                  </p>
+                  <p className="text-xs text-[#171A1D]/70 leading-relaxed m-0">
+                    On-ground coordination across Gheekanta, New Cloth Market, and local manufacturing clusters.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -265,225 +333,259 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
           </div>
         </section>
 
-        {/* 4. Garment Categories (All 8 Core Categories with Full-Bleed Imagery) */}
-        <section id="categories" className="bg-[#FAF8F5] py-24 px-5 sm:px-8 lg:px-12 border-b border-[#E2DDD5] text-[#1A1A1A]">
-          <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        {/* 4. Garment Systems / Sourcing Catalogue (Matching Garment Screen) */}
+        <section id="categories" className="bg-[#FAF8F5] border-b border-[rgba(23,26,29,0.12)] text-[#171A1D]">
+          {/* Header Banner */}
+          <div className="pt-20 pb-12 px-5 sm:px-8 lg:px-12 max-w-[1320px] mx-auto">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
-                <span className="mono-label text-[9px] font-bold text-[#E94B0C] uppercase tracking-widest block mb-3 bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs w-fit shadow-xs">
-                  [ 02 / SOURCING CATEGORIES ]
+                <span className="font-mono text-[9px] font-bold text-[#FE6311] bg-[#FFFAF4] px-3.5 py-1.5 rounded-full uppercase block mb-3 w-fit shadow-xs">
+                  HT/003 — B2B SOURCING CATALOGUE
                 </span>
-                <h2 className="font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl">
-                  EXPLORE OUR<br /><span className="italic font-normal text-[#FE6311]">GARMENT CATEGORIES.</span>
+                <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[0.92] tracking-tight text-[#171A1D]">
+                  Every category.<br />
+                  <em className="italic text-[#FE6311]">Its own sourcing system.</em>
                 </h2>
               </div>
-              <p className="mt-4 md:mt-0 max-w-md text-sm text-[#6B6B6B] leading-relaxed">
-                Source commercially proven apparel lines from Ahmedabad's leading mills and manufacturer clusters.
+              <p className="max-w-md text-sm text-[#171A1D]/75 leading-relaxed">
+                Explore readymade apparel production lines and bulk mill fabrics. Select any card to expand high-detail cuts, stitch specifications, and color availability.
               </p>
             </div>
-
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { 
-                  num: "01",
-                  title: "MEN'S WEAR", 
-                  desc: "Cotton Twill Pants • Linen Shirts • Lowers • Combed T-Shirts", 
-                  link: "/catalog?category=mens-wear", 
-                  tag: "HOT SELLER",
-                  image: "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=600"
-                },
-                { 
-                  num: "02",
-                  title: "WOMEN'S WEAR", 
-                  desc: "Ethnic Kurtis • Co-Ord Sets • Western Tops • Palazzos", 
-                  link: "/catalog?category=womens-wear", 
-                  tag: "TRENDING",
-                  image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600"
-                },
-                { 
-                  num: "03",
-                  title: "KIDS WEAR", 
-                  desc: "Soft Combed Cotton • Playwear • Pants & Shirt Sets", 
-                  link: "/catalog?category=kids-wear", 
-                  tag: "COMFORT",
-                  image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?q=80&w=600"
-                },
-                { 
-                  num: "04",
-                  title: "ETHNIC WEAR", 
-                  desc: "Hand-block prints, foil detailing, festive embroidery & kurtas", 
-                  link: "/catalog?category=ethnic-wear", 
-                  tag: "AHMEDABAD",
-                  image: "/images/ethnic_wear.jpg"
-                },
-                { 
-                  num: "05",
-                  title: "WESTERN WEAR", 
-                  desc: "Modern casual shirts, formal trousers & stylish blouses", 
-                  link: "/catalog?category=womens-wear", 
-                  tag: "MODERN",
-                  image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600"
-                },
-                { 
-                  num: "06",
-                  title: "BEDSHEETS", 
-                  desc: "Pure combed cotton sheets in export-grade packed or roll formats", 
-                  link: "/catalog?category=bedsheets", 
-                  tag: "MILL DIRECT",
-                  image: "/images/custom_bedsheet.jpg"
-                },
-                { 
-                  num: "07",
-                  title: "FABRICS SOURCING", 
-                  desc: "Cotton bolts, denim, rayon, slub twills and custom dyeing lots", 
-                  link: "/catalog?category=fabrics", 
-                  tag: "BULK LOTS",
-                  image: "/images/fabrics_sourcing.jpg"
-                },
-                { 
-                  num: "08",
-                  title: "WHITE LABELING", 
-                  desc: "Custom OEM private label with branded tags, trims & packaging", 
-                  link: "/white-labeling", 
-                  tag: "CUSTOM OEM",
-                  image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600"
-                },
-              ].map((cat) => (
-                <Link
-                  key={cat.num}
-                  href={cat.link}
-                  className="group relative block overflow-hidden rounded-xs shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5"
-                >
-                  {/* Portrait image fill */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#1A1A1A]">
-                    <img 
-                      src={cat.image} 
-                      alt={cat.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-70 group-hover:brightness-50"
-                    />
-                    {/* Bottom-heavy dark gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D]/95 via-[#0D0D0D]/30 to-transparent" />
-                    
-                    {/* Number badge top-left */}
-                    <div className="absolute top-3.5 left-3.5">
-                      <span className="font-mono text-[8.5px] font-black text-[#252525] bg-[#FFB51A] px-2.5 py-1 rounded-xs">
-                        {cat.num}
-                      </span>
-                    </div>
-                    <div className="absolute top-3 right-3">
-                      <span className="font-mono text-[8px] font-bold text-[#1A1A1A] bg-[#FFF9E6] border border-[#FFB51A]/40 px-2 py-0.5 rounded-xs">
-                        {cat.tag}
-                      </span>
-                    </div>
-                    <div className="absolute bottom-3 left-3 right-3 text-white">
-                      <h3 className="font-serif-display text-lg font-bold uppercase tracking-tight text-white group-hover:text-[#FFD44D] transition-colors">{cat.title}</h3>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <p className="text-xs text-[#66625D] leading-relaxed line-clamp-2">{cat.desc}</p>
-                    <div className="mt-4 flex items-center gap-1.5 text-[10px] font-mono font-bold uppercase tracking-wider text-[#FE6311] group-hover:translate-x-1 transition-transform">
-                      Explore Collection <ArrowRight size={13} />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            <div className="mt-12 text-center">
-              <Link
-                href="/catalog"
-                className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10.5px] font-black uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-xs shadow-md"
-              >
-                EXPLORE FULL CATALOG <ArrowRight size={14} />
-              </Link>
-            </div>
           </div>
-        </section>
 
-        {/* 5. Curated Lookbook Section */}
-        <section className="bg-[#FFFFFF] py-24 border-t border-[#E2DDD5]">
-          <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12 mb-12">
-            <div className="flex flex-col md:flex-row md:items-end justify-between">
-              <div>
-                <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase block mb-3 w-fit shadow-xs">
-                  [ EDITORIAL LOOKBOOK ]
+          {/* Enhanced Category Chips Filter Bar */}
+          <CategoryChipsFilter
+            selectedFilter={selectedCategoryFilter}
+            onSelectFilter={setSelectedCategoryFilter}
+            categories={HIMAT_CATEGORIES}
+          />
+
+          {/* Category Decks List (Alternating expanding cards) */}
+          <div className="filtered-categories">
+            {(selectedCategoryFilter === "all"
+              ? HIMAT_CATEGORIES
+              : HIMAT_CATEGORIES.filter((c) => c.id === selectedCategoryFilter)
+            ).map((category) => (
+              <HimatCategoryDeck key={category.id} category={category} />
+            ))}
+          </div>
+
+          {/* Specification-Led Quote CTA Banner */}
+          <div className="uniforms-cta bg-[#F3EEE5] py-16 sm:py-20 px-6 sm:px-12 border-t border-b border-[rgba(23,26,29,0.12)]">
+            <div className="max-w-[1280px] mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 font-mono text-[10px] font-bold text-[#FE6311] uppercase tracking-wider bg-[#FFFAF4] px-3.5 py-1.5 rounded-[2px] border border-[rgba(254,99,17,0.2)] shadow-xs mb-4">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#FE6311]" />
+                  NEED A SPECIFICATION-LED QUOTE?
                 </span>
-                <h2 className="font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl">
-                  CURATED FOR<br /><span className="italic font-normal text-[#FE6311]">YOUR MARKET.</span>
+                <h2 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[0.95] tracking-tight text-[#171A1D]">
+                  Bring the brief.<br />
+                  <em className="italic text-[#FE6311]">We’ll build the garment.</em>
                 </h2>
-              </div>
-              <p className="mt-4 md:mt-0 max-w-sm text-sm text-[#66625D]">
-                A constantly evolving selection of wholesale garments engineered for commercial turnaround and retail profit.
-              </p>
-            </div>
-            
-            {/* Filter Tabs Preview */}
-            <div className="flex flex-wrap gap-2 mt-8 border-b border-[#E2DDD5] pb-4 text-[9.5px] font-bold uppercase tracking-widest text-[#66625D]">
-              <span className="border-r border-[#E2DDD5] pr-4 text-[#FE6311] font-bold">NEW ARRIVALS</span>
-              <span className="border-r border-[#E2DDD5] px-4 hover:text-[#1A1A1A] cursor-pointer">BEST SELLERS</span>
-              <span className="border-r border-[#E2DDD5] px-4 hover:text-[#1A1A1A] cursor-pointer">ETHNIC & FUSION</span>
-              <span className="pl-4 hover:text-[#1A1A1A] cursor-pointer">WHOLESALE PICKS</span>
-            </div>
-          </div>
-          
-          <HorizontalProducts />
+                <p className="mt-4 text-sm sm:text-base text-[#171A1D]/75 leading-relaxed">
+                  Connect directly with our Ahmedabad manufacturing desk. Share your required quantities, target price points, or custom tech packs for instant lot availability and doorstep freight estimates.
+                </p>
 
-          <div className="text-center mt-12">
-            <Link
-              href="/catalog"
-              className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10.5px] font-black uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-xs shadow-md"
-            >
-              VIEW FULL COLLECTION <ArrowRight size={14} />
-            </Link>
-          </div>
-        </section>
-
-        {/* 6. White Labeling Section (Warm Dark Charcoal Background) */}
-        <section id="white-labeling" className="relative overflow-hidden bg-[#141414] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-black/30 text-[#FAF8F5]">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <img
-              src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=1200"
-              alt="Apparel manufacturing background"
-              className="h-full w-full object-cover grayscale"
-              loading="lazy"
-            />
-          </div>
-          <div className="relative mx-auto grid max-w-[1280px] gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="space-y-6">
-              <span className="mono-label text-[9px] font-bold text-[#F5B014] uppercase block tracking-widest">// WHITE LABELING SERVICES</span>
-              <h2 className="font-serif-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl text-[#FAF8F5]">
-                YOUR BRAND.<br /><span className="italic font-normal text-[#F5B014]">YOUR VISION.</span><br />OUR EXPERTISE.
-              </h2>
-              <p className="max-w-md text-sm leading-relaxed text-[#FAF8F5]/80">
-                From concept to finished garment, we support businesses looking to create their own apparel collections with customized labels, tags, custom sizing, and retail packaging.
-              </p>
-              <div className="pt-4">
-                <Link
-                  href="/white-labeling"
-                  className="gold-button inline-flex items-center gap-2 px-8 py-4 text-[10.5px] font-black uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-xs shadow-md"
-                >
-                  START WHITE LABELING <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* 6-Step Timeline */}
-            <div className="border-l border-white/20 pl-6 space-y-5">
-              {[
-                { step: "01", name: "Custom Design", desc: "Design according to your tech packs, fits, and styling specifications." },
-                { step: "02", name: "Fabric Sourcing", desc: "Selecting quality yarn, mill-direct fabrics, and precision dyeing shades." },
-                { step: "03", name: "Sampling", desc: "Pre-production sample verification and fit approval before cutting." },
-                { step: "04", name: "Production", desc: "Bulk manufacturing with rigid dimensional and stitching quality controls." },
-                { step: "05", name: "Packaging", desc: "Custom tagging, barcoding, polybags, and branded carton packaging." },
-                { step: "06", name: "Export Support", desc: "Domestic freight corridors and global shipping documentation." },
-              ].map((item) => (
-                <div key={item.step} className="group border-b border-white/10 pb-4">
-                  <div className="flex items-baseline justify-between">
-                    <span className="mono-label text-[10px] text-[#FFD44D] group-hover:text-[#F5B014] transition-colors">{item.step}</span>
-                    <h3 className="font-serif-display text-lg font-bold uppercase tracking-wide text-[#FAF8F5]">{item.name}</h3>
-                  </div>
-                  <p className="mt-1 text-xs text-[#FAF8F5]/75">{item.desc}</p>
+                <div className="flex flex-wrap gap-4 mt-6 pt-6 border-t border-[rgba(23,26,29,0.1)] text-xs text-[#171A1D]/80 font-mono">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="text-[#FE6311] font-bold">✓</span> Direct Mill Pricing
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="text-[#FE6311] font-bold">✓</span> Custom Tech Pack Support
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="text-[#FE6311] font-bold">✓</span> Pan-India Logistics
+                  </span>
                 </div>
-              ))}
+              </div>
+
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 w-full sm:w-auto lg:min-w-[280px] shrink-0">
+                <a
+                  href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20want%20to%20inquire%20about%20bulk%20garment%20sourcing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1EBE5B] text-white px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <WhatsAppIcon className="w-4 h-4" />
+                  <span>CONNECT ON WHATSAPP</span>
+                </a>
+                <Link
+                  href="/catalog"
+                  className="inline-flex items-center justify-center gap-2.5 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>EXPLORE FULL CATALOG</span>
+                  <ArrowUpRight size={16} className="text-[#FFB51A]" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. White Labeling & Private Label Atelier (Komal Creation Inspired) */}
+        <section id="white-labeling" className="brand-lab-section relative overflow-hidden bg-[#E4DBD0] text-[#171A1D] border-t border-[rgba(23,26,29,0.12)]">
+          <div className="max-w-[1320px] mx-auto">
+            {/* Top Heading Row */}
+            <div className="brand-lab-heading">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[9.5px] font-bold text-[#FE6311] bg-[#FFFAF4] px-3.5 py-1.5 rounded-[2px] uppercase inline-flex items-center gap-2 border border-[rgba(254,99,17,0.2)] shadow-xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#FE6311]" />
+                    HT/005 — WHITE LABELING & PRIVATE LABEL ATELIER
+                  </span>
+                  <span className="hidden sm:inline-flex maker-seal text-[9px] font-mono text-[#171A1D]/60 border border-dashed border-[#171A1D]/30 px-2.5 py-0.5 rounded-full">
+                    Himat Textile / Atelier
+                  </span>
+                </div>
+
+                <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal leading-[0.9] tracking-tight text-[#171A1D]">
+                  Your Brand.<br />
+                  <em className="italic text-[#FE6311]">Your Labels.</em><br />
+                  Our Mill Access.
+                </h2>
+
+                <p className="max-w-xl text-sm sm:text-base leading-relaxed text-[#171A1D]/75">
+                  From tech pack specification to final carton dispatch, we manufacture ready-to-sell apparel collections under your brand with customized woven tags, branded trims, graded size charts, and retail packaging.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      triggerInquiryForCategory({
+                        categoryTitle: "White Labeling",
+                        variantName: "Private Label Collection",
+                        fabric: "Custom Mill Weaves & Trims",
+                      })
+                    }
+                    className="inline-flex items-center gap-2.5 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span>START YOUR LABEL BRIEF</span>
+                    <ArrowUpRight size={16} className="text-[#FFB51A]" />
+                  </button>
+
+                  <Link
+                    href="/white-labeling"
+                    className="inline-flex items-center gap-2 px-6 py-4 text-xs font-mono font-bold tracking-wider text-[#171A1D] hover:text-[#FE6311] transition-colors border-b border-current"
+                  >
+                    <span>EXPLORE ATELIER CAPABILITY</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Atelier Callout Box (Signature Komal Creation Stamp) */}
+              <div className="brand-lab-callout">
+                <span>Your Brand / Our Floor</span>
+                <strong>
+                  Made from<br />
+                  <em>your brief.</em>
+                </strong>
+                <p className="text-xs text-[#FFFAF4]/85 leading-relaxed m-0 font-sans">
+                  Private-label readymade apparel and home furnishings manufactured to your exact GSM, cut, and finishing.
+                </p>
+                <small>Apparel · Woven Damask · Trims · Packaging</small>
+              </div>
+            </div>
+
+            {/* 3 Iconic Architecture Step Cards (Komal Creation Style) */}
+            <div className="brand-lab-steps">
+              {/* Step 1 */}
+              <article className="brand-step group">
+                <div className="brand-step-image">
+                  <img
+                    src="/manus-storage/mafatlal-materials-detail_6b9c0b66.jpg"
+                    alt="Custom design and tech pack verification"
+                    loading="lazy"
+                  />
+                  <span className="brand-step-number">01</span>
+                </div>
+                <div className="brand-step-copy">
+                  <small>BRIEF THE IDEA / PATTERN · FIT · PALETTE</small>
+                  <h3>Start with your product concept.</h3>
+                  <p>
+                    Bring a reference sample, technical sketch, or market benchmark. We align custom pattern grading, fabric composition, GSM, and target retail price points.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Patterns</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Graded Sizing</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Mill Lab Dips</span>
+                  </div>
+                </div>
+              </article>
+
+              {/* Step 2 */}
+              <article className="brand-step group">
+                <div className="brand-step-image">
+                  <img
+                    src="/manus-storage/mafatlal-tailoring_9872bd9e.jpg"
+                    alt="Sample development and precision stitching"
+                    loading="lazy"
+                  />
+                  <span className="brand-step-number">02</span>
+                </div>
+                <div className="brand-step-copy">
+                  <small>BUILD THE SAMPLE / STITCH · EMBROIDERY · PRINT</small>
+                  <h3>Turn it into an approved piece.</h3>
+                  <p>
+                    Our sample masters cut, stitch, and finish pre-production prototypes. Review real drape, seam strength, pocket placement, and wash feel before bulk cutting begins.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pre-Prod Sample</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Screen & Digital Print</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Durability QC</span>
+                  </div>
+                </div>
+              </article>
+
+              {/* Step 3 */}
+              <article className="brand-step group">
+                <div className="brand-step-image">
+                  <img
+                    src="/manus-storage/stitchform-private-label_b6cb424d.jpg"
+                    alt="Private label branding, packaging and dispatch"
+                    loading="lazy"
+                  />
+                  <span className="brand-step-number">03</span>
+                </div>
+                <div className="brand-step-copy">
+                  <small>LABEL FOR LAUNCH / TAGS · PACKAGING · DISPATCH</small>
+                  <h3>Put your name on every garment.</h3>
+                  <p>
+                    Woven neck damask labels, branded satin wash-care tags, custom hangtags, branded buttons, barcode stickers, and retail polybags packaged into shelf-ready cartons.
+                  </p>
+                  <div className="flex flex-wrap gap-2 pt-3 border-t border-[rgba(23,26,29,0.08)] text-[10px] font-mono font-semibold text-[#171A1D]/70">
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Woven Damask</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Custom Hangtags</span>
+                    <span className="bg-[#EFE9DF] px-2.5 py-1 rounded-[2px]">Pan-India Logistics</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            {/* Bottom 6-Step Capabilities Horizontal Ribbon */}
+            <div className="mt-14 pt-8 border-t border-[rgba(23,26,29,0.12)]">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {[
+                  { step: "01", name: "Custom Tech Packs", desc: "Fits, sizing & styling specs" },
+                  { step: "02", name: "Mill-Direct Fabrics", desc: "Quality yarn & precision shades" },
+                  { step: "03", name: "Physical Sampling", desc: "Fit verification before cutting" },
+                  { step: "04", name: "Bulk Production", desc: "Rigid stitch & wash QC lines" },
+                  { step: "05", name: "Custom Packaging", desc: "Woven tags, barcodes & boxes" },
+                  { step: "06", name: "Pan-India Freight", desc: "Doorstep transport corridors" },
+                ].map((cap) => (
+                  <div key={cap.step} className="bg-[#FFFAF4]/80 border border-[rgba(23,26,29,0.08)] p-3.5 rounded-[3px]">
+                    <span className="font-mono text-[10px] font-bold text-[#FE6311] block mb-1">
+                      {cap.step}
+                    </span>
+                    <h4 className="font-serif text-sm font-semibold text-[#171A1D] leading-tight mb-1">
+                      {cap.name}
+                    </h4>
+                    <p className="text-[11px] text-[#171A1D]/70 leading-snug m-0">
+                      {cap.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -643,7 +745,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         {/* 11. Price Architecture / Segments Section */}
         <section className="bg-[#FAF8F5] px-5 py-24 sm:px-8 lg:px-12 lg:py-32 border-t border-[#E2DDD5] text-[#1A1A1A]">
           <div className="mx-auto max-w-[1280px]">
-            <span className="mono-label text-[9px] font-bold text-[#E94B0C] uppercase tracking-wider bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs inline-block mb-3 shadow-xs">
+            <span className="mono-label text-[9px] font-bold text-[#E94B0C] uppercase tracking-wider bg-[#FFF9E6] px-3.5 py-1.5 rounded-xs inline-block mb-3 shadow-xs">
               [ PRICE SEGMENTS ]
             </span>
             <h2 className="font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl">
@@ -653,21 +755,18 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[
                 {
-                  name: language === "hi" ? "à¤µà¥ˆà¤²à¥à¤¯à¥‚ à¤¸à¥‡à¤—à¤®à¥‡à¤‚à¤Ÿ (à¤¬à¤œà¤Ÿ à¤¶à¥à¤°à¥ƒà¤‚à¤–à¤²à¤¾)" : "Value Segment",
-                  desc: language === "hi" ? "à¤¬à¤¡à¤¼à¥‡ à¤–à¥à¤¦à¤°à¤¾ à¤…à¤­à¤¿à¤¯à¤¾à¤¨à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥à¤°à¤¤à¤¿à¤¸à¥à¤ªà¤°à¥à¤§à¥€ à¤¶à¥à¤°à¥à¤†à¤¤à¥€ à¤®à¥‚à¤²à¥à¤¯, à¤¬à¤¿à¤¨à¤¾ à¤•à¤¿à¤¸à¥€ à¤«à¥ˆà¤¬à¥à¤°à¤¿à¤• à¤—à¥à¤£à¤µà¤¤à¥à¤¤à¤¾ à¤¸à¤®à¤à¥Œà¤¤à¥‡ à¤•à¥‡ à¤²à¤¾à¤—à¤¤ à¤ªà¥à¤°à¤­à¤¾à¤µà¥€ à¤®à¤¿à¤¶à¥à¤°à¤£à¥¤" : "Competitive entry-level pricing for mass retail campaigns, utilizing cost-effective blends without compromising fabric structure.",
-                  moq: language === "hi" ? "1 à¤ªà¥€à¤¸ (à¤¥à¥‹à¤• à¤¦à¤°)" : "1 Pc (Bulk Rate)",
+                  name: language === "hi" ? "वैल्यू सेगमेंट (बजट रेंज)" : "Value Segment",
+                  desc: language === "hi" ? "बड़े खुदरा अभियानों के लिए प्रतिस्पर्धी शुरुआती मूल्य, बिना किसी फैब्रिक गुणवत्ता समझौते के लागत-प्रभावी मिश्रण।" : "Competitive entry-level pricing for mass retail campaigns, utilizing cost-effective blends without compromising fabric structure.",
                   isHighlight: false
                 },
                 {
-                  name: language === "hi" ? "à¤®à¤¿à¤¡-à¤°à¥‡à¤‚à¤œ (à¤®à¤§à¥à¤¯à¤® à¤¶à¥à¤°à¥ƒà¤‚à¤–à¤²à¤¾)" : "Mid-Range",
-                  desc: language === "hi" ? "à¤•à¤¾à¤°à¥à¤¡à¥à¤¡ à¤”à¤° à¤•à¤‚à¤˜à¥€ à¤µà¤¾à¤²à¥‡ à¤¸à¥‚à¤¤à¥€ à¤•à¤ªà¤¡à¤¼à¥‡, à¤¸à¤‚à¤°à¤šà¤¿à¤¤ à¤¬à¥à¤¨à¤¾à¤µà¤Ÿ, à¤”à¤° à¤®à¤¾à¤¨à¤• à¤§à¥à¤²à¤¾à¤ˆ à¤ªà¥à¤°à¤•à¥à¤°à¤¿à¤¯à¤¾à¥¤ à¤‰à¤­à¤°à¤¤à¥‡ à¤«à¥ˆà¤¶à¤¨ à¤¸à¥à¤Ÿà¥‹à¤° à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¤°à¥à¤µà¤¶à¥à¤°à¥‡à¤·à¥à¤ à¥¤" : "Standard retail qualities including carded and combed cotton, structured knits, and standard washes. Best for emerging fashion stores.",
-                  moq: language === "hi" ? "1 à¤ªà¥€à¤¸ (à¤¥à¥‹à¤•)" : "1 Pc (Wholesale)",
+                  name: language === "hi" ? "मिड-रेंज (मध्यम श्रृंखला)" : "Mid-Range",
+                  desc: language === "hi" ? "कार्ड्ड और कंघी वाले सूती कपड़े, संरचित बुनावट, और मानक धुलाई प्रक्रिया। उभरते फैशन स्टोर के लिए सर्वश्रेष्ठ।" : "Standard retail qualities including carded and combed cotton, structured knits, and standard washes. Best for emerging fashion stores.",
                   isHighlight: false
                 },
                 {
-                  name: language === "hi" ? "à¤ªà¥à¤°à¥€à¤®à¤¿à¤¯à¤® à¤°à¥‡à¤‚à¤œ" : "Premium Range",
-                  desc: language === "hi" ? "à¤‰à¤šà¥à¤š à¤—à¥à¤£à¤µà¤¤à¥à¤¤à¤¾ à¤µà¤¾à¤²à¥‡ à¤œà¥ˆà¤µà¤¿à¤• à¤•à¤ªà¤¡à¤¼à¥‡, à¤µà¤¿à¤¸à¥à¤¤à¥ƒà¤¤ à¤§à¥à¤²à¤¾à¤ˆ à¤¤à¤•à¤¨à¥€à¤•, à¤•à¤¸à¥à¤Ÿà¤® à¤Ÿà¥à¤°à¤¿à¤®à¥à¤¸ à¤”à¤° à¤²à¤•à¥à¤œà¤°à¥€ à¤«à¤¿à¤¨à¤¿à¤¶à¤¿à¤‚à¤—à¥¤" : "High-grade organic fabrics, detailed wash techniques, heavy weight options, custom trims, and luxury finishing processes.",
-                  moq: language === "hi" ? "1 à¤ªà¥€à¤¸ (à¤¸à¥ˆà¤‚à¤ªà¤²)" : "1 Pc (Sample)",
+                  name: language === "hi" ? "प्रीमियम रेंज" : "Premium Range",
+                  desc: language === "hi" ? "उच्च गुणवत्ता वाले जैविक कपड़े, विस्तृत धुलाई तकनीक, कस्टम ट्रिम्स और लक्जरी फिनिशिंग।" : "High-grade organic fabrics, detailed wash techniques, heavy weight options, custom trims, and luxury finishing processes.",
                   isHighlight: true
                 }
               ].map(item => (
@@ -690,10 +789,20 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     </div>
                     <p className="mt-4 text-xs sm:text-sm leading-relaxed text-[#66625D]">{item.desc}</p>
                   </div>
-                  <div className="mt-8 border-t border-[#E2DDD5] pt-4 flex items-center justify-between">
-                    <span className="mono-label text-[8.5px] text-[#66625D] font-bold uppercase">{language === "hi" ? "à¤¨à¥à¤¯à¥‚à¤¨à¤¤à¤® à¤‘à¤°à¥à¤¡à¤°" : "Minimum Order"}</span>
-                    <span className="text-xs font-bold text-[#1A1A1A] bg-[#FFF9E6] border border-[#FFB51A]/40 px-2.5 py-1 rounded-xs">{item.moq}</span>
-                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      triggerInquiryForCategory({
+                        categoryTitle: item.name,
+                        variantName: `${item.name} Sourcing Tier`,
+                      })
+                    }
+                    className="mt-6 pt-4 border-t border-[#E2DDD5] flex items-center justify-between w-full text-xs font-mono font-bold text-[#1A1A1A] hover:text-[#FE6311] transition-colors cursor-pointer"
+                  >
+                    <span>{language === "hi" ? "इस सेगमेंट की पूछताछ करें" : "Inquire This Segment"}</span>
+                    <ArrowUpRight size={15} className="text-[#FE6311]" />
+                  </button>
                 </div>
               ))}
             </div>

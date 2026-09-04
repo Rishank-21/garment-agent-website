@@ -85,7 +85,7 @@ export default function IndiaNetwork() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           {/* Info Text */}
           <div className="space-y-6">
-            <span className="mono-label text-[9px] font-bold tracking-widest text-[#E94B0C] uppercase bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs inline-block shadow-xs">
+            <span className="mono-label text-[9px] font-bold tracking-widest text-[#E94B0C] uppercase bg-[#FFF9E6] px-3.5 py-1.5 rounded-xs inline-block shadow-xs">
               [ 04 / AHMEDABAD ADVANTAGE ]
             </span>
             <h2 className="font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl leading-[0.98]">

@@ -46,7 +46,7 @@ export default function NetworkClient({ cities, brands }: NetworkClientProps) {
                 <div key={city.id} className="border border-white/15 bg-white/5 p-6 rounded-xs transition-all hover:border-[#F5B014] shadow-xs">
                   <div className="flex items-center justify-between">
                     <MapPin className="text-[#F5B014]" size={20} />
-                    <span className="mono-label bg-white/10 border border-white/15 px-2.5 py-1 text-[8.5px] text-[#F5B014] rounded-xs font-bold uppercase">Active hub</span>
+                    <span className="mono-label bg-white/10 px-2.5 py-1 text-[8.5px] text-[#F5B014] rounded-xs font-bold uppercase">Active hub</span>
                   </div>
                   <h4 className="mt-8 font-serif-display text-lg font-bold uppercase tracking-wider text-[#FAF8F5]">{city.name}</h4>
                   <p className="mt-2 font-mono text-[10px] text-[#FAF8F5]/75 font-semibold">LAT: {city.latitude}<br />LNG: {city.longitude}</p>
@@ -62,7 +62,7 @@ export default function NetworkClient({ cities, brands }: NetworkClientProps) {
         {brands.length > 0 && (
           <section className="border-t border-[#E2DDD5] bg-[#FAF9F6] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 text-[#252525]">
             <div className="mx-auto max-w-[1280px]">
-              <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] border border-[#FFB51A]/40 px-3.5 py-1.5 rounded-xs uppercase tracking-wider inline-block">[ CLIENT ECOSYSTEM ]</span>
+              <span className="mono-label text-[9px] font-bold text-[#E94B0C] bg-[#FFF9E6] px-3.5 py-1.5 rounded-xs uppercase tracking-wider inline-block">[ CLIENT ECOSYSTEM ]</span>
               <h2 className="mt-3 font-serif-display text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl text-[#252525]">Featured sourcing brands.</h2>
               <div className="mt-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
                 {brands.map((brand) => (
