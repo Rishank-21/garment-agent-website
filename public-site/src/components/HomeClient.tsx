@@ -325,9 +325,9 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         <HeroSlider />
 
         {/* 2. About Himat Textile / Your Garment Guide in Ahmedabad */}
-        <section id="about" className="relative overflow-hidden bg-[#FAF8F5] px-5 py-20 text-[#171A1D] sm:px-8 lg:px-12 lg:py-28 border-b border-[rgba(23,26,29,0.12)]">
-          <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
-            <div className="space-y-6">
+        <section id="about" className="relative overflow-hidden bg-[#FAF8F5] px-5 py-16 sm:py-20 text-[#171A1D] sm:px-8 lg:px-12 lg:py-28 border-b border-[rgba(23,26,29,0.12)] w-full">
+          <div className="mx-auto grid w-full max-w-[1320px] gap-8 lg:gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center min-w-0">
+            <div className="space-y-5 sm:space-y-6 w-full min-w-0">
               <div className="space-y-1">
                 <span className="font-mono text-[11px] font-semibold text-[#FE6311] uppercase tracking-[0.18em] block">
                   ABOUT HIMAT TEXTILE
@@ -355,7 +355,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               </p>
 
               {/* WHAT WE DO (5 Clean Minimal Cards with Mobile Horizontal Auto-Scroll) */}
-              <div className="pt-2">
+              <div className="pt-2 w-full min-w-0">
                 <div className="flex items-center justify-between mb-3">
                   <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[#171A1D]/60 block">
                     WHAT WE DO
@@ -438,22 +438,22 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
               </div>
 
               {/* OUR APPROACH */}
-              <div className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.12)] p-6 rounded-[4px] max-w-xl space-y-3 shadow-xs">
+              <div className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.12)] p-4 sm:p-6 rounded-[4px] w-full max-w-xl space-y-3 shadow-xs">
                 <span className="font-mono text-[9.5px] font-bold text-[#FE6311] uppercase tracking-wider block">
                   OUR APPROACH
                 </span>
-                <p className="font-serif text-lg sm:text-xl font-semibold text-[#171A1D]">
+                <p className="font-serif text-lg sm:text-xl font-semibold text-[#171A1D] leading-snug">
                   Right Product • Right Supplier • Right Deal
                 </p>
                 <p className="text-xs sm:text-sm text-[#171A1D]/75 leading-relaxed m-0">
                   We don’t believe in simply selling you a product. We help you find what fits your business. From your first requirement to supplier coordination and dispatch, Himat Textile is here to make garment sourcing easier.
                 </p>
-                <div className="pt-3 flex flex-wrap items-center gap-3">
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full">
                   <a
                     href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20am%20looking%20for%20garments%20in%20Ahmedabad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer min-h-[44px]"
                   >
                     <WhatsAppIcon className="w-4 h-4" />
                     <span>WHATSAPP US</span>
@@ -466,7 +466,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         variantName: "Ahmedabad Garment Sourcing & Buying Support",
                       })
                     }
-                    className="inline-flex items-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer min-h-[44px]"
                   >
                     <span>START ENQUIRY</span>
                     <ArrowUpRight size={14} className="text-[#FFB51A]" />
@@ -476,9 +476,9 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
             </div>
 
             {/* Clean Ground Working Photo */}
-            <div>
-              <div className="relative overflow-hidden border border-[rgba(23,26,29,0.12)] bg-[#FFFFFF] rounded-[4px] shadow-md group">
-                <div className="aspect-[4/3] w-full overflow-hidden bg-[#EFE9DF]">
+            <div className="w-full max-w-xl lg:max-w-none min-w-0">
+              <div className="relative w-full overflow-hidden border border-[rgba(23,26,29,0.12)] bg-[#FFFFFF] rounded-[4px] shadow-sm group">
+                <div className="aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden bg-[#EFE9DF]">
                   <img
                     src="/images/ahmedabad_market_gheekanta.jpg"
                     alt="Ahmedabad Garment Wholesale Market Hub"
@@ -486,8 +486,8 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     loading="lazy"
                   />
                 </div>
-                <div className="p-5 bg-[#FFFFFF] border-t border-[rgba(23,26,29,0.08)]">
-                  <p className="font-serif text-base font-semibold text-[#171A1D] mb-1">
+                <div className="p-4 sm:p-5 bg-[#FFFFFF] border-t border-[rgba(23,26,29,0.08)]">
+                  <p className="font-serif text-base sm:text-lg font-semibold text-[#171A1D] mb-1">
                     Ahmedabad Garment Market Hub
                   </p>
                   <p className="text-xs text-[#171A1D]/70 leading-relaxed m-0">
