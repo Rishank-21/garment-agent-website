@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -89,7 +89,7 @@ export default function IndiaNetwork() {
               [ 04 / AHMEDABAD ADVANTAGE ]
             </span>
             <h2 className="font-serif-display text-4xl font-black uppercase tracking-tight text-[#1A1A1A] sm:text-5xl lg:text-6xl leading-[0.98]">
-              AHMEDABAD, INDIA â€”<br /><span className="italic font-normal text-[#FE6311]">YOUR SOURCING PARTNER.</span>
+              AHMEDABAD, INDIA &mdash;<br /><span className="italic font-normal text-[#FE6311]">YOUR SOURCING PARTNER.</span>
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-[#66625D]">
               Positioning Ahmedabad as a strategic advantage for garment sourcing, fabric selection, and textile manufacturing. We operate across major garment and fabric hubs, connecting raw materials, spinning mills, design centers, and wholesale networks to serve global fashion brands.
