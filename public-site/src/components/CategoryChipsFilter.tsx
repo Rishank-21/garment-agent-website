@@ -39,8 +39,8 @@ export default function CategoryChipsFilter({
           </div>
         </div>
 
-        {/* Right Chips Tray (Crisp Rectangular Swatch Tabs) */}
-        <div className="overflow-x-auto pb-1.5 -mx-5 px-5 sm:mx-0 sm:px-0 scrollbar-none">
+        {/* Right Chips Tray (Crisp Rectangular Swatch Tabs with Touch Momentum) */}
+        <div className="overflow-x-auto pb-1.5 -mx-5 px-5 sm:mx-0 sm:px-0 scrollbar-none overscroll-x-contain touch-pan-x">
           <div className="flex items-center gap-2 min-w-max" role="group" aria-label="Category filter chips">
             {/* All Categories Chip */}
             <button

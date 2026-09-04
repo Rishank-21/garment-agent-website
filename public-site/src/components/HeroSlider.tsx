@@ -66,7 +66,7 @@ export default function HeroSlider() {
         - Monumental DM Serif Display headline with tight line-height
         - Architectural grid lines, tailor stitch curve, and vertical maker mark
       */}
-      <section className="relative flex min-h-[min(760px,100svh)] w-full flex-col justify-center overflow-hidden bg-[#F3EEE5] px-6 pt-32 pb-20 text-[#171A1D] sm:px-10 sm:pt-36 sm:pb-24 lg:px-16 xl:px-24">
+      <section className="relative flex min-h-[min(720px,100svh)] w-full flex-col justify-center overflow-hidden bg-[#F3EEE5] px-5 pt-28 pb-16 text-[#171A1D] sm:px-10 sm:pt-36 sm:pb-24 lg:px-16 xl:px-24">
         
         {/* Right 64% Manufacturing Media Layer with Seamless Underlapping Blend */}
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-[1] w-full overflow-hidden opacity-100 lg:w-[64%]">
@@ -90,7 +90,7 @@ export default function HeroSlider() {
             );
           })}
 
-          {/* Desktop Continuous Easing Gradient (Lightened opacity — more photo clarity & seamless blend) */}
+          {/* Desktop Continuous Easing Gradient */}
           <span
             className="pointer-events-none absolute inset-0 z-[2] hidden lg:block"
             style={{
@@ -99,23 +99,23 @@ export default function HeroSlider() {
             }}
           />
 
-          {/* Mobile / Tablet Vertical Continuous Soft Bleed Gradient (Lightened opacity) */}
+          {/* Mobile / Tablet Vertical Continuous Soft Bleed Gradient */}
           <span
             className="pointer-events-none absolute inset-0 z-[2] lg:hidden"
             style={{
               background:
-                "linear-gradient(180deg, #F3EEE5 0%, rgba(243,238,229,0.80) 18%, rgba(243,238,229,0.40) 38%, rgba(243,238,229,0.10) 60%, transparent 85%)",
+                "linear-gradient(180deg, #F3EEE5 0%, #F3EEE5 45%, rgba(243,238,229,0.88) 72%, rgba(243,238,229,0.35) 100%)",
             }}
           />
         </div>
 
-        {/* Architectural Technical Grid Lines (Komal Signature Accent) */}
+        {/* Architectural Technical Grid Lines */}
         <div className="pointer-events-none absolute top-[35%] right-0 z-[2] hidden h-[1px] w-[37vw] bg-[rgba(23,26,29,0.1)] lg:block" />
         <div className="pointer-events-none absolute bottom-[21%] right-0 z-[2] hidden h-[1px] w-[50vw] bg-[rgba(23,26,29,0.1)] lg:block" />
 
-        {/* Signature Tailor's Curved Dashed Stitch Line */}
+        {/* Signature Tailor's Curved Dashed Stitch Line (Hidden on very small screens to avoid clutter) */}
         <svg
-          className="pointer-events-none absolute right-0 bottom-0 z-[2] h-auto w-[min(46vw,620px)] opacity-85"
+          className="pointer-events-none absolute right-0 bottom-0 z-[2] hidden sm:block h-auto w-[min(46vw,620px)] opacity-85"
           viewBox="0 0 560 150"
           fill="none"
           aria-hidden="true"
@@ -128,7 +128,7 @@ export default function HeroSlider() {
           />
         </svg>
 
-        {/* Vertical Studio Edge Mark (Komal Signature Right Stamp) */}
+        {/* Vertical Studio Edge Mark */}
         <div
           className="pointer-events-none absolute inset-y-0 right-6 lg:right-10 z-[3] hidden select-none flex-col items-center justify-center gap-6 border-l border-[rgba(23,26,29,0.12)] pl-4 text-[#171A1D]/60 xl:flex"
           style={{ writingMode: "vertical-rl" }}
@@ -138,37 +138,37 @@ export default function HeroSlider() {
           <span className="font-mono text-[8px] font-bold tracking-[0.2em] uppercase">AHMEDABAD CLUSTER</span>
         </div>
 
-        {/* Main Editorial Hero Copy (Pure unblemished Warm Paper Canvas) */}
-        <div className="relative z-[3] max-w-[690px] pt-3 sm:pt-5">
-          {/* Eyebrow Pill with Logo Golden Yellow & Orange Duo */}
-          <div className="mb-3.5 inline-flex items-center gap-2 rounded-full bg-[#FFF9ED] px-3.5 py-1 text-[8.5px] sm:text-[9.5px] font-mono font-extrabold uppercase tracking-[0.16em] text-[#FE6311] shadow-xs">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#FFB51A] animate-pulse" />
-            <span>HIMAT TEXTILE — YOUR GARMENT GUIDE IN AHMEDABAD</span>
+        {/* Main Editorial Hero Copy */}
+        <div className="relative z-[3] max-w-[690px] pt-2 sm:pt-5">
+          {/* Eyebrow Pill */}
+          <div className="mb-3 sm:mb-3.5 inline-flex items-center gap-2 rounded-full bg-[#FFF9ED] px-3 sm:px-3.5 py-1 text-[8px] sm:text-[9.5px] font-mono font-extrabold uppercase tracking-[0.12em] sm:tracking-[0.16em] text-[#FE6311] shadow-xs max-w-full">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFB51A] animate-pulse" />
+            <span className="truncate">HIMAT TEXTILE — YOUR GARMENT GUIDE IN AHMEDABAD</span>
           </div>
 
-          {/* Balanced Editorial Serif Headline */}
-          <h1 className="font-serif text-[clamp(3.1rem,6.8vw,5.8rem)] font-normal leading-[0.89] tracking-[-0.05em] text-[#171A1D] my-3 sm:my-3.5">
+          {/* Balanced Editorial Serif Headline (Optimized clamp for mobile) */}
+          <h1 className="font-serif text-[clamp(2.35rem,6.5vw,5.8rem)] font-normal leading-[0.93] sm:leading-[0.89] tracking-[-0.04em] sm:tracking-[-0.05em] text-[#171A1D] my-2.5 sm:my-3.5">
             Source the craft.<br />
             <em className="italic text-[#FE6311]">Scale the garment.</em>
           </h1>
 
-          {/* Editorial Paragraph — Balanced B2B value scale */}
-          <p className="mt-3 sm:mt-3.5 max-w-[50ch] font-sans text-[clamp(0.9rem,1.08vw,1.02rem)] leading-[1.68] text-[#171A1D]/85 font-medium">
+          {/* Editorial Paragraph */}
+          <p className="mt-2.5 sm:mt-3.5 max-w-[50ch] font-sans text-[clamp(0.88rem,1.08vw,1.02rem)] leading-[1.62] sm:leading-[1.68] text-[#171A1D]/85 font-medium">
             Your trusted B2B garment sourcing partner in Ahmedabad. We connect retailers, wholesalers, and growing fashion brands with reliable manufacturers across men&apos;s, women&apos;s, kids&apos; wear, and mill-direct fabrics.
           </p>
 
-          {/* Action Buttons: Tactile Orange/Gold Pill + Editorial Plain Link */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 pt-6 sm:pt-7">
+          {/* Action Buttons: Stacked on mobile with 48px touch targets */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-6 pt-5 sm:pt-7">
             <Link
               href="/catalog"
-              className="button button-rust inline-flex items-center justify-center gap-2.5 px-8 py-3.5 text-[10.5px] tracking-[0.14em] shadow-md"
+              className="button button-rust inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-xs sm:text-[10.5px] tracking-[0.14em] shadow-md min-h-[46px] w-full sm:w-auto"
             >
               Explore Garment Catalog <ArrowDownRight size={16} />
             </Link>
 
             <Link
               href="/#enquiry"
-              className="group inline-flex items-center justify-center gap-2 font-mono text-[10.5px] font-bold uppercase tracking-[0.12em] text-[#171A1D] hover:text-[#FE6311] transition-colors py-1.5"
+              className="group inline-flex items-center justify-center gap-2 font-mono text-xs sm:text-[10.5px] font-bold uppercase tracking-[0.12em] text-[#171A1D] hover:text-[#FE6311] transition-colors py-2 min-h-[44px]"
             >
               <span>Request a Bulk Quote</span>
               <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1 text-[#FE6311]" />
@@ -176,24 +176,23 @@ export default function HeroSlider() {
           </div>
         </div>
 
-
-        {/* Slide Selector Pill Indicators */}
-        <div className="absolute right-4 bottom-6 lg:bottom-7 lg:right-20 z-[4] hidden items-center gap-1.5 lg:flex">
+        {/* Slide Selector Pill Indicators (Visible on both mobile & desktop) */}
+        <div className="absolute right-5 bottom-3.5 sm:bottom-6 lg:bottom-7 lg:right-20 z-[4] flex items-center gap-1.5">
           {HERO_SLIDES.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setActiveSlide(idx)}
               className={`h-1.5 transition-all rounded-full ${
                 idx === activeSlide
-                  ? "w-7 bg-[#FE6311]"
-                  : "w-2.5 bg-[#171A1D]/20 hover:bg-[#FE6311]/50"
+                  ? "w-6 sm:w-7 bg-[#FE6311]"
+                  : "w-2 sm:w-2.5 bg-[#171A1D]/25 hover:bg-[#FE6311]/50"
               }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
         </div>
 
-        {/* Bottom Hero Notes Strip (Himat Textile B2B sourcing highlights with Gold & Orange diamonds) */}
+        {/* Bottom Hero Notes Strip (Himat Textile B2B sourcing highlights) */}
         <div className="absolute bottom-4 sm:bottom-5 left-6 sm:left-10 lg:left-16 xl:left-24 z-[4] hidden sm:flex items-center gap-3.5 font-mono text-[9px] sm:text-[9.5px] font-extrabold uppercase tracking-[0.12em] text-[#171A1D]/80">
           <span>B2B Garment Sourcing</span>
           <i className="h-1.5 w-1.5 rotate-45 bg-[#FFB51A]" />
@@ -205,11 +204,20 @@ export default function HeroSlider() {
         </div>
       </section>
 
-      {/* Balanced B2B Garment Sourcing Info Strip Marquee with Logo Golden Yellow Diamonds */}
-      <section className="w-full select-none overflow-hidden bg-[#FE6311] py-3.5 sm:py-4 text-[#FFFAF4] border-y border-[rgba(255,250,244,0.35)] shadow-sm">
-        <div className="marquee-track flex items-center gap-8 sm:gap-9 whitespace-nowrap font-mono text-[11px] sm:text-[12px] font-extrabold uppercase tracking-[0.15em]">
-          {Array(4).fill(tickerItems).flat().map((item, idx) => (
-            <React.Fragment key={idx}>
+      {/* Balanced B2B Garment Sourcing Info Strip Marquee with Dual Set for 100% Seamless Loop */}
+      <section className="w-full select-none overflow-hidden bg-[#FE6311] py-3 sm:py-3.5 text-[#FFFAF4] border-y border-[rgba(255,250,244,0.35)] shadow-xs relative">
+        <div 
+          className="marquee-track flex items-center gap-6 sm:gap-9 whitespace-nowrap font-mono text-[10.5px] sm:text-[12px] font-extrabold uppercase tracking-[0.15em]"
+          style={{ willChange: "transform" }}
+        >
+          {[...tickerItems, ...tickerItems].map((item, idx) => (
+            <React.Fragment key={`t1-${idx}`}>
+              <span>{item}</span>
+              <i className="h-1.5 w-1.5 shrink-0 rotate-45 bg-[#FFD44D]" />
+            </React.Fragment>
+          ))}
+          {[...tickerItems, ...tickerItems].map((item, idx) => (
+            <React.Fragment key={`t2-${idx}`}>
               <span>{item}</span>
               <i className="h-1.5 w-1.5 shrink-0 rotate-45 bg-[#FFD44D]" />
             </React.Fragment>

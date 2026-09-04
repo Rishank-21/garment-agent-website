@@ -288,7 +288,7 @@ export function HimatInquiry({
               onChange={(event) => update("message", event.target.value)}
               minLength={10}
               placeholder={t("enq_placeholder_msg")}
-              className="w-full min-h-28 rounded-[4px] border border-[rgba(23,26,29,0.16)] bg-[#FFFAF4] p-3.5 text-sm text-[#171A1D] placeholder:text-[#171A1D]/40 outline-none transition-all focus:border-[#FE6311] focus:ring-2 focus:ring-[#FE6311]/15 resize-y"
+              className="w-full min-h-28 rounded-[4px] border border-[rgba(23,26,29,0.16)] bg-[#FFFAF4] p-3.5 text-base sm:text-sm text-[#171A1D] placeholder:text-[#171A1D]/40 outline-none transition-all focus:border-[#FE6311] focus:ring-2 focus:ring-[#FE6311]/15 resize-y"
             />
           </label>
 
@@ -343,7 +343,7 @@ function Field({
         value={value}
         onChange={(event) => onChange(event.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-[4px] border border-[rgba(23,26,29,0.16)] bg-[#FFFAF4] px-3.5 py-3 text-sm text-[#171A1D] placeholder:text-[#171A1D]/40 outline-none transition-all focus:border-[#FE6311] focus:ring-2 focus:ring-[#FE6311]/15"
+        className="w-full rounded-[4px] border border-[rgba(23,26,29,0.16)] bg-[#FFFAF4] px-3.5 py-3 text-base sm:text-sm text-[#171A1D] placeholder:text-[#171A1D]/40 outline-none transition-all focus:border-[#FE6311] focus:ring-2 focus:ring-[#FE6311]/15"
       />
     </label>
   );

@@ -26,7 +26,7 @@ export default function FloatingWhatsApp() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-[200] flex flex-col items-end gap-2">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[200] flex flex-col items-end gap-2">
       {/* Tooltip Popup */}
       {showTooltip && (
         <div className="relative flex flex-col items-end animate-in fade-in slide-in-from-bottom-2 duration-300">
@@ -62,7 +62,7 @@ export default function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with Himat Textile on WhatsApp"
-        className="group relative flex items-center gap-2.5 rounded-full bg-[#25D366] px-4.5 py-3 text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_8px_24px_rgba(37,211,102,0.4)]"
+        className="group relative flex items-center justify-center gap-2.5 rounded-full bg-[#25D366] p-3.5 sm:px-4.5 sm:py-3 text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-[#20bd5a] hover:shadow-[0_8px_24px_rgba(37,211,102,0.4)]"
         onClick={() => setShowTooltip(false)}
       >
         <WhatsAppIcon className="w-5 h-5 fill-white" />

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { Menu, MoveUpRight, X } from "lucide-react";
+import { Menu, MoveUpRight, Phone, Mail, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
@@ -143,38 +143,61 @@ export function HimatHeader() {
             </Link>
           </div>
 
-          {/* Mobile Menu Trigger */}
-          <button
-            className="relative z-[60] grid h-9 w-9 place-items-center rounded-full border border-[rgba(23,26,29,0.18)] bg-[#FFFAF4]/80 backdrop-blur-xs text-[#171A1D] transition-colors lg:hidden hover:border-[#FE6311] hover:text-[#FE6311]"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-          >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
+          {/* Mobile Quick Action & Menu Trigger */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Chat on WhatsApp"
+              className="grid h-9 w-9 place-items-center rounded-full bg-[#25D366] text-white shadow-xs transition-transform active:scale-95"
+            >
+              <WhatsAppIcon className="w-4 h-4 fill-white" />
+            </a>
+
+            <button
+              className={`relative z-[120] grid h-9 w-9 place-items-center rounded-full border transition-all active:scale-95 ${
+                menuOpen
+                  ? "border-white/20 bg-white/10 text-[#FFFAF4]"
+                  : "border-[rgba(23,26,29,0.18)] bg-[#FFFAF4]/90 text-[#171A1D]"
+              }`}
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Drawer with Warm Charcoal Aesthetic */}
+      {/* Mobile Drawer with Warm Charcoal Aesthetic & Scrollable Safety */}
       <div 
         ref={mobileMenuRef} 
-        className={`fixed inset-0 z-[100] flex flex-col justify-between bg-[#171A1D] px-6 pb-10 pt-28 lg:hidden transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 z-[100] flex flex-col justify-between bg-[#171A1D] px-6 pb-8 pt-24 lg:hidden overflow-y-auto transition-all duration-500 ease-in-out ${
           menuOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col gap-5 pt-4">
-          <div className={`mb-3 flex items-center gap-3 border-b border-white/15 pb-6 transition-all duration-500 delay-75 ${
+        <div className="flex flex-col gap-4 pt-2">
+          <div className={`mb-2 flex items-center justify-between border-b border-white/15 pb-4 transition-all duration-500 delay-75 ${
             menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
           }`}>
-            <HimatLogo light={false} stacked={false} size="lg" />
+            <HimatLogo light={false} stacked={false} size="md" />
+            <button 
+              onClick={() => setLanguage(language === "en" ? "hi" : "en")} 
+              className="border border-white/20 px-3 py-1.5 text-[10px] font-mono font-bold uppercase tracking-[0.1em] text-[#FFFAF4] rounded-full"
+            >
+              {language === "en" ? "हिंदी" : "EN"}
+            </button>
           </div>
           {translatedLinks.map((link, index) => {
             const isActive = pathname === link.href;
             return (
               <Link 
                 key={link.label} 
-                href={link.href} 
-                className={`flex items-baseline justify-between border-b border-white/10 pb-4 font-serif text-2xl font-normal tracking-tight transition-all duration-500 hover:text-[#E8907B] ${
-                  isActive ? "text-[#E8907B]" : "text-[#FFFAF4]"
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`flex items-baseline justify-between border-b border-white/10 pb-3 font-serif text-xl sm:text-2xl font-normal tracking-tight transition-all duration-500 hover:text-[#E8907B] ${
+                  isActive ? "text-[#FE6311]" : "text-[#FFFAF4]"
                 }`}
                 style={{ 
                   transitionDelay: `${100 + index * 50}ms`,
@@ -183,41 +206,59 @@ export function HimatHeader() {
                 }}
               >
                 <span>{link.label}</span>
-                <span className="font-mono text-[10px] text-[#E8907B]">0{index + 1}</span>
+                <span className="font-mono text-[10px] text-[#FE6311]">0{index + 1}</span>
               </Link>
             );
           })}
+          
           <div 
-            className="mt-3 flex flex-wrap gap-3 transition-all duration-500"
+            className="mt-3 flex flex-col gap-2.5 transition-all duration-500"
             style={{ 
-              transitionDelay: "400ms",
+              transitionDelay: "380ms",
               transform: menuOpen ? "translateY(0)" : "translateY(16px)",
               opacity: menuOpen ? 1 : 0
             }}
           >
-            <Link href="/#enquiry" className="button button-rust inline-flex items-center gap-2 px-6 py-3 text-xs tracking-[.14em]">
+            <Link 
+              href="/#enquiry" 
+              onClick={() => setMenuOpen(false)}
+              className="button button-rust inline-flex items-center justify-center gap-2 px-6 py-3.5 text-xs tracking-[.14em] w-full text-center"
+            >
               {t("btn_start_enquiry")} <MoveUpRight size={15} />
             </Link>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/25 bg-white/10 px-5 py-3 text-xs font-bold uppercase tracking-[.14em] text-[#FFFAF4] rounded-full">
-              <WhatsAppIcon className="w-4 h-4" /> WhatsApp
+            <a 
+              href={WHATSAPP_URL} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] px-5 py-3.5 text-xs font-bold uppercase tracking-[.14em] text-white rounded-full w-full"
+            >
+              <WhatsAppIcon className="w-4 h-4" /> WhatsApp Quick Chat
             </a>
           </div>
-          <button 
-            onClick={() => setLanguage(language === "en" ? "hi" : "en")} 
-            className="w-fit border border-[rgba(255,250,244,0.3)] px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-[.14em] text-[#FFFAF4] rounded-full transition-all duration-500 hover:border-[#E8907B] hover:text-[#E8907B]"
+
+          {/* Quick Contact Links in Mobile Drawer */}
+          <div 
+            className="mt-2 pt-3 border-t border-white/10 flex flex-col gap-2 font-mono text-xs text-[#FFFAF4]/80 transition-all duration-500"
             style={{ 
-              transitionDelay: "450ms",
+              transitionDelay: "430ms",
               transform: menuOpen ? "translateY(0)" : "translateY(16px)",
               opacity: menuOpen ? 1 : 0
             }}
           >
-            {language === "en" ? "HINDI / हिंदी" : "ENGLISH / EN"}
-          </button>
+            <a href="tel:+919873938095" className="flex items-center gap-2 hover:text-[#FE6311]">
+              <Phone size={13} className="text-[#FE6311]" />
+              <span>+91 98739 38095</span>
+            </a>
+            <a href="mailto:himattextile@gmail.com" className="flex items-center gap-2 hover:text-[#FE6311]">
+              <Mail size={13} className="text-[#FE6311]" />
+              <span>himattextile@gmail.com</span>
+            </a>
+          </div>
         </div>
         <p 
-          className="border-t border-white/15 pt-6 font-mono text-[9px] uppercase tracking-wider text-[#FFFAF4]/60 transition-all duration-500"
+          className="border-t border-white/15 pt-4 font-mono text-[9px] uppercase tracking-wider text-[#FFFAF4]/60 transition-all duration-500 mt-4"
           style={{ 
-            transitionDelay: "500ms",
+            transitionDelay: "480ms",
             transform: menuOpen ? "translateY(0)" : "translateY(8px)",
             opacity: menuOpen ? 1 : 0
           }}

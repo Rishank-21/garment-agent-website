@@ -293,13 +293,16 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         </section>
 
         {/* 3. Featured Brands Marquee */}
-        <section className="bg-[#F3EFEA] py-8 text-[#1A1A1A] overflow-hidden border-y border-[#E2DDD5]">
+        <section className="bg-[#F3EFEA] py-6 sm:py-8 text-[#1A1A1A] overflow-hidden border-y border-[#E2DDD5]">
           <div className="mx-auto max-w-[1280px] px-5 sm:px-8 lg:px-12">
-            <p className="mono-label text-[9px] font-bold text-[#66625D] uppercase tracking-widest text-center mb-4">
-              {language === "hi" ? "à¤¹à¤®à¤¾à¤°à¥‡ à¤¨à¥‡à¤Ÿà¤µà¤°à¥à¤• à¤¸à¥‡ à¤¸à¥‹à¤°à¥à¤¸à¤¿à¤‚à¤— à¤•à¤°à¤¨à¥‡ à¤µà¤¾à¤²à¥‡ à¤¬à¥à¤°à¤¾à¤‚à¤¡à¥à¤¸ à¤”à¤° à¤ªà¤¾à¤°à¥à¤Ÿà¤¨à¤°à¥à¤¸" : "TRUSTED SOURCING PARTNERS & BRANDS ACROSS INDIA"}
+            <p className="mono-label text-[9px] font-bold text-[#66625D] uppercase tracking-widest text-center mb-3 sm:mb-4">
+              {language === "hi" ? "हमारे नेटवर्क से सोर्सिंग करने वाले ब्रांड्स और पार्टनर्स" : "TRUSTED SOURCING PARTNERS & BRANDS ACROSS INDIA"}
             </p>
             <div className="flex select-none overflow-hidden">
-              <div className="marquee-track flex shrink-0 items-center whitespace-nowrap font-serif-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-[#1A1A1A]/40">
+              <div 
+                className="marquee-track flex shrink-0 items-center whitespace-nowrap font-serif-display text-lg sm:text-2xl font-bold uppercase tracking-tight text-[#1A1A1A]/40"
+                style={{ willChange: "transform" }}
+              >
                 {(() => {
                   const list = brands && brands.length > 0
                     ? brands
@@ -311,20 +314,21 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         { name: "FASHION CO", logoUrl: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=120" },
                         { name: "TREND SHAPER", logoUrl: "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=120" }
                       ];
-                  const repeated = Array(6).fill(list).flat();
-                  return repeated.map((brand, idx) => (
+                  const set1 = Array(3).fill(list).flat();
+                  const set2 = Array(3).fill(list).flat();
+                  return [...set1, ...set2].map((brand, idx) => (
                     <React.Fragment key={`${brand.name}-${idx}`}>
-                      <span className="mx-8 hover:text-[#FE6311] transition-colors inline-flex items-center gap-3">
+                      <span className="mx-5 sm:mx-8 hover:text-[#FE6311] transition-colors inline-flex items-center gap-2.5 sm:gap-3">
                         {brand.logoUrl && (
                           <img
                             src={brand.logoUrl}
                             alt={brand.name}
-                            className="h-6 w-6 rounded-full object-cover grayscale opacity-45 group-hover:opacity-100 transition-opacity"
+                            className="h-5 w-5 sm:h-6 sm:w-6 rounded-full object-cover grayscale opacity-45 group-hover:opacity-100 transition-opacity"
                           />
                         )}
                         <span className="font-bold">{brand.name}</span>
                       </span>
-                      <span className="mx-4 text-[#F5B014] select-none">â—†</span>
+                      <span className="mx-3 sm:mx-4 text-[#FFB51A] select-none text-xs sm:text-base">◆</span>
                     </React.Fragment>
                   ));
                 })()}
