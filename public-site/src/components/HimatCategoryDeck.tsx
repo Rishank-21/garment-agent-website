@@ -5,10 +5,12 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { HimatCategoryItem } from "@/lib/categoriesData";
 import { triggerInquiryForCategory } from "@/lib/inquiryEvents";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function HimatCategoryDeck({ category }: { category: HimatCategoryItem }) {
   const [active, setActive] = useState(0);
   const deckRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
   const scrollToCard = (index: number) => {
     if (deckRef.current) {
@@ -83,16 +85,16 @@ export default function HimatCategoryDeck({ category }: { category: HimatCategor
         <p className="catalogue-description">{category.description}</p>
 
         <div className="catalogue-specs">
-          <span>Direct Mill Lots</span>
-          <span>100% Quality QC</span>
-          <span>Pan-India Dispatch</span>
+          <span>{language === "hi" ? "डायरेक्ट मिल लॉट्स" : "Direct Mill Lots"}</span>
+          <span>{language === "hi" ? "100% गुणवत्ता क्यूसी" : "100% Quality QC"}</span>
+          <span>{language === "hi" ? "अखिल भारतीय प्रेषण" : "Pan-India Dispatch"}</span>
         </div>
 
         <div className="catalogue-proof">
           <img src={category.detailImage} alt={`${category.title} material proof`} />
           <span>
-            Material proof<br />
-            <b>Spin / weave / stitch</b>
+            {language === "hi" ? "सामग्री प्रमाण" : "Material proof"}<br />
+            <b>{language === "hi" ? "कताई / बुनाई / सिलाई" : "Spin / weave / stitch"}</b>
           </span>
         </div>
 
@@ -106,7 +108,7 @@ export default function HimatCategoryDeck({ category }: { category: HimatCategor
           }
           className="catalogue-quote"
         >
-          Configure {category.title.toLowerCase()} catalog <ArrowUpRight size={17} />
+          {language === "hi" ? `${category.title} कैटलॉग कॉन्फ़िगर करें` : `Configure ${category.title.toLowerCase()} catalog`} <ArrowUpRight size={17} />
         </button>
       </div>
 
@@ -163,11 +165,11 @@ export default function HimatCategoryDeck({ category }: { category: HimatCategor
               </span>
 
               <span className="catalogue-card-specs">
-                <span>Typical spec</span>
+                <span>{language === "hi" ? "मानक विवरण" : "Typical spec"}</span>
                 <b>{category.fabric}</b>
                 <small>{category.finish}</small>
                 <span className="catalogue-card-colours">
-                  <i>Available colours</i>
+                  <i>{language === "hi" ? "उपलब्ध रंग" : "Available colours"}</i>
                   <span>
                     {category.colors.map((color) => (
                       <em key={color} style={{ backgroundColor: color }} />

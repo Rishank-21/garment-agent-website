@@ -8,7 +8,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 export function HimatFooter() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer className="border-t border-black/30 bg-[#141414] text-[#FAF8F5]">
@@ -19,7 +19,7 @@ export function HimatFooter() {
             <HimatLogo light={false} stacked={false} size="lg" />
           </div>
           <p className="max-w-sm text-xs sm:text-sm leading-relaxed text-[#FAF8F5]/70 font-sans">
-            Your trusted garment sourcing partner in Ahmedabad, helping retailers, wholesalers and fashion businesses connect with reliable suppliers and manufacturers.
+            {t("foot_desc")}
           </p>
         </div>
 
@@ -42,28 +42,28 @@ export function HimatFooter() {
         {/* Garment Categories Column */}
         <div>
           <p className="font-mono mb-4 text-[11px] text-[#FAF8F5]/40 uppercase tracking-[0.16em] font-semibold">
-            GARMENT CATEGORIES
+            {language === "hi" ? "गारमेंट श्रेणियां" : "GARMENT CATEGORIES"}
           </p>
           <div className="flex flex-col space-y-2.5 text-xs sm:text-sm text-[#FAF8F5]/75">
-            <Link href="/catalog?category=mens-wear" className="hover:text-white transition-colors">Men&apos;s Wear</Link>
-            <Link href="/catalog?category=womens-wear" className="hover:text-white transition-colors">Women&apos;s Wear</Link>
-            <Link href="/catalog?category=kids-wear" className="hover:text-white transition-colors">Kids Wear</Link>
-            <Link href="/catalog?category=ethnic-wear" className="hover:text-white transition-colors">Ethnic Wear</Link>
-            <Link href="/catalog?category=bedsheets" className="hover:text-white transition-colors">Bedsheets &amp; Home</Link>
-            <Link href="/catalog?category=fabrics" className="hover:text-white transition-colors">Fabric Sourcing</Link>
-            <Link href="/white-labeling" className="hover:text-white transition-colors">White Labelling</Link>
+            <Link href="/catalog?category=mens-wear" className="hover:text-white transition-colors">{language === "hi" ? "मेंस वियर" : "Men's Wear"}</Link>
+            <Link href="/catalog?category=womens-wear" className="hover:text-white transition-colors">{language === "hi" ? "विमेंस वियर" : "Women's Wear"}</Link>
+            <Link href="/catalog?category=kids-wear" className="hover:text-white transition-colors">{language === "hi" ? "किड्स वियर" : "Kids Wear"}</Link>
+            <Link href="/catalog?category=ethnic-wear" className="hover:text-white transition-colors">{language === "hi" ? "एथनिक वियर" : "Ethnic Wear"}</Link>
+            <Link href="/catalog?category=bedsheets" className="hover:text-white transition-colors">{language === "hi" ? "बेडशीट्स और होम" : "Bedsheets & Home"}</Link>
+            <Link href="/catalog?category=fabrics" className="hover:text-white transition-colors">{language === "hi" ? "फैब्रिक सोर्सिंग" : "Fabric Sourcing"}</Link>
+            <Link href="/white-labeling" className="hover:text-white transition-colors">{language === "hi" ? "व्हाइट लेबलिंग" : "White Labelling"}</Link>
           </div>
         </div>
 
         {/* Contact Himat Textile Column */}
         <div>
           <p className="font-mono mb-4 text-[11px] text-[#FAF8F5]/40 uppercase tracking-[0.16em] font-semibold">
-            CONTACT HIMAT TEXTILE
+            {language === "hi" ? "हिम्मत टेक्सटाइल संपर्क" : "CONTACT HIMAT TEXTILE"}
           </p>
           <div className="flex flex-col space-y-3.5 text-xs sm:text-sm text-[#FAF8F5]/75">
             {/* Minimal clean address without boxes or colored tags */}
             <div className="leading-relaxed space-y-0.5">
-              <p className="font-medium text-[#FAF8F5]">Ahmedabad Sourcing Hub</p>
+              <p className="font-medium text-[#FAF8F5]">{language === "hi" ? "अहमदाबाद सोर्सिंग हब" : "Ahmedabad Sourcing Hub"}</p>
               <p>21, Hiralal Market, First Floor,</p>
               <p>Khatra Road, Ahmedabad,</p>
               <p>Gujarat, India</p>
@@ -101,7 +101,7 @@ export function HimatFooter() {
                 rel="noreferrer"
               >
                 <WhatsAppIcon className="w-4 h-4" />
-                <span>WHATSAPP US</span>
+                <span>{language === "hi" ? "व्हाट्सएप करें" : "WHATSAPP US"}</span>
                 <ArrowRight size={13} />
               </a>
             </div>
@@ -112,8 +112,8 @@ export function HimatFooter() {
       {/* Bottom Legal Bar */}
       <div className="border-t border-white/10 bg-[#0E0E0E] px-5 py-5 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 text-center sm:flex-row sm:text-left text-[10px] uppercase tracking-[0.14em] text-[#FAF8F5]/40 font-mono">
-          <span>© {new Date().getFullYear()} HIMAT TEXTILE. ALL RIGHTS RESERVED.</span>
-          <span>Ahmedabad Sourcing Hub · Gujarat, India</span>
+          <span>© {new Date().getFullYear()} HIMAT TEXTILE. {t("foot_rights")}</span>
+          <span>{language === "hi" ? "अहमदाबाद सोर्सिंग हब · गुजरात, भारत" : "Ahmedabad Sourcing Hub · Gujarat, India"}</span>
         </div>
       </div>
     </footer>

@@ -3,6 +3,7 @@
 import React from "react";
 import { HimatCategoryItem } from "@/lib/categoriesData";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 interface CategoryChipsFilterProps {
   selectedFilter: string;
@@ -15,7 +16,24 @@ export default function CategoryChipsFilter({
   onSelectFilter,
   categories,
 }: CategoryChipsFilterProps) {
+  const { language } = useLanguage();
   const isAll = selectedFilter === "all";
+
+  const getCategoryTitle = (cat: HimatCategoryItem) => {
+    if (language !== "hi") return cat.title;
+    switch (cat.id) {
+      case "mens-wear": return "मेंस वियर (पुरुष वस्त्र)";
+      case "womens-wear": return "विमेंस वियर (महिला वस्त्र)";
+      case "kids-wear": return "किड्स वियर (बाल वस्त्र)";
+      case "ethnic-wear": return "एथनिक एवं कुर्तियां";
+      case "bedsheets": return "बेडशीट्स और होम";
+      case "fabrics": return "मिल फैब्रिक्स";
+      case "white-labeling": return "व्हाइट लेबलिंग";
+      default: return cat.title;
+    }
+  };
+
+  const selectedCat = categories.find((c) => c.id === selectedFilter);
 
   return (
     <div className="w-full bg-[#FAF8F5] border-y border-[rgba(23,26,29,0.1)] py-5 px-5 sm:px-8 lg:px-12">
@@ -25,14 +43,14 @@ export default function CategoryChipsFilter({
           <span className="flex h-2.5 w-2.5 rounded-[2px] bg-[#FE6311] shadow-[0_0_8px_#FE6311]" />
           <div>
             <span className="block font-mono text-[9px] font-extrabold uppercase tracking-[0.18em] text-[#FE6311]">
-              SOURCING VERTICALS
+              {language === "hi" ? "सोर्सिंग श्रेणियां" : "SOURCING VERTICALS"}
             </span>
             <p className="font-serif text-sm text-[#171A1D] leading-none mt-0.5">
               {isAll ? (
-                <>All Garment Sourcing Systems</>
+                <>{language === "hi" ? "सभी गारमेंट सोर्सिंग प्रणालियां" : "All Garment Sourcing Systems"}</>
               ) : (
                 <>
-                  Selected: <b>{categories.find((c) => c.id === selectedFilter)?.title}</b>
+                  {language === "hi" ? "चयनित: " : "Selected: "}<b>{selectedCat ? getCategoryTitle(selectedCat) : ""}</b>
                 </>
               )}
             </p>
@@ -52,7 +70,7 @@ export default function CategoryChipsFilter({
                   : "bg-[#FFFAF4] text-[#171A1D]/80 border-[rgba(23,26,29,0.14)] hover:border-[#FE6311] hover:text-[#FE6311] hover:bg-[#F3EEE5] shadow-xs hover:-translate-y-0.5"
               }`}
             >
-              <span>All Categories</span>
+              <span>{language === "hi" ? "सभी श्रेणियां" : "All Categories"}</span>
               {isAll && <ArrowRight size={13} className="text-[#FFB51A]" />}
             </button>
 
@@ -70,7 +88,7 @@ export default function CategoryChipsFilter({
                       : "bg-[#FFFAF4] text-[#171A1D]/80 border-[rgba(23,26,29,0.14)] hover:border-[#FE6311] hover:text-[#FE6311] hover:bg-[#F3EEE5] shadow-xs hover:-translate-y-0.5"
                   }`}
                 >
-                  <span>{cat.title}</span>
+                  <span>{getCategoryTitle(cat)}</span>
                   {isActive && (
                     <ArrowRight size={13} className="text-[#FFB51A] transition-transform group-hover:translate-x-0.5" />
                   )}

@@ -196,36 +196,36 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
 
   const translatedSolutions = [
     { 
-      name: language === "hi" ? "à¤°à¤¿à¤Ÿà¥‡à¤²à¤°à¥à¤¸ (à¤–à¥à¤¦à¤°à¤¾ à¤µà¤¿à¤•à¥à¤°à¥‡à¤¤à¤¾)" : "Retailers", 
+      name: language === "hi" ? "रिटेलर्स (खुदरा विक्रेता)" : "Retailers", 
       image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=800", 
-      copy: language === "hi" ? "à¤¤à¥à¤µà¤°à¤¿à¤¤ à¤‡à¤¨à¥à¤µà¥‡à¤‚à¤Ÿà¥à¤°à¥€ à¤ªà¥à¤¨à¤ƒà¤ªà¥‚à¤°à¥à¤¤à¤¿ à¤•à¥‡ à¤²à¤¿à¤ à¤¤à¥ˆà¤¯à¤¾à¤° à¤•à¥ˆà¤Ÿà¤²à¥‰à¤— à¤¸à¤‚à¤—à¥à¤°à¤¹, à¤•à¤® à¤à¤®à¤“à¤•à¥à¤¯à¥‚ à¤”à¤° à¤¤à¥‡à¤œ à¤¡à¤¿à¤²à¥€à¤µà¤°à¥€à¥¤" : "Fast-moving commercial styles, competitive pricing, and flexible low MOQs for healthy retail store margins." 
+      copy: language === "hi" ? "त्वरित इन्वेंट्री पुनःपूर्ति के लिए तैयार कैटलॉग संग्रह, कम एमओक्यू और तेज डिलीवरी।" : "Fast-moving commercial styles, competitive pricing, and flexible low MOQs for healthy retail store margins." 
     },
     { 
-      name: language === "hi" ? "à¤¹à¥‹à¤²à¤¸à¥‡à¤²à¤°à¥à¤¸ (à¤¥à¥‹à¤• à¤µà¤¿à¤•à¥à¤°à¥‡à¤¤à¤¾)" : "Wholesalers", 
+      name: language === "hi" ? "होलसेलर्स (थोक विक्रेता)" : "Wholesalers", 
       image: "/images/wholesalers_b2b.jpg", 
-      copy: language === "hi" ? "à¤‰à¤šà¥à¤š à¤®à¤¾à¤¤à¥à¤°à¤¾ à¤®à¥‡à¤‚ à¤•à¤ªà¤¡à¤¼à¥‡ à¤•à¤¾ à¤ªà¥à¤°à¤¸à¤‚à¤¸à¥à¤•à¤°à¤£ à¤”à¤° à¤µà¤¿à¤¶à¥à¤µà¤¸à¤¨à¥€à¤¯ à¤…à¤–à¤¿à¤² à¤­à¤¾à¤°à¤¤à¥€à¤¯ à¤ªà¤°à¤¿à¤µà¤¹à¤¨ à¤—à¤²à¤¿à¤¯à¤¾à¤°à¥‡à¥¤" : "Bulk lot assortments, direct spinning mill pricing, and dedicated pan-India logistics corridors." 
+      copy: language === "hi" ? "उच्च मात्रा में कपड़े का प्रसंस्करण और विश्वसनीय अखिल भारतीय परिवहन गलियारे।" : "Bulk lot assortments, direct spinning mill pricing, and dedicated pan-India logistics corridors." 
     },
     { 
-      name: language === "hi" ? "à¤¡à¤¿à¤¸à¥à¤Ÿà¥à¤°à¥€à¤¬à¥à¤¯à¥‚à¤Ÿà¤°à¥à¤¸ (à¤µà¤¿à¤¤à¤°à¤•)" : "Distributors", 
+      name: language === "hi" ? "डिस्ट्रीब्यूटर्स (वितरक)" : "Distributors", 
       image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=800", 
-      copy: language === "hi" ? "à¤®à¥Œà¤¸à¤®à¥€ à¤¸à¤®à¤¯-à¤¸à¤¾à¤°à¤¿à¤£à¥€ à¤•à¥‡ à¤…à¤¨à¥à¤¸à¤¾à¤° à¤•à¤¸à¥à¤Ÿà¤® à¤‰à¤¤à¥à¤ªà¤¾à¤¦à¤¨ à¤šà¤•à¥à¤° à¤”à¤° à¤¨à¤¿à¤°à¤‚à¤¤à¤° à¤—à¥à¤£à¤µà¤¤à¥à¤¤à¤¾à¥¤" : "Regional inventory pipelines, volume consistency, and structured production cycles for seasonal retail demand." 
+      copy: language === "hi" ? "मौसमी समय-सारिणी के अनुसार कस्टम उत्पादन चक्र और निरंतर गुणवत्ता।" : "Regional inventory pipelines, volume consistency, and structured production cycles for seasonal retail demand." 
     },
     { 
-      name: language === "hi" ? "à¤«à¥ˆà¤¶à¤¨ à¤¬à¥à¤°à¤¾à¤‚à¤¡à¥à¤¸" : "Fashion Brands", 
+      name: language === "hi" ? "फैशन ब्रांड्स" : "Fashion Brands", 
       image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800", 
-      copy: language === "hi" ? "à¤µà¥à¤¹à¤¾à¤‡à¤Ÿ-à¤²à¥‡à¤¬à¤²à¤¿à¤‚à¤— à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£, à¤•à¤¸à¥à¤Ÿà¤® à¤Ÿà¥ˆà¤—, à¤µà¤¿à¤¶à¥‡à¤· à¤«à¥ˆà¤¬à¥à¤°à¤¿à¤• à¤”à¤° à¤—à¥à¤£à¤µà¤¤à¥à¤¤à¤¾ à¤¨à¤¿à¤¯à¤‚à¤¤à¥à¤°à¤£à¥¤" : "Full white-label OEM execution, custom sizing tech packs, woven branding tags, and export-grade packaging." 
+      copy: language === "hi" ? "व्हाइट-लेबलिंग निर्माण, कस्टम टैग, विशेष फैब्रिक और गुणवत्ता नियंत्रण।" : "Full white-label OEM execution, custom sizing tech packs, woven branding tags, and export-grade packaging." 
     },
     { 
-      name: language === "hi" ? "à¤¨à¤ à¤µà¥à¤¯à¤µà¤¸à¤¾à¤¯" : "New Businesses", 
+      name: language === "hi" ? "नए व्यवसाय" : "New Businesses", 
       image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=800", 
-      copy: language === "hi" ? "à¤‰à¤¤à¥à¤ªà¤¾à¤¦ à¤šà¤¯à¤¨, à¤¸à¤¾à¤‡à¤œ à¤°à¥‡à¤¶à¤¿à¤¯à¥‹ à¤”à¤° à¤…à¤¹à¤®à¤¦à¤¾à¤¬à¤¾à¤¦ à¤•à¤ªà¤¡à¤¼à¤¾ à¤¬à¤¾à¤œà¤¾à¤° à¤®à¥‡à¤‚ à¤¸à¤¹à¥€ à¤–à¤°à¥€à¤¦à¤¾à¤°à¥€ à¤ªà¤° à¤®à¤¾à¤°à¥à¤—à¤¦à¤°à¥à¤¶à¤¨à¥¤" : "Strategic buying advisory, size-ratio planning, fast-selling style curation, and low capital risk sampling." 
+      copy: language === "hi" ? "उत्पाद चयन, साइज रेशियो और अहमदाबाद कपड़ा बाजार में सही खरीदारी पर मार्गदर्शन।" : "Strategic buying advisory, size-ratio planning, fast-selling style curation, and low capital risk sampling." 
     },
   ];
 
   const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newReviewForm.author || !newReviewForm.text) {
-      setReviewMessage(language === "hi" ? "à¤•à¥ƒà¤ªà¤¯à¤¾ à¤¸à¤­à¥€ à¤«à¤¼à¥€à¤²à¥à¤¡ à¤­à¤°à¥‡à¤‚à¥¤" : "Please fill in all fields.");
+      setReviewMessage(language === "hi" ? "कृपया सभी फ़ील्ड भरें।" : "Please fill in all fields.");
       return;
     }
     setIsReviewSubmitting(true);
@@ -237,14 +237,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         body: JSON.stringify(newReviewForm),
       });
       if (res.ok) {
-        setReviewMessage(language === "hi" ? "à¤§à¤¨à¥à¤¯à¤µà¤¾à¤¦ï¼ à¤†à¤ªà¤•à¥€ à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¨ à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¤¬à¤®à¤¿à¤Ÿ à¤•à¤° à¤¦à¥€ à¤—à¤ˆ à¤¹à¥ˆà¥¤ à¤µà¥à¤¯à¤µà¤¸à¥à¤¥à¤¾à¤ªà¤• à¤¦à¥à¤µà¤¾à¤°à¤¾ à¤¸à¥à¤µà¥€à¤•à¥ƒà¤¤ à¤¹à¥‹à¤¨à¥‡ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤¯à¤¹ à¤¸à¤¾à¤‡à¤Ÿ à¤ªà¤° à¤¦à¤¿à¤–à¤¾à¤ˆ à¤¦à¥‡à¤—à¥€à¥¤" : "Thank you! Your review has been submitted for verification. It will appear on the site once approved by the admin.");
+        setReviewMessage(language === "hi" ? "धन्यवाद! आपकी समीक्षा सत्यापन के लिए सबमिट कर दी गई है। व्यवस्थापक द्वारा स्वीकृत होने के बाद यह साइट पर दिखाई देगी।" : "Thank you! Your review has been submitted for verification. It will appear on the site once approved by the admin.");
         setNewReviewForm({ author: "", rating: 5, text: "", date: "Today" });
       } else {
-        setReviewMessage(language === "hi" ? "à¤¸à¤®à¥€à¤•à¥à¤·à¤¾ à¤¸à¤¬à¤®à¤¿à¤Ÿ à¤•à¤°à¤¨à¥‡ à¤®à¥‡à¤‚ à¤µà¤¿à¤«à¤²à¥¤ à¤•à¥ƒà¤ªà¤¯à¤¾ à¤ªà¥à¤¨: à¤ªà¥à¤°à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚à¥¤" : "Failed to submit review. Please try again.");
+        setReviewMessage(language === "hi" ? "समीक्षा सबमिट करने में विफल। कृपया पुनः प्रयास करें।" : "Failed to submit review. Please try again.");
       }
     } catch (err) {
       console.error(err);
-      setReviewMessage(language === "hi" ? "à¤à¤• à¤¤à¥à¤°à¥à¤Ÿà¤¿ à¤¹à¥à¤ˆà¥¤ à¤•à¥ƒà¤ªà¤¯à¤¾ à¤ªà¥à¤¨: à¤ªà¥à¤°à¤¯à¤¾à¤¸ à¤•à¤°à¥‡à¤‚à¥¤" : "An error occurred. Please try again.");
+      setReviewMessage(language === "hi" ? "एक त्रुटि हुई। कृपया पुनः प्रयास करें।" : "An error occurred. Please try again.");
     } finally {
       setIsReviewSubmitting(false);
     }
@@ -456,7 +456,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer min-h-[44px]"
                   >
                     <WhatsAppIcon className="w-4 h-4" />
-                    <span>WHATSAPP US</span>
+                    <span>{language === "hi" ? "व्हाट्सएप करें" : "WHATSAPP US"}</span>
                   </a>
                   <button
                     type="button"
@@ -468,7 +468,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     }
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-5 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-xs transition-transform hover:-translate-y-0.5 cursor-pointer min-h-[44px]"
                   >
-                    <span>START ENQUIRY</span>
+                    <span>{t("btn_start_enquiry_upper")}</span>
                     <ArrowUpRight size={14} className="text-[#FFB51A]" />
                   </button>
                 </div>
@@ -600,7 +600,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   href="/catalog"
                   className="button button-rust inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs font-mono font-bold uppercase tracking-wider shadow-md w-full sm:w-auto"
                 >
-                  <span>EXPLORE ALL 7 CATEGORIES</span>
+                  <span>{t("btn_explore_7")}</span>
                   <ArrowRight size={15} />
                 </Link>
                 <a
@@ -610,7 +610,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   className="inline-flex items-center justify-center gap-2 bg-[#FFFFFF] border border-[rgba(23,26,29,0.15)] hover:border-[#25D366] text-[#171A1D] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-2xs hover:bg-[#F9F9F8] transition-colors w-full sm:w-auto"
                 >
                   <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
-                  <span>INQUIRE ON WHATSAPP</span>
+                  <span>{t("btn_inquire_wa")}</span>
                 </a>
               </div>
             </div>
@@ -653,13 +653,13 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   className="inline-flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1EBE5B] text-white px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
                 >
                   <WhatsAppIcon className="w-4 h-4" />
-                  <span>CONNECT ON WHATSAPP</span>
+                  <span>{t("btn_connect_wa")}</span>
                 </a>
                 <Link
                   href="/catalog"
                   className="inline-flex items-center justify-center gap-2.5 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
                 >
-                  <span>EXPLORE FULL CATALOG</span>
+                  <span>{t("btn_explore_full")}</span>
                   <ArrowUpRight size={16} className="text-[#FFB51A]" />
                 </Link>
               </div>
@@ -705,7 +705,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     }
                     className="inline-flex items-center gap-2.5 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-7 py-4 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
                   >
-                    <span>START YOUR LABEL BRIEF</span>
+                    <span>{t("btn_start_label_brief")}</span>
                     <ArrowUpRight size={16} className="text-[#FFB51A]" />
                   </button>
 
@@ -713,7 +713,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     href="/white-labeling"
                     className="inline-flex items-center gap-2 px-6 py-4 text-xs font-mono font-bold tracking-wider text-[#171A1D] hover:text-[#FE6311] transition-colors border-b border-current"
                   >
-                    <span>EXPLORE ATELIER CAPABILITY</span>
+                    <span>{t("btn_explore_atelier")}</span>
                     <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -1037,7 +1037,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     href="/#enquiry"
                     className="gold-button inline-flex items-center gap-2 px-7 py-4 text-[10.5px] font-black uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-xs shadow-sm"
                   >
-                    TALK TO OUR GARMENT TEAM <ArrowRight size={14} />
+                    {t("btn_talk_team_caps")} <ArrowRight size={14} />
                   </Link>
                 </div>
               </div>
@@ -1069,7 +1069,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
         {/* 10. Global Apparel Export Section (Warm Dark Charcoal Background) */}
         <section className="bg-[#141414] py-24 px-5 sm:px-8 lg:px-12 text-[#FAF8F5] border-t border-black/30">
           <div className="mx-auto max-w-[1280px]">
-            <span className="mono-label text-[9px] font-bold text-[#F5B014] uppercase block tracking-wider">// GLOBAL APPAREL EXPORTS</span>
+            <span className="mono-label text-[9px] font-bold text-[#F5B014] uppercase block tracking-wider">{t("ex_global_label")}</span>
             <div className="grid gap-12 border-t border-white/15 pt-6 mt-4 lg:grid-cols-2">
               <h2 className="font-serif-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl sm:leading-[0.94] text-[#FAF8F5]">
                 FROM AHMEDABAD<br /><span className="italic font-normal text-[#F5B014]">TO GLOBAL MARKETS.</span>
@@ -1097,7 +1097,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                     href="/#enquiry"
                     className="gold-button inline-flex items-center gap-2 px-7 py-4 text-[10.5px] font-black uppercase tracking-[0.2em] transition-transform hover:-translate-y-0.5 rounded-xs shadow-md"
                   >
-                    DISCUSS YOUR REQUIREMENT <ArrowRight size={14} />
+                    {t("btn_discuss_requirement_caps")} <ArrowRight size={14} />
                   </Link>
                 </div>
               </div>
@@ -1215,7 +1215,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                       <div className="flex text-[#F5B014] fill-[#F5B014]">
                         {Array(rev.rating).fill(0).map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
                       </div>
-                      <span className="text-[9px] font-mono font-bold text-[#FE6311] bg-[#FFF9E6] px-2 py-0.5 rounded-xs">{rev.date || (language === "hi" ? "à¤¸à¤¤à¥à¤¯à¤¾à¤ªà¤¿à¤¤" : "VERIFIED")}</span>
+                      <span className="text-[9px] font-mono font-bold text-[#FE6311] bg-[#FFF9E6] px-2 py-0.5 rounded-xs">{rev.date || (language === "hi" ? "सत्यापित खरीदार" : "VERIFIED")}</span>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-[#1A1A1A] font-medium">"{rev.text}"</p>
                     <h4 className="mt-3 text-xs font-bold uppercase tracking-wider text-[#1A1A1A]">{rev.author}</h4>
@@ -1340,7 +1340,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                   [X]
                 </button>
                 <div className="space-y-2">
-                  <span className="mono-label text-[8.5px] font-bold text-[#FE6311] uppercase tracking-widest">{language === "hi" ? "à¤¸à¥€à¤®à¤¿à¤¤ à¤¸à¤®à¤¯ à¤…à¤²à¤°à¥à¤Ÿ" : "LIMITED TIME SOURCING ALERT"}</span>
+                  <span className="mono-label text-[8.5px] font-bold text-[#FE6311] uppercase tracking-widest">{language === "hi" ? "सीमित समय अलर्ट" : "LIMITED TIME SOURCING ALERT"}</span>
                   <h3 className="font-serif-display text-2xl font-bold uppercase leading-none tracking-tight text-[#1A1A1A]">{activePopup.title}</h3>
                   {activePopup.description && <p className="text-sm leading-relaxed text-[#66625D]">{activePopup.description}</p>}
                 </div>
@@ -1360,14 +1360,14 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                       onClick={() => recordAdAction(activePopup.id, "click")}
                       className="flex-1 gold-button py-3.5 text-center text-[10px] font-black uppercase tracking-widest rounded-xs transition-colors shadow-xs"
                     >
-                      {activePopup.buttonText || (language === "hi" ? "à¤¸à¥Œà¤¦à¤¾ à¤¦à¥‡à¤–à¥‡à¤‚" : "View Deal")}
+                      {activePopup.buttonText || (language === "hi" ? "सौदा देखें" : "View Deal")}
                     </a>
                   )}
                   <button
                     onClick={() => handleHideAd(activePopup.id)}
                     className="flex-1 border border-[#1A1A1A] bg-transparent py-3.5 text-center text-[10px] font-bold uppercase tracking-widest text-[#1A1A1A] rounded-xs transition-colors hover:bg-[#F5B014] hover:text-[#181511] hover:border-[#F5B014]"
                   >
-                    {language === "hi" ? "à¤¬à¤‚à¤¦ à¤•à¤°à¥‡à¤‚" : "Dismiss"}
+                    {language === "hi" ? "बंद करें" : "Dismiss"}
                   </button>
                 </div>
               </div>
@@ -1419,7 +1419,7 @@ export default function HomeClient({ reviews, brands, advertisements }: HomeClie
                         onClick={() => setNewReviewForm({ ...newReviewForm, rating: star })}
                         className={`text-2xl ${newReviewForm.rating >= star ? "text-[#F5B014]" : "text-stone-300"}`}
                       >
-                        â˜…
+                        ★
                       </button>
                     ))}
                   </div>
