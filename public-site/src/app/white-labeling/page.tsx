@@ -1,5 +1,15 @@
-import { Palette, Scissors, Tag, Truck } from "lucide-react";
+import Link from "next/link";
+import { 
+  Palette, 
+  Scissors, 
+  Tag, 
+  Truck, 
+  ArrowRight, 
+  ArrowUpRight, 
+  ShieldCheck 
+} from "lucide-react";
 import { HimatInquiry } from "@/components/HimatInquiry";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { 
@@ -16,50 +26,85 @@ const steps = [
 
 export default function WhiteLabelingPage() {
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#252525] selection:bg-[#FE6311] selection:text-white">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#171A1D] selection:bg-[#FE6311] selection:text-[#FFFAF4]">
       <main>
         {/* White Labeling Hero */}
-        <section className="relative overflow-hidden bg-[#252525] px-5 pb-16 pt-32 text-[#FAF9F6] sm:px-8 lg:px-12 lg:pb-24 lg:pt-40 border-b border-black/20">
+        <section className="relative overflow-hidden bg-[#F3EEE5] px-5 pb-16 pt-32 text-[#171A1D] sm:px-8 lg:px-12 lg:pb-24 lg:pt-36 border-b border-[rgba(23,26,29,0.12)]">
           <div className="relative mx-auto max-w-[1500px]">
-            <div className="flex flex-col gap-8 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="flex flex-col gap-10 lg:grid lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
               <div className="space-y-6">
-                <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#E8907B]">
-                  <span>Home</span>
-                  <span className="opacity-50">/</span>
-                  <span>Services</span>
-                  <span className="opacity-50">/</span>
-                  <span className="text-[#FAF9F6]/80">White Labeling</span>
+                <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FE6311]">
+                  <Link href="/" className="hover:underline text-[#171A1D]/60 hover:text-[#FE6311] transition-colors">Home</Link>
+                  <span className="opacity-40 text-[#171A1D]/40">/</span>
+                  <span className="text-[#171A1D]/60">Services</span>
+                  <span className="opacity-40 text-[#171A1D]/40">/</span>
+                  <span className="text-[#171A1D] font-extrabold">White Labeling</span>
                 </div>
-                <h1 className="font-serif text-[clamp(2.2rem,6vw,5.5rem)] font-normal leading-[0.92] tracking-tight text-[#FAF9F6]">
+                
+                <h1 className="font-serif text-[clamp(2.4rem,6vw,5.5rem)] font-normal leading-[0.92] tracking-tight text-[#171A1D]">
                   Your Brand.<br />
                   <span className="italic font-normal text-[#FE6311]">Your Vision.</span><br />
                   Our Manufacturing.
                 </h1>
-                <p className="max-w-xl text-sm leading-relaxed text-[#FAF9F6]/85 sm:text-base">
-                  Bring your garment vision to life. From custom sizing and styling patterns to fabric sourcing and packaging under your own private label, we coordinate the manufacturing details.
+                
+                <p className="max-w-xl text-base sm:text-lg font-medium leading-relaxed text-[#171A1D]/85">
+                  Bring your garment vision to life. From custom sizing and styling patterns to fabric sourcing and packaging under your own private label, we coordinate every manufacturing detail in Ahmedabad.
                 </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <a
+                    href="#steps"
+                    className="inline-flex items-center gap-2 bg-[#171A1D] hover:bg-[#2D3236] text-[#FFFAF4] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span>HOW IT WORKS</span>
+                    <ArrowRight size={14} />
+                  </a>
+                  <a
+                    href="#enquiry"
+                    className="inline-flex items-center gap-2 bg-[#FFFFFF] hover:bg-[#FAF8F5] text-[#171A1D] border border-[rgba(23,26,29,0.15)] px-6 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-2xs transition-all hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <span>START ENQUIRY</span>
+                    <ArrowUpRight size={14} className="text-[#FE6311]" />
+                  </a>
+                  <a
+                    href="https://wa.me/919873938095?text=Hello%20Himat%20Textile,%20I%20am%20interested%20in%20custom%20white-label%20garment%20manufacturing"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-5 py-3.5 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    <WhatsAppIcon className="w-3.5 h-3.5 fill-white" />
+                    <span>WHATSAPP US</span>
+                  </a>
+                </div>
               </div>
 
               {/* Private Label Specifications Checklist */}
-              <div className="border border-[rgba(23,26,29,0.12)] bg-[#FFFAF4] p-6 rounded-lg space-y-4 shadow-sm">
-                <span className="mono-label text-[9.5px] text-[#E8907B] font-bold block">// MANUFACTURING SPECS</span>
-                <div className="divide-y divide-white/15 text-xs">
-                  <div className="py-2.5 flex justify-between">
-                    <span className="text-[#FAF9F6]/75">Available Lines:</span>
-                    <span className="font-mono text-[#FAF9F6] font-bold">Cotton Pants, Linen Shirts, Kurtis, Co-ords, Kids Sets</span>
+              <div className="border border-[rgba(23,26,29,0.14)] bg-[#FFFFFF] p-6 sm:p-7 rounded-lg space-y-4 shadow-sm">
+                <div className="flex items-center justify-between pb-2 border-b border-[rgba(23,26,29,0.08)]">
+                  <span className="font-mono text-[10px] text-[#FE6311] font-bold tracking-widest uppercase">// MANUFACTURING SPECS</span>
+                  <span className="font-mono text-[9px] bg-[#FE6311]/10 text-[#FE6311] px-2.5 py-0.5 rounded-full font-bold uppercase">AHMEDABAD MILL CLUSTER</span>
+                </div>
+                <div className="divide-y divide-[rgba(23,26,29,0.08)] text-xs">
+                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+                    <span className="text-[#171A1D]/60 font-medium">Available Lines:</span>
+                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">Cotton Pants, Linen Shirts, Kurtis, Co-ords, Kids Sets</span>
                   </div>
-                  <div className="py-2.5 flex justify-between">
-                    <span className="text-[#FAF9F6]/75">Label Types:</span>
-                    <span className="font-mono text-[#FAF9F6] font-bold">Satin print, Woven labels, Custom tags</span>
+                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+                    <span className="text-[#171A1D]/60 font-medium">Label Types:</span>
+                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">Satin print, Woven labels, Custom tags & barcodes</span>
                   </div>
-                  <div className="py-2.5 flex justify-between">
-                    <span className="text-[#FAF9F6]/75">Min. Order:</span>
-                    <span className="font-mono text-[#E8907B] font-bold">100 Pcs per design</span>
+                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+                    <span className="text-[#171A1D]/60 font-medium">Min. Order:</span>
+                    <span className="font-mono text-[#FE6311] font-bold text-left sm:text-right bg-[#FE6311]/10 px-2 py-0.5 rounded-xs inline-block w-fit sm:w-auto">100 Pcs per design</span>
                   </div>
-                  <div className="py-2.5 flex justify-between">
-                    <span className="text-[#FAF9F6]/75">Fabric Options:</span>
-                    <span className="font-mono text-[#FAF9F6] font-bold">100% Cotton, Linen blends, Twill, Rayon</span>
+                  <div className="py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
+                    <span className="text-[#171A1D]/60 font-medium">Fabric Options:</span>
+                    <span className="font-mono text-[#171A1D] font-bold text-left sm:text-right">100% Cotton, Linen blends, Twill, Rayon, Denim</span>
                   </div>
+                </div>
+                <div className="pt-2 flex items-center gap-2 text-[10.5px] font-mono text-[#171A1D]/70 border-t border-[rgba(23,26,29,0.08)]">
+                  <ShieldCheck size={14} className="text-[#FE6311] shrink-0" />
+                  <span>Direct mill pricing with physical pre-production sample verification</span>
                 </div>
               </div>
             </div>
@@ -67,29 +112,38 @@ export default function WhiteLabelingPage() {
         </section>
 
         {/* 4-Step Process Section */}
-        <section className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28 bg-[#FFFFFF] text-[#252525] border-b border-[#DEDAD2]">
+        <section id="steps" className="px-5 py-20 sm:px-8 lg:px-12 lg:py-28 bg-[#FAF8F5] text-[#171A1D] border-b border-[rgba(23,26,29,0.12)]">
           <div className="mx-auto max-w-[1280px]">
-            <div className="flex flex-col justify-between gap-6 border-b border-[#DEDAD2] pb-8 lg:flex-row lg:items-end">
+            <div className="flex flex-col justify-between gap-6 border-b border-[rgba(23,26,29,0.12)] pb-8 lg:flex-row lg:items-end">
               <div>
-                <span className="font-mono text-[9px] font-bold text-[#FE6311] bg-[#FFFAF4] px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block">
+                <span className="font-mono text-[9px] font-bold text-[#FE6311] bg-[#FFFFFF] border border-[rgba(23,26,29,0.1)] px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block shadow-2xs">
                   [ MAKE YOUR OWN BRAND ]
                 </span>
                 <div className="mt-4 h-0.5 bg-[#FE6311] w-12" />
-                <h2 className="mt-6 max-w-4xl font-serif-display text-4xl font-black uppercase leading-none tracking-tight sm:text-6xl text-[#252525]">
-                  A collection is more<br /><span className="italic font-normal text-[#FE6311]">than a product list.</span>
+                <h2 className="mt-6 max-w-4xl font-serif text-3xl sm:text-5xl lg:text-6xl font-normal leading-[0.95] tracking-tight text-[#171A1D]">
+                  A collection is more<br /><span className="italic text-[#FE6311]">than a product list.</span>
                 </h2>
               </div>
-              <p className="max-w-sm text-sm leading-relaxed text-[#6B6B6B]">Build a focused range of cotton twill pants, linen shirts, ethnic tops, ladies wear, kids wear, or a custom garment collection tailored for your retail market.</p>
+              <p className="max-w-sm text-sm sm:text-base leading-relaxed text-[#171A1D]/70 font-sans">
+                Build a focused range of cotton twill pants, linen shirts, ethnic tops, ladies wear, kids wear, or a custom garment collection tailored for your retail market.
+              </p>
             </div>
             <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
               {steps.map(({ step, title, desc, icon: Icon }) => (
-                <article key={step} className="bg-[#FAF9F6] border border-[#DEDAD2] p-7 rounded-xs transition-all hover:border-[#FE6311] hover:shadow-xl shadow-xs">
-                  <div className="flex items-center justify-between">
-                    <Icon size={22} className="text-[#FE6311]" />
-                    <span className="font-mono text-[10px] font-bold text-[#FE6311]">{step}</span>
+                <article 
+                  key={step} 
+                  className="bg-[#FFFFFF] border border-[rgba(23,26,29,0.12)] p-7 rounded-sm transition-all hover:border-[#FE6311] hover:shadow-lg shadow-2xs group flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <div className="p-2.5 rounded-md bg-[#F3EEE5] text-[#FE6311] group-hover:bg-[#FE6311] group-hover:text-white transition-colors">
+                        <Icon size={20} />
+                      </div>
+                      <span className="font-mono text-xs font-bold text-[#FE6311] bg-[#FE6311]/10 px-2.5 py-0.5 rounded-xs">{step}</span>
+                    </div>
+                    <h3 className="mt-8 font-serif text-xl sm:text-2xl font-normal leading-tight text-[#171A1D]">{title}</h3>
+                    <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#171A1D]/70">{desc}</p>
                   </div>
-                  <h3 className="mt-10 font-serif-display text-xl font-bold uppercase leading-tight text-[#252525]">{title}</h3>
-                  <p className="mt-3 text-xs sm:text-sm leading-relaxed text-[#6B6B6B]">{desc}</p>
                 </article>
               ))}
             </div>
@@ -97,21 +151,40 @@ export default function WhiteLabelingPage() {
         </section>
 
         {/* Manufacturing Collaboration */}
-        <section className="bg-[#252525] text-[#FAF9F6] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 border-t border-black/20">
-          <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-2">
-            <h2 className="font-serif-display text-3xl font-black uppercase leading-none tracking-tight sm:text-5xl text-[#FAF9F6]">Custom design.<br /><span className="italic font-normal text-[#FE6311]">Fabric sourcing.</span><br />Production support.</h2>
-            <div className="border-t border-white/15 pt-5 text-sm leading-relaxed text-[#FAF9F6]/85">
-              <p>White labeling is a collaborative process. The final scope depends on the garment category, fabric, quantity, sampling requirements, branding details, and delivery plan.</p>
-              <p className="mt-5 text-[#FAF9F6] font-bold">Bring your vision and we will help map the next practical step.</p>
+        <section className="bg-[#171A1D] text-[#FAF8F5] px-5 py-20 sm:px-8 lg:px-12 lg:py-24 border-t border-[rgba(23,26,29,0.12)]">
+          <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-2 lg:items-center">
+            <div>
+              <span className="font-mono text-[10px] font-bold text-[#FE6311] uppercase tracking-widest block mb-3">// FLEXIBLE B2B VOLUME</span>
+              <h2 className="font-serif text-3xl sm:text-5xl font-normal leading-[0.95] tracking-tight text-[#FAF8F5]">
+                Custom design.<br />
+                <span className="italic text-[#FE6311]">Fabric sourcing.</span><br />
+                Production support.
+              </h2>
+            </div>
+            <div className="border-t lg:border-t-0 lg:border-l border-white/15 pt-6 lg:pt-0 lg:pl-10 space-y-5 text-sm sm:text-base leading-relaxed text-[#FAF8F5]/85">
+              <p>
+                White labeling is a collaborative process. The final scope depends on the garment category, fabric, quantity, sampling requirements, branding details, and delivery plan.
+              </p>
+              <p className="font-bold text-[#FAF8F5]">
+                Bring your vision and we will help map the next practical step from pattern drafting to Pan-India dispatch.
+              </p>
+              <div className="pt-2">
+                <a
+                  href="#enquiry"
+                  className="inline-flex items-center gap-2 bg-[#FE6311] hover:bg-[#e0530b] text-white px-6 py-3 text-xs font-mono font-bold tracking-wider rounded-[3px] shadow-sm transition-all"
+                >
+                  <span>REQUEST PRIVATE LABEL QUOTE</span>
+                  <ArrowRight size={14} />
+                </a>
+              </div>
             </div>
           </div>
         </section>
-        <HimatInquiry />
+
+        <div id="enquiry">
+          <HimatInquiry />
+        </div>
       </main>
     </div>
   );
 }
-
-
-
-

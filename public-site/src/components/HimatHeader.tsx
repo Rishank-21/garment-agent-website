@@ -83,7 +83,7 @@ export function HimatHeader() {
         className={`fixed inset-x-0 top-0 z-[110] flex items-center transition-all duration-300 ${
           scrolled
             ? "h-[68px] bg-[#F3EEE5]/96 backdrop-blur-md border-b border-[rgba(23,26,29,0.12)] shadow-[0_4px_20px_-2px_rgba(23,26,29,0.06)] text-[#171A1D]"
-            : "h-[84px] bg-transparent border-b border-transparent text-[#171A1D]"
+            : "h-[80px] bg-[#F3EEE5]/90 backdrop-blur-md border-b border-[rgba(23,26,29,0.08)] text-[#171A1D]"
         }`}
       >
         <div className="mx-auto flex h-full w-full max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">

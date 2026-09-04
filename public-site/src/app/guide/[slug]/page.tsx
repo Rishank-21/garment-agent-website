@@ -25,21 +25,21 @@ export default async function GuideDetailsPage({ params }: GuideDetailsProps) {
   await recordGuideView(slug);
 
   return (
-    <div className="min-h-screen bg-[#F8F4EF] text-[#1C1917] selection:bg-[#5C0A0A] selection:text-[#F8F4EF]">
+    <div className="min-h-screen bg-[#FAF8F5] text-[#171A1D] selection:bg-[#FE6311] selection:text-[#FFFAF4]">
       <main>
         {/* Article Header */}
-        <section className="bg-[#5C0A0A] px-5 pb-16 pt-32 sm:px-8 lg:px-12 lg:pb-24 lg:pt-40 text-[#F8F4EF] border-b border-[#7A1010]">
+        <section className="bg-[#F3EEE5] px-5 pb-16 pt-32 sm:px-8 lg:px-12 lg:pb-20 lg:pt-36 text-[#171A1D] border-b border-[rgba(23,26,29,0.12)]">
           <div className="mx-auto max-w-[1000px]">
-            <Link href="/guide" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#F8F4EF]/70 transition-colors hover:text-[#B8924A]">
+            <Link href="/guide" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#FE6311] transition-colors hover:underline">
               <ArrowLeft size={12} /> Back to sourcing guide
             </Link>
-            <div className="mt-10">
-              <span className="mono-label text-[9.5px] text-[#B8924A] bg-white/10 px-3 py-1 rounded-xs uppercase tracking-widest font-bold">Himat Textile / Business Sourcing Guide</span>
-              <div className="mt-4 h-0.5 w-16 bg-[#B8924A]" />
-              <h1 className="mt-6 font-serif-display text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-[0.92] tracking-tight text-[#F8F4EF]">{guide.title}</h1>
-              <div className="mt-8 flex flex-wrap items-center gap-4 border-y border-white/15 py-3 font-mono text-[10px] uppercase tracking-wider text-[#F8F4EF]/70">
+            <div className="mt-8">
+              <span className="font-mono text-[9.5px] text-[#FE6311] bg-white px-3 py-1 rounded-xs uppercase tracking-widest font-bold border border-[rgba(23,26,29,0.1)]">Himat Textile / Business Sourcing Guide</span>
+              <div className="mt-4 h-0.5 w-16 bg-[#FE6311]" />
+              <h1 className="mt-6 font-serif text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[0.92] tracking-tight text-[#171A1D]">{guide.title}</h1>
+              <div className="mt-8 flex flex-wrap items-center gap-4 border-y border-[rgba(23,26,29,0.1)] py-3 font-mono text-[10px] uppercase tracking-wider text-[#171A1D]/70">
                 <span>Published in Ahmedabad, India</span>
-                <span className="text-[#B8924A]">◆</span>
+                <span className="text-[#FE6311]">◆</span>
                 <span>{guide.views + 1} views</span>
               </div>
             </div>

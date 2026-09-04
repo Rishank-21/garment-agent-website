@@ -15,18 +15,18 @@ export default async function BusinessGuidePage() {
     <div className="min-h-screen bg-[#FAF9F6] text-[#252525] selection:bg-[#FE6311] selection:text-white">
       <main>
         {/* Guide Hero */}
-        <section className="relative overflow-hidden bg-[#252525] px-5 pb-12 pt-28 text-[#FAF9F6] sm:px-8 lg:px-12 lg:pt-36 border-b border-black/20">
+        <section className="relative overflow-hidden bg-[#F3EEE5] px-5 pb-16 pt-32 text-[#171A1D] sm:px-8 lg:px-12 lg:pb-20 lg:pt-36 border-b border-[rgba(23,26,29,0.12)]">
           <div className="relative mx-auto max-w-[1280px]">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#E8907B]">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FE6311]">
                 <span>Home</span>
                 <span className="opacity-50">/</span>
-                <span className="text-[#FAF9F6]/80">Business Sourcing Guide</span>
+                <span className="text-[#171A1D]/80">Business Sourcing Guide</span>
               </div>
-              <h1 className="font-serif-display text-[clamp(2.2rem,5.2vw,4.8rem)] font-black uppercase leading-[0.95] tracking-tight text-[#FAF9F6]">
+              <h1 className="font-serif text-[clamp(2.4rem,5.2vw,4.8rem)] font-normal leading-[0.95] tracking-tight text-[#171A1D]">
                 Garment Sourcing Intelligence.
               </h1>
-              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-[#FAF9F6]/85">
+              <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#171A1D]/80">
                 Buying smart is the difference between profit and dead stock. Access our editorial guides, B2B procurement tips, and wholesale insights tailored for brand managers and retail purchasers.
               </p>
             </div>

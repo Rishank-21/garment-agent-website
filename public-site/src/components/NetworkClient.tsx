@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import { Globe, MapPin } from "lucide-react";
@@ -13,18 +13,18 @@ export default function NetworkClient({ cities, brands }: NetworkClientProps) {
     <div className="min-h-screen bg-[#FAF9F6] text-[#252525] selection:bg-[#FFB51A] selection:text-[#252525]">
       <main>
         {/* Network Hero */}
-        <section className="relative overflow-hidden bg-[#141414] px-5 pb-12 pt-28 text-[#FAF8F5] sm:px-8 lg:px-12 lg:pt-36 border-b border-black/30">
+        <section className="relative overflow-hidden bg-[#F3EEE5] px-5 pb-16 pt-32 text-[#171A1D] sm:px-8 lg:px-12 lg:pb-20 lg:pt-36 border-b border-[rgba(23,26,29,0.12)]">
           <div className="relative mx-auto max-w-[1500px]">
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#F5B014]">
+              <div className="flex items-center gap-2 text-[10.5px] font-mono font-bold uppercase tracking-widest text-[#FE6311]">
                 <span>Home</span>
                 <span className="opacity-50">/</span>
-                <span className="text-[#FAF8F5]/80">Supply Chain Network</span>
+                <span className="text-[#171A1D]/80">Supply Chain Network</span>
               </div>
-              <h1 className="font-serif-display text-[clamp(2.2rem,5.2vw,4.8rem)] font-black uppercase leading-[0.95] tracking-tight text-[#FAF8F5]">
+              <h1 className="font-serif text-[clamp(2.4rem,5.2vw,4.8rem)] font-normal leading-[0.95] tracking-tight text-[#171A1D]">
                 Garment Market Logistics Hubs.
               </h1>
-              <p className="max-w-2xl text-xs sm:text-sm leading-relaxed text-[#FAF8F5]/85">
+              <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-[#171A1D]/80">
                 Ahmedabad connects you directly to primary garment hubs and B2B transit routes across India. View our active supply chain hubs and regional connections mapped below.
               </p>
             </div>
