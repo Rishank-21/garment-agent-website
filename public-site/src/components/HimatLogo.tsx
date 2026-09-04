@@ -67,11 +67,11 @@ export function HimatLogoImage({
   );
 }
 
-// Prominent Brand Lockup: Big Logo Mark + Bold Luxury "HIMAT TEXTILE" Typography
+// Prominent Brand Lockup: Logo Mark + "HIMAT TEXTILE" in ONE line + Centered Tagline "- YOUR GARMENT GUIDE IN AHMEDABAD -"
 export default function HimatLogo({
   className = "",
   light = true,
-  stacked = true,
+  stacked = false,
   size = "md"
 }: {
   className?: string;
@@ -84,59 +84,53 @@ export default function HimatLogo({
   const isXl = size === "xl";
 
   return (
-    <div className={`inline-flex ${stacked ? "flex-col items-center text-center" : "flex-row items-center gap-3.5"} select-none group ${className}`}>
-      {/* Prominent Logo Mark */}
-      <div className="relative shrink-0 flex items-center justify-center">
+    <div className={`inline-flex flex-col items-center text-center select-none group ${className}`}>
+      {/* Line 1: Logo Mark and HIMAT TEXTILE together in ONE line */}
+      <div className="flex items-center justify-center gap-2 sm:gap-2.5">
         <HimatLogoImage 
           className={
             isSm 
-              ? "h-13 sm:h-16 w-auto" 
+              ? "h-6 sm:h-7 md:h-8 w-auto" 
               : isXl 
-              ? "h-24 sm:h-32 w-auto" 
+              ? "h-12 sm:h-14 w-auto" 
               : isLg 
-              ? "h-20 sm:h-24 w-auto" 
-              : "h-16 sm:h-20 w-auto"
+              ? "h-8 sm:h-10 w-auto" 
+              : "h-7 sm:h-8 w-auto"
           } 
         />
+        <span
+          className={`font-serif-display font-black uppercase tracking-[0.14em] leading-none ${
+            isSm 
+              ? "text-sm sm:text-base md:text-lg" 
+              : isXl 
+              ? "text-2xl sm:text-4xl" 
+              : isLg 
+              ? "text-lg sm:text-2xl" 
+              : "text-base sm:text-xl"
+          } ${light ? "text-[#171A1D]" : "text-[#FAF8F5]"}`}
+        >
+          HIMAT <span className="text-[#FE6311]">TEXTILE</span>
+        </span>
       </div>
 
-      {/* Brand Typography Underneath / Beside */}
-      <div className={`flex flex-col ${stacked ? "items-center mt-2" : "items-start"}`}>
-        <div className="flex items-center gap-1.5">
-          <span
-            className={`font-serif-display font-black uppercase tracking-[0.14em] leading-tight ${
-              isSm 
-                ? "text-base sm:text-xl md:text-2xl" 
-                : isXl 
-                ? "text-3xl sm:text-5xl md:text-6xl" 
-                : isLg 
-                ? "text-2xl sm:text-4xl" 
-                : "text-xl sm:text-3xl"
-            } ${light ? "text-[#171A1D]" : "text-[#FAF8F5]"}`}
-          >
-            HIMAT <span className={light ? "text-[#FE6311]" : "text-[#FFFAF4]"}>TEXTILE</span>
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2 mt-1">
-          <span className={`h-[1.5px] w-4 ${light ? "bg-[#FFB51A]" : "bg-[#FFB51A]"}`} />
-          <span className={`font-mono font-extrabold uppercase tracking-[0.24em] ${light ? "text-[#C67D00]" : "text-[#FFD44D]"} ${
-            isSm 
-              ? "text-[9.5px] sm:text-[11px]" 
-              : isXl 
-              ? "text-[12px] sm:text-[14px]" 
-              : isLg 
-              ? "text-[11px] sm:text-[12.5px]" 
-              : "text-[10px] sm:text-[12px]"
-          }`}>
-            YOUR GARMENT GUIDE IN AHMEDABAD
-          </span>
-          <span className={`h-[1.5px] w-4 ${light ? "bg-[#FFB51A]" : "bg-[#FFB51A]"}`} />
-        </div>
+      {/* Line 2: Tagline Centered Underneath */}
+      <div
+        className={`w-full text-center font-mono font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] transition-colors ${
+          isSm 
+            ? "text-[6.5px] sm:text-[7.5px] md:text-[8.5px] mt-1" 
+            : isXl 
+            ? "text-[11px] sm:text-[13px] mt-2" 
+            : isLg 
+            ? "text-[8.5px] sm:text-[10px] mt-1.5" 
+            : "text-[7.5px] sm:text-[9px] mt-1"
+        } ${light ? "text-[#171A1D]/75" : "text-[#FAF8F5]/75"}`}
+      >
+        <span className="text-[#FE6311] font-bold">-</span> YOUR GARMENT GUIDE IN AHMEDABAD <span className="text-[#FE6311] font-bold">-</span>
       </div>
     </div>
   );
 }
+
 
 
 
