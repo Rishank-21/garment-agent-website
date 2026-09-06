@@ -7,6 +7,7 @@ import BlackThemePreloader from "@/components/BlackThemePreloader";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Toaster } from "sonner";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import FirebaseAnalytics from "@/components/FirebaseAnalytics";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -156,6 +157,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground font-sans antialiased">
         <LanguageProvider>
+          <FirebaseAnalytics />
           <SmoothScroll>
             <div className="relative min-h-screen flex flex-col justify-between">
               <HimatHeader />
